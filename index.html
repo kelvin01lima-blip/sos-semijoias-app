@@ -146,6 +146,14 @@
     .rules-card h4 { margin: 0 0 10px 0; color: #C2410C; }
     .rules-list { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #9A3412; line-height: 1.6; }
 
+    .tool-box {
+      background-color: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
     .month-selector {
       display: flex;
       gap: 8px;
@@ -273,6 +281,20 @@
           </ul>
         </div>
 
+        <!-- CONVERSOR DE PESO EM PEÇAS -->
+        <div class="panel-card tool-box">
+          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade exata de peças? Converta pelo peso</h3>
+          <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
+            Digite o peso total em gramas do seu lote para calcular a quantidade aproximada com base na <strong>média de 3,2g por peça</strong>.
+          </p>
+
+          <div style="display: flex; gap: 10px; align-items: center; max-width: 400px;">
+            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 1600)" style="margin: 0;">
+            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR</button>
+          </div>
+          <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
+        </div>
+
         <!-- FORMULÁRIO DE AGENDAMENTO -->
         <div class="panel-card">
           <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
@@ -302,10 +324,8 @@
         <div class="panel-card">
           <h3>📊 Ocupação Diária da Fábrica</h3>
 
-          <!-- SELETOR DE MESES (2026 - 2030) -->
           <div id="monthTabsContainer" class="month-selector"></div>
 
-          <!-- BARRA DE PROGRESSO MENSAL -->
           <div style="background: var(--input-bg); border: 1px solid #CBD5E1; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
             <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; margin-bottom: 6px;">
               <span>Acumulado do Mês: <strong id="mesPecasTotais" style="color: var(--blue-val);">0 pcs</strong></span>
@@ -360,7 +380,8 @@
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
     const META_DIARIA = 600;
-    const CAPACIDADE_MENSAL = 12000; // Média de 20 dias úteis * 600 pcs
+    const CAPACIDADE_MENSAL = 12000;
+    const MEDIA_PESO_PECA = 3.2;
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios')) || {
       "Diretoria": { senha: "123456", perfil: "admin" },
@@ -371,6 +392,7 @@
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos')) || [];
     let feriadosBloqueados = JSON.parse(localStorage.getItem('sos_feriados')) || [];
     let usuarioLogado = null;
+    let usouFerramentaPeso = false;
     let mesSelecionado = "2026-09";
 
     function obterDataMinima10DiasUteis() {
@@ -388,11 +410,10 @@
       const container = document.getElementById('monthTabsContainer');
       container.innerHTML = '';
 
-      let anoAtual = 2026;
       let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
       for (let ano = 2026; ano <= 2030; ano++) {
-        let mesInicio = (ano === 2026) ? 8 : 0; // Começa em Setembro (mês index 8) para 2026
+        let mesInicio = (ano === 2026) ? 8 : 0;
         for (let m = mesInicio; m < 12; m++) {
           let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
           let btn = document.createElement('button');
@@ -463,6 +484,21 @@
       document.getElementById('btnLogout').style.display = 'none';
     }
 
+    // CONVERSOR DE PESO (3,2g)
+    function converterPesoParaPecas() {
+      const gramas = parseFloat(document.getElementById('pesoGrams').value);
+      if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
+
+      const pcsEstimadas = Math.round(gramas / MEDIA_PESO_PECA);
+      document.getElementById('pecasInput').value = pcsEstimadas;
+      usouFerramentaPeso = true;
+
+      document.getElementById('pesoResult').innerHTML = `
+        ✅ Conversão concluída: <strong>${gramas}g</strong> em média de 3,2g/peça = <strong>~${pcsEstimadas} peças</strong>. O valor foi inserido no formulário abaixo.
+      `;
+      calcularImpacto();
+    }
+
     function calcularImpacto() {
       const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
       let valCaixa = pecas * 0.80;
@@ -480,7 +516,6 @@
 
       if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
-      // ISENÇÃO DE 10 DIAS ÚTEIS PARA DIRETORIA
       if (usuarios[usuarioLogado].perfil !== "admin") {
         const dataEscolhida = new Date(dataSel + 'T00:00:00');
         const dataMinima = obterDataMinima10DiasUteis();
@@ -503,7 +538,8 @@
         cliente: usuarioLogado,
         data: dataSel,
         pecas: pecas,
-        total: valCaixa + valDespacho
+        total: valCaixa + valDespacho,
+        origemPeso: usouFerramentaPeso
       });
 
       localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
@@ -512,11 +548,19 @@
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cliente: usuarioLogado, semana: dataSel, pecas: pecas, caixa: valCaixa, despacho: valDespacho, total: valCaixa + valDespacho })
+        body: JSON.stringify({
+          cliente: usuarioLogado + (usouFerramentaPeso ? " [PESO 3,2g]" : ""),
+          semana: dataSel,
+          pecas: pecas,
+          caixa: valCaixa,
+          despacho: valDespacho,
+          total: valCaixa + valDespacho
+        })
       });
 
       alert("Solicitação registrada com sucesso!");
       document.getElementById('pecasInput').value = '';
+      usouFerramentaPeso = false;
       calcularImpacto();
       renderizarCalendario();
     }
@@ -537,7 +581,6 @@
         if (a.data.startsWith(mesSelecionado)) totalPecasMes += a.pecas;
       });
 
-      // ATUALIZA BARRA MENSAL
       document.getElementById('mesPecasTotais').innerText = `${totalPecasMes.toLocaleString('pt-BR')} pcs`;
       let restantes = Math.max(0, CAPACIDADE_MENSAL - totalPecasMes);
       document.getElementById('mesPecasRestantes').innerText = `${restantes.toLocaleString('pt-BR')} pcs`;
@@ -642,7 +685,7 @@
           <td><strong>${a.cliente}</strong></td>
           <td><input type="date" value="${a.data}" id="edit_data_${index}" class="form-control" style="margin:0; padding:4px;"></td>
           <td><input type="number" value="${a.pecas}" id="edit_pecas_${index}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
-          <td>Direta</td>
+          <td>${a.origemPeso ? '<span style="color:blue; font-size:0.75rem;">⚖️ Peso (3,2g)</span>' : 'Direta'}</td>
           <td>
             <button class="btn-edit" onclick="readequarVaga(${index})">Salvar</button>
             <button class="btn-danger" onclick="excluirVaga(${index})">Excluir</button>
