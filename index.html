@@ -14,6 +14,7 @@
       --text-dark: #0B132B;
       --text-muted: #64748B;
       --green-val: #10B981;
+      --red-val: #EF4444;
     }
 
     * {
@@ -31,12 +32,15 @@
       flex-direction: column;
     }
 
-    /* HEADER IDENTICO AO DA IMAGEM */
+    /* HEADER */
     .top-bar {
       background-color: var(--header-bg);
       border-bottom: 4px solid var(--orange-accent);
       padding: 16px 32px;
       color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .top-bar h1 {
@@ -55,16 +59,33 @@
       text-transform: uppercase;
     }
 
-    /* CONTAINER CENTRALIZADO */
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--orange-accent);
+      color: var(--orange-accent);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* CONTAINER CENTRAL */
     .main-container {
       flex: 1;
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* TELA DE LOGIN CENTRALIZADA */
+    .login-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      min-height: 70vh;
     }
 
-    /* CARD DE LOGIN EXACT MATCH */
     .login-card {
       background: var(--card-bg);
       border-radius: 24px;
@@ -79,13 +100,6 @@
       margin: 0 0 8px 0;
       font-size: 1.5rem;
       font-weight: 800;
-      color: var(--text-dark);
-    }
-
-    .login-card p {
-      margin: 0 0 24px 0;
-      color: #94A3B8;
-      font-size: 0.85rem;
     }
 
     .form-control {
@@ -100,10 +114,6 @@
       outline: none;
     }
 
-    .form-control:focus {
-      border-color: var(--header-bg);
-    }
-
     .btn-main {
       width: 100%;
       padding: 16px;
@@ -114,22 +124,30 @@
       font-size: 0.9rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .btn-main:hover {
-      background-color: #1C2541;
+    .btn-danger {
+      background-color: var(--red-val);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    /* PAINEL INTERNO */
-    .dashboard-panel {
-      display: none;
-      width: 100%;
-      max-width: 1000px;
-      margin: 20px auto;
+    .btn-edit {
+      background-color: #3B82F6;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 4px;
     }
+
+    /* PAINEL */
+    .dashboard-panel { display: none; }
 
     .grid-panel {
       display: grid;
@@ -137,7 +155,7 @@
       gap: 20px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
       .grid-panel { grid-template-columns: 1fr; }
     }
 
@@ -146,6 +164,7 @@
       border-radius: 16px;
       padding: 24px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 20px;
     }
 
     .panel-card h3 {
@@ -154,6 +173,17 @@
       border-bottom: 2px solid var(--body-bg);
       padding-bottom: 10px;
     }
+
+    .badge-status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .badge-aberto { background-color: #D1FAE5; color: #065F46; }
+    .badge-fechado { background-color: #FEE2E2; color: #991B1B; }
 
     .calc-box {
       background: var(--input-bg);
@@ -175,459 +205,103 @@
       font-weight: bold;
     }
 
-    .msg-error { color: #EF4444; font-size: 0.85rem; margin-top: 8px; }
-    .msg-success { color: var(--green-val); font-size: 0.85rem; margin-top: 8px; }
-  </style>
-</head>
-<body>
-
-  <!-- CABEÇALHO -->
-  <div class="top-bar">
-    <h1>S.O.S SOLUÇÕES</h1>
-    <p>CLUBE S.O.S CARTA DE CRÉDITO</p>
-  </div>
-
-  <div class="main-container">
-
-    <!-- TELA DE LOGIN (LAYOUT DA IMAGEM) -->
-    <div id="loginCard" class="login-card">
-      <h2>Acesso ao Clube</h2>
-      <p>Selecione sua marca e digite sua senha</p>
-
-      <select id="userSelect" class="form-control">
-        <option value="">Selecione sua marca...</option>
-      </select>
-
-      <input type="password" id="userPass" class="form-control" placeholder="Senha">
-
-      <button class="btn-main" onclick="autenticar()">ENTRAR NO PAINEL</button>
-      <div id="loginMsg" class="msg-error"></div>
-    </div>
-
-    <!-- PAINEL INTERNO -->
-    <div id="dashboardPanel" class="dashboard-panel">
-      
-      <!-- PAINEL EXCLUSIVO DIRETORIA (CRIAR CLIENTES) -->
-      <div id="diretoriaBox" class="panel-card" style="margin-bottom: 20px; display: none;">
-        <h3>👑 Gestão de Clientes (Exclusivo Diretoria)</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
-          <input type="text" id="newClientName" class="form-control" placeholder="Nome do Novo Cliente" style="margin: 0;">
-          <input type="password" id="newClientPass" class="form-control" placeholder="Senha do Cliente" style="margin: 0;">
-          <button class="btn-main" style="width: auto; padding: 0 20px;" onclick="cadastrarCliente()">CADASTRAR</button>
-        </div>
-        <div id="adminMsg"></div>
-      </div>
-
-      <div class="grid-panel">
-        
-        <!-- CALENDÁRIO / AGENDAMENTO -->
-        <div class="panel-card">
-          <h3 id="welcomeTitle">📅 Agendamento de Vagas</h3>
-          
-          <label style="font-size: 0.8rem; font-weight: bold;">Escolha a Semana:</label>
-          <select id="semanaInput" class="form-control">
-            <option value="Semana 1">Semana 1 (Vagas Abertas)</option>
-            <option value="Semana 2">Semana 2 (Vagas Abertas)</option>
-            <option value="Semana 3">Semana 3 (Vagas Abertas)</option>
-            <option value="Semana 4">Semana 4 (Vagas Abertas)</option>
-          </select>
-
-          <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-          <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500" oninput="calcularValores()">
-
-          <div class="calc-box">
-            <div class="calc-row">
-              <span>Inspeção (Caixa / R$ 0,80 pc):</span>
-              <strong id="resCaixa">R$ 0,00</strong>
-            </div>
-            <div class="calc-row">
-              <span>Despacho (Foto+CDE / R$ 1,648 pc):</span>
-              <strong id="resDespacho">R$ 0,00</strong>
-            </div>
-            <div class="calc-row total">
-              <span>Faturamento Total Previsto:</span>
-              <strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong>
-            </div>
-          </div>
-
-          <button class="btn-main" onclick="enviarAgendamento()">CONFIRMAR VAGA</button>
-          <div id="agendaMsg"></div>
-        </div>
-
-        <!-- VISUALIZAÇÃO DE DADOS DA PLANILHA DO DRIVE -->
-        <div class="panel-card">
-          <h3>📊 Vagas & Histórico</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Acompanhamento sincronizado direto com o Google Drive.</p>
-          <div id="historicoContainer" style="font-size: 0.9rem;">
-            Seus agendamentos aparecerão salvos aqui assim que confirmados.
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    // URL DO SEU GOOGLE APPS SCRIPT
-    const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
-
-    // BASE DE USUÁRIOS PADRÃO
-    let usuarios = {
-      "Diretoria": { senha: "123456", perfil: "admin" },
-      "Niara": { senha: "123456789", perfil: "cliente" },
-      "Ulli": { senha: "987654321", perfil: "cliente" }
-    };
-
-    let usuarioLogado = null;
-    let valCaixa = 0, valDespacho = 0, valTotal = 0;
-
-    // INICIALIZAR DROP DOWN DE USUÁRIOS
-    function carregarSelectUsuarios() {
-      const select = document.getElementById('userSelect');
-      select.innerHTML = '<option value="">Selecione sua marca...</option>';
-      for (let user in usuarios) {
-        let opt = document.createElement('option');
-        opt.value = user;
-        opt.innerText = user;
-        select.appendChild(opt);
-      }
-    }
-
-    // LOGIN
-    function autenticar() {
-      const user = document.getElementById('userSelect').value;
-      const pass = document.getElementById('userPass').value;
-      const msg = document.getElementById('loginMsg');
-
-      if (!user || !pass) {
-        msg.innerText = "Selecione a marca e digite a senha.";
-        return;
-      }
-
-      if (usuarios[user] && usuarios[user].senha === pass) {
-        usuarioLogado = user;
-        document.getElementById('loginCard').style.display = 'none';
-        document.getElementById('dashboardPanel').style.display = 'block';
-        document.getElementById('welcomeTitle').innerText = `📅 Agendamento de Vagas — ${user}`;
-
-        // Se for a diretoria, libera o painel para criar novos clientes
-        if (usuarios[user].perfil === "admin") {
-          document.getElementById('diretoriaBox').style.display = 'block';
-        }
-      } else {
-        msg.innerText = "Senha incorreta para a marca selecionada.";
-      }
-    }
-
-    // AÇÃO EXCLUSIVA DA DIRETORIA: CADASTRAR NOVOS CLIENTES
-    function cadastrarCliente() {
-      const nome = document.getElementById('newClientName').value.trim();
-      const senha = document.getElementById('newClientPass').value.trim();
-      const msg = document.getElementById('adminMsg');
-
-      if (!nome || !senha) {
-        msg.innerHTML = "<span class='msg-error'>Preencha nome e senha.</span>";
-        return;
-      }
-
-      usuarios[nome] = { senha: senha, perfil: "cliente" };
-      carregarSelectUsuarios();
-      document.getElementById('newClientName').value = "";
-      document.getElementById('newClientPass').value = "";
-      msg.innerHTML = `<span class='msg-success'>Cliente '${nome}' cadastrado com sucesso!</span>`;
-    }
-
-    // SIMULADOR FINANCEIRO
-    function calcularValores() {
-      const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
-      valCaixa = pecas * 0.80;
-      valDespacho = pecas * 1.648;
-      valTotal = valCaixa + valDespacho;
-
-      document.getElementById('resCaixa').innerText = valCaixa.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resDespacho').innerText = valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-    }
-
-    // ENVIAR DADOS AO DRIVE
-    function enviarAgendamento() {
-      const semana = document.getElementById('semanaInput').value;
-      const pecas = document.getElementById('pecasInput').value;
-      const msg = document.getElementById('agendaMsg');
-
-      if (!pecas || pecas <= 0) {
-        msg.innerHTML = "<span class='msg-error'>Informe a quantidade de peças.</span>";
-        return;
-      }
-
-      msg.innerHTML = "<span style='color: var(--header-bg); font-weight: bold;'>Salvando no Google Drive...</span>";
-
-      const payload = {
-        cliente: usuarioLogado,
-        semana: semana,
-        pecas: pecas,
-        caixa: valCaixa,
-        despacho: valDespacho,
-        total: valTotal
-      };
-
-      fetch(URL_SCRIPT_DRIVE, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      }).then(() => {
-        msg.innerHTML = "<span class='msg-success'>✅ Vaga confirmada e registrada na planilha!</span>";
-        document.getElementById('pecasInput').value = "";
-        calcularValores();
-      }).catch(err => {
-        msg.innerHTML = "<span class='msg-error'>Erro ao conectar com o Drive.</span>";
-      });
-    }
-
-    // CARREGAR SELEÇÃO INICIAL
-    carregarSelectUsuarios();
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.O.S SOLUÇÕES - CLUBE S.O.S CARTA DE CRÉDITO</title>
-  <style>
-    :root {
-      --header-bg: #0B132B;
-      --orange-accent: #FF5722;
-      --body-bg: #F0F4F8;
-      --card-bg: #FFFFFF;
-      --input-bg: #F8FAFC;
-      --text-dark: #0B132B;
-      --text-muted: #64748B;
-      --green-val: #10B981;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--body-bg);
-      color: var(--text-dark);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* HEADER IDENTICO AO DA IMAGEM */
-    .top-bar {
-      background-color: var(--header-bg);
-      border-bottom: 4px solid var(--orange-accent);
-      padding: 16px 32px;
-      color: #FFFFFF;
-    }
-
-    .top-bar h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
-
-    .top-bar p {
-      margin: 4px 0 0 0;
-      color: var(--orange-accent);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* CONTAINER CENTRALIZADO */
-    .main-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    /* CARD DE LOGIN EXACT MATCH */
-    .login-card {
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 40px 32px;
+    table {
       width: 100%;
-      max-width: 440px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      text-align: center;
+      border-collapse: collapse;
+      margin-top: 12px;
     }
 
-    .login-card h2 {
-      margin: 0 0 8px 0;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-dark);
-    }
-
-    .login-card p {
-      margin: 0 0 24px 0;
-      color: #94A3B8;
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #E2E8F0;
       font-size: 0.85rem;
     }
 
-    .form-control {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
-      background-color: var(--input-bg);
-      color: var(--text-dark);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-      outline: none;
-    }
-
-    .form-control:focus {
-      border-color: var(--header-bg);
-    }
-
-    .btn-main {
-      width: 100%;
-      padding: 16px;
-      border-radius: 12px;
-      border: none;
-      background-color: var(--header-bg);
-      color: #FFFFFF;
-      font-size: 0.9rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-main:hover {
-      background-color: #1C2541;
-    }
-
-    /* PAINEL INTERNO */
-    .dashboard-panel {
-      display: none;
-      width: 100%;
-      max-width: 1000px;
-      margin: 20px auto;
-    }
-
-    .grid-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .grid-panel { grid-template-columns: 1fr; }
-    }
-
-    .panel-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-
-    .panel-card h3 {
-      margin-top: 0;
-      color: var(--header-bg);
-      border-bottom: 2px solid var(--body-bg);
-      padding-bottom: 10px;
-    }
-
-    .calc-box {
-      background: var(--input-bg);
-      border-radius: 8px;
-      padding: 12px;
-      margin: 12px 0;
-    }
-
-    .calc-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-    }
-
-    .calc-row.total {
-      border-top: 1px dashed #CBD5E1;
-      padding-top: 8px;
-      font-weight: bold;
-    }
-
-    .msg-error { color: #EF4444; font-size: 0.85rem; margin-top: 8px; }
-    .msg-success { color: var(--green-val); font-size: 0.85rem; margin-top: 8px; }
+    th { background-color: var(--input-bg); }
   </style>
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
+  <!-- HEADER -->
   <div class="top-bar">
-    <h1>S.O.S SOLUÇÕES</h1>
-    <p>CLUBE S.O.S CARTA DE CRÉDITO</p>
+    <div>
+      <h1>S.O.S SOLUÇÕES</h1>
+      <p>CLUBE S.O.S CARTA DE CRÉDITO</p>
+    </div>
+    <button id="btnLogout" class="btn-logout" style="display: none;" onclick="logout()">SAIR</button>
   </div>
 
   <div class="main-container">
 
-    <!-- TELA DE LOGIN (LAYOUT DA IMAGEM) -->
-    <div id="loginCard" class="login-card">
-      <h2>Acesso ao Clube</h2>
-      <p>Selecione sua marca e digite sua senha</p>
+    <!-- TELA DE LOGIN -->
+    <div id="loginWrapper" class="login-wrapper">
+      <div class="login-card">
+        <h2>Acesso ao Clube</h2>
+        <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 20px;">Selecione sua marca e digite sua senha</p>
 
-      <select id="userSelect" class="form-control">
-        <option value="">Selecione sua marca...</option>
-      </select>
+        <select id="userSelect" class="form-control">
+          <option value="">Selecione sua marca...</option>
+        </select>
 
-      <input type="password" id="userPass" class="form-control" placeholder="Senha">
+        <input type="password" id="userPass" class="form-control" placeholder="Senha">
 
-      <button class="btn-main" onclick="autenticar()">ENTRAR NO PAINEL</button>
-      <div id="loginMsg" class="msg-error"></div>
+        <button class="btn-main" onclick="autenticar()">ENTRAR NO PAINEL</button>
+        <div id="loginMsg" style="color: var(--red-val); font-size: 0.85rem; margin-top: 10px;"></div>
+      </div>
     </div>
 
     <!-- PAINEL INTERNO -->
     <div id="dashboardPanel" class="dashboard-panel">
-      
-      <!-- PAINEL EXCLUSIVO DIRETORIA (CRIAR CLIENTES) -->
-      <div id="diretoriaBox" class="panel-card" style="margin-bottom: 20px; display: none;">
-        <h3>👑 Gestão de Clientes (Exclusivo Diretoria)</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
-          <input type="text" id="newClientName" class="form-control" placeholder="Nome do Novo Cliente" style="margin: 0;">
-          <input type="password" id="newClientPass" class="form-control" placeholder="Senha do Cliente" style="margin: 0;">
-          <button class="btn-main" style="width: auto; padding: 0 20px;" onclick="cadastrarCliente()">CADASTRAR</button>
+
+      <!-- GERENCIAMENTO DE CLIENTES (SÓ DIRETORIA) -->
+      <div id="adminPanel" class="panel-card" style="display: none;">
+        <h3>👑 Gestão de Acessos e Usuários (Diretoria)</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; margin-bottom: 15px;">
+          <input type="text" id="newClientName" class="form-control" placeholder="Nome do Cliente" style="margin: 0;">
+          <input type="text" id="newClientPass" class="form-control" placeholder="Senha" style="margin: 0;">
+          <button class="btn-main" style="width: auto; padding: 0 20px;" onclick="salvarNovoCliente()">CADASTRAR</button>
         </div>
-        <div id="adminMsg"></div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente / Marca</th>
+              <th>Senha</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <!-- Linhas inseridas dinamicamente -->
+          </tbody>
+        </table>
       </div>
 
       <div class="grid-panel">
-        
-        <!-- CALENDÁRIO / AGENDAMENTO -->
+
+        <!-- AGENDA E CALCULO DE DIAS -->
         <div class="panel-card">
           <h3 id="welcomeTitle">📅 Agendamento de Vagas</h3>
-          
-          <label style="font-size: 0.8rem; font-weight: bold;">Escolha a Semana:</label>
-          <select id="semanaInput" class="form-control">
-            <option value="Semana 1">Semana 1 (Vagas Abertas)</option>
-            <option value="Semana 2">Semana 2 (Vagas Abertas)</option>
-            <option value="Semana 3">Semana 3 (Vagas Abertas)</option>
-            <option value="Semana 4">Semana 4 (Vagas Abertas)</option>
-          </select>
+
+          <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
+          <input type="date" id="dataInput" class="form-control" onchange="calcularImpactoCapacidade()">
 
           <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-          <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500" oninput="calcularValores()">
+          <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 1000" oninput="calcularImpactoCapacidade()">
 
+          <!-- INFORMAÇÃO DE IMPACTO NA CAPACIDADE FABRIL -->
+          <div id="capacidadeInfo" class="calc-box" style="display: none;">
+            <p style="margin: 0 0 6px 0; font-size: 0.85rem;"><strong>Consumo de Capacidade (Meta: 600 pcs/dia):</strong></p>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--header-bg);">
+              Este lote levará aproximadamente <strong id="diasOcupados">0</strong> dia(s) útil(eis) de produção.
+            </p>
+            <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: var(--text-muted);">
+              Previsão de conclusão do lote: <strong id="dataFinalPrevista">-</strong>
+            </p>
+          </div>
+
+          <!-- SIMULADOR -->
           <div class="calc-box">
             <div class="calc-row">
               <span>Inspeção (Caixa / R$ 0,80 pc):</span>
@@ -644,15 +318,16 @@
           </div>
 
           <button class="btn-main" onclick="enviarAgendamento()">CONFIRMAR VAGA</button>
-          <div id="agendaMsg"></div>
+          <div id="agendaMsg" style="margin-top: 8px;"></div>
         </div>
 
-        <!-- VISUALIZAÇÃO DE DADOS DA PLANILHA DO DRIVE -->
+        <!-- AGENDA / CALENDÁRIO COM VAGAS ABERTAS/FECHADAS -->
         <div class="panel-card">
-          <h3>📊 Vagas & Histórico</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Acompanhamento sincronizado direto com o Google Drive.</p>
-          <div id="historicoContainer" style="font-size: 0.9rem;">
-            Seus agendamentos aparecerão salvos aqui assim que confirmados.
+          <h3>📊 Status da Agenda & Vagas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Capacidade diária da fábrica: <strong>600 peças/dia</strong></p>
+
+          <div id="agendaStatusList">
+            <!-- Renderização do Status de Vagas -->
           </div>
         </div>
 
@@ -663,20 +338,25 @@
   </div>
 
   <script>
-    // URL DO SEU GOOGLE APPS SCRIPT
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
 
-    // BASE DE USUÁRIOS PADRÃO
-    let usuarios = {
+    // BASE DE DADOS LOCAL DE USUÁRIOS
+    let usuarios = JSON.parse(localStorage.getItem('sos_usuarios')) || {
       "Diretoria": { senha: "123456", perfil: "admin" },
       "Niara": { senha: "123456789", perfil: "cliente" },
       "Ulli": { senha: "987654321", perfil: "cliente" }
     };
 
+    let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos')) || [];
     let usuarioLogado = null;
     let valCaixa = 0, valDespacho = 0, valTotal = 0;
 
-    // INICIALIZAR DROP DOWN DE USUÁRIOS
+    function salvarUsuarios() {
+      localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
+      carregarSelectUsuarios();
+      renderizarTabelaUsuarios();
+    }
+
     function carregarSelectUsuarios() {
       const select = document.getElementById('userSelect');
       select.innerHTML = '<option value="">Selecione sua marca...</option>';
@@ -688,7 +368,6 @@
       }
     }
 
-    // LOGIN
     function autenticar() {
       const user = document.getElementById('userSelect').value;
       const pass = document.getElementById('userPass').value;
@@ -701,40 +380,83 @@
 
       if (usuarios[user] && usuarios[user].senha === pass) {
         usuarioLogado = user;
-        document.getElementById('loginCard').style.display = 'none';
+        document.getElementById('loginWrapper').style.display = 'none';
         document.getElementById('dashboardPanel').style.display = 'block';
+        document.getElementById('btnLogout').style.display = 'block';
         document.getElementById('welcomeTitle').innerText = `📅 Agendamento de Vagas — ${user}`;
 
-        // Se for a diretoria, libera o painel para criar novos clientes
         if (usuarios[user].perfil === "admin") {
-          document.getElementById('diretoriaBox').style.display = 'block';
+          document.getElementById('adminPanel').style.display = 'block';
+          renderizarTabelaUsuarios();
+        } else {
+          document.getElementById('adminPanel').style.display = 'none';
         }
+
+        renderizarAgenda();
       } else {
-        msg.innerText = "Senha incorreta para a marca selecionada.";
+        msg.innerText = "Senha incorreta.";
       }
     }
 
-    // AÇÃO EXCLUSIVA DA DIRETORIA: CADASTRAR NOVOS CLIENTES
-    function cadastrarCliente() {
+    function logout() {
+      usuarioLogado = null;
+      document.getElementById('loginWrapper').style.display = 'flex';
+      document.getElementById('dashboardPanel').style.display = 'none';
+      document.getElementById('btnLogout').style.display = 'none';
+      document.getElementById('userPass').value = '';
+    }
+
+    // CRUD DE USUÁRIOS (EDITAR E EXCLUIR)
+    function renderizarTabelaUsuarios() {
+      const tbody = document.getElementById('userTableBody');
+      tbody.innerHTML = '';
+
+      for (let u in usuarios) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${u}</strong> (${usuarios[u].perfil})</td>
+          <td><input type="text" value="${usuarios[u].senha}" id="pass_${u}" class="form-control" style="margin:0; padding:4px 8px; font-size:0.8rem;"></td>
+          <td>
+            <button class="btn-edit" onclick="atualizarSenha('${u}')">Salvar</button>
+            ${u !== 'Diretoria' ? `<button class="btn-danger" onclick="excluirUsuario('${u}')">Excluir</button>` : ''}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function salvarNovoCliente() {
       const nome = document.getElementById('newClientName').value.trim();
       const senha = document.getElementById('newClientPass').value.trim();
-      const msg = document.getElementById('adminMsg');
 
-      if (!nome || !senha) {
-        msg.innerHTML = "<span class='msg-error'>Preencha nome e senha.</span>";
-        return;
-      }
+      if (!nome || !senha) return alert("Preencha nome e senha.");
 
       usuarios[nome] = { senha: senha, perfil: "cliente" };
-      carregarSelectUsuarios();
-      document.getElementById('newClientName').value = "";
-      document.getElementById('newClientPass').value = "";
-      msg.innerHTML = `<span class='msg-success'>Cliente '${nome}' cadastrado com sucesso!</span>`;
+      salvarUsuarios();
+      document.getElementById('newClientName').value = '';
+      document.getElementById('newClientPass').value = '';
     }
 
-    // SIMULADOR FINANCEIRO
-    function calcularValores() {
+    function atualizarSenha(user) {
+      const novaSenha = document.getElementById(`pass_${user}`).value.trim();
+      if (!novaSenha) return alert("A senha não pode ficar vazia.");
+      usuarios[user].senha = novaSenha;
+      salvarUsuarios();
+      alert(`Senha de ${user} atualizada com sucesso!`);
+    }
+
+    function excluirUsuario(user) {
+      if (confirm(`Deseja remover o acesso do cliente ${user}?`)) {
+        delete usuarios[user];
+        salvarUsuarios();
+      }
+    }
+
+    // CÁLCULO DE CAPACIDADE DE PRODUÇÃO (600 peças/dia)
+    function calcularImpactoCapacidade() {
       const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
+      const dataStr = document.getElementById('dataInput').value;
+
       valCaixa = pecas * 0.80;
       valDespacho = pecas * 1.648;
       valTotal = valCaixa + valDespacho;
@@ -742,45 +464,85 @@
       document.getElementById('resCaixa').innerText = valCaixa.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
       document.getElementById('resDespacho').innerText = valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
       document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+      if (pecas > 0 && dataStr) {
+        const diasNecessarios = (pecas / 600).toFixed(1);
+        document.getElementById('diasOcupados').innerText = diasNecessarios;
+
+        let dataInicio = new Date(dataStr + 'T00:00:00');
+        let diasAdicionais = Math.ceil(pecas / 600);
+        dataInicio.setDate(dataInicio.getDate() + (diasAdicionais - 1));
+
+        document.getElementById('dataFinalPrevista').innerText = dataInicio.toLocaleDateString('pt-BR');
+        document.getElementById('capacidadeInfo').style.display = 'block';
+      } else {
+        document.getElementById('capacidadeInfo').style.display = 'none';
+      }
     }
 
-    // ENVIAR DADOS AO DRIVE
     function enviarAgendamento() {
-      const semana = document.getElementById('semanaInput').value;
-      const pecas = document.getElementById('pecasInput').value;
-      const msg = document.getElementById('agendaMsg');
+      const pecas = parseFloat(document.getElementById('pecasInput').value);
+      const data = document.getElementById('dataInput').value;
 
-      if (!pecas || pecas <= 0) {
-        msg.innerHTML = "<span class='msg-error'>Informe a quantidade de peças.</span>";
-        return;
-      }
+      if (!pecas || !data) return alert("Preencha a data e a quantidade de peças.");
 
-      msg.innerHTML = "<span style='color: var(--header-bg); font-weight: bold;'>Salvando no Google Drive...</span>";
-
-      const payload = {
+      const novoAgendamento = {
         cliente: usuarioLogado,
-        semana: semana,
+        data: data,
         pecas: pecas,
-        caixa: valCaixa,
-        despacho: valDespacho,
+        dias: Math.ceil(pecas / 600),
         total: valTotal
       };
 
+      agendamentos.push(novoAgendamento);
+      localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
+
+      // ENVIO AO DRIVE
       fetch(URL_SCRIPT_DRIVE, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      }).then(() => {
-        msg.innerHTML = "<span class='msg-success'>✅ Vaga confirmada e registrada na planilha!</span>";
-        document.getElementById('pecasInput').value = "";
-        calcularValores();
-      }).catch(err => {
-        msg.innerHTML = "<span class='msg-error'>Erro ao conectar com o Drive.</span>";
+        body: JSON.stringify({
+          cliente: usuarioLogado,
+          semana: data,
+          pecas: pecas,
+          caixa: valCaixa,
+          despacho: valDespacho,
+          total: valTotal
+        })
       });
+
+      alert("Agendamento confirmado com sucesso!");
+      document.getElementById('pecasInput').value = '';
+      calcularImpactoCapacidade();
+      renderizarAgenda();
     }
 
-    // CARREGAR SELEÇÃO INICIAL
+    function renderizarAgenda() {
+      const container = document.getElementById('agendaStatusList');
+      if (agendamentos.length === 0) {
+        container.innerHTML = '<p style="color: green; font-weight: bold;">🟢 TODAS AS VAGAS ESTÃO ABERTAS</p>';
+        return;
+      }
+
+      let html = '<table><thead><tr><th>Cliente</th><th>Data Início</th><th>Peças</th><th>Status Vaga</th></tr></thead><tbody>';
+
+      agendamentos.forEach(a => {
+        html += `
+          <tr>
+            <td><strong>${a.cliente}</strong></td>
+            <td>${new Date(a.data + 'T00:00:00').toLocaleDateString('pt-BR')}</td>
+            <td>${a.pecas} pcs (${a.dias} dias)</td>
+            <td><span class="badge-status badge-fechado">VAGA FECHADA (OCUPADO)</span></td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    // INICIALIZAÇÃO
     carregarSelectUsuarios();
   </script>
 </body>
