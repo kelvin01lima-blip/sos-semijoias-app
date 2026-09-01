@@ -93,10 +93,39 @@
       cursor: pointer;
     }
 
-    .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
-    .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; margin-right: 4px; }
+    .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
 
     .dashboard-panel { display: none; }
+
+    /* NAVEGAÇÃO POR ABAS */
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 10px;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      color: var(--text-dark);
+      border: 1px solid #CBD5E1;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .tab-btn.active {
+      background: var(--header-bg);
+      color: #FFFFFF;
+      border-color: var(--header-bg);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
     .panel-card {
       background: var(--card-bg);
@@ -108,10 +137,17 @@
 
     .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
-    /* GRID DO CALENDÁRIO */
+    .tool-box {
+      background-color: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
     .calendar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 12px;
       margin-top: 15px;
     }
@@ -120,7 +156,7 @@
       background: var(--input-bg);
       border: 1px solid #E2E8F0;
       border-radius: 10px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
@@ -139,15 +175,17 @@
     .progress-fill.full { background: var(--red-val); }
 
     .badge-status {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
+      display: block;
+      padding: 6px 8px;
+      border-radius: 8px;
       font-size: 0.7rem;
       font-weight: bold;
+      margin-top: 8px;
+      cursor: pointer;
     }
 
     .badge-aberto { background-color: #D1FAE5; color: #065F46; }
-    .badge-fechado { background-color: #FEE2E2; color: #991B1B; }
+    .badge-fechado { background-color: #FEE2E2; color: #991B1B; border: 1px solid var(--red-val); }
 
     .calc-box { background: var(--input-bg); border-radius: 8px; padding: 12px; margin: 12px 0; }
     .calc-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
@@ -160,6 +198,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <div class="top-bar">
     <div>
       <h1>S.O.S SOLUÇÕES</h1>
@@ -190,77 +229,128 @@
     <!-- PAINEL PRINCIPAL -->
     <div id="dashboardPanel" class="dashboard-panel">
 
-      <!-- GERENCIAMENTO DA DIRETORIA (CLIENTES E READEQUAÇÃO DE VAGAS) -->
-      <div id="adminPanel" class="panel-card" style="display: none;">
-        <h3>👑 Gestão de Vagas & Readequação (Exclusivo Diretoria)</h3>
-        
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Edite datas, altere a quantidade de peças ou exclua agendamentos para liberar o calendário.</p>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Data Atual</th>
-              <th>Peças</th>
-              <th>Ações de Readequação</th>
-            </tr>
-          </thead>
-          <tbody id="adminVagasTable">
-            <!-- Gerado via Script -->
-          </tbody>
-        </table>
+      <!-- MENU DE ABAS DO PAINEL -->
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar & Calendário</button>
+        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Logins & Clientes</button>
+        <button id="tabReadequarBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaReadequar')">⚙️ Readequação de Vagas</button>
+      </div>
 
-        <h3 style="margin-top: 25px;">👥 Cadastro de Clientes</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
-          <input type="text" id="newClientName" class="form-control" placeholder="Nome do Cliente" style="margin: 0;">
-          <input type="text" id="newClientPass" class="form-control" placeholder="Senha" style="margin: 0;">
-          <button class="btn-main" style="width: auto; padding: 0 20px;" onclick="salvarNovoCliente()">CADASTRAR</button>
+      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO -->
+      <div id="abaAgendamento" class="tab-content active">
+
+        <!-- CONVERSOR DE PESO -->
+        <div class="panel-card tool-box">
+          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade exata de peças? Converta pelo peso</h3>
+          <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
+            Digite o peso total em gramas do seu lote para calcular a quantidade aproximada com base na <strong>média de 3,2g por peça</strong>.
+          </p>
+
+          <div style="display: flex; gap: 10px; align-items: center; max-width: 400px;">
+            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 1600)" style="margin: 0;">
+            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR</button>
+          </div>
+          <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
+        </div>
+
+        <!-- FORMULÁRIO DE AGENDAMENTO -->
+        <div class="panel-card">
+          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
+          <p style="font-size: 0.8rem; color: var(--orange-accent); font-weight: bold;">
+            ⚠️ Regras: Mínimo 10 dias úteis de antecedência. Limite de 1 lote (ou até 600 peças) por dia de entrada.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
+              <input type="date" id="dataInput" class="form-control" onchange="calcularImpacto()">
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
+              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 1000" oninput="calcularImpacto()">
+            </div>
+          </div>
+
+          <div class="calc-box">
+            <div class="calc-row">
+              <span>Caixa (Inspeção / R$ 0,80 pc):</span>
+              <strong id="resCaixa">R$ 0,00</strong>
+            </div>
+            <div class="calc-row">
+              <span>Despacho (Foto+CDE / R$ 1,648 pc):</span>
+              <strong id="resDespacho">R$ 0,00</strong>
+            </div>
+            <div class="calc-row total">
+              <span>Faturamento Total Previsto:</span>
+              <strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong>
+            </div>
+          </div>
+
+          <button class="btn-main" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO</button>
+        </div>
+
+        <!-- CALENDÁRIO FABRIL -->
+        <div class="panel-card">
+          <h3>📊 Ocupação Diária da Fábrica (Capacidade: 600 pcs / 1 Lote por dia)</h3>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </div>
+
+      </div>
+
+      <!-- ABA 2: GESTÃO DE LOGINS (SÓ DIRETORIA) -->
+      <div id="abaLogins" class="tab-content">
+        <div class="panel-card">
+          <h3>👥 Controle de Usuários, Logins e Senhas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Gerencie aqui todos os acessos do sistema. Você pode alterar nomes, redefinir senhas ou excluir cadastros.
+          </p>
+
+          <!-- FORMULÁRIO DE NOVO CLIENTE -->
+          <div style="background: var(--input-bg); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <h4 style="margin: 0 0 10px 0; color: var(--header-bg);">Cadastrar Novo Cliente/Marca</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
+              <input type="text" id="newClientName" class="form-control" placeholder="Nome da Marca/Empresa" style="margin: 0;">
+              <input type="text" id="newClientPass" class="form-control" placeholder="Senha de Acesso" style="margin: 0;">
+              <button class="btn-main" style="width: auto; padding: 0 24px;" onclick="salvarNovoCliente()">CADASTRAR</button>
+            </div>
+          </div>
+
+          <!-- TABELA DE LOGINS -->
+          <table>
+            <thead>
+              <tr>
+                <th>Marca / Cliente</th>
+                <th>Senha Atual</th>
+                <th>Perfil</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody"></tbody>
+          </table>
         </div>
       </div>
 
-      <!-- AGENDAMENTO CLIENTE -->
-      <div class="panel-card">
-        <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
-        <p style="font-size: 0.8rem; color: var(--orange-accent); font-weight: bold;">
-          ⚠️ Regra Operacional: Agendamentos exigem no mínimo 10 dias úteis de antecedência.
-        </p>
+      <!-- ABA 3: READEQUAÇÃO DE VAGAS (SÓ DIRETORIA) -->
+      <div id="abaReadequar" class="tab-content">
+        <div class="panel-card">
+          <h3>⚙️ Readequação e Exclusão de Vagas Agendadas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Altere datas, quantidades ou remova agendamentos para liberar o calendário.
+          </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-          <div>
-            <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
-            <input type="date" id="dataInput" class="form-control" onchange="calcularImpacto()">
-          </div>
-
-          <div>
-            <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-            <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 1000" oninput="calcularImpacto()">
-          </div>
-        </div>
-
-        <div class="calc-box">
-          <div class="calc-row">
-            <span>Caixa (Inspeção / R$ 0,80 pc):</span>
-            <strong id="resCaixa">R$ 0,00</strong>
-          </div>
-          <div class="calc-row">
-            <span>Despacho (Foto+CDE / R$ 1,648 pc):</span>
-            <strong id="resDespacho">R$ 0,00</strong>
-          </div>
-          <div class="calc-row total">
-            <span>Faturamento Total Previsto:</span>
-            <strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong>
-          </div>
-        </div>
-
-        <button class="btn-main" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO</button>
-        <div id="agendaMsg" style="margin-top: 8px;"></div>
-      </div>
-
-      <!-- CALENDÁRIO COM OCUPAÇÃO EM PORCENTAGEM -->
-      <div class="panel-card">
-        <h3>📊 Ocupação Diária da Fábrica (Meta: 600 pcs/dia)</h3>
-        <div id="calendarGrid" class="calendar-grid">
-          <!-- Calendário dinâmico gerado via JavaScript -->
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Data Entrada</th>
+                <th>Peças</th>
+                <th>Origem</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adminVagasTable"></tbody>
+          </table>
         </div>
       </div>
 
@@ -271,6 +361,7 @@
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
     const META_DIARIA = 600;
+    const MEDIA_PESO_PECA = 3.2;
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios')) || {
       "Diretoria": { senha: "123456", perfil: "admin" },
@@ -280,19 +371,16 @@
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos')) || [];
     let usuarioLogado = null;
+    let usouFerramentaPeso = false;
     let valCaixa = 0, valDespacho = 0, valTotal = 0;
 
-    // CÁLCULO DE 10 DIAS ÚTEIS DE ANTECEDÊNCIA
     function obterDataMinima10DiasUteis() {
       let data = new Date();
-      let diasUteisAdicionados = 0;
-
-      while (diasUteisAdicionados < 10) {
+      let diasUteis = 0;
+      while (diasUteis < 10) {
         data.setDate(data.getDate() + 1);
-        let diaSemana = data.getDay();
-        if (diaSemana !== 0 && diaSemana !== 6) { // Ignora Sábado (6) e Domingo (0)
-          diasUteisAdicionados++;
-        }
+        let dia = data.getDay();
+        if (dia !== 0 && dia !== 6) diasUteis++;
       }
       return data;
     }
@@ -308,6 +396,14 @@
       }
     }
 
+    function trocarAba(abaId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+      document.getElementById(abaId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
     function autenticar() {
       const user = document.getElementById('userSelect').value;
       const pass = document.getElementById('userPass').value;
@@ -320,10 +416,13 @@
         document.getElementById('welcomeTitle').innerText = `📅 Agendamento de Vagas — ${user}`;
 
         if (usuarios[user].perfil === "admin") {
-          document.getElementById('adminPanel').style.display = 'block';
-          renderizarTabelaAdmin();
+          document.getElementById('tabLoginsBtn').style.display = 'inline-block';
+          document.getElementById('tabReadequarBtn').style.display = 'inline-block';
+          renderizarLogins();
+          renderizarReadequacao();
         } else {
-          document.getElementById('adminPanel').style.display = 'none';
+          document.getElementById('tabLoginsBtn').style.display = 'none';
+          document.getElementById('tabReadequarBtn').style.display = 'none';
         }
 
         renderizarCalendario();
@@ -337,6 +436,82 @@
       document.getElementById('loginWrapper').style.display = 'flex';
       document.getElementById('dashboardPanel').style.display = 'none';
       document.getElementById('btnLogout').style.display = 'none';
+    }
+
+    // TABELA DE GESTÃO DE LOGINS
+    function renderizarLogins() {
+      const tbody = document.getElementById('clientsTableBody');
+      tbody.innerHTML = '';
+
+      for (let u in usuarios) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" value="${u}" id="name_${u}" class="form-control" style="margin:0; padding:4px 8px; font-weight:bold;"></td>
+          <td><input type="text" value="${usuarios[u].senha}" id="pass_${u}" class="form-control" style="margin:0; padding:4px 8px;"></td>
+          <td><strong>${usuarios[u].perfil}</strong></td>
+          <td>
+            <button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button>
+            ${u !== 'Diretoria' ? `<button class="btn-danger" onclick="excluirUsuario('${u}')">Excluir</button>` : ''}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function salvarAlteracaoUsuario(usuarioAntigo) {
+      const novoNome = document.getElementById(`name_${usuarioAntigo}`).value.trim();
+      const novaSenha = document.getElementById(`pass_${usuarioAntigo}`).value.trim();
+
+      if (!novoNome || !novaSenha) return alert("Nome e senha não podem ficar em branco.");
+
+      let perfil = usuarios[usuarioAntigo].perfil;
+      delete usuarios[usuarioAntigo];
+      usuarios[novoNome] = { senha: novaSenha, perfil: perfil };
+
+      localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
+      carregarSelectUsuarios();
+      renderizarLogins();
+      alert(`Dados do usuário '${novoNome}' atualizados com sucesso!`);
+    }
+
+    function salvarNovoCliente() {
+      const nome = document.getElementById('newClientName').value.trim();
+      const senha = document.getElementById('newClientPass').value.trim();
+
+      if (!nome || !senha) return alert("Preencha nome e senha.");
+
+      usuarios[nome] = { senha: senha, perfil: "cliente" };
+      localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
+
+      carregarSelectUsuarios();
+      renderizarLogins();
+      document.getElementById('newClientName').value = '';
+      document.getElementById('newClientPass').value = '';
+      alert(`Cliente '${nome}' cadastrado com sucesso!`);
+    }
+
+    function excluirUsuario(user) {
+      if (confirm(`Deseja excluir definitivamente o login de '${user}'?`)) {
+        delete usuarios[user];
+        localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
+        carregarSelectUsuarios();
+        renderizarLogins();
+      }
+    }
+
+    // CONVERSOR DE PESO
+    function converterPesoParaPecas() {
+      const gramas = parseFloat(document.getElementById('pesoGrams').value);
+      if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
+
+      const pcsEstimadas = Math.round(gramas / MEDIA_PESO_PECA);
+      document.getElementById('pecasInput').value = pcsEstimadas;
+      usouFerramentaPeso = true;
+
+      document.getElementById('pesoResult').innerHTML = `
+        ✅ Conversão concluída: <strong>${gramas}g</strong> em média de 3,2g/peça = <strong>~${pcsEstimadas} peças</strong>. O valor foi inserido no formulário abaixo.
+      `;
+      calcularImpacto();
     }
 
     function calcularImpacto() {
@@ -360,9 +535,13 @@
       const dataMinima = obterDataMinima10DiasUteis();
       dataMinima.setHours(0,0,0,0);
 
-      // VALIDAÇÃO DOS 10 DIAS ÚTEIS (EXCETO SE FOR A DIRETORIA AGENDANDO)
       if (usuarios[usuarioLogado].perfil !== "admin" && dataEscolhida < dataMinima) {
-        return alert(`Atenção: Agendamentos exigem no mínimo 10 dias úteis de antecedência. A primeira data disponível é ${dataMinima.toLocaleDateString('pt-BR')}.`);
+        return alert(`Atenção: Agendamentos exigem 10 dias úteis de antecedência. A primeira data disponível é ${dataMinima.toLocaleDateString('pt-BR')}.`);
+      }
+
+      let lotesExistentesData = agendamentos.filter(a => a.data === dataSel);
+      if (lotesExistentesData.length >= 1 && usuarios[usuarioLogado].perfil !== "admin") {
+        return alert(`🔒 A entrada de lotes do dia ${new Date(dataSel + 'T00:00:00').toLocaleDateString('pt-BR')} já está fechada! Escolha o dia seguinte.`);
       }
 
       const novo = {
@@ -370,33 +549,39 @@
         cliente: usuarioLogado,
         data: dataSel,
         pecas: pecas,
-        total: valTotal
+        total: valTotal,
+        origemPeso: usouFerramentaPeso
       };
 
       agendamentos.push(novo);
       localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
 
-      // ENVIO AO DRIVE
       fetch(URL_SCRIPT_DRIVE, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cliente: usuarioLogado, semana: dataSel, pecas: pecas, caixa: valCaixa, despacho: valDespacho, total: valTotal })
+        body: JSON.stringify({
+          cliente: usuarioLogado + (usouFerramentaPeso ? " [PESO 3,2g]" : ""),
+          semana: dataSel,
+          pecas: pecas,
+          caixa: valCaixa,
+          despacho: valDespacho,
+          total: valTotal
+        })
       });
 
-      alert("Solicitação enviada com sucesso!");
+      alert("Solicitação registrada com sucesso!");
       document.getElementById('pecasInput').value = '';
+      usouFerramentaPeso = false;
       calcularImpacto();
       renderizarCalendario();
-      if (usuarios[usuarioLogado].perfil === "admin") renderizarTabelaAdmin();
+      if (usuarios[usuarioLogado].perfil === "admin") renderizarReadequacao();
     }
 
-    // RENDERIZAR CALENDÁRIO COM OCUPAÇÃO EM %
     function renderizarCalendario() {
       const grid = document.getElementById('calendarGrid');
       grid.innerHTML = '';
 
-      // Mapeia ocupação acumulada por dia
       let acumuladoPorDia = {};
       agendamentos.forEach(a => {
         acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
@@ -410,80 +595,69 @@
 
         let pcs = acumuladoPorDia[dataStr] || 0;
         let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
-        let lotado = pct >= 100;
+        let fecharDia = pcs >= META_DIARIA;
 
         let card = document.createElement('div');
-        card.className = `day-card ${lotado ? 'full' : 'available'}`;
+        card.className = `day-card ${fecharDia ? 'full' : 'available'}`;
         card.innerHTML = `
           <strong>${dia.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit'})}</strong>
           <div style="font-size:0.75rem; margin-top:4px;">${pcs} / ${META_DIARIA} pcs</div>
           <div class="progress-bar">
-            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${pct}%"></div>
+            <div class="progress-fill ${fecharDia ? 'full' : ''}" style="width: ${pct}%"></div>
           </div>
           <div style="font-weight:bold; font-size:0.8rem; margin-top:4px;">${pct}%</div>
-          <span class="badge-status ${lotado ? 'badge-fechado' : 'badge-aberto'}">
-            ${lotado ? 'VAGAS FECHADAS' : 'VAGAS ABERTAS'}
+          <span class="badge-status ${fecharDia ? 'badge-fechado' : 'badge-aberto'}" onclick="alertaEtiqueta('${dataStr}', ${fecharDia})">
+            ${fecharDia ? '🔒 ENTRADA FECHADA' : '🟢 VAGAS ABERTAS'}
           </span>
         `;
         grid.appendChild(card);
       }
     }
 
-    // PAINEL DIRETORIA: READEQUAR / EXCLUIR VAGAS
-    function renderizarTabelaAdmin() {
-      const tbody = document.getElementById('adminVagasTable');
-      tbody.innerHTML = '';
+    function alertaEtiqueta(dataStr, fecharDia) {
+      let d = new Date(dataStr + 'T00:00:00').toLocaleDateString('pt-BR');
+      if (fecharDia) {
+        alert(`🔒 A entrada de lotes do dia ${d} já foi FECHADA.`);
+      } else {
+        alert(`🟢 O dia ${d} possui vagas abertas.`);
+      }
+    }
 
+    function renderizarReadequacao() {
+      const tbodyVagas = document.getElementById('adminVagasTable');
+      tbodyVagas.innerHTML = '';
       agendamentos.forEach((a, index) => {
         let tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${a.cliente}</strong></td>
           <td><input type="date" value="${a.data}" id="edit_data_${index}" class="form-control" style="margin:0; padding:4px;"></td>
           <td><input type="number" value="${a.pecas}" id="edit_pecas_${index}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
+          <td>${a.origemPeso ? '<span style="color:blue; font-size:0.75rem;">⚖️ Peso (3,2g)</span>' : 'Direta'}</td>
           <td>
-            <button class="btn-edit" onclick="readequarVaga(${index})">Salvar Alteração</button>
+            <button class="btn-edit" onclick="readequarVaga(${index})">Salvar</button>
             <button class="btn-danger" onclick="excluirVaga(${index})">Excluir</button>
           </td>
         `;
-        tbody.appendChild(tr);
+        tbodyVagas.appendChild(tr);
       });
     }
 
     function readequarVaga(index) {
-      const novaData = document.getElementById(`edit_data_${index}`).value;
-      const novasPecas = parseFloat(document.getElementById(`edit_pecas_${index}`).value);
-
-      if (!novaData || !novasPecas) return alert("Preencha data e peças válidas.");
-
-      agendamentos[index].data = novaData;
-      agendamentos[index].pecas = novasPecas;
+      agendamentos[index].data = document.getElementById(`edit_data_${index}`).value;
+      agendamentos[index].pecas = parseFloat(document.getElementById(`edit_pecas_${index}`).value);
       localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
-
-      alert("Vaga readequada pela Diretoria!");
+      alert("Vaga readequada!");
       renderizarCalendario();
-      renderizarTabelaAdmin();
+      renderizarReadequacao();
     }
 
     function excluirVaga(index) {
-      if (confirm("Deseja cancelar/excluir este agendamento? A vaga será liberada no calendário.")) {
+      if (confirm("Excluir este agendamento e liberar a vaga?")) {
         agendamentos.splice(index, 1);
         localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
         renderizarCalendario();
-        renderizarTabelaAdmin();
+        renderizarReadequacao();
       }
-    }
-
-    function salvarNovoCliente() {
-      const nome = document.getElementById('newClientName').value.trim();
-      const senha = document.getElementById('newClientPass').value.trim();
-      if (!nome || !senha) return alert("Preencha nome e senha.");
-
-      usuarios[nome] = { senha: senha, perfil: "cliente" };
-      localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
-      carregarSelectUsuarios();
-      document.getElementById('newClientName').value = '';
-      document.getElementById('newClientPass').value = '';
-      alert("Cliente cadastrado com sucesso!");
     }
 
     carregarSelectUsuarios();
