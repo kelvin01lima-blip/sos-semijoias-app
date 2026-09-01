@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S.O.S SOLUÇÕES - CLUBE S.O.S CARTA DE CRÉDITO</title>
+  <title>S.O.S SOLUÇÕES - Cronograma e Calendário</title>
   <style>
     :root {
       --header-bg: #0B132B;
@@ -137,6 +137,32 @@
 
     .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
+    /* CARD DE REGRAS E DADOS OPERACIONAIS */
+    .rules-card {
+      background-color: #FFF7ED;
+      border: 1px solid #FFEDD5;
+      border-left: 6px solid var(--orange-accent);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .rules-card h4 {
+      margin: 0 0 10px 0;
+      color: #C2410C;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rules-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.85rem;
+      color: #9A3412;
+      line-height: 1.6;
+    }
+
     .tool-box {
       background-color: #EFF6FF;
       border: 1px solid #BFDBFE;
@@ -202,7 +228,7 @@
   <div class="top-bar">
     <div>
       <h1>S.O.S SOLUÇÕES</h1>
-      <p>CLUBE S.O.S CARTA DE CRÉDITO</p>
+      <p>S.O.S CRONOGRAMA E CALENDÁRIO - FAÇA SEU AGENDAMENTO</p>
     </div>
     <button id="btnLogout" class="btn-logout" style="display: none;" onclick="logout()">SAIR</button>
   </div>
@@ -239,6 +265,18 @@
       <!-- ABA 1: AGENDAMENTO E CALENDÁRIO -->
       <div id="abaAgendamento" class="tab-content active">
 
+        <!-- INFORMATIVO DE REGRAS E DADOS OPERACIONAIS -->
+        <div class="rules-card">
+          <h4>📋 Diretrizes e Regras Operacionais para Agendamento</h4>
+          <ul class="rules-list">
+            <li><strong>Prazo de Antecedência:</strong> Os agendamentos devem ser solicitados com no mínimo <strong>10 dias úteis de antecedência</strong>.</li>
+            <li><strong>Capacidade Diária:</strong> Meta operacional de <strong>600 peças por dia</strong> (limite de 1 lote de entrada por data).</li>
+            <li><strong>Lotes com Volume Maior:</strong> Se o lote exceder 600 peças (ex: 1.000 peças), ele ocupará o dia de entrada escolhido e transbordará a produção para o dia útil subsequente.</li>
+            <li><strong>Valores e Taxas Padrão:</strong> Inspeção / Caixa: R$ 0,80/peça | Despacho (Foto + CDE): R$ 1,648/peça.</li>
+            <li><strong>Conversão por Peso:</strong> Utilize nossa ferramenta caso não saiba a quantidade exata. A estimativa usa uma média fabril de <strong>3,2g por peça</strong>.</li>
+          </ul>
+        </div>
+
         <!-- CONVERSOR DE PESO -->
         <div class="panel-card tool-box">
           <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade exata de peças? Converta pelo peso</h3>
@@ -256,9 +294,6 @@
         <!-- FORMULÁRIO DE AGENDAMENTO -->
         <div class="panel-card">
           <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
-          <p style="font-size: 0.8rem; color: var(--orange-accent); font-weight: bold;">
-            ⚠️ Regras: Mínimo 10 dias úteis de antecedência. Limite de 1 lote (ou até 600 peças) por dia de entrada.
-          </p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <div>
@@ -438,7 +473,6 @@
       document.getElementById('btnLogout').style.display = 'none';
     }
 
-    // TABELA DE GESTÃO DE LOGINS
     function renderizarLogins() {
       const tbody = document.getElementById('clientsTableBody');
       tbody.innerHTML = '';
@@ -499,7 +533,6 @@
       }
     }
 
-    // CONVERSOR DE PESO
     function converterPesoParaPecas() {
       const gramas = parseFloat(document.getElementById('pesoGrams').value);
       if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
