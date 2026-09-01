@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S.O.S Soluções em Semijoias - Portal Operacional</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-color: #38bdf8;
+      --green-color: #22c55e;
+      --warning-color: #f59e0b;
+      --text-color: #f8fafc;
+      --subtext-color: #94a3b8;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 16px;
+    }
+
+    .header h1 {
+      color: var(--accent-color);
+      margin: 0 0 6px 0;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .header p {
+      color: var(--subtext-color);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .card h2 {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--subtext-color);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #0f172a;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent-color);
+    }
+
+    .calc-box {
+      background-color: #0f172a;
+      border: 1px dashed #334155;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .calc-row.total {
+      border-top: 1px solid #334155;
+      padding-top: 8px;
+      margin-bottom: 0;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .val-highlight { color: var(--green-color); font-weight: bold; }
+    .val-total { color: var(--accent-color); font-weight: bold; }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
+      background-color: var(--accent-color);
+      color: #0f172a;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background-color: #0284c7; color: #fff; }
+
+    #loginSection { display: block; }
+    #portalSection { display: none; }
+
+    .status-msg {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- CABEÇALHO -->
+    <div class="header">
+      <h1>S.O.S Soluções em Semijoias</h1>
+      <p>Portal de Agendamentos & Acompanhamento de Lotes</p>
+    </div>
+
+    <!-- TELA 1: LOGIN -->
+    <div id="loginSection" class="card">
+      <h2>🔐 Acesso ao Portal</h2>
+      <label for="userSelect">Selecione sua Empresa/Cliente:</label>
+      <input type="text" id="userSelect" placeholder="Digite o nome da sua empresa (Ex: Niara Joias)">
+      
+      <label for="userPass">Senha de Acesso:</label>
+      <input type="password" id="userPass" placeholder="Digite sua senha">
+
+      <button onclick="fazerLogin()">Entrar no Sistema</button>
+      <p id="loginStatus" class="status-msg"></p>
+    </div>
+
+    <!-- TELA 2: PORTAL DO CLIENTE (AGENDAMENTO + SIMULADOR) -->
+    <div id="portalSection">
+      
+      <div class="card">
+        <h2 id="welcomeMsg">📅 Solicitar Vaga de Produção</h2>
+        
+        <label for="semanaSelect">Escolha a Semana Desejada:</label>
+        <select id="semanaSelect">
+          <option value="Semana 1">Semana 1 (Vagas Abertas)</option>
+          <option value="Semana 2">Semana 2 (Vagas Abertas)</option>
+          <option value="Semana 3">Semana 3 (Vagas Abertas)</option>
+          <option value="Semana 4">Semana 4 (Vagas Abertas)</option>
+        </select>
+
+        <label for="pecasInput">Quantidade Estimada de Peças:</label>
+        <input type="number" id="pecasInput" placeholder="Ex: 500" oninput="calcularProjecao()">
+
+        <!-- SIMULADOR FINANCEIRO INTEGRADO -->
+        <div class="calc-box">
+          <div class="calc-row">
+            <span>Caixa (Inspeção / R$ 0,80 pc):</span>
+            <span id="outCaixa" class="val-highlight">R$ 0,00</span>
+          </div>
+          <div class="calc-row">
+            <span>Despacho (Foto + CDE / R$ 1,648 pc):</span>
+            <span id="outDespacho" class="val-highlight">R$ 0,00</span>
+          </div>
+          <div class="calc-row total">
+            <span>Estimativa de Faturamento Total:</span>
+            <span id="outTotal" class="val-total">R$ 0,00</span>
+          </div>
+        </div>
+
+        <button onclick="enviarAgendamentoDrive()">Enviar Solicitação de Vaga</button>
+        <p id="sendStatus" class="status-msg"></p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Link direto da sua implantação do Google Apps Script
+    const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
+
+    let clienteAtual = "";
+    let vCaixa = 0, vDespacho = 0, vTotal = 0;
+
+    function fazerLogin() {
+      const user = document.getElementById('userSelect').value.trim();
+      const pass = document.getElementById('userPass').value.trim();
+
+      if (!user) {
+        exibirMensagem('loginStatus', 'Por favor, informe o nome do cliente.', 'var(--warning-color)');
+        return;
+      }
+
+      // Validação de acesso simples
+      clienteAtual = user;
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('portalSection').style.display = 'block';
+      document.getElementById('welcomeMsg').innerText = `📅 Agenda de Vagas — ${clienteAtual}`;
+    }
+
+    function calcularProjecao() {
+      const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
+      
+      // Taxas médias calculadas sobre o histórico de 77.000 peças
+      vCaixa = pecas * 0.80;
+      vDespacho = pecas * 1.648;
+      vTotal = vCaixa + vDespacho;
+
+      document.getElementById('outCaixa').innerText = vCaixa.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      document.getElementById('outDespacho').innerText = vDespacho.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      document.getElementById('outTotal').innerText = vTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function enviarAgendamentoDrive() {
+      const semana = document.getElementById('semanaSelect').value;
+      const pecas = document.getElementById('pecasInput').value;
+
+      if (!pecas || pecas <= 0) {
+        exibirMensagem('sendStatus', 'Informe a quantidade de peças para agendar.', 'var(--warning-color)');
+        return;
+      }
+
+      exibirMensagem('sendStatus', 'Enviando solicitação para o sistema...', 'var(--accent-color)');
+
+      const payload = {
+        cliente: clienteAtual,
+        semana: semana,
+        pecas: pecas,
+        caixa: vCaixa,
+        despacho: vDespacho,
+        total: vTotal
+      };
+
+      fetch(URL_SCRIPT_DRIVE, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        exibirMensagem('sendStatus', '✅ Solicitação enviada com sucesso! Ela já consta no Drive.', 'var(--green-color)');
+        document.getElementById('pecasInput').value = '';
+        calcularProjecao();
+      })
+      .catch(err => {
+        exibirMensagem('sendStatus', '❌ Erro ao enviar. Verifique a conexão.', '#ef4444');
+      });
+    }
+
+    function exibirMensagem(elementId, texto, cor) {
+      const el = document.getElementById(elementId);
+      el.innerText = texto;
+      el.style.color = cor;
+    }
+  </script>
+</body>
+</html>
