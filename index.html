@@ -30,7 +30,6 @@
       flex-direction: column;
     }
 
-    /* HEADER */
     .top-bar {
       background-color: var(--header-bg);
       border-bottom: 4px solid var(--orange-accent);
@@ -56,7 +55,6 @@
 
     .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-    /* LOGIN */
     .login-wrapper { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
     .login-card {
       background: var(--card-bg);
@@ -98,7 +96,6 @@
 
     .dashboard-panel { display: none; }
 
-    /* ABAS DE NAVEGAÇÃO */
     .nav-tabs {
       display: flex;
       gap: 10px;
@@ -146,29 +143,29 @@
       margin-bottom: 20px;
     }
 
-    .rules-card h4 {
-      margin: 0 0 10px 0;
-      color: #C2410C;
+    .rules-card h4 { margin: 0 0 10px 0; color: #C2410C; }
+    .rules-list { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #9A3412; line-height: 1.6; }
+
+    .month-selector {
       display: flex;
-      align-items: center;
       gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
     }
 
-    .rules-list {
-      margin: 0;
-      padding-left: 20px;
-      font-size: 0.85rem;
-      color: #9A3412;
-      line-height: 1.6;
+    .month-btn {
+      background: var(--input-bg);
+      border: 1px solid #CBD5E1;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .tool-box {
-      background-color: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
+    .month-btn.active { background: var(--orange-accent); color: #FFF; border-color: var(--orange-accent); }
 
     .calendar-grid {
       display: grid;
@@ -187,11 +184,12 @@
 
     .day-card.full { border-color: var(--red-val); background-color: #FEF2F2; }
     .day-card.available { border-color: var(--green-val); background-color: #F0FDF4; }
+    .day-card.holiday { border-color: var(--orange-accent); background-color: #FFF7ED; }
 
     .progress-bar {
-      height: 8px;
+      height: 10px;
       background: #E2E8F0;
-      border-radius: 4px;
+      border-radius: 5px;
       overflow: hidden;
       margin-top: 6px;
     }
@@ -211,6 +209,7 @@
 
     .badge-aberto { background-color: #D1FAE5; color: #065F46; }
     .badge-fechado { background-color: #FEE2E2; color: #991B1B; border: 1px solid var(--red-val); }
+    .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
 
     .calc-box { background: var(--input-bg); border-radius: 8px; padding: 12px; margin: 12px 0; }
     .calc-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
@@ -254,7 +253,6 @@
     <!-- PAINEL PRINCIPAL -->
     <div id="dashboardPanel" class="dashboard-panel">
 
-      <!-- MENU DE ABAS DO PAINEL -->
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar & Calendário</button>
         <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Logins & Clientes</button>
@@ -264,29 +262,15 @@
       <!-- ABA 1: AGENDAMENTO E CALENDÁRIO -->
       <div id="abaAgendamento" class="tab-content active">
 
-        <!-- INFORMATIVO DE REGRAS E DADOS OPERACIONAIS -->
+        <!-- DIRETRIZES OPERACIONAIS -->
         <div class="rules-card">
           <h4>📋 Diretrizes e Regras Operacionais para Agendamento</h4>
           <ul class="rules-list">
-            <li><strong>Prazo de Antecedência:</strong> Os agendamentos devem ser solicitados com no mínimo <strong>10 dias úteis de antecedência</strong>.</li>
-            <li><strong>Capacidade Diária:</strong> Meta operacional de <strong>600 peças por dia</strong> (limite de 1 lote de entrada por data).</li>
-            <li><strong>Lotes com Volume Maior:</strong> Se o lote exceder 600 peças (ex: 1.000 peças), ele ocupará o dia de entrada escolhido e transbordará a produção para o dia útil subsequente.</li>
-            <li><strong>Conversão por Peso:</strong> Utilize nossa ferramenta caso não saiba a quantidade exata. A estimativa usa uma média fabril de <strong>3,2g por peça</strong>.</li>
+            <li><strong>Prazo de Antecedência:</strong> Os agendamentos exigem <strong>10 dias úteis de antecedência</strong> (Diretoria isenta).</li>
+            <li><strong>Atrasos na Entrega:</strong> O atraso no envio das peças acarretará a <strong>alteração da data de entrada para a próxima data livre disponível na fábrica</strong>.</li>
+            <li><strong>Capacidade Fabril:</strong> Meta de <strong>600 peças/dia</strong> (1 lote por data). Lotes maiores ocupam a data de entrada e transbordam para o dia subsequente.</li>
+            <li><strong>Conversão por Peso:</strong> Média de <strong>3,2g por peça</strong>.</li>
           </ul>
-        </div>
-
-        <!-- CONVERSOR DE PESO -->
-        <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade exata de peças? Converta pelo peso</h3>
-          <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
-            Digite o peso total em gramas do seu lote para calcular a quantidade aproximada com base na <strong>média de 3,2g por peça</strong>.
-          </p>
-
-          <div style="display: flex; gap: 10px; align-items: center; max-width: 400px;">
-            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 1600)" style="margin: 0;">
-            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR</button>
-          </div>
-          <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
         </div>
 
         <!-- FORMULÁRIO DE AGENDAMENTO -->
@@ -305,43 +289,45 @@
             </div>
           </div>
 
-          <!-- QUADRO FINANCEIRO EXCLUSIVO DA DIRETORIA -->
           <div id="quadroFinanceiroDiretoria" class="calc-box" style="display: none;">
-            <div class="calc-row">
-              <span>Caixa (Inspeção / R$ 0,80 pc):</span>
-              <strong id="resCaixa">R$ 0,00</strong>
-            </div>
-            <div class="calc-row">
-              <span>Despacho (Foto+CDE / R$ 1,648 pc):</span>
-              <strong id="resDespacho">R$ 0,00</strong>
-            </div>
-            <div class="calc-row total">
-              <span>Faturamento Total Previsto:</span>
-              <strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong>
-            </div>
+            <div class="calc-row"><span>Caixa (Inspeção / R$ 0,80 pc):</span><strong id="resCaixa">R$ 0,00</strong></div>
+            <div class="calc-row"><span>Despacho (Foto+CDE / R$ 1,648 pc):</span><strong id="resDespacho">R$ 0,00</strong></div>
+            <div class="calc-row total"><span>Faturamento Total Previsto:</span><strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong></div>
           </div>
 
           <button class="btn-main" style="margin-top: 15px;" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO</button>
         </div>
 
-        <!-- CALENDÁRIO FABRIL -->
+        <!-- CALENDÁRIO COM ABAS DE MESES E BARRA MENSAL -->
         <div class="panel-card">
-          <h3>📊 Ocupação Diária da Fábrica (Capacidade: 600 pcs / 1 Lote por dia)</h3>
+          <h3>📊 Ocupação Diária da Fábrica</h3>
+
+          <!-- SELETOR DE MESES (2026 - 2030) -->
+          <div id="monthTabsContainer" class="month-selector"></div>
+
+          <!-- BARRA DE PROGRESSO MENSAL -->
+          <div style="background: var(--input-bg); border: 1px solid #CBD5E1; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; margin-bottom: 6px;">
+              <span>Acumulado do Mês: <strong id="mesPecasTotais" style="color: var(--blue-val);">0 pcs</strong></span>
+              <span>Capacidade Restante: <strong id="mesPecasRestantes" style="color: var(--green-val);">12.000 pcs</strong></span>
+            </div>
+            <div class="progress-bar">
+              <div id="barraProgressoMensal" class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <p style="margin: 6px 0 0 0; font-size: 0.75rem; color: var(--text-muted); text-align: right;" id="pctMensalTxt">0% das vagas do mês preenchidas</p>
+          </div>
+
           <div id="calendarGrid" class="calendar-grid"></div>
         </div>
 
       </div>
 
-      <!-- ABA 2: GESTÃO DE LOGINS (SÓ DIRETORIA) -->
+      <!-- ABA 2: GESTÃO DE LOGINS -->
       <div id="abaLogins" class="tab-content">
         <div class="panel-card">
           <h3>👥 Controle de Usuários, Logins e Senhas</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">
-            Gerencie aqui todos os acessos do sistema. Você pode alterar nomes, redefinir senhas ou excluir cadastros.
-          </p>
-
           <div style="background: var(--input-bg); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
-            <h4 style="margin: 0 0 10px 0; color: var(--header-bg);">Cadastrar Novo Cliente/Marca</h4>
+            <h4 style="margin: 0 0 10px 0;">Cadastrar Novo Cliente/Marca</h4>
             <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px;">
               <input type="text" id="newClientName" class="form-control" placeholder="Nome da Marca/Empresa" style="margin: 0;">
               <input type="text" id="newClientPass" class="form-control" placeholder="Senha de Acesso" style="margin: 0;">
@@ -350,37 +336,18 @@
           </div>
 
           <table>
-            <thead>
-              <tr>
-                <th>Marca / Cliente</th>
-                <th>Senha Atual</th>
-                <th>Perfil</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Marca / Cliente</th><th>Senha Atual</th><th>Perfil</th><th>Ações</th></tr></thead>
             <tbody id="clientsTableBody"></tbody>
           </table>
         </div>
       </div>
 
-      <!-- ABA 3: READEQUAÇÃO DE VAGAS (SÓ DIRETORIA) -->
+      <!-- ABA 3: READEQUAÇÃO DE VAGAS -->
       <div id="abaReadequar" class="tab-content">
         <div class="panel-card">
           <h3>⚙️ Readequação e Exclusão de Vagas Agendadas</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">
-            Altere datas, quantidades ou remova agendamentos para liberar o calendário.
-          </p>
-
           <table>
-            <thead>
-              <tr>
-                <th>Cliente</th>
-                <th>Data Entrada</th>
-                <th>Peças</th>
-                <th>Origem</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Cliente</th><th>Data Entrada</th><th>Peças</th><th>Origem</th><th>Ações</th></tr></thead>
             <tbody id="adminVagasTable"></tbody>
           </table>
         </div>
@@ -393,7 +360,7 @@
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycbxLPK-shCgOSxy0ASrqdrmOxxIlt3NCxcBGKGXwMk9ZlaVY8fiGZoXQ557KK9Ua_PIxEg/exec";
     const META_DIARIA = 600;
-    const MEDIA_PESO_PECA = 3.2;
+    const CAPACIDADE_MENSAL = 12000; // Média de 20 dias úteis * 600 pcs
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios')) || {
       "Diretoria": { senha: "123456", perfil: "admin" },
@@ -402,9 +369,9 @@
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos')) || [];
+    let feriadosBloqueados = JSON.parse(localStorage.getItem('sos_feriados')) || [];
     let usuarioLogado = null;
-    let usouFerramentaPeso = false;
-    let valCaixa = 0, valDespacho = 0, valTotal = 0;
+    let mesSelecionado = "2026-09";
 
     function obterDataMinima10DiasUteis() {
       let data = new Date();
@@ -415,6 +382,30 @@
         if (dia !== 0 && dia !== 6) diasUteis++;
       }
       return data;
+    }
+
+    function gerenciarAbasMeses() {
+      const container = document.getElementById('monthTabsContainer');
+      container.innerHTML = '';
+
+      let anoAtual = 2026;
+      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+      for (let ano = 2026; ano <= 2030; ano++) {
+        let mesInicio = (ano === 2026) ? 8 : 0; // Começa em Setembro (mês index 8) para 2026
+        for (let m = mesInicio; m < 12; m++) {
+          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
+          let btn = document.createElement('button');
+          btn.className = `month-btn ${mesVal === mesSelecionado ? 'active' : ''}`;
+          btn.innerText = `${mesesNomes[m]}/${ano}`;
+          btn.onclick = () => {
+            mesSelecionado = mesVal;
+            gerenciarAbasMeses();
+            renderizarCalendario();
+          };
+          container.appendChild(btn);
+        }
+      }
     }
 
     function carregarSelectUsuarios() {
@@ -431,7 +422,6 @@
     function trocarAba(abaId) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
       document.getElementById(abaId).classList.add('active');
       event.currentTarget.classList.add('active');
     }
@@ -447,7 +437,6 @@
         document.getElementById('btnLogout').style.display = 'block';
         document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${user}`;
 
-        // EXIBE O QUADRO FINANCEIRO E ABAS APENAS SE FOR A DIRETORIA
         if (usuarios[user].perfil === "admin") {
           document.getElementById('quadroFinanceiroDiretoria').style.display = 'block';
           document.getElementById('tabLoginsBtn').style.display = 'inline-block';
@@ -460,6 +449,7 @@
           document.getElementById('tabReadequarBtn').style.display = 'none';
         }
 
+        gerenciarAbasMeses();
         renderizarCalendario();
       } else {
         document.getElementById('loginMsg').innerText = "Senha incorreta.";
@@ -473,10 +463,128 @@
       document.getElementById('btnLogout').style.display = 'none';
     }
 
+    function calcularImpacto() {
+      const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
+      let valCaixa = pecas * 0.80;
+      let valDespacho = pecas * 1.648;
+      let valTotal = valCaixa + valDespacho;
+
+      document.getElementById('resCaixa').innerText = valCaixa.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+      document.getElementById('resDespacho').innerText = valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+      document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    }
+
+    function solicitarVaga() {
+      const pecas = parseFloat(document.getElementById('pecasInput').value);
+      const dataSel = document.getElementById('dataInput').value;
+
+      if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
+
+      // ISENÇÃO DE 10 DIAS ÚTEIS PARA DIRETORIA
+      if (usuarios[usuarioLogado].perfil !== "admin") {
+        const dataEscolhida = new Date(dataSel + 'T00:00:00');
+        const dataMinima = obterDataMinima10DiasUteis();
+        dataMinima.setHours(0,0,0,0);
+
+        if (dataEscolhida < dataMinima) {
+          return alert(`Atenção: Agendamentos exigem 10 dias úteis de antecedência. A primeira data disponível é ${dataMinima.toLocaleDateString('pt-BR')}.`);
+        }
+      }
+
+      if (feriadosBloqueados.includes(dataSel)) {
+        return alert("Esta data está marcada como Feriado/Indisponível pela fábrica.");
+      }
+
+      let valCaixa = pecas * 0.80;
+      let valDespacho = pecas * 1.648;
+
+      agendamentos.push({
+        id: Date.now(),
+        cliente: usuarioLogado,
+        data: dataSel,
+        pecas: pecas,
+        total: valCaixa + valDespacho
+      });
+
+      localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
+
+      fetch(URL_SCRIPT_DRIVE, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cliente: usuarioLogado, semana: dataSel, pecas: pecas, caixa: valCaixa, despacho: valDespacho, total: valCaixa + valDespacho })
+      });
+
+      alert("Solicitação registrada com sucesso!");
+      document.getElementById('pecasInput').value = '';
+      calcularImpacto();
+      renderizarCalendario();
+    }
+
+    function renderizarCalendario() {
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML = '';
+
+      let [anoStr, mesStr] = mesSelecionado.split('-');
+      let ano = parseInt(anoStr);
+      let mes = parseInt(mesStr) - 1;
+
+      let totalPecasMes = 0;
+      let acumuladoPorDia = {};
+
+      agendamentos.forEach(a => {
+        acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
+        if (a.data.startsWith(mesSelecionado)) totalPecasMes += a.pecas;
+      });
+
+      // ATUALIZA BARRA MENSAL
+      document.getElementById('mesPecasTotais').innerText = `${totalPecasMes.toLocaleString('pt-BR')} pcs`;
+      let restantes = Math.max(0, CAPACIDADE_MENSAL - totalPecasMes);
+      document.getElementById('mesPecasRestantes').innerText = `${restantes.toLocaleString('pt-BR')} pcs`;
+      let pctMensal = Math.min(100, Math.round((totalPecasMes / CAPACIDADE_MENSAL) * 100));
+      document.getElementById('barraProgressoMensal').style.width = `${pctMensal}%`;
+      document.getElementById('pctMensalTxt').innerText = `${pctMensal}% das vagas do mês preenchidas`;
+
+      let diasNoMes = new Date(ano, mes + 1, 0).getDate();
+
+      for (let dia = 1; dia <= diasNoMes; dia++) {
+        let dataStr = `${anoStr}-${mesStr}-${String(dia).padStart(2, '0')}`;
+        let pcs = acumuladoPorDia[dataStr] || 0;
+        let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
+        let lotado = pcs >= META_DIARIA;
+        let ehFeriado = feriadosBloqueados.includes(dataStr);
+
+        let card = document.createElement('div');
+        card.className = `day-card ${ehFeriado ? 'holiday' : (lotado ? 'full' : 'available')}`;
+        card.innerHTML = `
+          <strong>${String(dia).padStart(2, '0')}/${mesStr}</strong>
+          <div style="font-size:0.75rem; margin-top:4px;">${ehFeriado ? 'FOLGA / FERIADO' : pcs + ' / ' + META_DIARIA + ' pcs'}</div>
+          <div class="progress-bar">
+            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehFeriado ? 0 : pct}%"></div>
+          </div>
+          <div style="font-weight:bold; font-size:0.8rem; margin-top:4px;">${ehFeriado ? '-' : pct + '%'}</div>
+          <span class="badge-status ${ehFeriado ? 'badge-feriado' : (lotado ? 'badge-fechado' : 'badge-aberto')}">
+            ${ehFeriado ? '🚫 INDISPONÍVEL' : (lotado ? '🔒 FECHADA' : '🟢 ABERTA')}
+          </span>
+          ${usuarios[usuarioLogado]?.perfil === 'admin' ? `<button style="margin-top:6px; font-size:0.65rem; padding:2px 4px;" onclick="alternarFeriado('${dataStr}')">${ehFeriado ? 'Liberar' : 'Bloquear'}</button>` : ''}
+        `;
+        grid.appendChild(card);
+      }
+    }
+
+    function alternarFeriado(dataStr) {
+      if (feriadosBloqueados.includes(dataStr)) {
+        feriadosBloqueados = feriadosBloqueados.filter(f => f !== dataStr);
+      } else {
+        feriadosBloqueados.push(dataStr);
+      }
+      localStorage.setItem('sos_feriados', JSON.stringify(feriadosBloqueados));
+      renderizarCalendario();
+    }
+
     function renderizarLogins() {
       const tbody = document.getElementById('clientsTableBody');
       tbody.innerHTML = '';
-
       for (let u in usuarios) {
         let tr = document.createElement('tr');
         tr.innerHTML = `
@@ -492,201 +600,69 @@
       }
     }
 
-    function salvarAlteracaoUsuario(usuarioAntigo) {
-      const novoNome = document.getElementById(`name_${usuarioAntigo}`).value.trim();
-      const novaSenha = document.getElementById(`pass_${usuarioAntigo}`).value.trim();
-
-      if (!novoNome || !novaSenha) return alert("Nome e senha não podem ficar em branco.");
-
-      let perfil = usuarios[usuarioAntigo].perfil;
-      delete usuarios[usuarioAntigo];
-      usuarios[novoNome] = { senha: novaSenha, perfil: perfil };
-
+    function salvarAlteracaoUsuario(u) {
+      let n = document.getElementById(`name_${u}`).value.trim();
+      let s = document.getElementById(`pass_${u}`).value.trim();
+      if (!n || !s) return alert("Preencha nome e senha.");
+      let p = usuarios[u].perfil;
+      delete usuarios[u];
+      usuarios[n] = { senha: s, perfil: p };
       localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
       carregarSelectUsuarios();
       renderizarLogins();
-      alert(`Dados do usuário '${novoNome}' atualizados com sucesso!`);
     }
 
     function salvarNovoCliente() {
-      const nome = document.getElementById('newClientName').value.trim();
-      const senha = document.getElementById('newClientPass').value.trim();
-
-      if (!nome || !senha) return alert("Preencha nome e senha.");
-
-      usuarios[nome] = { senha: senha, perfil: "cliente" };
+      let n = document.getElementById('newClientName').value.trim();
+      let s = document.getElementById('newClientPass').value.trim();
+      if (!n || !s) return alert("Preencha nome e senha.");
+      usuarios[n] = { senha: s, perfil: "cliente" };
       localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
-
       carregarSelectUsuarios();
       renderizarLogins();
       document.getElementById('newClientName').value = '';
       document.getElementById('newClientPass').value = '';
-      alert(`Cliente '${nome}' cadastrado com sucesso!`);
     }
 
-    function excluirUsuario(user) {
-      if (confirm(`Deseja excluir definitivamente o login de '${user}'?`)) {
-        delete usuarios[user];
+    function excluirUsuario(u) {
+      if (confirm(`Excluir ${u}?`)) {
+        delete usuarios[u];
         localStorage.setItem('sos_usuarios', JSON.stringify(usuarios));
         carregarSelectUsuarios();
         renderizarLogins();
       }
     }
 
-    function converterPesoParaPecas() {
-      const gramas = parseFloat(document.getElementById('pesoGrams').value);
-      if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
-
-      const pcsEstimadas = Math.round(gramas / MEDIA_PESO_PECA);
-      document.getElementById('pecasInput').value = pcsEstimadas;
-      usouFerramentaPeso = true;
-
-      document.getElementById('pesoResult').innerHTML = `
-        ✅ Conversão concluída: <strong>${gramas}g</strong> em média de 3,2g/peça = <strong>~${pcsEstimadas} peças</strong>. O valor foi inserido no formulário abaixo.
-      `;
-      calcularImpacto();
-    }
-
-    function calcularImpacto() {
-      const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
-      valCaixa = pecas * 0.80;
-      valDespacho = pecas * 1.648;
-      valTotal = valCaixa + valDespacho;
-
-      document.getElementById('resCaixa').innerText = valCaixa.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resDespacho').innerText = valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-    }
-
-    function solicitarVaga() {
-      const pecas = parseFloat(document.getElementById('pecasInput').value);
-      const dataSel = document.getElementById('dataInput').value;
-
-      if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
-
-      const dataEscolhida = new Date(dataSel + 'T00:00:00');
-      const dataMinima = obterDataMinima10DiasUteis();
-      dataMinima.setHours(0,0,0,0);
-
-      if (usuarios[usuarioLogado].perfil !== "admin" && dataEscolhida < dataMinima) {
-        return alert(`Atenção: Agendamentos exigem 10 dias úteis de antecedência. A primeira data disponível é ${dataMinima.toLocaleDateString('pt-BR')}.`);
-      }
-
-      let lotesExistentesData = agendamentos.filter(a => a.data === dataSel);
-      if (lotesExistentesData.length >= 1 && usuarios[usuarioLogado].perfil !== "admin") {
-        return alert(`🔒 A entrada de lotes do dia ${new Date(dataSel + 'T00:00:00').toLocaleDateString('pt-BR')} já está fechada! Escolha o dia seguinte.`);
-      }
-
-      const novo = {
-        id: Date.now(),
-        cliente: usuarioLogado,
-        data: dataSel,
-        pecas: pecas,
-        total: valTotal,
-        origemPeso: usouFerramentaPeso
-      };
-
-      agendamentos.push(novo);
-      localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
-
-      fetch(URL_SCRIPT_DRIVE, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cliente: usuarioLogado + (usouFerramentaPeso ? " [PESO 3,2g]" : ""),
-          semana: dataSel,
-          pecas: pecas,
-          caixa: valCaixa,
-          despacho: valDespacho,
-          total: valTotal
-        })
-      });
-
-      alert("Solicitação registrada com sucesso!");
-      document.getElementById('pecasInput').value = '';
-      usouFerramentaPeso = false;
-      calcularImpacto();
-      renderizarCalendario();
-      if (usuarios[usuarioLogado].perfil === "admin") renderizarReadequacao();
-    }
-
-    function renderizarCalendario() {
-      const grid = document.getElementById('calendarGrid');
-      grid.innerHTML = '';
-
-      let acumuladoPorDia = {};
-      agendamentos.forEach(a => {
-        acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
-      });
-
-      let hoje = new Date();
-      for (let i = 0; i < 20; i++) {
-        let dia = new Date();
-        dia.setDate(hoje.getDate() + i);
-        let dataStr = dia.toISOString().split('T')[0];
-
-        let pcs = acumuladoPorDia[dataStr] || 0;
-        let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
-        let fecharDia = pcs >= META_DIARIA;
-
-        let card = document.createElement('div');
-        card.className = `day-card ${fecharDia ? 'full' : 'available'}`;
-        card.innerHTML = `
-          <strong>${dia.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit'})}</strong>
-          <div style="font-size:0.75rem; margin-top:4px;">${pcs} / ${META_DIARIA} pcs</div>
-          <div class="progress-bar">
-            <div class="progress-fill ${fecharDia ? 'full' : ''}" style="width: ${pct}%"></div>
-          </div>
-          <div style="font-weight:bold; font-size:0.8rem; margin-top:4px;">${pct}%</div>
-          <span class="badge-status ${fecharDia ? 'badge-fechado' : 'badge-aberto'}" onclick="alertaEtiqueta('${dataStr}', ${fecharDia})">
-            ${fecharDia ? '🔒 ENTRADA FECHADA' : '🟢 VAGAS ABERTAS'}
-          </span>
-        `;
-        grid.appendChild(card);
-      }
-    }
-
-    function alertaEtiqueta(dataStr, fecharDia) {
-      let d = new Date(dataStr + 'T00:00:00').toLocaleDateString('pt-BR');
-      if (fecharDia) {
-        alert(`🔒 A entrada de lotes do dia ${d} já foi FECHADA.`);
-      } else {
-        alert(`🟢 O dia ${d} possui vagas abertas.`);
-      }
-    }
-
     function renderizarReadequacao() {
-      const tbodyVagas = document.getElementById('adminVagasTable');
-      tbodyVagas.innerHTML = '';
+      const tbody = document.getElementById('adminVagasTable');
+      tbody.innerHTML = '';
       agendamentos.forEach((a, index) => {
         let tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${a.cliente}</strong></td>
           <td><input type="date" value="${a.data}" id="edit_data_${index}" class="form-control" style="margin:0; padding:4px;"></td>
           <td><input type="number" value="${a.pecas}" id="edit_pecas_${index}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
-          <td>${a.origemPeso ? '<span style="color:blue; font-size:0.75rem;">⚖️ Peso (3,2g)</span>' : 'Direta'}</td>
+          <td>Direta</td>
           <td>
             <button class="btn-edit" onclick="readequarVaga(${index})">Salvar</button>
             <button class="btn-danger" onclick="excluirVaga(${index})">Excluir</button>
           </td>
         `;
-        tbodyVagas.appendChild(tr);
+        tbody.appendChild(tr);
       });
     }
 
-    function readequarVaga(index) {
-      agendamentos[index].data = document.getElementById(`edit_data_${index}`).value;
-      agendamentos[index].pecas = parseFloat(document.getElementById(`edit_pecas_${index}`).value);
+    function readequarVaga(i) {
+      agendamentos[i].data = document.getElementById(`edit_data_${i}`).value;
+      agendamentos[i].pecas = parseFloat(document.getElementById(`edit_pecas_${i}`).value);
       localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
-      alert("Vaga readequada!");
       renderizarCalendario();
       renderizarReadequacao();
     }
 
-    function excluirVaga(index) {
-      if (confirm("Excluir este agendamento e liberar a vaga?")) {
-        agendamentos.splice(index, 1);
+    function excluirVaga(i) {
+      if (confirm("Cancelar este agendamento?")) {
+        agendamentos.splice(i, 1);
         localStorage.setItem('sos_agendamentos', JSON.stringify(agendamentos));
         renderizarCalendario();
         renderizarReadequacao();
