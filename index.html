@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUB S.O.S - Sistema Operacional de Setores 2027</title>
+  <title>S.O.S SOLUÇÕES - HUB de Operações 2027</title>
   <style>
     :root {
       --header-bg: #0B132B;
@@ -46,19 +46,31 @@
     .top-bar p { margin: 4px 0 0 0; color: var(--orange-accent); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
     .btn-action-top {
-      background: transparent;
-      border: 1px solid var(--orange-accent);
-      color: var(--orange-accent);
-      padding: 8px 16px;
+      background: var(--orange-accent);
+      border: none;
+      color: #FFFFFF;
+      padding: 10px 20px;
       border-radius: 8px;
-      font-weight: bold;
+      font-weight: 800;
       cursor: pointer;
       margin-left: 8px;
+      font-size: 0.85rem;
     }
 
     .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
     .portal-landing { display: block; }
+    
+    .hero-banner {
+      background: var(--header-bg);
+      color: #FFF;
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border-left: 8px solid var(--orange-accent);
+    }
+
     .club-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
 
     .club-card {
@@ -239,10 +251,10 @@
 
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-      background: rgba(11, 19, 43, 0.8); z-index: 1000; justify-content: center; align-items: center;
+      background: rgba(11, 19, 43, 0.85); z-index: 1000; justify-content: center; align-items: center;
     }
     .modal-card {
-      background: #fff; padding: 32px; border-radius: 20px; max-width: 450px; width: 90%;
+      background: #fff; padding: 32px; border-radius: 20px; max-width: 480px; width: 90%;
     }
 
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
@@ -259,34 +271,98 @@
       <p>HUB DE OPERAÇÕES S.O.S - SISTEMA OPERACIONAL DE SETORES 2027</p>
     </div>
     <div>
-      <button id="btnOpenLoginModal" class="btn-action-top" onclick="abrirModalLogin()">ÁREA DO CLIENTE / LOGIN</button>
-      <button id="btnLogout" class="btn-action-top" style="display: none;" onclick="logout()">SAIR DO PORTAL</button>
+      <button id="btnOpenLoginModal" class="btn-action-top" onclick="abrirModalLogin()">ENTRAR NO PORTAL / LOGIN</button>
+      <button id="btnLogout" class="btn-action-top" style="display: none; background: transparent; border: 1px solid var(--orange-accent);" onclick="logout()">SAIR DO PORTAL</button>
     </div>
   </div>
 
   <div class="main-container">
 
-    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE (VISITANTES) -->
+    <!-- LANDING PAGE DETALHADA COM TODAS AS INFORMAÇÕES DO CLUBE -->
     <div id="portalLanding" class="portal-landing">
-      <div style="text-align: center; margin-bottom: 30px;">
-        <h2 style="font-size: 2rem; color: var(--header-bg); margin-bottom: 8px;">Clube de Serviços S.O.S 2027</h2>
-        <p style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto;">
-          Garanta prioridade de esteira, fure filas de produção e tenha acesso à menor tabela tarifária de serviços técnicos para semijoias.[cite: 1]
+      
+      <div class="hero-banner">
+        <h2 style="margin: 0 0 10px 0; font-size: 1.8rem; color: #FFF;">Bem-vindo ao Clube de Serviços S.O.S 2027</h2>
+        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #CBD5E1;">
+          Estruturamos a esteira fabril perfeita para gerenciar, fotografar, cadastrar, etiquetar e organizar sua produção de semijoias. Faça parte do Clube para furar filas, garantir datas exclusivas e ter acesso às menores tarifas do mercado.
         </p>
       </div>
 
+      <!-- VISÃO GERAL DE PREÇOS E SERVIÇOS -->
+      <div class="panel-card">
+        <h3>📋 Tabela Completa de Serviços & Tarifas Técnicas</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+          Todos os membros do Clube possuem valores diferenciados por cota em relação ao mercado avulso.
+        </p>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Serviço Técnico</th>
+              <th>Base de Cobrança</th>
+              <th>Cota VIP Gold</th>
+              <th>Cota VIP Silver</th>
+              <th>Momento da Cobrança</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Inspeção Física de Qualidade</strong> (Separação + Inspeção + CDI)</td>
+              <td>Por peça física</td>
+              <td><strong>R$ 0,65</strong></td>
+              <td><strong>R$ 0,70</strong></td>
+              <td><span style="color: var(--green-val); font-weight: bold;">Entrada Antecipada</span> (Término CDI)</td>
+            </tr>
+            <tr>
+              <td><strong>Fotografia Profissional</strong> (Tradicional / IA Still, Cenário, Modelo)</td>
+              <td>Por modelo / SKU</td>
+              <td><strong>R$ 2,49</strong></td>
+              <td><strong>R$ 2,69</strong></td>
+              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
+            </tr>
+            <tr>
+              <td><strong>Cadastro Digital CDE</strong> (Inclusão de atributos e dados)</td>
+              <td>Por modelo / SKU</td>
+              <td><strong>R$ 2,49</strong></td>
+              <td><strong>R$ 2,69</strong></td>
+              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
+            </tr>
+            <tr>
+              <td><strong>Etiquetagem de Peças</strong></td>
+              <td>Por peça física</td>
+              <td><strong>R$ 0,27</strong></td>
+              <td><strong>R$ 0,30</strong></td>
+              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
+            </tr>
+            <tr>
+              <td><strong>Encarte / Embalagem Externa</strong> (Terceirizado Rua)</td>
+              <td>Por peça física</td>
+              <td><strong>R$ 0,70</strong></td>
+              <td><strong>R$ 0,80</strong></td>
+              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Se contratado)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: var(--input-bg); padding: 12px 16px; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">
+          💳 <strong>Meios de Pagamento Aceitos:</strong> À vista via PIX ou em até 12x no cartão de crédito (com juros repassados).
+        </div>
+      </div>
+
+      <!-- CARDS DAS COTAS DO CLUBE -->
       <div class="club-cards-grid">
+        
         <!-- COTA SILVER -->
         <div class="club-card">
           <h2>VIP SILVER</h2>
           <div class="club-price">R$ 1.000,00 <span style="font-size: 0.8rem; color: var(--text-muted);">/ ano</span></div>
           <p style="font-weight: bold; font-size: 0.85rem; color: var(--silver-val);">15 VAGAS DISPONÍVEIS</p>
           <ul class="club-features">
-            <li><strong>2 entradas por mês sem agendamento prévio</strong>.[cite: 1]</li>
-            <li>Piso operacional de 250 peças por lote.[cite: 1]</li>
-            <li>Demais entradas mediante agendamento no portal.[cite: 1]</li>
-            <li>Tabela tarifária reduzida de serviços.[cite: 1]</li>
-            <li>Inspeção R$ 0,70 | Foto R$ 2,69 | CDE R$ 2,69 | Etiqueta R$ 0,30 | Encarte R$ 0,80.[cite: 1]</li>
+            <li><strong>2 entradas por mês SEM necessidade de agendamento prévio</strong>.</li>
+            <li>Piso mínimo obrigatório de 250 peças por lote.</li>
+            <li>Demais entradas agendadas via portal com 3 dias úteis de antecedência.</li>
+            <li>Acesso ao calendário de acompanhamento e relatórios padrão.</li>
+            <li>Tabela de tarifas com desconto exclusivo.</li>
           </ul>
           <button class="btn-main btn-silver" onclick="abrirModalCadastro('Silver')">QUERO MINHA VAGA SILVER</button>
         </div>
@@ -297,18 +373,19 @@
           <div class="club-price">R$ 3.000,00 <span style="font-size: 0.8rem; color: var(--text-muted);">/ ano</span></div>
           <p style="font-weight: bold; font-size: 0.85rem; color: var(--gold-val);">5 VAGAS EXCLUSIVAS (FURA FILA)</p>
           <ul class="club-features">
-            <li><strong>Até 4 entradas no mês SEM necessidade de agendamento</strong>.[cite: 1]</li>
-            <li><strong>Sem quantidade mínima de peças por lote</strong>.[cite: 1]</li>
-            <li>Suporte VIP 24h direto com a Direção (Kelvin).[cite: 1]</li>
-            <li>Menor tabela tarifária do mercado.[cite: 1]</li>
-            <li>Inspeção R$ 0,65 | Foto R$ 2,49 | CDE R$ 2,49 | Etiqueta R$ 0,27 | Encarte R$ 0,70.[cite: 1]</li>
+            <li><strong>Até 4 entradas no mês SEM agendamento prévio</strong> (Prioridade total de esteira).</li>
+            <li><strong>ISENÇÃO TOTAL de quantidade mínima de peças por lote</strong>.</li>
+            <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
+            <li>Acesso à <strong>menor tabela tarifária do mercado</strong>.</li>
+            <li>Relatórios avançados de desempenho por lote.</li>
           </ul>
           <button class="btn-main btn-gold" onclick="abrirModalCadastro('Gold')">QUERO A PRIORIDADE GOLD</button>
         </div>
+
       </div>
     </div>
 
-    <!-- PAINEL PRINCIPAL (APÓS LOGIN) -->
+    <!-- PAINEL PRINCIPAL (APÓS LOGIN DA DIRETORIA OU CLIENTE) -->
     <div id="dashboardPanel" class="dashboard-panel">
 
       <div class="nav-tabs">
@@ -318,30 +395,30 @@
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Financeiro & Cenários (Diretoria)</button>
       </div>
 
-      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO -->
+      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
       <div id="abaAgendamento" class="tab-content active">
 
         <!-- DIRETRIZES OPERACIONAIS -->
         <div class="rules-card">
           <h4>📋 Diretrizes e Regras Operacionais para Agendamento (HUB S.O.S)</h4>
           <ul class="rules-list">
-            <li><strong>Janela de Antecedência:</strong> Agendamentos comuns via portal exigem <strong>3 dias úteis de antecedência</strong>.[cite: 1]</li>
-            <li><strong>Cotas Diretas Sem Agendamento:</strong> VIP GOLD (até 4 entradas sem agendamento e sem mínimo)[cite: 1] / VIP SILVER (2 entradas sem agendamento, mínimo 250 pcs).[cite: 1]</li>
-            <li><strong>Volumetria e Tolerância:</strong> Lote padrão até <strong>2,0 kg ou 600 peças</strong>. Tolerância estendida de até 3,0 kg (900 a 1.000 pcs) com pequeno ajuste no prazo final.[cite: 1] Envios acima de 3,0 kg geram um 2º lote.[cite: 1]</li>
-            <li><strong>Alinhamento com a Galvânica:</strong> Atrasos na entrega acarretam perda da vaga e reencaixe automático na primeira data disponível da esteira.[cite: 1]</li>
+            <li><strong>Janela de Antecedência:</strong> Agendamentos comuns via portal exigem <strong>3 dias úteis de antecedência</strong>.</li>
+            <li><strong>Cotas Diretas Sem Agendamento:</strong> VIP GOLD (até 4 entradas diretas sem agendamento e sem mínimo) / VIP SILVER (2 entradas diretas, mínimo 250 pcs).</li>
+            <li><strong>Volumetria e Tolerância por Lote:</strong> Capacidade padrão de até <strong>2,0 kg ou 600 peças</strong>. Aceita-se margem estendida de até 3,0 kg (900 a 1.000 pcs) com pequeno ajuste no prazo final de entrega. Envios acima de 3,0 kg geram um segundo lote automaticamente.</li>
+            <li><strong>Alinhamento com a Galvânica:</strong> Atrasos na entrega acarretam perda imediata da vaga e reencaixe na primeira data livre da fábrica.</li>
           </ul>
         </div>
 
         <!-- CONVERSOR DE PESO EM PEÇAS -->
         <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg)</h3>
+          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou gramas)</h3>
           <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
-            Informe o peso total do seu lote em gramas para calcular a volumetria e aplicar a regra de tolerância do HUB S.O.S.[cite: 1]
+            Digite o peso total do seu lote em gramas (ex: 2000g para 2kg) para calcular a quantidade aproximada com base na <strong>média de 3,2g por peça</strong> e aplicar as regras de volumetria.
           </p>
 
           <div style="display: flex; gap: 10px; align-items: center; max-width: 450px;">
             <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 2000)" style="margin: 0;">
-            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR</button>
+            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR PESO</button>
           </div>
           <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
         </div>
@@ -369,10 +446,10 @@
 
           <div style="margin-bottom: 12px; display: flex; gap: 20px;">
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaDiretaCheck" onchange="calcularImpacto()"> Usar Cota Direta (Sem agendamento prévio)[cite: 1]
+              <input type="checkbox" id="usarCotaDiretaCheck" onchange="calcularImpacto()"> Usar Cota Direta (Sem agendamento prévio)
             </label>
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="incluirEncarteCheck" checked onchange="calcularImpacto()"> Incluir Encarte Externa (Terceirizado)[cite: 1]
+              <input type="checkbox" id="incluirEncarteCheck" checked onchange="calcularImpacto()"> Incluir Encarte Externa (Terceirizado)
             </label>
           </div>
 
@@ -381,13 +458,13 @@
             <div class="calc-row"><span>Entrada Antecipada (Combo 3 em 1 - Inspeção/CDI):</span><strong id="resCaixa">R$ 0,00</strong></div>
             <div class="calc-row"><span>Fechamento no Despacho (Foto + CDE + Etiqueta + Encarte):</span><strong id="resDespacho">R$ 0,00</strong></div>
             <div class="calc-row total"><span>Valor Total Previsto do Lote:</span><strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong></div>
-            <p style="margin: 4px 0 0 0; font-size: 0.7rem; color: var(--text-muted);">*Pagamento à vista via PIX ou em até 12x no cartão de crédito (juros repassados ao cliente).[cite: 1]</p>
+            <p style="margin: 4px 0 0 0; font-size: 0.7rem; color: var(--text-muted);">*Pagamento à vista via PIX ou em até 12x no cartão de crédito (juros repassados).</p>
           </div>
 
           <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO DE VAGA</button>
         </div>
 
-        <!-- CALENDÁRIO COM ABAS DE MESES -->
+        <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA COM ABAS DE MESES -->
         <div class="panel-card">
           <h3>📊 Ocupação Diária do HUB S.O.S</h3>
 
@@ -453,22 +530,22 @@
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--blue-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Fundo Anuidade Clube</span>
               <h2 style="margin:5px 0 0 0; color:var(--header-bg);">R$ 30.000,00</h2>
-              <span style="font-size:0.7rem; color:var(--green-val);">Reserva CAPEX / Capital Giro[cite: 1]</span>
+              <span style="font-size:0.7rem; color:var(--green-val);">Reserva CAPEX / Capital Giro</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--gold-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Meta Cenário 3 (Oficial)</span>
               <h2 style="margin:5px 0 0 0; color:var(--header-bg);">R$ 18.393,60</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">16 Lotes/mês (Com suporte Brenda)[cite: 1]</span>
+              <span style="font-size:0.7rem; color:var(--text-muted);">16 Lotes/mês (Com suporte Brenda)</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--green-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família (Meta)</span>
               <h2 style="margin:5px 0 0 0; color:var(--green-val);">R$ 6.000,00</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">Totalmente assegurado[cite: 1]</span>
+              <span style="font-size:0.7rem; color:var(--text-muted);">Totalmente assegurado</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--orange-accent);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Margem Limpa Encarte (Rua)</span>
               <h2 style="margin:5px 0 0 0; color:var(--orange-accent);">R$ 0,15 - R$ 0,25</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">por peça física (até R$ 28k/ano)[cite: 1]</span>
+              <span style="font-size:0.7rem; color:var(--text-muted);">por peça física (até R$ 28k/ano)</span>
             </div>
           </div>
 
@@ -486,7 +563,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>Cenário 1 (Piso Seguro)</strong>[cite: 1]</td>
+                <td><strong>Cenário 1 (Piso Seguro)</strong></td>
                 <td>R$ 12.900,00</td>
                 <td>14 Lotes/mês</td>
                 <td>R$ 16.094,40</td>
@@ -494,7 +571,7 @@
                 <td><strong style="color:var(--green-val);">+ R$ 5.694,40</strong></td>
               </tr>
               <tr>
-                <td><strong>Cenário 2 (Intermediário)</strong>[cite: 1]</td>
+                <td><strong>Cenário 2 (Intermediário)</strong></td>
                 <td>R$ 13.900,00</td>
                 <td>15 Lotes/mês</td>
                 <td>R$ 17.244,00</td>
@@ -502,7 +579,7 @@
                 <td><strong style="color:var(--green-val);">+ R$ 5.844,00</strong></td>
               </tr>
               <tr style="background:#FEF3C7;">
-                <td><strong>Cenário 3 (Meta Principal Oficial)</strong>[cite: 1]</td>
+                <td><strong>Cenário 3 (Meta Principal Oficial)</strong></td>
                 <td>R$ 15.900,00</td>
                 <td>16 Lotes/mês</td>
                 <td>R$ 18.393,60</td>
@@ -510,7 +587,7 @@
                 <td><strong style="color:var(--green-val);">+ R$ 4.993,60</strong></td>
               </tr>
               <tr>
-                <td><strong>Cenário 4 (Alta Performance)</strong>[cite: 1]</td>
+                <td><strong>Cenário 4 (Alta Performance)</strong></td>
                 <td>R$ 15.900,00</td>
                 <td>18 Lotes/mês</td>
                 <td>R$ 20.692,80</td>
@@ -529,44 +606,47 @@
   <!-- MODAL DE LOGIN -->
   <div id="modalLogin" class="modal-overlay">
     <div class="modal-card">
-      <h3 style="margin-top:0; color:var(--header-bg);">Acesso Restrito ao Clube S.O.S</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted);">Selecione sua marca e digite sua senha de membro.[cite: 1]</p>
+      <h3 style="margin-top:0; color:var(--header-bg);">Acesso ao Portal S.O.S</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Selecione sua marca e digite sua senha de membro.</p>
 
-      <select id="userSelect" class="form-control">
+      <label style="font-size:0.8rem; font-weight:bold;">Selecione sua Marca / Usuário:</label>
+      <select id="userSelect" class="form-control" style="margin-top:4px;">
         <option value="">Selecione sua marca...</option>
       </select>
-      <input type="password" id="userPass" class="form-control" placeholder="Digite sua Senha">
+      
+      <label style="font-size:0.8rem; font-weight:bold;">Senha:</label>
+      <input type="password" id="userPass" class="form-control" placeholder="Digite sua Senha" style="margin-top:4px;">
 
       <button class="btn-main" onclick="autenticar()">ENTRAR NO PAINEL</button>
       <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalLogin()">CANCELAR</button>
-      <div id="loginMsg" style="color:var(--red-val); font-size:0.85rem; margin-top:10px;"></div>
+      <div id="loginMsg" style="color:var(--red-val); font-size:0.85rem; margin-top:10px; font-weight:bold;"></div>
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO/ADESÃO -->
+  <!-- MODAL DE CADASTRO/ADESÃO DE VISITANTES -->
   <div id="modalCadastro" class="modal-overlay">
     <div class="modal-card">
       <h3 id="modalCadastroTitle" style="margin-top:0; color:var(--header-bg);">Solicitar Vaga no Clube</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted);">Preencha os dados abaixo para nossa equipe entrar em contato imediato.[cite: 1]</p>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Preencha os dados abaixo para nossa equipe entrar em contato imediato.</p>
 
       <input type="text" id="leadNome" class="form-control" placeholder="Seu Nome Completo">
       <input type="text" id="leadEmpresa" class="form-control" placeholder="Nome da sua Marca / Empresa">
       <input type="text" id="leadWhats" class="form-control" placeholder="WhatsApp com DDD">
       
-      <button class="btn-main" style="background-color:var(--green-val);" onclick="enviarSolicitacaoAdesao()">SOLICITAR MINHA ADESÃO</button>
+      <button class="btn-main" style="background-color:var(--green-val);" onclick="enviarSolicitacaoAdesao()">SOLICITAR ADESÃO</button>
       <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">VOLTAR</button>
     </div>
   </div>
 
   <script>
-    // URL ATUALIZADA DO SEU GOOGLE APPS SCRIPT (WEB APP MAPPED)
+    // URL DO SEU GOOGLE APPS SCRIPT
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
     
     const META_DIARIA = 600;
     const CAPACIDADE_MENSAL = 12000;
     const MEDIA_PESO_PECA = 3.2;
 
-    // BASE DE DADOS MANTIDA
+    // BASE DE USUÁRIOS E CLIENTES MANTIDA
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Gold" },
       "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold" },
@@ -580,17 +660,24 @@
     let mesSelecionado = "2026-09";
     let planoSelecionadoModal = "";
 
-    function abrirModalLogin() { document.getElementById('modalLogin').style.display = 'flex'; carregarSelectUsuarios(); }
-    function fecharModalLogin() { document.getElementById('modalLogin').style.display = 'none'; }
+    function abrirModalLogin() { 
+      document.getElementById('modalLogin').style.display = 'flex'; 
+      carregarSelectUsuarios(); 
+    }
+    function fecharModalLogin() { 
+      document.getElementById('modalLogin').style.display = 'none'; 
+      document.getElementById('loginMsg').innerText = '';
+    }
     
     function abrirModalCadastro(plano) {
       planoSelecionadoModal = plano;
       document.getElementById('modalCadastroTitle').innerText = `Solicitar Vaga — VIP ${plano.toUpperCase()}`;
       document.getElementById('modalCadastro').style.display = 'flex';
     }
-    function fecharModalCadastro() { document.getElementById('modalCadastro').style.display = 'none'; }
+    function fecharModalCadastro() { 
+      document.getElementById('modalCadastro').style.display = 'none'; 
+    }
 
-    // DIRECIONA OS LEADS DE ADESÃO DIRETO PARA A PLANILHA DO APPS SCRIPT
     function enviarSolicitacaoAdesao() {
       let nome = document.getElementById('leadNome').value.trim();
       let empresa = document.getElementById('leadEmpresa').value.trim();
@@ -719,9 +806,9 @@
 
       let avisoTol = "";
       if (gramas > 2000 && gramas <= 3000) {
-        avisoTol = `<br><span style="color:#C2410C;">⚠️ Lote na margem de tolerância estendida (${(gramas/1000).toFixed(1)}kg). O prazo de entrega terá um ajuste de poucos dias.</span>[cite: 1]`;
+        avisoTol = `<br><span style="color:#C2410C;">⚠️ Lote na margem de tolerância estendida (${(gramas/1000).toFixed(1)}kg). O prazo de entrega terá um ajuste de poucos dias.</span>`;
       } else if (gramas > 3000) {
-        avisoTol = `<br><span style="color:var(--red-val);">❗ Envios acima de 3,0 kg excedem a tolerância. O excedente será fracionado em um 2º lote.</span>[cite: 1]`;
+        avisoTol = `<br><span style="color:var(--red-val);">❗ Envios acima de 3,0 kg excedem a tolerância. O excedente será fracionado em um 2º lote.</span>`;
       }
 
       document.getElementById('pesoResult').innerHTML = `
@@ -737,11 +824,11 @@
       
       let plano = usuarios[usuarioLogado]?.plano || "Silver";
 
-      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;[cite: 1]
-      let tFoto = (plano === "Gold") ? 2.49 : 2.69;[cite: 1]
-      let tCDE = (plano === "Gold") ? 2.49 : 2.69;[cite: 1]
-      let tEtiqueta = (plano === "Gold") ? 0.27 : 0.30;[cite: 1]
-      let tEncarte = (plano === "Gold") ? 0.70 : 0.80;[cite: 1]
+      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;
+      let tFoto = (plano === "Gold") ? 2.49 : 2.69;
+      let tCDE = (plano === "Gold") ? 2.49 : 2.69;
+      let tEtiqueta = (plano === "Gold") ? 0.27 : 0.30;
+      let tEncarte = (plano === "Gold") ? 0.70 : 0.80;
 
       let valCaixa = pecas * tInspecao;
       let valFoto = skus * tFoto;
@@ -757,7 +844,6 @@
       document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
     }
 
-    // DIRECIONA O AGENDAMENTO DIRETO PARA A PLANILHA DO APPS SCRIPT
     function solicitarVaga() {
       const pecas = parseFloat(document.getElementById('pecasInput').value);
       const dataSel = document.getElementById('dataInput').value;
@@ -767,7 +853,7 @@
       if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
       if (plano === "Silver" && pecas < 250) {
-        return alert("Atenção: A cota VIP Silver exige o piso mínimo de 250 peças por lote.");[cite: 1]
+        return alert("Atenção: A cota VIP Silver exige o piso mínimo de 250 peças por lote.");
       }
 
       if (usuarios[usuarioLogado].perfil !== "admin" && !usarCotaDireta) {
@@ -776,7 +862,7 @@
         dataMinima.setHours(0,0,0,0);
 
         if (dataEscolhida < dataMinima) {
-          return alert(`Atenção: Agendamentos comuns exigem 3 dias úteis de antecedência. A primeira data livre é ${dataMinima.toLocaleDateString('pt-BR')}.`);[cite: 1]
+          return alert(`Atenção: Agendamentos comuns exigem 3 dias úteis de antecedência. A primeira data livre é ${dataMinima.toLocaleDateString('pt-BR')}.`);
         }
       }
 
@@ -784,7 +870,7 @@
         return alert("Esta data está marcada como Feriado/Indisponível no HUB S.O.S.");
       }
 
-      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;[cite: 1]
+      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;
       let valCaixa = pecas * tInspecao;
 
       agendamentos.push({
