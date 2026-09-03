@@ -18,43 +18,27 @@
       --blue-val: #3B82F6;
       --gold-val: #D97706;
       --silver-val: #64748B;
+      --yellow-val: #F59E0B;
     }
 
     * { box-sizing: border-box; font-family: 'Montserrat', -apple-system, sans-serif; }
 
     body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--body-bg);
-      color: var(--text-dark);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      margin: 0; padding: 0; background-color: var(--body-bg); color: var(--text-dark);
+      min-height: 100vh; display: flex; flex-direction: column;
     }
 
     .top-bar {
-      background-color: var(--header-bg);
-      border-bottom: 4px solid var(--orange-accent);
-      padding: 16px 32px;
-      color: #FFFFFF;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: var(--header-bg); border-bottom: 4px solid var(--orange-accent);
+      padding: 16px 32px; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center;
     }
 
     .top-bar h1 { margin: 0; font-size: 1.5rem; font-weight: 900; }
     .top-bar p { margin: 4px 0 0 0; color: var(--orange-accent); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
     .btn-action-top {
-      background: var(--orange-accent);
-      border: none;
-      color: #FFFFFF;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 800;
-      cursor: pointer;
-      margin-left: 8px;
-      font-size: 0.85rem;
+      background: var(--orange-accent); border: none; color: #FFFFFF;
+      padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-left: 8px; font-size: 0.85rem;
     }
 
     .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -62,13 +46,8 @@
     .portal-landing { display: block; }
     
     .hero-banner {
-      background: var(--header-bg);
-      color: #FFF;
-      border-radius: 20px;
-      padding: 36px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      border-left: 8px solid var(--orange-accent);
+      background: var(--header-bg); color: #FFF; border-radius: 20px; padding: 36px; margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-left: 8px solid var(--orange-accent);
     }
 
     .hero-banner h2 { margin: 0 0 12px 0; font-size: 2rem; color: #FFF; font-weight: 900; }
@@ -77,13 +56,8 @@
     .club-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
 
     .club-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      border-top: 6px solid var(--silver-val);
-      cursor: pointer;
-      transition: transform 0.2s ease;
+      background: var(--card-bg); border-radius: 20px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease;
     }
 
     .club-card:hover { transform: translateY(-4px); }
@@ -95,28 +69,13 @@
     .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.7; color: #334155; }
 
     .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
-      background-color: var(--input-bg);
-      color: var(--text-dark);
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-      outline: none;
+      width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #E2E8F0;
+      background-color: var(--input-bg); color: var(--text-dark); font-size: 0.95rem; margin-bottom: 12px; outline: none;
     }
 
     .btn-main {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      background-color: var(--header-bg);
-      color: #FFFFFF;
-      font-size: 0.9rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      cursor: pointer;
+      width: 100%; padding: 14px; border-radius: 12px; border: none; background-color: var(--header-bg);
+      color: #FFFFFF; font-size: 0.9rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
     }
 
     .btn-gold { background-color: var(--gold-val); }
@@ -124,134 +83,67 @@
 
     .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
+    .btn-approve { background-color: var(--green-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
 
     .dashboard-panel { display: none; }
 
-    .nav-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #E2E8F0;
-      padding-bottom: 10px;
-    }
+    .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #E2E8F0; padding-bottom: 10px; overflow-x: auto; }
 
     .tab-btn {
-      background: var(--card-bg);
-      color: var(--text-dark);
-      border: 1px solid #CBD5E1;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 0.9rem;
+      background: var(--card-bg); color: var(--text-dark); border: 1px solid #CBD5E1; padding: 10px 20px;
+      cursor: pointer; border-radius: 8px; font-weight: bold; font-size: 0.9rem; white-space: nowrap;
     }
 
-    .tab-btn.active {
-      background: var(--header-bg);
-      color: #FFFFFF;
-      border-color: var(--header-bg);
-    }
+    .tab-btn.active { background: var(--header-bg); color: #FFFFFF; border-color: var(--header-bg); }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
     .panel-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      margin-bottom: 20px;
+      background: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 20px;
     }
 
     .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
     .rules-card {
-      background-color: #FFF7ED;
-      border: 1px solid #FFEDD5;
-      border-left: 6px solid var(--orange-accent);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 20px;
+      background-color: #FFF7ED; border: 1px solid #FFEDD5; border-left: 6px solid var(--orange-accent);
+      border-radius: 12px; padding: 18px; margin-bottom: 20px;
     }
 
     .rules-card h4 { margin: 0 0 10px 0; color: #C2410C; }
     .rules-list { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #9A3412; line-height: 1.6; }
 
-    .tool-box {
-      background-color: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
+    .alert-banho {
+      background-color: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid var(--blue-val);
+      border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #1E3A8A; font-size: 0.88rem; line-height: 1.6;
     }
 
-    .month-selector {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-    }
+    .month-selector { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
 
     .month-btn {
-      background: var(--input-bg);
-      border: 1px solid #CBD5E1;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      white-space: nowrap;
+      background: var(--input-bg); border: 1px solid #CBD5E1; padding: 8px 14px; border-radius: 6px;
+      font-size: 0.8rem; font-weight: bold; cursor: pointer; white-space: nowrap;
     }
 
     .month-btn.active { background: var(--orange-accent); color: #FFF; border-color: var(--orange-accent); }
 
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-      margin-top: 15px;
-    }
+    .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 15px; }
 
-    .day-card {
-      background: var(--input-bg);
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 12px;
-      text-align: center;
-    }
-
+    .day-card { background: var(--input-bg); border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center; }
     .day-card.full { border-color: var(--red-val); background-color: #FEF2F2; }
     .day-card.available { border-color: var(--green-val); background-color: #F0FDF4; }
     .day-card.holiday { border-color: var(--orange-accent); background-color: #FFF7ED; }
+    .day-card.pending { border-color: var(--yellow-val); background-color: #FEF3C7; }
 
-    .progress-bar {
-      height: 10px;
-      background: #E2E8F0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 6px;
-    }
-
+    .progress-bar { height: 10px; background: #E2E8F0; border-radius: 5px; overflow: hidden; margin-top: 6px; }
     .progress-fill { height: 100%; background: var(--blue-val); }
     .progress-fill.full { background: var(--red-val); }
 
-    .badge-status {
-      display: block;
-      padding: 6px 8px;
-      border-radius: 8px;
-      font-size: 0.7rem;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-
+    .badge-status { display: block; padding: 6px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: bold; margin-top: 8px; }
     .badge-aberto { background-color: #D1FAE5; color: #065F46; }
     .badge-fechado { background-color: #FEE2E2; color: #991B1B; border: 1px solid var(--red-val); }
     .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
-
-    .calc-box { background: var(--input-bg); border-radius: 8px; padding: 12px; margin: 12px 0; }
-    .calc-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; }
-    .calc-row.total { border-top: 1px dashed #CBD5E1; padding-top: 8px; font-weight: bold; }
+    .badge-analise { background-color: #FEF3C7; color: #92400E; border: 1px solid var(--yellow-val); }
 
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100%; height:100%;
@@ -259,28 +151,11 @@
       overflow-y: auto; padding: 20px;
     }
     .modal-card {
-      background: #fff; padding: 32px; border-radius: 20px; max-width: 650px; width: 100%;
+      background: #fff; padding: 32px; border-radius: 20px; max-width: 680px; width: 100%;
       max-height: 90vh; overflow-y: auto;
     }
 
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 15px;
-      background: var(--input-bg);
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-    }
-
-    .checkbox-group label {
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .clickable-service { color: var(--blue-val); text-decoration: underline; cursor: pointer; font-weight: bold; }
 
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
     th, td { text-align: left; padding: 10px; border-bottom: 1px solid #E2E8F0; font-size: 0.85rem; }
@@ -309,7 +184,7 @@
       <div class="hero-banner">
         <h2>HUB de Operações S.O.S 2027</h2>
         <p>
-          Sua marca com estrutura operacional de grande porte. Garantimos a gestão técnica, triagem de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encarte da sua produção de semijoias com previsibilidade e padrão fabril.
+          Estrutura técnica e esteira fabril de alta performance para marcas de semijoias. Garantimos triagem de banho, inspeção de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encartelamento com alto padrão de acabamento.
         </p>
       </div>
 
@@ -319,12 +194,12 @@
         <!-- COTA SILVER -->
         <div class="club-card" onclick="abrirModalDetalhesClube('Silver')">
           <h2>VIP SILVER</h2>
-          <div class="club-subtitle">15 Vagas Disponíveis no Clube</div>
+          <div class="club-subtitle">15 Vagas Disponíveis</div>
           <ul class="club-features">
-            <li><strong>2 entradas diretas por mês</strong> sem agendamento prévio.</li>
+            <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
+            <li>Demais solicitações enviadas para aprovação/agendamento da Direção.</li>
             <li>Piso operacional de 250 peças por lote.</li>
-            <li>Agendamentos via portal com janela de 3 dias úteis.</li>
-            <li>Acesso ao painel de acompanhamento de esteira.</li>
+            <li>Gestão de estoque e insumos de embalagens no HUB.</li>
           </ul>
           <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Silver')">CONHECER DETALHES & VALORES SILVER</button>
         </div>
@@ -334,10 +209,10 @@
           <h2>VIP GOLD</h2>
           <div class="club-subtitle" style="color: var(--gold-val);">5 Vagas Exclusivas (Prioridade Absoluta)</div>
           <ul class="club-features">
-            <li><strong>Até 4 entradas diretas por mês</strong> sem agendamento (Fura Fila).</li>
-            <li><strong>Isenção total de quantidade mínima de peças</strong> por lote.</li>
-            <li>Atendimento Executivo 24h direto com a Direção S.O.S.</li>
-            <li>Acesso à menor tabela tarifária de serviços técnicos.</li>
+            <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
+            <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
+            <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
+            <li>Menores tarifas fabris em todos os serviços técnicos.</li>
           </ul>
           <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Gold')">CONHECER DETALHES & VALORES GOLD</button>
         </div>
@@ -351,37 +226,28 @@
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
         <button class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
-        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Cotas</button>
-        <button id="tabReadequarBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaReadequar')">⚙️ Readequação de Vagas</button>
-        <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Financeiro & Cenários (Diretoria)</button>
+        <button id="tabPedidosBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPedidos')">📥 Pedidos de Vagas (Aprovação)</button>
+        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Tabela Direção</button>
+        <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE (Diretoria)</button>
       </div>
 
       <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
       <div id="abaAgendamento" class="tab-content active">
 
-        <!-- DIRETRIZES OPERACIONAIS -->
-        <div class="rules-card">
-          <h4>📋 Diretrizes Operacionais para Agendamento</h4>
-          <ul class="rules-list">
-            <li><strong>Janela de Antecedência:</strong> Agendamentos comuns via portal exigem <strong>3 dias úteis de antecedência</strong>.</li>
-            <li><strong>Entradas Diretas:</strong> VIP GOLD (até 4 entradas diretas sem agendamento) / VIP SILVER (2 entradas diretas, piso de 250 pcs).</li>
-            <li><strong>Volumetria e Tolerância por Lote:</strong> Lote padrão até <strong>2,0 kg ou 600 peças</strong>. Tolerância estendida de até 3,0 kg (900 a 1.000 pcs) com pequeno ajuste no prazo final. Envios acima de 3,0 kg geram um 2º lote.</li>
-            <li><strong>Alinhamento com a Galvânica:</strong> Atrasos na entrega acarretam perda da vaga e reencaixe automático na primeira data livre da esteira.</li>
-          </ul>
+        <!-- ALERTA DE ALINHAMENTO COM A GALVÂNICA -->
+        <div class="alert-banho">
+          <strong>⚠️ Alinhamento Importante com a Galvânica / Banho:</strong><br>
+          Atente-se rigorosamente aos prazos de entrega do seu banho. Atrasos na entrega física das peças acarretam perda da vaga reservada na esteira S.O.S e reencaixe automático na próxima data disponível da fábrica, evitando paradas operacionais no setor de fotografia e inspeção.
         </div>
 
-        <!-- CONVERSOR DE PESO EM PEÇAS -->
-        <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou g)</h3>
-          <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
-            Digite o peso total do seu lote em gramas (ex: 2000g para 2kg) para calcular a volumetria aproximada (média de 3,2g/peça).
-          </p>
-
-          <div style="display: flex; gap: 10px; align-items: center; max-width: 450px;">
-            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 2000)" style="margin: 0;">
-            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR PESO</button>
-          </div>
-          <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
+        <!-- DIRETRIZES OPERACIONAIS -->
+        <div class="rules-card">
+          <h4>📋 Diretrizes de Agendamento HUB S.O.S</h4>
+          <ul class="rules-list">
+            <li><strong>Garantia de Entradas:</strong> VIP GOLD tem 4 entradas diretas/mês garantidas sem agendamento. VIP SILVER tem 1 entrada direta/mês garantida; demais solicitações passam por análise/aprovação da Direção.</li>
+            <li><strong>Dias Operacionais:</strong> Atendimento de segunda a sexta-feira. <strong>Sábados, Domingos e Feriados são bloqueados</strong>.</li>
+            <li><strong>Volumetria e Tolerância:</strong> Lote padrão até 2,0 kg (600 pcs). Margem estendida de até 3,0 kg com pequeno ajuste no prazo. Acima de 3,0 kg gera fracionamento.</li>
+          </ul>
         </div>
 
         <!-- FORMULÁRIO DE AGENDAMENTO -->
@@ -391,43 +257,35 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
-              <input type="date" id="dataInput" class="form-control" onchange="calcularImpacto()">
+              <input type="date" id="dataInput" class="form-control">
             </div>
 
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 600" oninput="calcularImpacto()">
+              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 600">
             </div>
 
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados:</label>
-              <input type="number" id="skusInput" class="form-control" placeholder="Ex: 120" value="120" oninput="calcularImpacto()">
+              <input type="number" id="skusInput" class="form-control" placeholder="Ex: 120" value="120">
             </div>
           </div>
 
           <div style="margin-bottom: 12px; display: flex; gap: 20px;">
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaDiretaCheck"> Usar Entrada Direta (Sem necessidade de agendamento prévio)
+              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Entrada Garantida do Mês (Sem necessidade de aprovação)
             </label>
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
               <input type="checkbox" id="incluirEncarteCheck" checked> Incluir Encarte Externa (Terceirizado)
             </label>
           </div>
 
-          <!-- ESTIMATIVA EM R$ EXCLUSIVA PARA A DIRETORIA (OCULTA PARA CLIENTES) -->
-          <div id="quadroEstimativaDiretoria" class="calc-box" style="display: none;">
-            <div style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; margin-bottom:6px;">🔒 PAINEL DE ESTIMATIVA DE FATURAMENTO (EXCLUSIVO DIREÇÃO)</div>
-            <div class="calc-row"><span>Entrada Antecipada (Combo 3 em 1 Inspeção):</span><strong id="resCaixa">R$ 0,00</strong></div>
-            <div class="calc-row"><span>Fechamento no Despacho (Foto + CDE + Etiqueta + Encarte):</span><strong id="resDespacho">R$ 0,00</strong></div>
-            <div class="calc-row total"><span>Valor Total Previsto do Lote:</span><strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong></div>
-          </div>
-
-          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO DE VAGA</button>
+          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">SOLICITAR RESERVA DE VAGA</button>
         </div>
 
         <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA -->
         <div class="panel-card">
-          <h3>📊 Ocupação Diária do HUB S.O.S</h3>
+          <h3>📊 Ocupação Diária da Esteira S.O.S</h3>
 
           <div id="monthTabsContainer" class="month-selector"></div>
 
@@ -451,121 +309,69 @@
       <div id="abaMinhasTarifas" class="tab-content">
         <div class="panel-card">
           <h3 id="tituloAbaTarifas">🏷️ Tabela Tarifária Contratada</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Confira abaixo os valores por serviço vigentes no seu plano do Clube S.O.S.</p>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Clique no nome do serviço para ver o detalhamento técnico e a explicação completa.</p>
           <div id="conteudoTabelaTarifasCliente"></div>
         </div>
       </div>
 
-      <!-- ABA 2: GESTÃO DE LOGINS (DIRETORIA) -->
+      <!-- ABA APROVAÇÃO DE VAGAS (DIRETORIA) -->
+      <div id="abaPedidos" class="tab-content">
+        <div class="panel-card">
+          <h3>📥 Soluções e Pedidos de Vagas Pendentes (Aprovação)</h3>
+          <table>
+            <thead><tr><th>Cliente / Marca</th><th>Plano</th><th>Data Solicitada</th><th>Peças</th><th>Ações da Direção</th></tr></thead>
+            <tbody id="pedidosVagasTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA GESTÃO DE LOGINS E PREÇOS (DIRETORIA) -->
       <div id="abaLogins" class="tab-content">
         <div class="panel-card">
-          <h3>👥 Controle de Usuários, Planos e Cotas do Clube</h3>
-          <div style="background: var(--input-bg); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
-            <h4 style="margin: 0 0 10px 0;">Cadastrar Novo Cliente / Marca</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
-              <input type="text" id="newClientName" class="form-control" placeholder="Nome da Marca/Empresa" style="margin: 0;">
-              <input type="text" id="newClientPass" class="form-control" placeholder="Senha de Acesso" style="margin: 0;">
-              <select id="newClientPlan" class="form-control" style="margin: 0;">
-                <option value="Silver">VIP Silver (R$ 1.000/ano)</option>
-                <option value="Gold">VIP Gold (R$ 3.000/ano)</option>
-              </select>
-              <button class="btn-main" style="width: auto; padding: 0 24px;" onclick="salvarNovoCliente()">CADASTRAR</button>
-            </div>
-          </div>
-
+          <h3>👥 Gestão de Clientes & Edição Personalizada de Tarifas</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Kelvin, aqui você pode ajustar os preços de qualquer cliente individualmente para conceder descontos e personalizações.</p>
+          
           <table>
-            <thead><tr><th>Marca / Cliente</th><th>Senha</th><th>Plano / Cota</th><th>Perfil</th><th>Ações</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Senha</th>
+                <th>Plano</th>
+                <th>Inspeção (R$)</th>
+                <th>Foto (R$)</th>
+                <th>CDE (R$)</th>
+                <th>Etiqueta (R$)</th>
+                <th>Encarte (R$)</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
             <tbody id="clientsTableBody"></tbody>
           </table>
         </div>
       </div>
 
-      <!-- ABA 3: READEQUAÇÃO DE VAGAS (DIRETORIA) -->
-      <div id="abaReadequar" class="tab-content">
-        <div class="panel-card">
-          <h3>⚙️ Readequação e Exclusão de Vagas Agendadas</h3>
-          <table>
-            <thead><tr><th>Cliente</th><th>Data Entrada</th><th>Peças</th><th>Tipo Cota</th><th>Ações</th></tr></thead>
-            <tbody id="adminVagasTable"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ABA 4: FINANCEIRO & DASHBOARD DIRETORIA (KELVIN) -->
+      <!-- ABA DASHBOARD FINANCEIRO (DIRETORIA) -->
       <div id="abaFinanceiro" class="tab-content">
         <div class="panel-card">
-          <h3>📊 Dashboard Estratégico & DRE de Cenários (Exclusivo Direção)</h3>
-          
+          <h3>📊 Dashboard Estratégico & DRE de Cenários</h3>
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;">
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--blue-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Fundo Anuidade Clube</span>
               <h2 style="margin:5px 0 0 0; color:var(--header-bg);">R$ 30.000,00</h2>
-              <span style="font-size:0.7rem; color:var(--green-val);">Reserva CAPEX / Capital Giro</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--gold-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Meta Cenário 3 (Oficial)</span>
               <h2 style="margin:5px 0 0 0; color:var(--header-bg);">R$ 18.393,60</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">16 Lotes/mês (Com suporte Brenda)</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--green-val);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família (Meta)</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família</span>
               <h2 style="margin:5px 0 0 0; color:var(--green-val);">R$ 6.000,00</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">Totalmente assegurado</span>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--orange-accent);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Margem Limpa Encarte (Rua)</span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Margem Limpa Encarte</span>
               <h2 style="margin:5px 0 0 0; color:var(--orange-accent);">R$ 0,15 - R$ 0,25</h2>
-              <span style="font-size:0.7rem; color:var(--text-muted);">por peça física (até R$ 28k/ano)</span>
             </div>
           </div>
-
-          <h4>Matriz Comparativa de Cenários Fabris (2027)</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Cenário Operacional</th>
-                <th>Custo Fixo Total</th>
-                <th>Capacidade Lotes</th>
-                <th>Faturamento Serviços</th>
-                <th>Pró-Labore Família</th>
-                <th>Lucro Líquido Caixa</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Cenário 1 (Piso Seguro)</strong></td>
-                <td>R$ 12.900,00</td>
-                <td>14 Lotes/mês</td>
-                <td>R$ 16.094,40</td>
-                <td>R$ 3.000,00</td>
-                <td><strong style="color:var(--green-val);">+ R$ 5.694,40</strong></td>
-              </tr>
-              <tr>
-                <td><strong>Cenário 2 (Intermediário)</strong></td>
-                <td>R$ 13.900,00</td>
-                <td>15 Lotes/mês</td>
-                <td>R$ 17.244,00</td>
-                <td>R$ 4.000,00</td>
-                <td><strong style="color:var(--green-val);">+ R$ 5.844,00</strong></td>
-              </tr>
-              <tr style="background:#FEF3C7;">
-                <td><strong>Cenário 3 (Meta Principal Oficial)</strong></td>
-                <td>R$ 15.900,00</td>
-                <td>16 Lotes/mês</td>
-                <td>R$ 18.393,60</td>
-                <td><strong>R$ 6.000,00</strong></td>
-                <td><strong style="color:var(--green-val);">+ R$ 4.993,60</strong></td>
-              </tr>
-              <tr>
-                <td><strong>Cenário 4 (Alta Performance)</strong></td>
-                <td>R$ 15.900,00</td>
-                <td>18 Lotes/mês</td>
-                <td>R$ 20.692,80</td>
-                <td>R$ 6.000,00</td>
-                <td><strong style="color:var(--green-val);">+ R$ 7.292,80</strong></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
@@ -573,7 +379,16 @@
 
   </div>
 
-  <!-- MODAL DE DETALHES DO CLUBE & INFORMAÇÕES DE VALORES (PÁGINA INICIAL) -->
+  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO -->
+  <div id="modalExplicacaoServico" class="modal-overlay">
+    <div class="modal-card">
+      <h3 id="explicacaoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Serviço</h3>
+      <div id="explicacaoTexto" style="font-size:0.9rem; line-height:1.7; color:#334155;"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:20px;" onclick="fecharModalExplicacao()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALHES DO CLUBE (PÁGINA INICIAL) -->
   <div id="modalDetalhesClube" class="modal-overlay">
     <div class="modal-card">
       <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
@@ -587,12 +402,8 @@
   <div id="modalLogin" class="modal-overlay">
     <div class="modal-card" style="max-width:400px;">
       <h3 style="margin-top:0; color:var(--header-bg);">Acesso ao Portal S.O.S</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Selecione sua marca e digite sua senha de membro.</p>
-
       <label style="font-size:0.8rem; font-weight:bold;">Marca / Usuário:</label>
-      <select id="userSelect" class="form-control" style="margin-top:4px;">
-        <option value="">Selecione sua marca...</option>
-      </select>
+      <select id="userSelect" class="form-control" style="margin-top:4px;"></select>
       
       <label style="font-size:0.8rem; font-weight:bold;">Senha:</label>
       <input type="password" id="userPass" class="form-control" placeholder="Digite sua Senha" style="margin-top:4px;">
@@ -603,133 +414,74 @@
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO / ADESÃO COMPLETO (COM TODAS AS PERGUNTAS DA SUA IMAGEM) -->
-  <div id="modalCadastro" class="modal-overlay">
-    <div class="modal-card">
-      <h3 id="modalCadastroTitle" style="margin-top:0; color:var(--header-bg);">Solicitação de Adesão ao Clube</h3>
-      
-      <div style="background:#FFF7ED; padding:12px; border-radius:8px; border-left:4px solid var(--orange-accent); font-size:0.78rem; color:#9A3412; margin-bottom:15px;">
-        <strong>🤝 Nosso Compromisso S.O.S:</strong> Zelamos pelo seu negócio. Trabalhamos com rigor técnico máximo, mas com transparência: processos humanos não são isentos de falhas. Quando um imprevisto ocorrer, nossa equipe estará imediatamente à disposição para resolver e zerar o impacto no seu cliente.
-      </div>
-
-      <label style="font-size:0.8rem; font-weight:bold;">Tipo de Cliente:*</label>
-      <select id="leadTipoCliente" class="form-control" onchange="alternarCamposTipoCliente()">
-        <option value="Novo Cliente">Novo Cliente (Adesão ao Clube)</option>
-        <option value="Renovação">Cliente Atual (Renovação de Cota)</option>
-      </select>
-
-      <!-- CAMPO DE RENOVAÇÃO SIMPLIFICADO -->
-      <div id="boxRenovacao" style="display:none;">
-        <label style="font-size:0.8rem; font-weight:bold;">Nome da sua Marca de Semijoias:*</label>
-        <input type="text" id="leadNomeRenovacao" class="form-control" placeholder="Ex: Niara Joias">
-      </div>
-
-      <!-- CAMPOS COMPLETOS PARA NOVO CLIENTE -->
-      <div id="boxNovoCliente">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Seu nome e cargo na empresa:*</label>
-            <input type="text" id="leadNomeCargo" class="form-control" placeholder="Ex: Ana Silva - Diretora Comercial">
-          </div>
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Nome da marca de semijoias:*</label>
-            <input type="text" id="leadMarca" class="form-control" placeholder="Ex: Niara Joias">
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Perfil do Instagram da marca:*</label>
-            <input type="text" id="leadInstagram" class="form-control" placeholder="Ex: @suamarca">
-          </div>
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Cidade e Estado:*</label>
-            <input type="text" id="leadCidadeEstado" class="form-control" placeholder="Ex: Limeira / SP">
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Tempo de atuação no mercado:*</label>
-            <select id="leadTempoMercado" class="form-control">
-              <option value="">Selecione...</option>
-              <option value="Menos de 1 ano">Menos de 1 ano</option>
-              <option value="1 a 3 anos">1 a 3 anos</option>
-              <option value="3 a 5 anos">3 a 5 anos</option>
-
-              <option value="Mais de 5 anos">Mais de 5 anos</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.8rem; font-weight:bold;">Modelo principal do negócio hoje:*</label>
-            <select id="leadModeloNegocio" class="form-control">
-              <option value="">Selecione...</option>
-              <option value="Atacado / B2B">Atacado / B2B</option>
-              <option value="Varejo / B2C">Varejo / B2C</option>
-              <option value="E-commerce">E-commerce</option>
-              <option value="Rede de Revendedoras">Rede de Revendedoras</option>
-              <option value="Híbrido">Híbrido</option>
-            </select>
-          </div>
-        </div>
-
-        <label style="font-size:0.8rem; font-weight:bold;">Volume médio de peças movimentadas por mês:*</label>
-        <select id="leadVolumeMensal" class="form-control">
-          <option value="">Selecione...</option>
-          <option value="Até 500 peças/mês">Até 500 peças/mês</option>
-          <option value="500 a 1.000 peças/mês">500 a 1.000 peças/mês</option>
-          <option value="1.000 a 3.000 peças/mês">1.000 a 3.000 peças/mês</option>
-          <option value="Acima de 3.000 peças/mês">Acima de 3.000 peças/mês</option>
-        </select>
-
-        <label style="font-size:0.8rem; font-weight:bold;">Quais são os principais gargalos e desafios operacionais hoje?</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="gargalos" value="Lentidão na triagem e conferência de banho"> Lentidão na triagem e conferência de banho</label>
-          <label><input type="checkbox" name="gargalos" value="Demora para fotografar e publicar catálogo"> Demora para fotografar e publicar catálogo</label>
-          <label><input type="checkbox" name="gargalos" value="Dificuldades na precificação e ficha técnica (CDE)"> Dificuldades na precificação e ficha técnica (CDE)</label>
-          <label><input type="checkbox" name="gargalos" value="Falta de equipe para montagem, cravação, colagem ou lixa"> Falta de equipe para montagem, cravação, colagem ou lixa</label>
-          <label><input type="checkbox" name="gargalos" value="Peças com defeito chegando às revendedoras/clientes"> Peças com defeito chegando às revendedoras/clientes</label>
-        </div>
-
-        <label style="font-size:0.8rem; font-weight:bold;">Quais soluções do CLUBE S.O.S sua marca mais precisa no momento?</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="solucoes" value="Inspeção Operacional Obrigatória (Filtro de Qualidade)"> Inspeção Operacional Obrigatória (Filtro de Qualidade)</label>
-          <label><input type="checkbox" name="solucoes" value="Fotografia Profissional de Catálogo"> Fotografia Profissional de Catálogo</label>
-          <label><input type="checkbox" name="solucoes" value="CDE (Cadastro do Produto e Precificação)"> CDE (Cadastro do Produto e Precificação)</label>
-          <label><input type="checkbox" name="solucoes" value="Etiquetagem e Encartelamento"> Etiquetagem e Encartelamento</label>
-          <label><input type="checkbox" name="solucoes" value="Cravação, Colagem e Montagem"> Cravação, Colagem e Montagem</label>
-          <label><input type="checkbox" name="solucoes" value="Lixa e Acabamento de Peças"> Lixa e Acabamento de Peças</label>
-        </div>
-      </div>
-
-      <label style="font-size:0.8rem; font-weight:bold;">WhatsApp Corporativo (com DDD) para entrarmos em contato:*</label>
-      <input type="text" id="leadWhats" class="form-control" placeholder="(00) 00000-0000">
-
-      <button class="btn-main" style="background-color:var(--orange-accent);" onclick="enviarSolicitacaoAdesao()">SOLICITAR MINHA VAGA NO CLUBE S.O.S 🔥</button>
-      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">VOLTAR</button>
-    </div>
-  </div>
-
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
     
     const META_DIARIA = 600;
     const CAPACIDADE_MENSAL = 12000;
-    const MEDIA_PESO_PECA = 3.2;
 
-    // BASE DE DADOS MANTIDA
+    // DICIONÁRIO DE EXPLICAÇÃO COMPLETA DOS SERVIÇOS
+    const explicacoesServicos = {
+      "inspecao": {
+        titulo: "Inspeção Operacional de Qualidade (Filtro Obrigatorio + Separação + CDI)",
+        texto: `
+          <p>A Inspeção Operacional é o pilar de proteção da sua marca e engloba 3 etapas integradas:</p>
+          <ul>
+            <li><strong>Separação Física:</strong> Triagem lote a lote da mercadoria vinda do banho galvânico.</li>
+            <li><strong>Inspeção de Qualidade:</strong> Análise visual rigorosa para identificar bolhas, manchas, falhas de cobertura ou arranhões antes de ir ao cliente.</li>
+            <li><strong>CDI (Conferência e Triagem Digital de Entrada):</strong> Contagem física individual, bipagem e registro no sistema para garantir que a quantidade enviada bate com a Nota Fiscal/Controle.</li>
+          </ul>
+        `
+      },
+      "foto": {
+        titulo: "Fotografia Profissional de Catálogo (Still / IA / Modelo)",
+        texto: "Captura em estúdio com iluminação técnica para semijoias, tratamento de cor para fidelidade do banho (Ouro/Prata) e geração de imagens de catálogo prontas para publicação no e-commerce ou redes sociais."
+      },
+      "cde": {
+        titulo: "Cadastro Digital CDE (Ficha Técnica + Atributos)",
+        texto: "Digitalização do produto com criação de SKU, descrição técnica, dimensões, pesagem, classificação por categoria e formação de dados para precificação."
+      },
+      "etiqueta": {
+        titulo: "Etiquetagem de Peças",
+        texto: "Impressão e aplicação de etiquetas térmicas de código de barras/QR Code e preço peça por peça."
+      },
+      "encarte": {
+        titulo: "Encarte e Embalagem Externa (Terceirizado Rua)",
+        texto: "Montagem física do produto nas cartelas da marca, colocação no saquinho transparente protetor e organização final para expedição."
+      },
+      "cravacao": {
+        titulo: "Cravação, Colagem e Montagem de Peças",
+        texto: "Serviço técnico especializado para fixação de pedras/zircônias, montagem de correntes, montagem de pingentes e colagem com colas de alta durabilidade."
+      },
+      "lixa": {
+        titulo: "Lixa e Acabamento de Peças",
+        texto: "Trabalho manual de remoção de rebarbas, nivelamento e polimento preparatório ou posterior para peças brutas ou acabadas."
+      }
+    };
+
+    // TABELA DE PREÇOS COM EDIÇÃO PERSONALIZADA POR CLIENTE
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
-      "Diretoria": { senha: "123456", perfil: "admin", plano: "Gold" },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold" },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Silver" }
+      "Diretoria": { senha: "123456", perfil: "admin", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, lixa: 1.20 } },
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, lixa: 1.20 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Silver", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, lixa: 1.50 } }
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-    let feriadosBloqueados = JSON.parse(localStorage.getItem('sos_feriados_2027')) || [];
     let usuarioLogado = null;
-    let usouFerramentaPeso = false;
     let mesSelecionado = "2026-09";
     let planoModalAtual = "";
+
+    function abrirModalExplicacao(chave) {
+      if (explicacoesServicos[chave]) {
+        document.getElementById('explicacaoTitulo').innerText = explicacoesServicos[chave].titulo;
+        document.getElementById('explicacaoTexto').innerHTML = explicacoesServicos[chave].texto;
+        document.getElementById('modalExplicacaoServico').style.display = 'flex';
+      }
+    }
+
+    function fecharModalExplicacao() {
+      document.getElementById('modalExplicacaoServico').style.display = 'none';
+    }
 
     function abrirModalLogin() { 
       document.getElementById('modalLogin').style.display = 'flex'; 
@@ -737,7 +489,6 @@
     }
     function fecharModalLogin() { 
       document.getElementById('modalLogin').style.display = 'none'; 
-      document.getElementById('loginMsg').innerText = '';
     }
 
     function abrirModalDetalhesClube(plano) {
@@ -748,169 +499,44 @@
       if (plano === 'Silver') {
         titulo.innerText = "Detalhamento Completo — Cota VIP SILVER";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">Anuidade: R$ 1.000,00 / ano (ou 12x no cartão)</div>
-          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
-            A cota VIP Silver foi desenvolvida para marcas que buscam previsibilidade técnica e garantia de padrão operacional na esteira de produção.
-          </p>
-          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li><strong>2 entradas por mês SEM necessidade de agendamento prévio</strong> no portal.</li>
-            <li>Piso operacional de 250 peças físicas por lote.</li>
-            <li>Demais agendamentos no portal com janela mínima de 3 dias úteis.</li>
-            <li>Gestão e almoxarifado de insumos de encarte gerenciado no HUB S.O.S.</li>
-          </ul>
-
-          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas Exclusiva VIP Silver:</h4>
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">Anuidade: R$ 1.000,00 / ano (em até 12x no cartão com juros)</div>
+          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">Garante 1 entrada por mês sem necessidade de agendamento prévio. Demais solicitações passam por análise da Direção.</p>
           <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Silver</th></tr></thead>
+            <thead><tr><th>Serviço Técnico (Clique p/ ver)</th><th>Base</th><th>Valor Silver</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção Física (Qualidade + CDI)</td><td>Peça</td><td><strong>R$ 0,70</strong></td></tr>
-              <tr><td>Fotografia Profissional (Tradicional / IA)</td><td>SKU</td><td><strong>R$ 2,69</strong></td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,69</strong></td></tr>
-              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,30</strong></td></tr>
-              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,80</strong></td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,70</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td>R$ 2,69</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,69</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,30</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,80</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>Sob Consulta</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>Sob Consulta</td></tr>
             </tbody>
           </table>
         `;
       } else {
         titulo.innerText = "Detalhamento Completo — Cota VIP GOLD";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">Anuidade: R$ 3.000,00 / ano (ou 12x no cartão)</div>
-          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
-            A cota VIP Gold é a modalidade máxima de prioridade do HUB S.O.S, oferecendo liberdade total de volumetria e atendimento executivo.
-          </p>
-          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li><strong>Até 4 entradas por mês SEM necessidade de agendamento prévio</strong> (Prioridade Fura Fila).</li>
-            <li><strong>ISENÇÃO TOTAL de quantidade mínima de peças</strong> por lote.</li>
-            <li>Suporte Executivo 24h direto com a Direção S.O.S (Kelvin).</li>
-            <li>Acesso à menor tabela tarifária de serviços técnicos do mercado.</li>
-          </ul>
-
-          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas Exclusiva VIP Gold:</h4>
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">Anuidade: R$ 3.000,00 / ano (em até 12x no cartão com juros)</div>
+          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">Garante até 4 entradas diretas no mês sem necessidade de agendamento prévio (Prioridade Fura Fila).</p>
           <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Gold</th></tr></thead>
+            <thead><tr><th>Serviço Técnico (Clique p/ ver)</th><th>Base</th><th>Valor Gold</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção Física (Qualidade + CDI)</td><td>Peça</td><td><strong>R$ 0,65</strong></td></tr>
-              <tr><td>Fotografia Profissional (Tradicional / IA)</td><td>SKU</td><td><strong>R$ 2,49</strong></td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,49</strong></td></tr>
-              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,27</strong></td></tr>
-              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,70</strong></td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,65</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td>R$ 2,49</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,49</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,27</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,70</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>Sob Consulta</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>Sob Consulta</td></tr>
             </tbody>
           </table>
         `;
       }
-
       document.getElementById('modalDetalhesClube').style.display = 'flex';
     }
 
-    function fecharModalDetalhes() {
-      document.getElementById('modalDetalhesClube').style.display = 'none';
-    }
-    
-    function abrirModalCadastro(plano) {
-      planoModalAtual = plano;
-      document.getElementById('modalCadastroTitle').innerText = `Solicitar Vaga — Cota VIP ${plano.toUpperCase()}`;
-      document.getElementById('modalCadastro').style.display = 'flex';
-      alternarCamposTipoCliente();
-    }
-    function fecharModalCadastro() { 
-      document.getElementById('modalCadastro').style.display = 'none'; 
-    }
-
-    function alternarCamposTipoCliente() {
-      let tipo = document.getElementById('leadTipoCliente').value;
-      if (tipo === "Renovação") {
-        document.getElementById('boxRenovacao').style.display = 'block';
-        document.getElementById('boxNovoCliente').style.display = 'none';
-      } else {
-        document.getElementById('boxRenovacao').style.display = 'none';
-        document.getElementById('boxNovoCliente').style.display = 'block';
-      }
-    }
-
-    function enviarSolicitacaoAdesao() {
-      let tipo = document.getElementById('leadTipoCliente').value;
-      let whats = document.getElementById('leadWhats').value.trim();
-
-      if (!whats) return alert("Por favor, preencha o WhatsApp Corporativo.");
-
-      let payload = {
-        tipo: "SOLICITACAO_ADESAO",
-        categoriaPretendida: planoModalAtual,
-        tipoCliente: tipo,
-        whats: whats,
-        dataHora: new Date().toLocaleString("pt-BR")
-      };
-
-      if (tipo === "Renovação") {
-        let marcaRenovacao = document.getElementById('leadNomeRenovacao').value.trim();
-        if (!marcaRenovacao) return alert("Digite o nome da sua marca para renovação.");
-        payload.nomeMarcaRenovacao = marcaRenovacao;
-      } else {
-        let nomeCargo = document.getElementById('leadNomeCargo').value.trim();
-        let marca = document.getElementById('leadMarca').value.trim();
-        if (!nomeCargo || !marca) return alert("Preencha o nome/cargo e o nome da marca.");
-
-        payload.nomeCargo = nomeCargo;
-        payload.nomeMarca = marca;
-        payload.instagram = document.getElementById('leadInstagram').value.trim();
-        payload.cidadeEstado = document.getElementById('leadCidadeEstado').value.trim();
-        payload.tempoMercado = document.getElementById('leadTempoMercado').value;
-        payload.modeloNegocio = document.getElementById('leadModeloNegocio').value;
-        payload.volumeMensal = document.getElementById('leadVolumeMensal').value;
-
-        // CAPTURA CHECKBOXES DE GARGALOS E SOLUÇÕES
-        let gargalosList = [];
-        document.querySelectorAll('input[name="gargalos"]:checked').forEach(c => gargalosList.push(c.value));
-        payload.gargalosOperacionais = gargalosList.join(" | ");
-
-        let solucoesList = [];
-        document.querySelectorAll('input[name="solucoes"]:checked').forEach(c => solucoesList.push(c.value));
-        payload.solucoesDesejadas = solucoesList.join(" | ");
-      }
-
-      fetch(URL_SCRIPT_DRIVE, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      alert(`Solicitação enviada com sucesso! Recebemos sua solicitação para a Cota VIP ${planoModalAtual}. A equipe S.O.S entrará em contato via WhatsApp.`);
-      fecharModalCadastro();
-    }
-
-    function obterDataMinima3DiasUteis() {
-      let data = new Date();
-      let diasUteis = 0;
-      while (diasUteis < 3) {
-        data.setDate(data.getDate() + 1);
-        let dia = data.getDay();
-        if (dia !== 0 && dia !== 6) diasUteis++;
-      }
-      return data;
-    }
-
-    function gerenciarAbasMeses() {
-      const container = document.getElementById('monthTabsContainer');
-      container.innerHTML = '';
-      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-
-      for (let ano = 2026; ano <= 2028; ano++) {
-        let mesInicio = (ano === 2026) ? 8 : 0;
-        for (let m = mesInicio; m < 12; m++) {
-          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
-          let btn = document.createElement('button');
-          btn.className = `month-btn ${mesVal === mesSelecionado ? 'active' : ''}`;
-          btn.innerText = `${mesesNomes[m]}/${ano}`;
-          btn.onclick = () => {
-            mesSelecionado = mesVal;
-            gerenciarAbasMeses();
-            renderizarCalendario();
-          };
-          container.appendChild(btn);
-        }
-      }
-    }
+    function fecharModalDetalhes() { document.getElementById('modalDetalhesClube').style.display = 'none'; }
 
     function carregarSelectUsuarios() {
       const select = document.getElementById('userSelect');
@@ -945,20 +571,17 @@
         document.getElementById('btnLogout').style.display = 'inline-block';
         document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${user} [VIP ${plano.toUpperCase()}]`;
 
-        // RENDERIZA A ABA DE TARIFAS DO CLIENTE
-        renderizarTarifasCliente(plano);
+        renderizarTarifasCliente(user);
 
         if (usuarios[user].perfil === "admin") {
-          document.getElementById('quadroEstimativaDiretoria').style.display = 'block';
+          document.getElementById('tabPedidosBtn').style.display = 'inline-block';
           document.getElementById('tabLoginsBtn').style.display = 'inline-block';
-          document.getElementById('tabReadequarBtn').style.display = 'inline-block';
           document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
+          renderizarPedidosVagas();
           renderizarLogins();
-          renderizarReadequacao();
         } else {
-          document.getElementById('quadroEstimativaDiretoria').style.display = 'none';
+          document.getElementById('tabPedidosBtn').style.display = 'none';
           document.getElementById('tabLoginsBtn').style.display = 'none';
-          document.getElementById('tabReadequarBtn').style.display = 'none';
           document.getElementById('tabFinanceiroBtn').style.display = 'none';
         }
 
@@ -969,38 +592,25 @@
       }
     }
 
-    function renderizarTarifasCliente(plano) {
+    function renderizarTarifasCliente(uName) {
       const box = document.getElementById('conteudoTabelaTarifasCliente');
-      const titulo = document.getElementById('tituloAbaTarifas');
-      titulo.innerText = `🏷️ Suas Tarifas Contratadas — Cota VIP ${plano.toUpperCase()}`;
+      const u = usuarios[uName];
+      const t = u.tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, lixa: 1.50 };
 
-      if (plano === "Gold") {
-        box.innerHTML = `
-          <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor VIP Gold</th><th>Cobrança</th></tr></thead>
-            <tbody>
-              <tr><td>Inspeção Física de Qualidade (CDI)</td><td>Peça</td><td><strong>R$ 0,65</strong></td><td>Entrada Antecipada</td></tr>
-              <tr><td>Fotografia Profissional (Tradicional/IA)</td><td>SKU</td><td><strong>R$ 2,49</strong></td><td>Fechamento</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,49</strong></td><td>Fechamento</td></tr>
-              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,27</strong></td><td>Fechamento</td></tr>
-              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,70</strong></td><td>Fechamento</td></tr>
-            </tbody>
-          </table>
-        `;
-      } else {
-        box.innerHTML = `
-          <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor VIP Silver</th><th>Cobrança</th></tr></thead>
-            <tbody>
-              <tr><td>Inspeção Física de Qualidade (CDI)</td><td>Peça</td><td><strong>R$ 0,70</strong></td><td>Entrada Antecipada</td></tr>
-              <tr><td>Fotografia Profissional (Tradicional/IA)</td><td>SKU</td><td><strong>R$ 2,69</strong></td><td>Fechamento</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,69</strong></td><td>Fechamento</td></tr>
-              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,30</strong></td><td>Fechamento</td></tr>
-              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,80</strong></td><td>Fechamento</td></tr>
-            </tbody>
-          </table>
-        `;
-      }
+      box.innerHTML = `
+        <table>
+          <thead><tr><th>Serviço Técnico (Clique p/ ver detalhes)</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
+          <tbody>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 1.80).toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td><strong>R$ ${(t.lixa || 1.50).toFixed(2)}</strong></td></tr>
+          </tbody>
+        </table>
+      `;
     }
 
     function logout() {
@@ -1011,82 +621,24 @@
       document.getElementById('btnLogout').style.display = 'none';
     }
 
-    function converterPesoParaPecas() {
-      const gramas = parseFloat(document.getElementById('pesoGrams').value);
-      if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
-
-      const pcsEstimadas = Math.round(gramas / MEDIA_PESO_PECA);
-      document.getElementById('pecasInput').value = pcsEstimadas;
-      usouFerramentaPeso = true;
-
-      let avisoTol = "";
-      if (gramas > 2000 && gramas <= 3000) {
-        avisoTol = `<br><span style="color:#C2410C;">⚠️ Lote na margem de tolerância estendida (${(gramas/1000).toFixed(1)}kg). O prazo de entrega terá um ajuste de poucos dias.</span>`;
-      } else if (gramas > 3000) {
-        avisoTol = `<br><span style="color:var(--red-val);">❗ Envios acima de 3,0 kg excedem a tolerância. O excedente será fracionado em um 2º lote.</span>`;
-      }
-
-      document.getElementById('pesoResult').innerHTML = `
-        ✅ Conversão concluída: <strong>${gramas}g</strong> = <strong>~${pcsEstimadas} peças</strong>. ${avisoTol}
-      `;
-      calcularImpacto();
-    }
-
-    function calcularImpacto() {
-      const pecas = parseFloat(document.getElementById('pecasInput').value) || 0;
-      const skus = parseFloat(document.getElementById('skusInput').value) || 120;
-      const comEncarte = document.getElementById('incluirEncarteCheck').checked;
-      
-      let plano = usuarios[usuarioLogado]?.plano || "Silver";
-
-      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;
-      let tFoto = (plano === "Gold") ? 2.49 : 2.69;
-      let tCDE = (plano === "Gold") ? 2.49 : 2.69;
-      let tEtiqueta = (plano === "Gold") ? 0.27 : 0.30;
-      let tEncarte = (plano === "Gold") ? 0.70 : 0.80;
-
-      let valCaixa = pecas * tInspecao;
-      let valFoto = skus * tFoto;
-      let valCDE = skus * tCDE;
-      let valEtiqueta = pecas * tEtiqueta;
-      let valEncarte = comEncarte ? (pecas * tEncarte) : 0;
-
-      let valDespacho = valFoto + valCDE + valEtiqueta + valEncarte;
-      let valTotal = valCaixa + valDespacho;
-
-      document.getElementById('resCaixa').innerText = valCaixa.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resDespacho').innerText = valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('resTotal').innerText = valTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-    }
-
     function solicitarVaga() {
       const pecas = parseFloat(document.getElementById('pecasInput').value);
       const dataSel = document.getElementById('dataInput').value;
-      const usarCotaDireta = document.getElementById('usarCotaDiretaCheck').checked;
+      const usarGarantida = document.getElementById('usarCotaGarantidaCheck').checked;
       let plano = usuarios[usuarioLogado]?.plano || "Silver";
 
       if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
-      if (plano === "Silver" && pecas < 250) {
-        return alert("Atenção: A cota VIP Silver exige o piso mínimo de 250 peças por lote.");
+      // VERIFICA SÁBADO (6) OU DOMINGO (0)
+      let dt = new Date(dataSel + 'T00:00:00');
+      if (dt.getDay() === 0 || dt.getDay() === 6) {
+        return alert("Sábados e Domingos são dias indisponíveis no HUB S.O.S.");
       }
 
-      if (usuarios[usuarioLogado].perfil !== "admin" && !usarCotaDireta) {
-        const dataEscolhida = new Date(dataSel + 'T00:00:00');
-        const dataMinima = obterDataMinima3DiasUteis();
-        dataMinima.setHours(0,0,0,0);
-
-        if (dataEscolhida < dataMinima) {
-          return alert(`Atenção: Agendamentos comuns exigem 3 dias úteis de antecedência. A primeira data livre é ${dataMinima.toLocaleDateString('pt-BR')}.`);
-        }
+      let statusVaga = "Aprovado";
+      if (plano === "Silver" && !usarGarantida) {
+        statusVaga = "Em Avaliacao";
       }
-
-      if (feriadosBloqueados.includes(dataSel)) {
-        return alert("Esta data está marcada como Feriado/Indisponível no HUB S.O.S.");
-      }
-
-      let tInspecao = (plano === "Gold") ? 0.65 : 0.70;
-      let valCaixa = pecas * tInspecao;
 
       agendamentos.push({
         id: Date.now(),
@@ -1094,32 +646,42 @@
         plano: plano,
         data: dataSel,
         pecas: pecas,
-        cotaDireta: usarCotaDireta,
-        total: parseFloat(document.getElementById('resTotal').innerText.replace("R$", "").replace(".", "").replace(",", "."))
+        status: statusVaga
       });
 
       localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
 
-      fetch(URL_SCRIPT_DRIVE, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tipo: "SOLICITACAO_AGENDAMENTO",
-          cliente: `${usuarioLogado} [${plano.toUpperCase()}]${usarCotaDireta ? " [COTA DIRETA]" : ""}`,
-          semana: dataSel,
-          pecas: pecas,
-          caixa: valCaixa,
-          despacho: document.getElementById('resDespacho').innerText,
-          total: document.getElementById('resTotal').innerText
-        })
-      });
+      if (statusVaga === "Em Avaliacao") {
+        alert("Sua solicitação de vaga foi enviada para a Direção! Acompanhe o status pelo calendário.");
+      } else {
+        alert("Sua vaga garantida foi confirmada com sucesso!");
+      }
 
-      alert("Solicitação de vaga registrada com sucesso no HUB S.O.S!");
       document.getElementById('pecasInput').value = '';
-      usouFerramentaPeso = false;
-      calcularImpacto();
       renderizarCalendario();
+      if (usuarios[usuarioLogado].perfil === "admin") renderizarPedidosVagas();
+    }
+
+    function gerenciarAbasMeses() {
+      const container = document.getElementById('monthTabsContainer');
+      container.innerHTML = '';
+      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+      for (let ano = 2026; ano <= 2028; ano++) {
+        let mesInicio = (ano === 2026) ? 8 : 0;
+        for (let m = mesInicio; m < 12; m++) {
+          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
+          let btn = document.createElement('button');
+          btn.className = `month-btn ${mesVal === mesSelecionado ? 'active' : ''}`;
+          btn.innerText = `${mesesNomes[m]}/${ano}`;
+          btn.onclick = () => {
+            mesSelecionado = mesVal;
+            gerenciarAbasMeses();
+            renderizarCalendario();
+          };
+          container.appendChild(btn);
+        }
+      }
     }
 
     function renderizarCalendario() {
@@ -1132,10 +694,15 @@
 
       let totalPecasMes = 0;
       let acumuladoPorDia = {};
+      let vagasPorDia = {};
 
       agendamentos.forEach(a => {
-        acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
-        if (a.data.startsWith(mesSelecionado)) totalPecasMes += a.pecas;
+        if (a.status === "Aprovado") {
+          acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
+          if (!vagasPorDia[a.data]) vagasPorDia[a.data] = [];
+          vagasPorDia[a.data].push(a);
+          if (a.data.startsWith(mesSelecionado)) totalPecasMes += a.pecas;
+        }
       });
 
       document.getElementById('mesPecasTotais').innerText = `${totalPecasMes.toLocaleString('pt-BR')} pcs`;
@@ -1149,132 +716,145 @@
 
       for (let dia = 1; dia <= diasNoMes; dia++) {
         let dataStr = `${anoStr}-${mesStr}-${String(dia).padStart(2, '0')}`;
+        let dtCard = new Date(dataStr + 'T00:00:00');
+        let ehFimDeSemana = (dtCard.getDay() === 0 || dtCard.getDay() === 6);
+        
         let pcs = acumuladoPorDia[dataStr] || 0;
         let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
         let lotado = pcs >= META_DIARIA;
-        let ehFeriado = feriadosBloqueados.includes(dataStr);
+
+        let vagaDoCliente = vagasPorDia[dataStr]?.find(v => v.cliente === usuarioLogado);
+        let pendenteCliente = agendamentos.find(a => a.data === dataStr && a.cliente === usuarioLogado && a.status === "Em Avaliacao");
+
+        let statusTxt = "🟢 LIVRE";
+        let statusClass = "badge-aberto";
+        let cardBgClass = "available";
+
+        if (ehFimDeSemana) {
+          statusTxt = "🚫 FIM DE SEMANA";
+          statusClass = "badge-feriado";
+          cardBgClass = "holiday";
+        } else if (pendenteCliente) {
+          statusTxt = "⏳ EM AVALIAÇÃO";
+          statusClass = "badge-analise";
+          cardBgClass = "pending";
+        } else if (vagaDoCliente) {
+          statusTxt = `✅ SUA VAGA (${vagaDoCliente.cliente})`;
+          statusClass = "badge-aberto";
+          cardBgClass = "available";
+        } else if (lotado) {
+          statusTxt = "🔒 VAGA PREENCHIDA";
+          statusClass = "badge-fechado";
+          cardBgClass = "full";
+        }
 
         let card = document.createElement('div');
-        card.className = `day-card ${ehFeriado ? 'holiday' : (lotado ? 'full' : 'available')}`;
+        card.className = `day-card ${cardBgClass}`;
         card.innerHTML = `
           <strong>${String(dia).padStart(2, '0')}/${mesStr}</strong>
-          <div style="font-size:0.75rem; margin-top:4px;">${ehFeriado ? 'RECESSO / FERIADO' : pcs + ' / ' + META_DIARIA + ' pcs'}</div>
+          <div style="font-size:0.75rem; margin-top:4px;">${ehFimDeSemana ? 'INDISPONÍVEL' : pcs + ' / ' + META_DIARIA + ' pcs'}</div>
           <div class="progress-bar">
-            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehFeriado ? 0 : pct}%"></div>
+            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehFimDeSemana ? 0 : pct}%"></div>
           </div>
-          <div style="font-weight:bold; font-size:0.8rem; margin-top:4px;">${ehFeriado ? '-' : pct + '%'}</div>
-          <span class="badge-status ${ehFeriado ? 'badge-feriado' : (lotado ? 'badge-fechado' : 'badge-aberto')}">
-            ${ehFeriado ? '🚫 INDISPONÍVEL' : (lotado ? '🔒 LOTADO' : '🟢 LIVRE')}
-          </span>
-          ${usuarios[usuarioLogado]?.perfil === 'admin' ? `<button style="margin-top:6px; font-size:0.65rem; padding:2px 4px;" onclick="alternarFeriado('${dataStr}')">${ehFeriado ? 'Liberar' : 'Bloquear'}</button>` : ''}
+          <span class="badge-status ${statusClass}">${statusTxt}</span>
         `;
         grid.appendChild(card);
       }
     }
 
-    function alternarFeriado(dataStr) {
-      if (feriadosBloqueados.includes(dataStr)) {
-        feriadosBloqueados = feriadosBloqueados.filter(f => f !== dataStr);
-      } else {
-        feriadosBloqueados.push(dataStr);
-      }
-      localStorage.setItem('sos_feriados_2027', JSON.stringify(feriadosBloqueados));
-      renderizarCalendario();
-    }
-
-    function renderizarLogins() {
-      const tbody = document.getElementById('clientsTableBody');
+    function renderizarPedidosVagas() {
+      const tbody = document.getElementById('pedidosVagasTableBody');
       tbody.innerHTML = '';
-      for (let u in usuarios) {
+
+      let pendentes = agendamentos.filter(a => a.status === "Em Avaliacao");
+      if (pendentes.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum pedido de vaga pendente.</td></tr>';
+        return;
+      }
+
+      pendentes.forEach(p => {
         let tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><input type="text" value="${u}" id="name_${u}" class="form-control" style="margin:0; padding:4px 8px; font-weight:bold;"></td>
-          <td><input type="text" value="${usuarios[u].senha}" id="pass_${u}" class="form-control" style="margin:0; padding:4px 8px;"></td>
+          <td><strong>${p.cliente}</strong></td>
+          <td>${p.plano}</td>
+          <td><input type="date" value="${p.data}" id="data_ped_${p.id}" class="form-control" style="margin:0; padding:4px;"></td>
+          <td>${p.pecas} pcs</td>
           <td>
-            <select id="plan_${u}" class="form-control" style="margin:0; padding:4px;">
-              <option value="Silver" ${usuarios[u].plano === 'Silver' ? 'selected' : ''}>Silver</option>
-              <option value="Gold" ${usuarios[u].plano === 'Gold' ? 'selected' : ''}>Gold</option>
-            </select>
-          </td>
-          <td><strong>${usuarios[u].perfil}</strong></td>
-          <td>
-            <button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button>
-            ${u !== 'Diretoria' ? `<button class="btn-danger" onclick="excluirUsuario('${u}')">Excluir</button>` : ''}
-          </td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
-
-    function salvarAlteracaoUsuario(u) {
-      let n = document.getElementById(`name_${u}`).value.trim();
-      let s = document.getElementById(`pass_${u}`).value.trim();
-      let pl = document.getElementById(`plan_${u}`).value;
-      if (!n || !s) return alert("Preencha nome e senha.");
-      let p = usuarios[u].perfil;
-      delete usuarios[u];
-      usuarios[n] = { senha: s, perfil: p, plano: pl };
-      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-      carregarSelectUsuarios();
-      renderizarLogins();
-    }
-
-    function salvarNovoCliente() {
-      let n = document.getElementById('newClientName').value.trim();
-      let s = document.getElementById('newClientPass').value.trim();
-      let pl = document.getElementById('newClientPlan').value;
-      if (!n || !s) return alert("Preencha nome e senha.");
-      usuarios[n] = { senha: s, perfil: "cliente", plano: pl };
-      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-      carregarSelectUsuarios();
-      renderizarLogins();
-      document.getElementById('newClientName').value = '';
-      document.getElementById('newClientPass').value = '';
-    }
-
-    function excluirUsuario(u) {
-      if (confirm(`Excluir ${u}?`)) {
-        delete usuarios[u];
-        localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-        carregarSelectUsuarios();
-        renderizarLogins();
-      }
-    }
-
-    function renderizarReadequacao() {
-      const tbody = document.getElementById('adminVagasTable');
-      tbody.innerHTML = '';
-      agendamentos.forEach((a, index) => {
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${a.cliente}</strong> [${a.plano || 'Silver'}]</td>
-          <td><input type="date" value="${a.data}" id="edit_data_${index}" class="form-control" style="margin:0; padding:4px;"></td>
-          <td><input type="number" value="${a.pecas}" id="edit_pecas_${index}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
-          <td>${a.cotaDireta ? '<span style="color:var(--gold-val); font-weight:bold;">⚡ Entrada Direta</span>' : 'Agendado'}</td>
-          <td>
-            <button class="btn-edit" onclick="readequarVaga(${index})">Salvar</button>
-            <button class="btn-danger" onclick="excluirVaga(${index})">Excluir</button>
+            <button class="btn-approve" onclick="aprovarVaga(${p.id})">Aprovar</button>
+            <button class="btn-edit" onclick="remarcarVaga(${p.id})">Sugerir Nova Data</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function readequarVaga(i) {
-      agendamentos[i].data = document.getElementById(`edit_data_${i}`).value;
-      agendamentos[i].pecas = parseFloat(document.getElementById(`edit_pecas_${i}`).value);
-      localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-      renderizarCalendario();
-      renderizarReadequacao();
+    function aprovarVaga(id) {
+      let idx = agendamentos.findIndex(a => a.id === id);
+      if (idx !== -1) {
+        agendamentos[idx].status = "Aprovado";
+        localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
+        renderizarPedidosVagas();
+        renderizarCalendario();
+        alert("Vaga aprovada com sucesso!");
+      }
     }
 
-    function excluirVaga(i) {
-      if (confirm("Cancelar este agendamento do HUB?")) {
-        agendamentos.splice(i, 1);
+    function remarcarVaga(id) {
+      let novaData = document.getElementById(`data_ped_${id}`).value;
+      let idx = agendamentos.findIndex(a => a.id === id);
+      if (idx !== -1) {
+        agendamentos[idx].data = novaData;
+        agendamentos[idx].status = "Aprovado";
         localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
+        renderizarPedidosVagas();
         renderizarCalendario();
-        renderizarReadequacao();
+        alert("Vaga remarcada e aprovada para a nova data!");
       }
+    }
+
+    function renderizarLogins() {
+      const tbody = document.getElementById('clientsTableBody');
+      tbody.innerHTML = '';
+      for (let u in usuarios) {
+        let t = usuarios[u].tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 };
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${u}</strong></td>
+          <td><input type="text" value="${usuarios[u].senha}" id="pass_${u}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
+          <td>
+            <select id="plan_${u}" class="form-control" style="margin:0; padding:4px; width:80px;">
+              <option value="Silver" ${usuarios[u].plano === 'Silver' ? 'selected' : ''}>Silver</option>
+              <option value="Gold" ${usuarios[u].plano === 'Gold' ? 'selected' : ''}>Gold</option>
+            </select>
+          </td>
+          <td><input type="number" step="0.01" value="${t.inspecao}" id="tar_insp_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><input type="number" step="0.01" value="${t.foto}" id="tar_foto_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><input type="number" step="0.01" value="${t.cde}" id="tar_cde_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><input type="number" step="0.01" value="${t.etiqueta}" id="tar_etiq_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><input type="number" step="0.01" value="${t.encarte}" id="tar_enc_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function salvarAlteracaoUsuario(u) {
+      let s = document.getElementById(`pass_${u}`).value.trim();
+      let pl = document.getElementById(`plan_${u}`).value;
+
+      usuarios[u].senha = s;
+      usuarios[u].plano = pl;
+      usuarios[u].tarifas = {
+        inspecao: parseFloat(document.getElementById(`tar_insp_${u}`).value),
+        foto: parseFloat(document.getElementById(`tar_foto_${u}`).value),
+        cde: parseFloat(document.getElementById(`tar_cde_${u}`).value),
+        etiqueta: parseFloat(document.getElementById(`tar_etiq_${u}`).value),
+        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value)
+      };
+
+      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
+      alert(`Tarifas e dados de ${u} atualizados com sucesso!`);
+      renderizarLogins();
     }
   </script>
 </body>
