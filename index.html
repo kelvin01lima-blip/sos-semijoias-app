@@ -65,11 +65,14 @@
       background: var(--header-bg);
       color: #FFF;
       border-radius: 20px;
-      padding: 32px;
+      padding: 36px;
       margin-bottom: 24px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
       border-left: 8px solid var(--orange-accent);
     }
+
+    .hero-banner h2 { margin: 0 0 12px 0; font-size: 2rem; color: #FFF; font-weight: 900; }
+    .hero-banner p { margin: 0; font-size: 1rem; line-height: 1.7; color: #CBD5E1; }
 
     .club-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
 
@@ -79,15 +82,17 @@
       padding: 28px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.05);
       border-top: 6px solid var(--silver-val);
-      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
+    .club-card:hover { transform: translateY(-4px); }
     .club-card.gold { border-top-color: var(--gold-val); }
 
-    .club-card h2 { margin: 0 0 8px 0; font-size: 1.4rem; color: var(--header-bg); }
-    .club-price { font-size: 1.25rem; font-weight: 900; color: var(--orange-accent); margin-bottom: 16px; }
+    .club-card h2 { margin: 0 0 8px 0; font-size: 1.5rem; color: var(--header-bg); }
+    .club-subtitle { font-size: 0.9rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 16px; text-transform: uppercase; }
 
-    .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.88rem; line-height: 1.7; color: #334155; }
+    .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.7; color: #334155; }
 
     .form-control {
       width: 100%;
@@ -238,7 +243,6 @@
       font-size: 0.7rem;
       font-weight: bold;
       margin-top: 8px;
-      cursor: pointer;
     }
 
     .badge-aberto { background-color: #D1FAE5; color: #065F46; }
@@ -252,9 +256,30 @@
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100%; height:100%;
       background: rgba(11, 19, 43, 0.85); z-index: 1000; justify-content: center; align-items: center;
+      overflow-y: auto; padding: 20px;
     }
     .modal-card {
-      background: #fff; padding: 32px; border-radius: 20px; max-width: 480px; width: 90%;
+      background: #fff; padding: 32px; border-radius: 20px; max-width: 650px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 15px;
+      background: var(--input-bg);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .checkbox-group label {
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
@@ -278,118 +303,54 @@
 
   <div class="main-container">
 
-    <!-- LANDING PAGE DETALHADA COM TODAS AS INFORMAÇÕES DO CLUBE -->
+    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE (VISITANTES) -->
     <div id="portalLanding" class="portal-landing">
       
       <div class="hero-banner">
-        <h2 style="margin: 0 0 10px 0; font-size: 1.8rem; color: #FFF;">Bem-vindo ao Clube de Serviços S.O.S 2027</h2>
-        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: #CBD5E1;">
-          Estruturamos a esteira fabril perfeita para gerenciar, fotografar, cadastrar, etiquetar e organizar sua produção de semijoias. Faça parte do Clube para furar filas, garantir datas exclusivas e ter acesso às menores tarifas do mercado.
+        <h2>HUB de Operações S.O.S 2027</h2>
+        <p>
+          Sua marca com estrutura operacional de grande porte. Garantimos a gestão técnica, triagem de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encarte da sua produção de semijoias com previsibilidade e padrão fabril.
         </p>
       </div>
 
-      <!-- VISÃO GERAL DE PREÇOS E SERVIÇOS -->
-      <div class="panel-card">
-        <h3>📋 Tabela Completa de Serviços & Tarifas Técnicas</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
-          Todos os membros do Clube possuem valores diferenciados por cota em relação ao mercado avulso.
-        </p>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>Serviço Técnico</th>
-              <th>Base de Cobrança</th>
-              <th>Cota VIP Gold</th>
-              <th>Cota VIP Silver</th>
-              <th>Momento da Cobrança</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Inspeção Física de Qualidade</strong> (Separação + Inspeção + CDI)</td>
-              <td>Por peça física</td>
-              <td><strong>R$ 0,65</strong></td>
-              <td><strong>R$ 0,70</strong></td>
-              <td><span style="color: var(--green-val); font-weight: bold;">Entrada Antecipada</span> (Término CDI)</td>
-            </tr>
-            <tr>
-              <td><strong>Fotografia Profissional</strong> (Tradicional / IA Still, Cenário, Modelo)</td>
-              <td>Por modelo / SKU</td>
-              <td><strong>R$ 2,49</strong></td>
-              <td><strong>R$ 2,69</strong></td>
-              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
-            </tr>
-            <tr>
-              <td><strong>Cadastro Digital CDE</strong> (Inclusão de atributos e dados)</td>
-              <td>Por modelo / SKU</td>
-              <td><strong>R$ 2,49</strong></td>
-              <td><strong>R$ 2,69</strong></td>
-              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
-            </tr>
-            <tr>
-              <td><strong>Etiquetagem de Peças</strong></td>
-              <td>Por peça física</td>
-              <td><strong>R$ 0,27</strong></td>
-              <td><strong>R$ 0,30</strong></td>
-              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Entrega do lote)</td>
-            </tr>
-            <tr>
-              <td><strong>Encarte / Embalagem Externa</strong> (Terceirizado Rua)</td>
-              <td>Por peça física</td>
-              <td><strong>R$ 0,70</strong></td>
-              <td><strong>R$ 0,80</strong></td>
-              <td><span style="color: var(--blue-val); font-weight: bold;">Fechamento</span> (Se contratado)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div style="background: var(--input-bg); padding: 12px 16px; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">
-          💳 <strong>Meios de Pagamento Aceitos:</strong> À vista via PIX ou em até 12x no cartão de crédito (com juros repassados).
-        </div>
-      </div>
-
-      <!-- CARDS DAS COTAS DO CLUBE -->
+      <!-- CARDS CONCEITUAIS DAS COTAS DO CLUBE -->
       <div class="club-cards-grid">
         
         <!-- COTA SILVER -->
-        <div class="club-card">
+        <div class="club-card" onclick="abrirModalDetalhesClube('Silver')">
           <h2>VIP SILVER</h2>
-          <div class="club-price">R$ 1.000,00 <span style="font-size: 0.8rem; color: var(--text-muted);">/ ano</span></div>
-          <p style="font-weight: bold; font-size: 0.85rem; color: var(--silver-val);">15 VAGAS DISPONÍVEIS</p>
+          <div class="club-subtitle">15 Vagas Disponíveis no Clube</div>
           <ul class="club-features">
-            <li><strong>2 entradas por mês SEM necessidade de agendamento prévio</strong>.</li>
-            <li>Piso mínimo obrigatório de 250 peças por lote.</li>
-            <li>Demais entradas agendadas via portal com 3 dias úteis de antecedência.</li>
-            <li>Acesso ao calendário de acompanhamento e relatórios padrão.</li>
-            <li>Tabela de tarifas com desconto exclusivo.</li>
+            <li><strong>2 entradas diretas por mês</strong> sem agendamento prévio.</li>
+            <li>Piso operacional de 250 peças por lote.</li>
+            <li>Agendamentos via portal com janela de 3 dias úteis.</li>
+            <li>Acesso ao painel de acompanhamento de esteira.</li>
           </ul>
-          <button class="btn-main btn-silver" onclick="abrirModalCadastro('Silver')">QUERO MINHA VAGA SILVER</button>
+          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Silver')">CONHECER DETALHES & VALORES SILVER</button>
         </div>
 
         <!-- COTA GOLD -->
-        <div class="club-card gold">
+        <div class="club-card gold" onclick="abrirModalDetalhesClube('Gold')">
           <h2>VIP GOLD</h2>
-          <div class="club-price">R$ 3.000,00 <span style="font-size: 0.8rem; color: var(--text-muted);">/ ano</span></div>
-          <p style="font-weight: bold; font-size: 0.85rem; color: var(--gold-val);">5 VAGAS EXCLUSIVAS (FURA FILA)</p>
+          <div class="club-subtitle" style="color: var(--gold-val);">5 Vagas Exclusivas (Prioridade Absoluta)</div>
           <ul class="club-features">
-            <li><strong>Até 4 entradas no mês SEM agendamento prévio</strong> (Prioridade total de esteira).</li>
-            <li><strong>ISENÇÃO TOTAL de quantidade mínima de peças por lote</strong>.</li>
-            <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
-            <li>Acesso à <strong>menor tabela tarifária do mercado</strong>.</li>
-            <li>Relatórios avançados de desempenho por lote.</li>
+            <li><strong>Até 4 entradas diretas por mês</strong> sem agendamento (Fura Fila).</li>
+            <li><strong>Isenção total de quantidade mínima de peças</strong> por lote.</li>
+            <li>Atendimento Executivo 24h direto com a Direção S.O.S.</li>
+            <li>Acesso à menor tabela tarifária de serviços técnicos.</li>
           </ul>
-          <button class="btn-main btn-gold" onclick="abrirModalCadastro('Gold')">QUERO A PRIORIDADE GOLD</button>
+          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Gold')">CONHECER DETALHES & VALORES GOLD</button>
         </div>
 
       </div>
     </div>
 
-    <!-- PAINEL PRINCIPAL (APÓS LOGIN DA DIRETORIA OU CLIENTE) -->
+    <!-- PAINEL PRINCIPAL (APÓS LOGIN) -->
     <div id="dashboardPanel" class="dashboard-panel">
 
       <div class="nav-tabs">
-        <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar & Calendário</button>
+        <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
+        <button class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
         <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Cotas</button>
         <button id="tabReadequarBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaReadequar')">⚙️ Readequação de Vagas</button>
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Financeiro & Cenários (Diretoria)</button>
@@ -400,20 +361,20 @@
 
         <!-- DIRETRIZES OPERACIONAIS -->
         <div class="rules-card">
-          <h4>📋 Diretrizes e Regras Operacionais para Agendamento (HUB S.O.S)</h4>
+          <h4>📋 Diretrizes Operacionais para Agendamento</h4>
           <ul class="rules-list">
             <li><strong>Janela de Antecedência:</strong> Agendamentos comuns via portal exigem <strong>3 dias úteis de antecedência</strong>.</li>
-            <li><strong>Cotas Diretas Sem Agendamento:</strong> VIP GOLD (até 4 entradas diretas sem agendamento e sem mínimo) / VIP SILVER (2 entradas diretas, mínimo 250 pcs).</li>
-            <li><strong>Volumetria e Tolerância por Lote:</strong> Capacidade padrão de até <strong>2,0 kg ou 600 peças</strong>. Aceita-se margem estendida de até 3,0 kg (900 a 1.000 pcs) com pequeno ajuste no prazo final de entrega. Envios acima de 3,0 kg geram um segundo lote automaticamente.</li>
-            <li><strong>Alinhamento com a Galvânica:</strong> Atrasos na entrega acarretam perda imediata da vaga e reencaixe na primeira data livre da fábrica.</li>
+            <li><strong>Entradas Diretas:</strong> VIP GOLD (até 4 entradas diretas sem agendamento) / VIP SILVER (2 entradas diretas, piso de 250 pcs).</li>
+            <li><strong>Volumetria e Tolerância por Lote:</strong> Lote padrão até <strong>2,0 kg ou 600 peças</strong>. Tolerância estendida de até 3,0 kg (900 a 1.000 pcs) com pequeno ajuste no prazo final. Envios acima de 3,0 kg geram um 2º lote.</li>
+            <li><strong>Alinhamento com a Galvânica:</strong> Atrasos na entrega acarretam perda da vaga e reencaixe automático na primeira data livre da esteira.</li>
           </ul>
         </div>
 
         <!-- CONVERSOR DE PESO EM PEÇAS -->
         <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou gramas)</h3>
+          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou g)</h3>
           <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
-            Digite o peso total do seu lote em gramas (ex: 2000g para 2kg) para calcular a quantidade aproximada com base na <strong>média de 3,2g por peça</strong> e aplicar as regras de volumetria.
+            Digite o peso total do seu lote em gramas (ex: 2000g para 2kg) para calcular a volumetria aproximada (média de 3,2g/peça).
           </p>
 
           <div style="display: flex; gap: 10px; align-items: center; max-width: 450px;">
@@ -446,25 +407,25 @@
 
           <div style="margin-bottom: 12px; display: flex; gap: 20px;">
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaDiretaCheck" onchange="calcularImpacto()"> Usar Cota Direta (Sem agendamento prévio)
+              <input type="checkbox" id="usarCotaDiretaCheck"> Usar Entrada Direta (Sem necessidade de agendamento prévio)
             </label>
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="incluirEncarteCheck" checked onchange="calcularImpacto()"> Incluir Encarte Externa (Terceirizado)
+              <input type="checkbox" id="incluirEncarteCheck" checked> Incluir Encarte Externa (Terceirizado)
             </label>
           </div>
 
-          <!-- QUADRO FINANCEIRO RESUMIDO DO LOTE -->
-          <div class="calc-box">
-            <div class="calc-row"><span>Entrada Antecipada (Combo 3 em 1 - Inspeção/CDI):</span><strong id="resCaixa">R$ 0,00</strong></div>
+          <!-- ESTIMATIVA EM R$ EXCLUSIVA PARA A DIRETORIA (OCULTA PARA CLIENTES) -->
+          <div id="quadroEstimativaDiretoria" class="calc-box" style="display: none;">
+            <div style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; margin-bottom:6px;">🔒 PAINEL DE ESTIMATIVA DE FATURAMENTO (EXCLUSIVO DIREÇÃO)</div>
+            <div class="calc-row"><span>Entrada Antecipada (Combo 3 em 1 Inspeção):</span><strong id="resCaixa">R$ 0,00</strong></div>
             <div class="calc-row"><span>Fechamento no Despacho (Foto + CDE + Etiqueta + Encarte):</span><strong id="resDespacho">R$ 0,00</strong></div>
             <div class="calc-row total"><span>Valor Total Previsto do Lote:</span><strong id="resTotal" style="color: var(--orange-accent);">R$ 0,00</strong></div>
-            <p style="margin: 4px 0 0 0; font-size: 0.7rem; color: var(--text-muted);">*Pagamento à vista via PIX ou em até 12x no cartão de crédito (juros repassados).</p>
           </div>
 
           <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">CONFIRMAR SOLICITAÇÃO DE VAGA</button>
         </div>
 
-        <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA COM ABAS DE MESES -->
+        <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA -->
         <div class="panel-card">
           <h3>📊 Ocupação Diária do HUB S.O.S</h3>
 
@@ -486,7 +447,16 @@
 
       </div>
 
-      <!-- ABA 2: GESTÃO DE LOGINS, COTAS E CLIENTES -->
+      <!-- ABA EXCLUSIVA DO CLIENTE: MINHAS TARIFAS -->
+      <div id="abaMinhasTarifas" class="tab-content">
+        <div class="panel-card">
+          <h3 id="tituloAbaTarifas">🏷️ Tabela Tarifária Contratada</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Confira abaixo os valores por serviço vigentes no seu plano do Clube S.O.S.</p>
+          <div id="conteudoTabelaTarifasCliente"></div>
+        </div>
+      </div>
+
+      <!-- ABA 2: GESTÃO DE LOGINS (DIRETORIA) -->
       <div id="abaLogins" class="tab-content">
         <div class="panel-card">
           <h3>👥 Controle de Usuários, Planos e Cotas do Clube</h3>
@@ -510,7 +480,7 @@
         </div>
       </div>
 
-      <!-- ABA 3: READEQUAÇÃO DE VAGAS -->
+      <!-- ABA 3: READEQUAÇÃO DE VAGAS (DIRETORIA) -->
       <div id="abaReadequar" class="tab-content">
         <div class="panel-card">
           <h3>⚙️ Readequação e Exclusão de Vagas Agendadas</h3>
@@ -603,13 +573,23 @@
 
   </div>
 
+  <!-- MODAL DE DETALHES DO CLUBE & INFORMAÇÕES DE VALORES (PÁGINA INICIAL) -->
+  <div id="modalDetalhesClube" class="modal-overlay">
+    <div class="modal-card">
+      <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
+      <div id="detalhesClubeConteudo"></div>
+      <button class="btn-main" style="background-color:var(--orange-accent); margin-top:15px;" onclick="fecharModalDetalhes(); abrirModalCadastro(planoModalAtual);">QUERO SER DESTE CLUBE</button>
+      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalDetalhes()">FECHAR</button>
+    </div>
+  </div>
+
   <!-- MODAL DE LOGIN -->
   <div id="modalLogin" class="modal-overlay">
-    <div class="modal-card">
+    <div class="modal-card" style="max-width:400px;">
       <h3 style="margin-top:0; color:var(--header-bg);">Acesso ao Portal S.O.S</h3>
       <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Selecione sua marca e digite sua senha de membro.</p>
 
-      <label style="font-size:0.8rem; font-weight:bold;">Selecione sua Marca / Usuário:</label>
+      <label style="font-size:0.8rem; font-weight:bold;">Marca / Usuário:</label>
       <select id="userSelect" class="form-control" style="margin-top:4px;">
         <option value="">Selecione sua marca...</option>
       </select>
@@ -623,30 +603,121 @@
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO/ADESÃO DE VISITANTES -->
+  <!-- MODAL DE CADASTRO / ADESÃO COMPLETO (COM TODAS AS PERGUNTAS DA SUA IMAGEM) -->
   <div id="modalCadastro" class="modal-overlay">
     <div class="modal-card">
-      <h3 id="modalCadastroTitle" style="margin-top:0; color:var(--header-bg);">Solicitar Vaga no Clube</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">Preencha os dados abaixo para nossa equipe entrar em contato imediato.</p>
-
-      <input type="text" id="leadNome" class="form-control" placeholder="Seu Nome Completo">
-      <input type="text" id="leadEmpresa" class="form-control" placeholder="Nome da sua Marca / Empresa">
-      <input type="text" id="leadWhats" class="form-control" placeholder="WhatsApp com DDD">
+      <h3 id="modalCadastroTitle" style="margin-top:0; color:var(--header-bg);">Solicitação de Adesão ao Clube</h3>
       
-      <button class="btn-main" style="background-color:var(--green-val);" onclick="enviarSolicitacaoAdesao()">SOLICITAR ADESÃO</button>
+      <div style="background:#FFF7ED; padding:12px; border-radius:8px; border-left:4px solid var(--orange-accent); font-size:0.78rem; color:#9A3412; margin-bottom:15px;">
+        <strong>🤝 Nosso Compromisso S.O.S:</strong> Zelamos pelo seu negócio. Trabalhamos com rigor técnico máximo, mas com transparência: processos humanos não são isentos de falhas. Quando um imprevisto ocorrer, nossa equipe estará imediatamente à disposição para resolver e zerar o impacto no seu cliente.
+      </div>
+
+      <label style="font-size:0.8rem; font-weight:bold;">Tipo de Cliente:*</label>
+      <select id="leadTipoCliente" class="form-control" onchange="alternarCamposTipoCliente()">
+        <option value="Novo Cliente">Novo Cliente (Adesão ao Clube)</option>
+        <option value="Renovação">Cliente Atual (Renovação de Cota)</option>
+      </select>
+
+      <!-- CAMPO DE RENOVAÇÃO SIMPLIFICADO -->
+      <div id="boxRenovacao" style="display:none;">
+        <label style="font-size:0.8rem; font-weight:bold;">Nome da sua Marca de Semijoias:*</label>
+        <input type="text" id="leadNomeRenovacao" class="form-control" placeholder="Ex: Niara Joias">
+      </div>
+
+      <!-- CAMPOS COMPLETOS PARA NOVO CLIENTE -->
+      <div id="boxNovoCliente">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Seu nome e cargo na empresa:*</label>
+            <input type="text" id="leadNomeCargo" class="form-control" placeholder="Ex: Ana Silva - Diretora Comercial">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Nome da marca de semijoias:*</label>
+            <input type="text" id="leadMarca" class="form-control" placeholder="Ex: Niara Joias">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Perfil do Instagram da marca:*</label>
+            <input type="text" id="leadInstagram" class="form-control" placeholder="Ex: @suamarca">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Cidade e Estado:*</label>
+            <input type="text" id="leadCidadeEstado" class="form-control" placeholder="Ex: Limeira / SP">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Tempo de atuação no mercado:*</label>
+            <select id="leadTempoMercado" class="form-control">
+              <option value="">Selecione...</option>
+              <option value="Menos de 1 ano">Menos de 1 ano</option>
+              <option value="1 a 3 anos">1 a 3 anos</option>
+              <option value="3 a 5 anos">3 a 5 anos</option>
+
+              <option value="Mais de 5 anos">Mais de 5 anos</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:bold;">Modelo principal do negócio hoje:*</label>
+            <select id="leadModeloNegocio" class="form-control">
+              <option value="">Selecione...</option>
+              <option value="Atacado / B2B">Atacado / B2B</option>
+              <option value="Varejo / B2C">Varejo / B2C</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Rede de Revendedoras">Rede de Revendedoras</option>
+              <option value="Híbrido">Híbrido</option>
+            </select>
+          </div>
+        </div>
+
+        <label style="font-size:0.8rem; font-weight:bold;">Volume médio de peças movimentadas por mês:*</label>
+        <select id="leadVolumeMensal" class="form-control">
+          <option value="">Selecione...</option>
+          <option value="Até 500 peças/mês">Até 500 peças/mês</option>
+          <option value="500 a 1.000 peças/mês">500 a 1.000 peças/mês</option>
+          <option value="1.000 a 3.000 peças/mês">1.000 a 3.000 peças/mês</option>
+          <option value="Acima de 3.000 peças/mês">Acima de 3.000 peças/mês</option>
+        </select>
+
+        <label style="font-size:0.8rem; font-weight:bold;">Quais são os principais gargalos e desafios operacionais hoje?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="gargalos" value="Lentidão na triagem e conferência de banho"> Lentidão na triagem e conferência de banho</label>
+          <label><input type="checkbox" name="gargalos" value="Demora para fotografar e publicar catálogo"> Demora para fotografar e publicar catálogo</label>
+          <label><input type="checkbox" name="gargalos" value="Dificuldades na precificação e ficha técnica (CDE)"> Dificuldades na precificação e ficha técnica (CDE)</label>
+          <label><input type="checkbox" name="gargalos" value="Falta de equipe para montagem, cravação, colagem ou lixa"> Falta de equipe para montagem, cravação, colagem ou lixa</label>
+          <label><input type="checkbox" name="gargalos" value="Peças com defeito chegando às revendedoras/clientes"> Peças com defeito chegando às revendedoras/clientes</label>
+        </div>
+
+        <label style="font-size:0.8rem; font-weight:bold;">Quais soluções do CLUBE S.O.S sua marca mais precisa no momento?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="solucoes" value="Inspeção Operacional Obrigatória (Filtro de Qualidade)"> Inspeção Operacional Obrigatória (Filtro de Qualidade)</label>
+          <label><input type="checkbox" name="solucoes" value="Fotografia Profissional de Catálogo"> Fotografia Profissional de Catálogo</label>
+          <label><input type="checkbox" name="solucoes" value="CDE (Cadastro do Produto e Precificação)"> CDE (Cadastro do Produto e Precificação)</label>
+          <label><input type="checkbox" name="solucoes" value="Etiquetagem e Encartelamento"> Etiquetagem e Encartelamento</label>
+          <label><input type="checkbox" name="solucoes" value="Cravação, Colagem e Montagem"> Cravação, Colagem e Montagem</label>
+          <label><input type="checkbox" name="solucoes" value="Lixa e Acabamento de Peças"> Lixa e Acabamento de Peças</label>
+        </div>
+      </div>
+
+      <label style="font-size:0.8rem; font-weight:bold;">WhatsApp Corporativo (com DDD) para entrarmos em contato:*</label>
+      <input type="text" id="leadWhats" class="form-control" placeholder="(00) 00000-0000">
+
+      <button class="btn-main" style="background-color:var(--orange-accent);" onclick="enviarSolicitacaoAdesao()">SOLICITAR MINHA VAGA NO CLUBE S.O.S 🔥</button>
       <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">VOLTAR</button>
     </div>
   </div>
 
   <script>
-    // URL DO SEU GOOGLE APPS SCRIPT
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
     
     const META_DIARIA = 600;
     const CAPACIDADE_MENSAL = 12000;
     const MEDIA_PESO_PECA = 3.2;
 
-    // BASE DE USUÁRIOS E CLIENTES MANTIDA
+    // BASE DE DADOS MANTIDA
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Gold" },
       "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold" },
@@ -658,7 +729,7 @@
     let usuarioLogado = null;
     let usouFerramentaPeso = false;
     let mesSelecionado = "2026-09";
-    let planoSelecionadoModal = "";
+    let planoModalAtual = "";
 
     function abrirModalLogin() { 
       document.getElementById('modalLogin').style.display = 'flex'; 
@@ -668,38 +739,143 @@
       document.getElementById('modalLogin').style.display = 'none'; 
       document.getElementById('loginMsg').innerText = '';
     }
+
+    function abrirModalDetalhesClube(plano) {
+      planoModalAtual = plano;
+      const titulo = document.getElementById('detalhesClubeTitulo');
+      const conteudo = document.getElementById('detalhesClubeConteudo');
+
+      if (plano === 'Silver') {
+        titulo.innerText = "Detalhamento Completo — Cota VIP SILVER";
+        conteudo.innerHTML = `
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">Anuidade: R$ 1.000,00 / ano (ou 12x no cartão)</div>
+          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
+            A cota VIP Silver foi desenvolvida para marcas que buscam previsibilidade técnica e garantia de padrão operacional na esteira de produção.
+          </p>
+          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+            <li><strong>2 entradas por mês SEM necessidade de agendamento prévio</strong> no portal.</li>
+            <li>Piso operacional de 250 peças físicas por lote.</li>
+            <li>Demais agendamentos no portal com janela mínima de 3 dias úteis.</li>
+            <li>Gestão e almoxarifado de insumos de encarte gerenciado no HUB S.O.S.</li>
+          </ul>
+
+          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas Exclusiva VIP Silver:</h4>
+          <table>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Silver</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção Física (Qualidade + CDI)</td><td>Peça</td><td><strong>R$ 0,70</strong></td></tr>
+              <tr><td>Fotografia Profissional (Tradicional / IA)</td><td>SKU</td><td><strong>R$ 2,69</strong></td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,69</strong></td></tr>
+              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,30</strong></td></tr>
+              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,80</strong></td></tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        titulo.innerText = "Detalhamento Completo — Cota VIP GOLD";
+        conteudo.innerHTML = `
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">Anuidade: R$ 3.000,00 / ano (ou 12x no cartão)</div>
+          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
+            A cota VIP Gold é a modalidade máxima de prioridade do HUB S.O.S, oferecendo liberdade total de volumetria e atendimento executivo.
+          </p>
+          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+            <li><strong>Até 4 entradas por mês SEM necessidade de agendamento prévio</strong> (Prioridade Fura Fila).</li>
+            <li><strong>ISENÇÃO TOTAL de quantidade mínima de peças</strong> por lote.</li>
+            <li>Suporte Executivo 24h direto com a Direção S.O.S (Kelvin).</li>
+            <li>Acesso à menor tabela tarifária de serviços técnicos do mercado.</li>
+          </ul>
+
+          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas Exclusiva VIP Gold:</h4>
+          <table>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Gold</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção Física (Qualidade + CDI)</td><td>Peça</td><td><strong>R$ 0,65</strong></td></tr>
+              <tr><td>Fotografia Profissional (Tradicional / IA)</td><td>SKU</td><td><strong>R$ 2,49</strong></td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,49</strong></td></tr>
+              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,27</strong></td></tr>
+              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,70</strong></td></tr>
+            </tbody>
+          </table>
+        `;
+      }
+
+      document.getElementById('modalDetalhesClube').style.display = 'flex';
+    }
+
+    function fecharModalDetalhes() {
+      document.getElementById('modalDetalhesClube').style.display = 'none';
+    }
     
     function abrirModalCadastro(plano) {
-      planoSelecionadoModal = plano;
-      document.getElementById('modalCadastroTitle').innerText = `Solicitar Vaga — VIP ${plano.toUpperCase()}`;
+      planoModalAtual = plano;
+      document.getElementById('modalCadastroTitle').innerText = `Solicitar Vaga — Cota VIP ${plano.toUpperCase()}`;
       document.getElementById('modalCadastro').style.display = 'flex';
+      alternarCamposTipoCliente();
     }
     function fecharModalCadastro() { 
       document.getElementById('modalCadastro').style.display = 'none'; 
     }
 
+    function alternarCamposTipoCliente() {
+      let tipo = document.getElementById('leadTipoCliente').value;
+      if (tipo === "Renovação") {
+        document.getElementById('boxRenovacao').style.display = 'block';
+        document.getElementById('boxNovoCliente').style.display = 'none';
+      } else {
+        document.getElementById('boxRenovacao').style.display = 'none';
+        document.getElementById('boxNovoCliente').style.display = 'block';
+      }
+    }
+
     function enviarSolicitacaoAdesao() {
-      let nome = document.getElementById('leadNome').value.trim();
-      let empresa = document.getElementById('leadEmpresa').value.trim();
+      let tipo = document.getElementById('leadTipoCliente').value;
       let whats = document.getElementById('leadWhats').value.trim();
 
-      if (!nome || !empresa || !whats) return alert("Por favor, preencha todos os campos.");
+      if (!whats) return alert("Por favor, preencha o WhatsApp Corporativo.");
+
+      let payload = {
+        tipo: "SOLICITACAO_ADESAO",
+        categoriaPretendida: planoModalAtual,
+        tipoCliente: tipo,
+        whats: whats,
+        dataHora: new Date().toLocaleString("pt-BR")
+      };
+
+      if (tipo === "Renovação") {
+        let marcaRenovacao = document.getElementById('leadNomeRenovacao').value.trim();
+        if (!marcaRenovacao) return alert("Digite o nome da sua marca para renovação.");
+        payload.nomeMarcaRenovacao = marcaRenovacao;
+      } else {
+        let nomeCargo = document.getElementById('leadNomeCargo').value.trim();
+        let marca = document.getElementById('leadMarca').value.trim();
+        if (!nomeCargo || !marca) return alert("Preencha o nome/cargo e o nome da marca.");
+
+        payload.nomeCargo = nomeCargo;
+        payload.nomeMarca = marca;
+        payload.instagram = document.getElementById('leadInstagram').value.trim();
+        payload.cidadeEstado = document.getElementById('leadCidadeEstado').value.trim();
+        payload.tempoMercado = document.getElementById('leadTempoMercado').value;
+        payload.modeloNegocio = document.getElementById('leadModeloNegocio').value;
+        payload.volumeMensal = document.getElementById('leadVolumeMensal').value;
+
+        // CAPTURA CHECKBOXES DE GARGALOS E SOLUÇÕES
+        let gargalosList = [];
+        document.querySelectorAll('input[name="gargalos"]:checked').forEach(c => gargalosList.push(c.value));
+        payload.gargalosOperacionais = gargalosList.join(" | ");
+
+        let solucoesList = [];
+        document.querySelectorAll('input[name="solucoes"]:checked').forEach(c => solucoesList.push(c.value));
+        payload.solucoesDesejadas = solucoesList.join(" | ");
+      }
 
       fetch(URL_SCRIPT_DRIVE, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tipo: "LEAD_ADESAO",
-          nome: nome,
-          empresa: empresa,
-          whats: whats,
-          plano: planoSelecionadoModal,
-          dataRegistro: new Date().toLocaleString("pt-BR")
-        })
+        body: JSON.stringify(payload)
       });
 
-      alert(`Solicitação enviada com sucesso! Recebemos seu interesse na Cota VIP ${planoSelecionadoModal}. A equipe S.O.S entrará em contato via WhatsApp.`);
+      alert(`Solicitação enviada com sucesso! Recebemos sua solicitação para a Cota VIP ${planoModalAtual}. A equipe S.O.S entrará em contato via WhatsApp.`);
       fecharModalCadastro();
     }
 
@@ -769,13 +945,18 @@
         document.getElementById('btnLogout').style.display = 'inline-block';
         document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${user} [VIP ${plano.toUpperCase()}]`;
 
+        // RENDERIZA A ABA DE TARIFAS DO CLIENTE
+        renderizarTarifasCliente(plano);
+
         if (usuarios[user].perfil === "admin") {
+          document.getElementById('quadroEstimativaDiretoria').style.display = 'block';
           document.getElementById('tabLoginsBtn').style.display = 'inline-block';
           document.getElementById('tabReadequarBtn').style.display = 'inline-block';
           document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
           renderizarLogins();
           renderizarReadequacao();
         } else {
+          document.getElementById('quadroEstimativaDiretoria').style.display = 'none';
           document.getElementById('tabLoginsBtn').style.display = 'none';
           document.getElementById('tabReadequarBtn').style.display = 'none';
           document.getElementById('tabFinanceiroBtn').style.display = 'none';
@@ -785,6 +966,40 @@
         renderizarCalendario();
       } else {
         document.getElementById('loginMsg').innerText = "Senha incorreta.";
+      }
+    }
+
+    function renderizarTarifasCliente(plano) {
+      const box = document.getElementById('conteudoTabelaTarifasCliente');
+      const titulo = document.getElementById('tituloAbaTarifas');
+      titulo.innerText = `🏷️ Suas Tarifas Contratadas — Cota VIP ${plano.toUpperCase()}`;
+
+      if (plano === "Gold") {
+        box.innerHTML = `
+          <table>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor VIP Gold</th><th>Cobrança</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção Física de Qualidade (CDI)</td><td>Peça</td><td><strong>R$ 0,65</strong></td><td>Entrada Antecipada</td></tr>
+              <tr><td>Fotografia Profissional (Tradicional/IA)</td><td>SKU</td><td><strong>R$ 2,49</strong></td><td>Fechamento</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,49</strong></td><td>Fechamento</td></tr>
+              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,27</strong></td><td>Fechamento</td></tr>
+              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,70</strong></td><td>Fechamento</td></tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        box.innerHTML = `
+          <table>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor VIP Silver</th><th>Cobrança</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção Física de Qualidade (CDI)</td><td>Peça</td><td><strong>R$ 0,70</strong></td><td>Entrada Antecipada</td></tr>
+              <tr><td>Fotografia Profissional (Tradicional/IA)</td><td>SKU</td><td><strong>R$ 2,69</strong></td><td>Fechamento</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ 2,69</strong></td><td>Fechamento</td></tr>
+              <tr><td>Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ 0,30</strong></td><td>Fechamento</td></tr>
+              <tr><td>Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ 0,80</strong></td><td>Fechamento</td></tr>
+            </tbody>
+          </table>
+        `;
       }
     }
 
@@ -1035,7 +1250,7 @@
           <td><strong>${a.cliente}</strong> [${a.plano || 'Silver'}]</td>
           <td><input type="date" value="${a.data}" id="edit_data_${index}" class="form-control" style="margin:0; padding:4px;"></td>
           <td><input type="number" value="${a.pecas}" id="edit_pecas_${index}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
-          <td>${a.cotaDireta ? '<span style="color:var(--gold-val); font-weight:bold;">⚡ Cota Direta</span>' : 'Agendado'}</td>
+          <td>${a.cotaDireta ? '<span style="color:var(--gold-val); font-weight:bold;">⚡ Entrada Direta</span>' : 'Agendado'}</td>
           <td>
             <button class="btn-edit" onclick="readequarVaga(${index})">Salvar</button>
             <button class="btn-danger" onclick="excluirVaga(${index})">Excluir</button>
