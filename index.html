@@ -145,14 +145,15 @@
     .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
     .badge-analise { background-color: #FEF3C7; color: #92400E; border: 1px solid var(--yellow-val); }
 
+    /* CORREÇÃO DO MODAL PARA GARANTIR SOBREPOSIÇÃO FRENTE A TODOS OS ELEMENTOS */
     .modal-overlay {
-      display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-      background: rgba(11, 19, 43, 0.85); z-index: 1000; justify-content: center; align-items: center;
+      display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
+      background: rgba(11, 19, 43, 0.88); z-index: 9999; justify-content: center; align-items: center;
       overflow-y: auto; padding: 20px;
     }
     .modal-card {
-      background: #fff; padding: 32px; border-radius: 20px; max-width: 680px; width: 100%;
-      max-height: 90vh; overflow-y: auto;
+      background: #fff; padding: 32px; border-radius: 20px; max-width: 720px; width: 100%;
+      max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; z-index: 10000;
     }
 
     .clickable-service { color: var(--blue-val); text-decoration: underline; cursor: pointer; font-weight: bold; }
@@ -188,6 +189,19 @@
         </p>
       </div>
 
+      <!-- PRAZOS OPERACIONAIS EM DESTAQUE -->
+      <div class="panel-card" style="border-left: 6px solid var(--blue-val);">
+        <h3>⏱️ Prazos Operacionais Padrão por Lote</h3>
+        <p style="font-size:0.88rem; color:var(--text-dark); margin-bottom:10px;">
+          Nossos prazos de produção são dimensionados conforme a volumetria de peças enviadas para garantir rigor técnico e acabamento:
+        </p>
+        <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+          <li><strong>Lotes de até 600 peças:</strong> Entrega em <strong>7 dias úteis</strong>.</li>
+          <li><strong>Lotes de 601 a 1.000 peças:</strong> Entrega em <strong>10 dias úteis</strong>.</li>
+          <li><strong>Lotes acima de 1.001 peças:</strong> Entrega em <strong>13 a 15 dias úteis</strong> (com opção de fracionamento de remessa).</li>
+        </ul>
+      </div>
+
       <!-- CARDS CONCEITUAIS DAS COTAS DO CLUBE -->
       <div class="club-cards-grid">
         
@@ -199,7 +213,8 @@
             <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
             <li>Demais solicitações enviadas para aprovação/agendamento da Direção.</li>
             <li>Piso operacional de 250 peças por lote.</li>
-            <li>Gestão de estoque e insumos de embalagens no HUB.</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs).</li>
+            <li>Gestão de estoque e insumos de embalagens no HUB S.O.S.</li>
           </ul>
           <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Silver')">CONHECER DETALHES & VALORES SILVER</button>
         </div>
@@ -212,6 +227,7 @@
             <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
             <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
             <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
+            <li>Prazo prioritário de esteira.</li>
             <li>Menores tarifas fabris em todos os serviços técnicos.</li>
           </ul>
           <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Gold')">CONHECER DETALHES & VALORES GOLD</button>
@@ -226,7 +242,7 @@
       <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
         <button class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
-        <button id="tabPedidosBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPedidos')">📥 Pedidos de Vagas (Aprovação)</button>
+        <button id="tabPedidosBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPedidos')">📥 Pedidos de Vagas & Painel Financeiro</button>
         <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Tabela Direção</button>
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE (Diretoria)</button>
       </div>
@@ -242,11 +258,11 @@
 
         <!-- DIRETRIZES OPERACIONAIS -->
         <div class="rules-card">
-          <h4>📋 Diretrizes de Agendamento HUB S.O.S</h4>
+          <h4>📋 Diretrizes de Agendamento e Prazos do HUB S.O.S</h4>
           <ul class="rules-list">
-            <li><strong>Garantia de Entradas:</strong> VIP GOLD tem 4 entradas diretas/mês garantidas sem agendamento. VIP SILVER tem 1 entrada direta/mês garantida; demais solicitações passam por análise/aprovação da Direção.</li>
-            <li><strong>Dias Operacionais:</strong> Atendimento de segunda a sexta-feira. <strong>Sábados, Domingos e Feriados são bloqueados</strong>.</li>
-            <li><strong>Volumetria e Tolerância:</strong> Lote padrão até 2,0 kg (600 pcs). Margem estendida de até 3,0 kg com pequeno ajuste no prazo. Acima de 3,0 kg gera fracionamento.</li>
+            <li><strong>Garantia de Entradas:</strong> VIP GOLD possui 4 entradas diretas/mês garantidas sem agendamento. VIP SILVER possui 1 entrada direta/mês garantida; demais solicitações passam por análise da Direção.</li>
+            <li><strong>Prazos do Lote:</strong> Até 600 pcs (7 dias úteis) | 601 a 1.000 pcs (10 dias úteis) | Acima de 1.001 pcs (13 a 15 dias úteis).</li>
+            <li><strong>Dias Operacionais:</strong> Segunda a sexta-feira. <strong>Sábados, Domingos e Feriados são bloqueados</strong>.</li>
           </ul>
         </div>
 
@@ -273,7 +289,7 @@
 
           <div style="margin-bottom: 12px; display: flex; gap: 20px;">
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Entrada Garantida do Mês (Sem necessidade de aprovação)
+              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Cota Garantida do Mês (Sem necessidade de aprovação)
             </label>
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
               <input type="checkbox" id="incluirEncarteCheck" checked> Incluir Encarte Externa (Terceirizado)
@@ -314,12 +330,27 @@
         </div>
       </div>
 
-      <!-- ABA APROVAÇÃO DE VAGAS (DIRETORIA) -->
+      <!-- ABA APROVAÇÃO DE VAGAS & ESTIMATIVA FINANCEIRA (EXCLUSIVO DIRETORIA) -->
       <div id="abaPedidos" class="tab-content">
         <div class="panel-card">
-          <h3>📥 Soluções e Pedidos de Vagas Pendentes (Aprovação)</h3>
+          <h3>📥 Soluções e Pedidos de Vagas Pendentes (Aprovação & Financeiro)</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
+            Kelvin, os valores médios previstos do lote são calculados automaticamente com base na cota tarifária específica de cada cliente (Gold ou Silver).
+          </p>
+
           <table>
-            <thead><tr><th>Cliente / Marca</th><th>Plano</th><th>Data Solicitada</th><th>Peças</th><th>Ações da Direção</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Cliente / Marca</th>
+                <th>Cota</th>
+                <th>Data Solicitada</th>
+                <th>Peças (Qtd)</th>
+                <th>Entrada Antecipada (Inspeção)</th>
+                <th>Estimativa Despacho (Foto+CDE+Etiq+Enc)</th>
+                <th>Valor Médio Previsto</th>
+                <th>Ações da Direção</th>
+              </tr>
+            </thead>
             <tbody id="pedidosVagasTableBody"></tbody>
           </table>
         </div>
@@ -379,7 +410,7 @@
 
   </div>
 
-  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO -->
+  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO (Z-INDEX CORRIGIDO PARA FRENTE) -->
   <div id="modalExplicacaoServico" class="modal-overlay">
     <div class="modal-card">
       <h3 id="explicacaoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Serviço</h3>
@@ -388,7 +419,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE DETALHES DO CLUBE (PÁGINA INICIAL) -->
+  <!-- MODAL DE DETALHES COMPLETO DO CLUBE (PÁGINA INICIAL) -->
   <div id="modalDetalhesClube" class="modal-overlay">
     <div class="modal-card">
       <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
@@ -420,10 +451,10 @@
     const META_DIARIA = 600;
     const CAPACIDADE_MENSAL = 12000;
 
-    // DICIONÁRIO DE EXPLICAÇÃO COMPLETA DOS SERVIÇOS
+    // EXPLICAÇÃO COMPLETA DOS SERVIÇOS TÉCNICOS
     const explicacoesServicos = {
       "inspecao": {
-        titulo: "Inspeção Operacional de Qualidade (Filtro Obrigatorio + Separação + CDI)",
+        titulo: "Inspeção Operacional de Qualidade (Filtro Obrigatório + Separação + CDI)",
         texto: `
           <p>A Inspeção Operacional é o pilar de proteção da sua marca e engloba 3 etapas integradas:</p>
           <ul>
@@ -459,7 +490,7 @@
       }
     };
 
-    // TABELA DE PREÇOS COM EDIÇÃO PERSONALIZADA POR CLIENTE
+    // BASE DE DADOS DOS USUÁRIOS COM TABELA TARIFÁRIA CORRETA POR COTA
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, lixa: 1.20 } },
       "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, lixa: 1.20 } },
@@ -499,36 +530,64 @@
       if (plano === 'Silver') {
         titulo.innerText = "Detalhamento Completo — Cota VIP SILVER";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">Anuidade: R$ 1.000,00 / ano (em até 12x no cartão com juros)</div>
-          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">Garante 1 entrada por mês sem necessidade de agendamento prévio. Demais solicitações passam por análise da Direção.</p>
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">
+            Anuidade: R$ 1.000,00 / ano (Em até 12x no cartão com acréscimo de juros da máquina)
+          </div>
+          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
+            <strong>Como Funciona o Anual:</strong> O valor da anuidade assegura a reserva do seu espaço operacional na fábrica do HUB S.O.S durante todo o ano, garantindo previsibilidade de esteira.
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
+            <strong>📦 Gestão de Embalagens e Insumos:</strong> A marca contratante envia suas cartelas, etiquetas, sacos e insumos personalizados para ficarem armazenados em nosso almoxarifado sob controle rígido de estoque.
+          </p>
+          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+            <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
+            <li>Piso operacional de 250 peças por lote.</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs).</li>
+          </ul>
+
+          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas do VIP Silver (Clique no serviço):</h4>
           <table>
-            <thead><tr><th>Serviço Técnico (Clique p/ ver)</th><th>Base</th><th>Valor Silver</th></tr></thead>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Silver</th></tr></thead>
             <tbody>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,70</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td>R$ 2,69</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,69</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,30</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>Sob Consulta</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>Sob Consulta</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>R$ 1,80</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>R$ 1,50</td></tr>
             </tbody>
           </table>
         `;
       } else {
         titulo.innerText = "Detalhamento Completo — Cota VIP GOLD";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">Anuidade: R$ 3.000,00 / ano (em até 12x no cartão com juros)</div>
-          <p style="font-size:0.85rem; line-height:1.6; color:#334155;">Garante até 4 entradas diretas no mês sem necessidade de agendamento prévio (Prioridade Fura Fila).</p>
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">
+            Anuidade: R$ 3.000,00 / ano (Em até 12x no cartão com acréscimo de juros da máquina)
+          </div>
+          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
+            <strong>Como Funciona o Anual:</strong> Cota VIP com máxima prioridade de esteira (Fura Fila), pensada para marcas que exigem giros rápidos de lote no mês sem gargalo.
+          </p>
+          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
+            <strong>📦 Gestão de Embalagens e Insumos:</strong> Almoxarifado dedicado no HUB S.O.S com conferência automatizada para suas cartelas e embalagens.
+          </p>
+          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+            <li><strong>Até 4 entradas diretas no mês garantidas</strong> sem agendamento prévio.</li>
+            <li><strong>ISENÇÃO TOTAL de piso mínimo</strong> de peças por lote.</li>
+            <li>Atendimento Executivo 24h direto com a Direção (Kelvin).</li>
+          </ul>
+
+          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas do VIP Gold (Clique no serviço):</h4>
           <table>
-            <thead><tr><th>Serviço Técnico (Clique p/ ver)</th><th>Base</th><th>Valor Gold</th></tr></thead>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Gold</th></tr></thead>
             <tbody>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,65</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td>R$ 2,49</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,49</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,27</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>Sob Consulta</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>Sob Consulta</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td>R$ 1,50</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td>R$ 1,20</td></tr>
             </tbody>
           </table>
         `;
@@ -595,19 +654,27 @@
     function renderizarTarifasCliente(uName) {
       const box = document.getElementById('conteudoTabelaTarifasCliente');
       const u = usuarios[uName];
-      const t = u.tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, lixa: 1.50 };
+      const plano = u.plano || "Silver";
+      
+      // GARANTE QUE CADA CLIENTE TENHA A VALIDAÇÃO DE PREÇO CORRETA DO SEU PLANO
+      const tDefault = (plano === "Gold") 
+        ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, lixa: 1.20 }
+        : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, lixa: 1.50 };
+
+      const t = u.tarifas || tDefault;
+      document.getElementById('tituloAbaTarifas').innerText = `🏷️ Suas Tarifas Contratadas — Cota VIP ${plano.toUpperCase()}`;
 
       box.innerHTML = `
         <table>
-          <thead><tr><th>Serviço Técnico (Clique p/ ver detalhes)</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
+          <thead><tr><th>Serviço Técnico (Clique para ver detalhes)</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
           <tbody>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 1.80).toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td><strong>R$ ${(t.lixa || 1.50).toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação, Colagem e Montagem</td><td>Peça</td><td><strong>R$ ${t.cravacao.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('lixa')">Lixa e Acabamento</td><td>Peça</td><td><strong>R$ ${t.lixa.toFixed(2)}</strong></td></tr>
           </tbody>
         </table>
       `;
@@ -623,13 +690,13 @@
 
     function solicitarVaga() {
       const pecas = parseFloat(document.getElementById('pecasInput').value);
+      const skus = parseFloat(document.getElementById('skusInput').value) || 120;
       const dataSel = document.getElementById('dataInput').value;
       const usarGarantida = document.getElementById('usarCotaGarantidaCheck').checked;
       let plano = usuarios[usuarioLogado]?.plano || "Silver";
 
       if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
-      // VERIFICA SÁBADO (6) OU DOMINGO (0)
       let dt = new Date(dataSel + 'T00:00:00');
       if (dt.getDay() === 0 || dt.getDay() === 6) {
         return alert("Sábados e Domingos são dias indisponíveis no HUB S.O.S.");
@@ -646,6 +713,7 @@
         plano: plano,
         data: dataSel,
         pecas: pecas,
+        skus: skus,
         status: statusVaga
       });
 
@@ -762,26 +830,44 @@
       }
     }
 
+    // CÁLCULO FINANCEIRO AUTOMÁTICO NA ABA DE PEDIDOS DA DIRETORIA
     function renderizarPedidosVagas() {
       const tbody = document.getElementById('pedidosVagasTableBody');
       tbody.innerHTML = '';
 
       let pendentes = agendamentos.filter(a => a.status === "Em Avaliacao");
       if (pendentes.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhum pedido de vaga pendente.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Nenhum pedido de vaga pendente no momento.</td></tr>';
         return;
       }
 
       pendentes.forEach(p => {
+        let uObj = usuarios[p.cliente];
+        let planoCliente = uObj?.plano || p.plano || "Silver";
+        
+        let t = uObj?.tarifas || ((planoCliente === "Gold") 
+          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
+          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
+
+        let pcs = p.pecas || 0;
+        let skus = p.skus || 120;
+
+        let valEntrada = pcs * t.inspecao;
+        let valDespacho = (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
+        let valMedioLote = valEntrada + valDespacho;
+
         let tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${p.cliente}</strong></td>
-          <td>${p.plano}</td>
+          <td><span style="font-weight:bold; color:${planoCliente === 'Gold' ? 'var(--gold-val)' : 'var(--silver-val)'};">${planoCliente}</span></td>
           <td><input type="date" value="${p.data}" id="data_ped_${p.id}" class="form-control" style="margin:0; padding:4px;"></td>
-          <td>${p.pecas} pcs</td>
+          <td><strong>${pcs} pcs</strong> (${skus} SKUs)</td>
+          <td><strong style="color:var(--green-val);">${valEntrada.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
+          <td><strong>${valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
+          <td><strong style="color:var(--orange-accent); font-size:0.95rem;">${valMedioLote.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
           <td>
             <button class="btn-approve" onclick="aprovarVaga(${p.id})">Aprovar</button>
-            <button class="btn-edit" onclick="remarcarVaga(${p.id})">Sugerir Nova Data</button>
+            <button class="btn-edit" onclick="remarcarVaga(${p.id})">Remarcar</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -849,7 +935,9 @@
         foto: parseFloat(document.getElementById(`tar_foto_${u}`).value),
         cde: parseFloat(document.getElementById(`tar_cde_${u}`).value),
         etiqueta: parseFloat(document.getElementById(`tar_etiq_${u}`).value),
-        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value)
+        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value),
+        cravacao: (pl === "Gold") ? 1.50 : 1.80,
+        lixa: (pl === "Gold") ? 1.20 : 1.50
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
