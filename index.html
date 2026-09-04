@@ -130,6 +130,7 @@
     .day-card.available { border-color: var(--green-val); background-color: #F0FDF4; }
     .day-card.holiday { border-color: var(--orange-accent); background-color: #FFF7ED; }
     .day-card.pending { border-color: var(--yellow-val); background-color: #FEF3C7; }
+    .day-card.past { border-color: #CBD5E1; background-color: #E2E8F0; opacity: 0.6; }
 
     .progress-bar { height: 12px; background: #E2E8F0; border-radius: 6px; overflow: hidden; margin-top: 6px; }
     .progress-fill { height: 100%; background: var(--blue-val); transition: width 0.3s ease; }
@@ -139,6 +140,7 @@
     .badge-fechado { background-color: #FEE2E2; color: #991B1B; border: 1px solid var(--red-val); }
     .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
     .badge-analise { background-color: #FEF3C7; color: #92400E; border: 1px solid var(--yellow-val); }
+    .badge-passado { background-color: #CBD5E1; color: #475569; }
 
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
@@ -236,8 +238,9 @@
           <ul class="club-features">
             <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
             <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
+            <li><strong>Relatórios Mensais e Acompanhamento de Desempenho Fabril</strong>.</li>
+            <li><strong>Atendimento Executivo 24h</strong> direto com a Direção (Kelvin).</li>
             <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
-            <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
             <li>Menores tarifas fabris em todos os serviços técnicos.</li>
           </ul>
           <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Gold')">CONHECER DETALHES & VALORES GOLD</button>
@@ -300,18 +303,18 @@
 
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 600">
+              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 600" oninput="atualizarSkusProporcional(this.value)">
             </div>
 
             <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados:</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados (Proporção 1:5):</label>
               <input type="number" id="skusInput" class="form-control" placeholder="Ex: 120" value="120">
             </div>
           </div>
 
           <div style="margin-bottom: 12px; display: flex; gap: 20px;">
             <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Cota Garantida do Mês (Sem necessidade de aprovação)
+              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Cota Garantida do Mês (Permite agendar sem restrição de 3 dias úteis)
             </label>
           </div>
 
@@ -517,7 +520,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO COM CHECKBOXES PARA SELEÇÃO MÚLTIPLA -->
+  <!-- MODAL DE CADASTRO COM CHECKBOXES -->
   <div id="modalCadastroClube" class="modal-overlay">
     <div class="modal-card" style="max-width:780px;">
       <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
@@ -694,10 +697,55 @@
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-    let usuarioLogado = null;
+    let usuarioLogado = localStorage.getItem('sos_usuario_logado') || null;
     let mesSelecionado = "2026-09";
     let mesSelecionadoDash = "2026-09";
     let planoModalAtual = "";
+
+    window.onload = function() {
+      if (usuarioLogado && usuarios[usuarioLogado]) {
+        restaurarSessaoLogada();
+      }
+    };
+
+    function restaurarSessaoLogada() {
+      let uObj = usuarios[usuarioLogado];
+      document.getElementById('portalLanding').style.display = 'none';
+      document.getElementById('btnOpenLoginModal').style.display = 'none';
+      document.getElementById('dashboardPanel').style.display = 'block';
+      document.getElementById('btnLogout').style.display = 'inline-block';
+
+      if (uObj.perfil === "admin") {
+        document.getElementById('welcomeTitle').innerText = `📅 Gestão da Esteira Fabril — Painel da Diretoria`;
+        document.getElementById('barraCotaClienteBox').style.display = 'none';
+        document.getElementById('tabPedidosBtn').style.display = 'inline-block';
+        document.getElementById('tabLoginsBtn').style.display = 'inline-block';
+        document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
+        renderizarPedidosVagas();
+        renderizarLogins();
+        gerenciarAbasMesesDash();
+        renderizarFinanceiro();
+      } else {
+        let plano = uObj.plano || "Silver";
+        document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${usuarioLogado} [VIP ${plano.toUpperCase()}]`;
+        document.getElementById('barraCotaClienteBox').style.display = 'flex';
+        atualizarBarraCotaCliente(usuarioLogado, plano);
+        renderizarTarifasCliente(usuarioLogado);
+
+        document.getElementById('tabPedidosBtn').style.display = 'none';
+        document.getElementById('tabLoginsBtn').style.display = 'none';
+        document.getElementById('tabFinanceiroBtn').style.display = 'none';
+      }
+
+      gerenciarAbasMeses();
+      renderizarCalendario();
+    }
+
+    function atualizarSkusProporcional(pecasVal) {
+      let pecas = parseFloat(pecasVal) || 0;
+      let skusCalculado = Math.round(pecas / 5);
+      document.getElementById('skusInput').value = skusCalculado;
+    }
 
     function abrirModalExplicacao(chave) {
       if (explicacoesServicos[chave]) {
@@ -721,7 +769,6 @@
       document.getElementById('modalCadastroClube').style.display = 'none';
     }
 
-    // CAPTURA AS OPÇÕES MARCADAS NOS CHECKBOXES E ENVIA PARA A PLANILHA
     function enviarCadastroParaPlanilha() {
       const btn = document.getElementById('btnSubmitCadPlanilha');
       btn.innerText = "ENVIANDO PARA A PLANILHA...";
@@ -826,6 +873,8 @@
           <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
             <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
             <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
+            <li><strong>Relatórios Mensais e Acompanhamento de Desempenho Fabril</strong>.</li>
+            <li><strong>Atendimento Executivo 24h</strong> direto com a Direção (Kelvin).</li>
             <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
           </ul>
 
@@ -874,38 +923,9 @@
 
       if (usuarios[user] && usuarios[user].senha === pass) {
         usuarioLogado = user;
-        let perfil = usuarios[user].perfil;
-
+        localStorage.setItem('sos_usuario_logado', user);
         fecharModalLogin();
-        document.getElementById('portalLanding').style.display = 'none';
-        document.getElementById('btnOpenLoginModal').style.display = 'none';
-        document.getElementById('dashboardPanel').style.display = 'block';
-        document.getElementById('btnLogout').style.display = 'inline-block';
-
-        if (perfil === "admin") {
-          document.getElementById('welcomeTitle').innerText = `📅 Gestão da Esteira Fabril — Painel da Diretoria`;
-          document.getElementById('barraCotaClienteBox').style.display = 'none';
-          document.getElementById('tabPedidosBtn').style.display = 'inline-block';
-          document.getElementById('tabLoginsBtn').style.display = 'inline-block';
-          document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
-          renderizarPedidosVagas();
-          renderizarLogins();
-          gerenciarAbasMesesDash();
-          renderizarFinanceiro();
-        } else {
-          let plano = usuarios[user].plano || "Silver";
-          document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${user} [VIP ${plano.toUpperCase()}]`;
-          document.getElementById('barraCotaClienteBox').style.display = 'flex';
-          atualizarBarraCotaCliente(user, plano);
-          renderizarTarifasCliente(user);
-
-          document.getElementById('tabPedidosBtn').style.display = 'none';
-          document.getElementById('tabLoginsBtn').style.display = 'none';
-          document.getElementById('tabFinanceiroBtn').style.display = 'none';
-        }
-
-        gerenciarAbasMeses();
-        renderizarCalendario();
+        restaurarSessaoLogada();
       } else {
         document.getElementById('loginMsg').innerText = "Senha incorreta.";
       }
@@ -951,6 +971,7 @@
 
     function logout() {
       usuarioLogado = null;
+      localStorage.removeItem('sos_usuario_logado');
       document.getElementById('portalLanding').style.display = 'block';
       document.getElementById('btnOpenLoginModal').style.display = 'inline-block';
       document.getElementById('dashboardPanel').style.display = 'none';
@@ -963,6 +984,7 @@
 
       const pcsEstimadas = Math.round(gramas / mediaPesoPeca);
       document.getElementById('pecasInput').value = pcsEstimadas;
+      atualizarSkusProporcional(pcsEstimadas);
 
       document.getElementById('pesoResult').innerHTML = `
         ✅ Conversão concluída: <strong>${gramas}g</strong> = <strong>~${pcsEstimadas} peças</strong> (Média: ${mediaPesoPeca.toFixed(2)}g/pc).
@@ -970,57 +992,88 @@
     }
 
     function solicitarVaga() {
-      const pecas = parseFloat(document.getElementById('pecasInput').value);
-      const skus = parseFloat(document.getElementById('skusInput').value) || 120;
+      const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
+      const skusTotal = parseFloat(document.getElementById('skusInput').value) || Math.round(pecasTotal / 5);
       const dataSel = document.getElementById('dataInput').value;
       const usarGarantida = document.getElementById('usarCotaGarantidaCheck').checked;
       let uObj = usuarios[usuarioLogado];
       let plano = uObj?.plano || "Silver";
 
-      if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
+      if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
       let dtAgendamento = new Date(dataSel + 'T00:00:00');
       let dtHoje = new Date();
       dtHoje.setHours(0,0,0,0);
+
+      if (dtAgendamento < dtHoje) {
+        return alert("Não é possível solicitar agendamentos para datas retroativas.");
+      }
 
       if (dtAgendamento.getDay() === 0 || dtAgendamento.getDay() === 6) {
         return alert("Sábados e Domingos são dias indisponíveis no HUB S.O.S.");
       }
 
       let diffDiasUteis = 0;
-      let tempDt = new Date(dtHoje);
-      while (tempDt < dtAgendamento) {
-        tempDt.setDate(tempDt.getDate() + 1);
-        if (tempDt.getDay() !== 0 && tempDt.getDay() !== 6) diffDiasUteis++;
+      let tempDtCheck = new Date(dtHoje);
+      while (tempDtCheck < dtAgendamento) {
+        tempDtCheck.setDate(tempDtCheck.getDate() + 1);
+        if (tempDtCheck.getDay() !== 0 && tempDtCheck.getDay() !== 6) diffDiasUteis++;
       }
 
-      let statusVaga = "Aprovado";
+      if (uObj?.perfil !== "admin" && !usarGarantida && diffDiasUteis < 3) {
+        return alert("Solicitações sem Cota Garantida exigem no mínimo 3 dias úteis de antecedência!");
+      }
 
-      if (uObj?.perfil !== "admin") {
-        if (!usarGarantida || diffDiasUteis < 3) {
-          statusVaga = "Em Avaliacao";
+      let pecasRestantes = pecasTotal;
+      let dtAtualLoop = new Date(dtAgendamento);
+      let novosAgendamentos = [];
+      let tentativasSubsequentes = 0;
+
+      while (pecasRestantes > 0) {
+        if (dtAtualLoop.getDay() !== 0 && dtAtualLoop.getDay() !== 6) {
+          let dataStrLoop = dtAtualLoop.toISOString().split('T')[0];
+          let ocupacaoExistente = agendamentos
+            .filter(a => a.data === dataStrLoop && a.status === "Aprovado")
+            .reduce((sum, a) => sum + a.pecas, 0);
+
+          let espacoLivre = Math.max(0, META_DIARIA - ocupacaoExistente);
+
+          if (espacoLivre > 0) {
+            let alocar = Math.min(pecasRestantes, espacoLivre);
+            let skusAlocar = Math.round((alocar / pecasTotal) * skusTotal);
+
+            novosAgendamentos.push({
+              id: Date.now() + Math.random(),
+              cliente: usuarioLogado,
+              plano: plano,
+              data: dataStrLoop,
+              pecas: alocar,
+              skus: skusAlocar,
+              status: (uObj?.perfil === "admin" || usarGarantida) ? "Aprovado" : "Em Avaliacao",
+              pecasReais: null,
+              valorReal: null
+            });
+
+            pecasRestantes -= alocar;
+          } else {
+            tentativasSubsequentes++;
+          }
         }
+
+        if (tentativasSubsequentes > 5) {
+          return alert("A quantidade solicitada excede a capacidade operacional disponível nos próximos dias. Nossa Diretoria entrará em contato em até 1 dia útil para ajustar seu atendimento personalizado.");
+        }
+
+        dtAtualLoop.setDate(dtAtualLoop.getDate() + 1);
       }
 
-      agendamentos.push({
-        id: Date.now(),
-        cliente: usuarioLogado,
-        plano: plano,
-        data: dataSel,
-        pecas: pecas,
-        skus: skus,
-        status: statusVaga,
-        pecasReais: null,
-        valorReal: null
-      });
-
+      novosAgendamentos.forEach(nag => agendamentos.push(nag));
       localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
 
-      if (statusVaga === "Em Avaliacao") {
-        alert("Sua solicitação de vaga foi enviada para a Direção para avaliação e aprovação!");
-      } else {
-        alert("Sua vaga garantida foi confirmada com sucesso!");
-      }
+      alert(usarGarantida || uObj?.perfil === "admin"
+        ? "Reserva de vaga garantida e alocada com sucesso!"
+        : "Sua solicitação de vaga foi enviada para avaliação e aprovação da Direção!"
+      );
 
       document.getElementById('pecasInput').value = '';
       renderizarCalendario();
@@ -1084,6 +1137,9 @@
       let ano = parseInt(anoStr);
       let mes = parseInt(mesStr) - 1;
 
+      let dtHoje = new Date();
+      dtHoje.setHours(0,0,0,0);
+
       let totalPecasMes = 0;
       let acumuladoPorDia = {};
       let vagasPorDia = {};
@@ -1117,6 +1173,7 @@
         let dataStr = `${anoStr}-${mesStr}-${String(dia).padStart(2, '0')}`;
         let dtCard = new Date(dataStr + 'T00:00:00');
         let ehFimDeSemana = (dtCard.getDay() === 0 || dtCard.getDay() === 6);
+        let ehPassado = dtCard < dtHoje;
         
         let pcs = acumuladoPorDia[dataStr] || 0;
         let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
@@ -1129,7 +1186,11 @@
         let statusClass = "badge-aberto";
         let cardBgClass = "available";
 
-        if (ehFimDeSemana) {
+        if (ehPassado) {
+          statusTxt = "🔒 INDISPONÍVEL";
+          statusClass = "badge-passado";
+          cardBgClass = "past";
+        } else if (ehFimDeSemana) {
           statusTxt = "🚫 FIM DE SEMANA";
           statusClass = "badge-feriado";
           cardBgClass = "holiday";
@@ -1138,7 +1199,7 @@
           statusClass = "badge-analise";
           cardBgClass = "pending";
         } else if (vagaDoCliente && usuarios[usuarioLogado]?.perfil !== 'admin') {
-          statusTxt = `✅ SUA VAGA (${vagaDoCliente.cliente})`;
+          statusTxt = `✅ SUA VAGA CONFIRMADA`;
           statusClass = "badge-aberto";
           cardBgClass = "available";
         } else if (lotado) {
@@ -1148,8 +1209,8 @@
         }
 
         let txtExibicaoDia = usuarios[usuarioLogado]?.perfil === "admin" 
-          ? (ehFimDeSemana ? 'INDISPONÍVEL' : pcs + ' / ' + META_DIARIA + ' pcs')
-          : (ehFimDeSemana ? 'INDISPONÍVEL' : pct + '% Ocupado');
+          ? (ehPassado || ehFimDeSemana ? 'INDISPONÍVEL' : pcs + ' / ' + META_DIARIA + ' pcs')
+          : (ehPassado || ehFimDeSemana ? 'INDISPONÍVEL' : pct + '% Ocupado');
 
         let card = document.createElement('div');
         card.className = `day-card ${cardBgClass}`;
@@ -1157,7 +1218,7 @@
           <strong>${String(dia).padStart(2, '0')}/${mesStr}</strong>
           <div style="font-size:0.75rem; margin-top:4px;">${txtExibicaoDia}</div>
           <div class="progress-bar">
-            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehFimDeSemana ? 0 : pct}%"></div>
+            <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehPassado || ehFimDeSemana ? 0 : pct}%"></div>
           </div>
           <span class="badge-status ${statusClass}">${statusTxt}</span>
         `;
@@ -1184,7 +1245,7 @@
           : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
 
         let pcs = p.pecas || 0;
-        let skus = p.skus || 120;
+        let skus = p.skus || Math.round(pcs / 5);
 
         let valEntrada = pcs * t.inspecao;
         let valDespacho = (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
@@ -1200,8 +1261,8 @@
           <td><strong>${valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
           <td><strong style="color:var(--orange-accent); font-size:0.95rem;">${valMedioLote.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
           <td>
-            <button class="btn-approve" onclick="aprovarVaga(${p.id})">Aprovar</button>
-            <button class="btn-edit" onclick="remarcarVaga(${p.id})">Remarcar</button>
+            <button class="btn-approve" onclick="aprovarVaga('${p.id}')">Aprovar</button>
+            <button class="btn-edit" onclick="remarcarVaga('${p.id}')">Remarcar</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1209,7 +1270,7 @@
     }
 
     function aprovarVaga(id) {
-      let idx = agendamentos.findIndex(a => a.id === id);
+      let idx = agendamentos.findIndex(a => String(a.id) === String(id));
       if (idx !== -1) {
         agendamentos[idx].status = "Aprovado";
         localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
@@ -1222,7 +1283,7 @@
 
     function remarcarVaga(id) {
       let novaData = document.getElementById(`data_ped_${id}`).value;
-      let idx = agendamentos.findIndex(a => a.id === id);
+      let idx = agendamentos.findIndex(a => String(a.id) === String(id));
       if (idx !== -1) {
         agendamentos[idx].data = novaData;
         agendamentos[idx].status = "Aprovado";
@@ -1309,7 +1370,7 @@
             : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
 
           let pcs = a.pecas || 0;
-          let skus = a.skus || 120;
+          let skus = a.skus || Math.round(pcs / 5);
           let valPrevisto = (pcs * t.inspecao) + (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
 
           let valEfetivo = (a.valorReal !== null) ? a.valorReal : valPrevisto;
