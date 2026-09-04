@@ -69,8 +69,8 @@
     .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.7; color: #334155; }
 
     .form-control {
-      width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #E2E8F0;
-      background-color: var(--input-bg); color: var(--text-dark); font-size: 0.95rem; margin-bottom: 12px; outline: none;
+      width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
+      background-color: var(--input-bg); color: var(--text-dark); font-size: 0.9rem; margin-bottom: 10px; outline: none;
     }
 
     .btn-main {
@@ -105,14 +105,6 @@
 
     .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
-    .rules-card {
-      background-color: #FFF7ED; border: 1px solid #FFEDD5; border-left: 6px solid var(--orange-accent);
-      border-radius: 12px; padding: 18px; margin-bottom: 20px;
-    }
-
-    .rules-card h4 { margin: 0 0 10px 0; color: #C2410C; }
-    .rules-list { margin: 0; padding-left: 20px; font-size: 0.85rem; color: #9A3412; line-height: 1.6; }
-
     .alert-banho {
       background-color: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid var(--blue-val);
       border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #1E3A8A; font-size: 0.88rem; line-height: 1.6;
@@ -139,9 +131,8 @@
     .day-card.holiday { border-color: var(--orange-accent); background-color: #FFF7ED; }
     .day-card.pending { border-color: var(--yellow-val); background-color: #FEF3C7; }
 
-    .progress-bar { height: 10px; background: #E2E8F0; border-radius: 5px; overflow: hidden; margin-top: 6px; }
-    .progress-fill { height: 100%; background: var(--blue-val); }
-    .progress-fill.full { background: var(--red-val); }
+    .progress-bar { height: 12px; background: #E2E8F0; border-radius: 6px; overflow: hidden; margin-top: 6px; }
+    .progress-fill { height: 100%; background: var(--blue-val); transition: width 0.3s ease; }
 
     .badge-status { display: block; padding: 6px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: bold; margin-top: 8px; }
     .badge-aberto { background-color: #D1FAE5; color: #065F46; }
@@ -149,24 +140,31 @@
     .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
     .badge-analise { background-color: #FEF3C7; color: #92400E; border: 1px solid var(--yellow-val); }
 
-    /* HIERARQUIA DE MODAIS COM Z-INDEX EXPANSÍVEL */
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
       background: rgba(11, 19, 43, 0.88); z-index: 9990; justify-content: center; align-items: center;
       overflow-y: auto; padding: 20px;
     }
     .modal-card {
-      background: #fff; padding: 32px; border-radius: 20px; max-width: 720px; width: 100%;
-      max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative;
+      background: #fff; padding: 28px; border-radius: 20px; max-width: 720px; width: 100%;
+      max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative;
     }
 
-    #modalExplicacaoServico { z-index: 10000; }
+    #modalExplicacaoServico { z-index: 10005; }
+    #modalCadastroClube { z-index: 10010; }
 
     .clickable-service { color: var(--blue-val); text-decoration: underline; cursor: pointer; font-weight: bold; }
 
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
     th, td { text-align: left; padding: 10px; border-bottom: 1px solid #E2E8F0; font-size: 0.85rem; }
     th { background-color: var(--input-bg); }
+
+    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .footer-bar {
+      background-color: var(--header-bg); color: #94A3B8; text-align: center;
+      padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
+    }
   </style>
 </head>
 <body>
@@ -185,7 +183,7 @@
 
   <div class="main-container">
 
-    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE (VISITANTES) -->
+    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE -->
     <div id="portalLanding" class="portal-landing">
       
       <div class="hero-banner">
@@ -216,7 +214,7 @@
             <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
             <li>Demais solicitações enviadas para aprovação/agendamento da Direção.</li>
             <li>Piso operacional de 250 peças por lote.</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs).</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
             <li>Gestão de estoque e insumos de embalagens no HUB S.O.S.</li>
           </ul>
           <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Silver')">CONHECER DETALHES & VALORES SILVER</button>
@@ -229,6 +227,7 @@
           <ul class="club-features">
             <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
             <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
             <li>Suporte Executivo 24h direto com a Direção (Kelvin).</li>
             <li>Menores tarifas fabris em todos os serviços técnicos.</li>
           </ul>
@@ -246,7 +245,7 @@
         <button class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
         <button id="tabPedidosBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPedidos')">📥 Pedidos de Vagas & Painel Financeiro</button>
         <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Tabela Direção</button>
-        <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE & Lotes (Diretoria)</button>
+        <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE & Lotes Mês a Mês</button>
       </div>
 
       <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
@@ -266,7 +265,7 @@
           Atente-se rigorosamente aos prazos de entrega do seu banho. Atrasos na entrega física das peças acarretam perda da vaga reservada na esteira S.O.S e reencaixe automático na próxima data disponível da fábrica, evitando paradas operacionais nos setores.
         </div>
 
-        <!-- CONVERSOR DE PESO EM PEÇAS (CLIENTE E DIREÇÃO) -->
+        <!-- CONVERSOR DE PESO EM PEÇAS -->
         <div class="panel-card tool-box">
           <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou g)</h3>
           <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
@@ -318,13 +317,13 @@
 
           <div style="background: var(--input-bg); border: 1px solid #CBD5E1; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
             <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; margin-bottom: 6px;">
-              <span>Acumulado do Mês: <strong id="mesPecasTotais" style="color: var(--blue-val);">0 pcs</strong></span>
-              <span>Capacidade Operacional Restante: <strong id="mesPecasRestantes" style="color: var(--green-val);">12.000 pcs</strong></span>
+              <span id="lblTopoMetricaLeft">Eficiência Atual da Esteira: <strong id="mesPecasTotais" style="color: var(--blue-val);">0%</strong></span>
+              <span id="lblTopoMetricaRight">Status de Agendamento: <strong id="mesPecasRestantes" style="color: var(--green-val);">Normal</strong></span>
             </div>
             <div class="progress-bar">
               <div id="barraProgressoMensal" class="progress-fill" style="width: 0%;"></div>
             </div>
-            <p style="margin: 6px 0 0 0; font-size: 0.75rem; color: var(--text-muted); text-align: right;" id="pctMensalTxt">0% da capacidade preenchida</p>
+            <p style="margin: 6px 0 0 0; font-size: 0.75rem; color: var(--text-muted); text-align: right;" id="pctMensalTxt">0% de ocupação no mês</p>
           </div>
 
           <div id="calendarGrid" class="calendar-grid"></div>
@@ -380,6 +379,9 @@
                 <th>CDE (R$)</th>
                 <th>Etiqueta (R$)</th>
                 <th>Encarte (R$)</th>
+                <th>Cravação (R$)</th>
+                <th>Colagem (R$)</th>
+                <th>Montagem (R$)</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -388,7 +390,7 @@
         </div>
       </div>
 
-      <!-- ABA DASHBOARD FINANCEIRO E ACOMPANHAMENTO DE LOTES (DIRETORIA) -->
+      <!-- ABA DASHBOARD FINANCEIRO E ACOMPANHAMENTO MÊS A MÊS (DIRETORIA) -->
       <div id="abaFinanceiro" class="tab-content">
         <div class="panel-card">
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px;">
@@ -396,22 +398,45 @@
             <button class="btn-danger" style="font-size:0.75rem; padding:8px 14px;" onclick="resetarDadosTeste()">🔄 RESETAR DADOS DE TESTE</button>
           </div>
 
-          <div style="background:#FFF7ED; padding:12px; border-radius:8px; border-left:4px solid var(--orange-accent); font-size:0.8rem; color:#9A3412; margin:15px 0;">
+          <!-- SELETOR DE MÊS DA DIRETORIA -->
+          <div style="margin:15px 0 10px 0; display:flex; align-items:center; gap:10px;">
+            <label style="font-weight:bold; font-size:0.85rem;">Selecione o Mês do Dashboard:</label>
+            <div id="monthSelectorDash" class="month-selector" style="margin:0;"></div>
+          </div>
+
+          <div style="background:#FFF7ED; padding:12px; border-radius:8px; border-left:4px solid var(--orange-accent); font-size:0.8rem; color:#9A3412; margin-bottom:15px;">
             ⚠️ <strong>Período de Testes e Ajustes:</strong> Os meses de Setembro a Dezembro/2026 estão configurados como ambiente de teste. O sistema está aprendendo o peso médio por peça para aumentar a precisão dos próximos cálculos.
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;">
+          <!-- CARDS DOS 4 CENÁRIOS DE PRÓ-LABORE DA DIRETORIA -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
+            <div id="cardCenario1" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--silver-val);">
+              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 1 (Mínimo)</span>
+              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 3.000,00</h3>
+            </div>
+            <div id="cardCenario2" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--blue-val);">
+              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 2 (Intermediário)</span>
+              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 4.000,00</h3>
+            </div>
+            <div id="cardCenario3" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--yellow-val);">
+              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 3 (Avançado)</span>
+              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 5.000,00</h3>
+            </div>
+            <div id="cardCenario4" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--green-val);">
+              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 4 (Meta Teto)</span>
+              <h3 style="margin:4px 0 0 0; color:var(--green-val);">R$ 6.000,00</h3>
+            </div>
+          </div>
+
+          <!-- DADOS GERAIS DO MÊS -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--blue-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Assertividade de Peso Médio</span>
               <h2 style="margin:5px 0 0 0; color:var(--header-bg);" id="assertividadeTxt">3,20 g / peça</h2>
             </div>
-            <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--gold-val);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Meta Cenário 3 (Oficial)</span>
-              <h2 style="margin:5px 0 0 0; color:var(--header-bg);">R$ 18.393,60</h2>
-            </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--green-val);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família</span>
-              <h2 style="margin:5px 0 0 0; color:var(--green-val);">R$ 6.000,00</h2>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família Conquistado</span>
+              <h2 style="margin:5px 0 0 0; color:var(--green-val);" id="proLaboreTxt">R$ 0,00</h2>
             </div>
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--orange-accent);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Faturamento Real Acumulado</span>
@@ -419,7 +444,25 @@
             </div>
           </div>
 
-          <h4>Conferência Lote a Lote (Previsto vs. Realizado):</h4>
+          <!-- TERMÔMETRO PROGRESSIVO DOS CENÁRIOS (3K -> 4K -> 5K -> 6K) -->
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px; margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold; margin-bottom:8px;">
+              <span>Termômetro de Evolução do Pró-Labore:</span>
+              <span id="txtStatusCenarioAtingido" style="color:var(--orange-accent);">Aguardando faturamento...</span>
+            </div>
+            <div class="progress-bar" style="height:14px;">
+              <div id="barraProLabore" class="progress-fill" style="background:var(--green-val); width:0%;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-top:6px; font-weight:bold;">
+              <span>R$ 0,00</span>
+              <span>Cenário 1 (R$ 3k)</span>
+              <span>Cenário 2 (R$ 4k)</span>
+              <span>Cenário 3 (R$ 5k)</span>
+              <span>Cenário 4 (R$ 6k)</span>
+            </div>
+          </div>
+
+          <h4>Conferência Lote a Lote do Mês Selecionado (Previsto vs. Realizado):</h4>
           <table>
             <thead>
               <tr>
@@ -441,7 +484,12 @@
 
   </div>
 
-  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO (SOBREPOSIÇÃO FRENTE) -->
+  <!-- RODAPÉ OFICIAL -->
+  <div class="footer-bar">
+    Produzido por Kelvin Lima — CEO S.O.S Soluções
+  </div>
+
+  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO -->
   <div id="modalExplicacaoServico" class="modal-overlay">
     <div class="modal-card">
       <h3 id="explicacaoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Serviço</h3>
@@ -450,13 +498,102 @@
     </div>
   </div>
 
-  <!-- MODAL DE DETALHES COMPLETO DO CLUBE (PÁGINA INICIAL) -->
+  <!-- MODAL DE DETALHES DO CLUBE -->
   <div id="modalDetalhesClube" class="modal-overlay">
     <div class="modal-card">
       <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
       <div id="detalhesClubeConteudo"></div>
       <button class="btn-main" style="background-color:var(--orange-accent); margin-top:15px;" onclick="fecharModalDetalhes(); abrirModalCadastro(planoModalAtual);">QUERO SER DESTE CLUBE</button>
       <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalDetalhes()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL DE CADASTRO COM TODOS OS 14 CAMPOS PARA PLANILHA GOOGLE DRIVE -->
+  <div id="modalCadastroClube" class="modal-overlay">
+    <div class="modal-card" style="max-width:780px;">
+      <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
+        Preencha todos os dados abaixo para registrar sua vaga e disparar para nossa planilha oficial de Onboarding.
+      </p>
+
+      <form onsubmit="event.preventDefault(); enviarCadastroParaPlanilha();">
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Tipo de Cliente:</label>
+            <select id="cadTipoCliente" class="form-control">
+              <option value="Novo Cliente">Novo Cliente</option>
+              <option value="Renovação">Renovação de Cota</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Nome do Cliente (Renovação):</label>
+            <input type="text" id="cadNomeRenovacao" class="form-control" placeholder="Se for renovação, informe o nome">
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Categoria Pretendida:</label>
+            <select id="cadCategoriaPretendida" class="form-control">
+              <option value="VIP GOLD">VIP GOLD (R$ 3.000 / ano)</option>
+              <option value="VIP SILVER">VIP SILVER (R$ 1.000 / ano)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Nome e Cargo do Responsável:</label>
+            <input type="text" id="cadNomeCargo" class="form-control" required placeholder="Ex: Maria Silva (Diretora)">
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Nome da Marca:</label>
+            <input type="text" id="cadNomeMarca" class="form-control" required placeholder="Ex: Niara Joias">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Instagram da Marca:</label>
+            <input type="text" id="cadInstagram" class="form-control" placeholder="@suamarca">
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Cidade / Estado:</label>
+            <input type="text" id="cadCidadeEstado" class="form-control" required placeholder="Ex: Limeira - SP">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Tempo de Mercado:</label>
+            <input type="text" id="cadTempoMercado" class="form-control" placeholder="Ex: 3 anos">
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Modelo de Negócio:</label>
+            <select id="cadModeloNegocio" class="form-control">
+              <option value="Atacado / B2B">Atacado / B2B</option>
+              <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+              <option value="Híbrido (Atacado e Varejo)">Híbrido (Atacado e Varejo)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:bold;">Volume Média Mensal (Peças):</label>
+            <input type="number" id="cadVolumePecas" class="form-control" required placeholder="Ex: 1200">
+          </div>
+        </div>
+
+        <label style="font-size:0.75rem; font-weight:bold;">Gargalos Operacionais Atuais:</label>
+        <input type="text" id="cadGargalos" class="form-control" placeholder="Ex: Atrasos no banho, falhas de inspeção, fotógrafo lento...">
+
+        <label style="font-size:0.75rem; font-weight:bold;">Soluções Desejadas no HUB S.O.S:</label>
+        <input type="text" id="cadSolucoesDesejadas" class="form-control" placeholder="Ex: Foto catálogo com IA, etiquetagem e embalagem completa">
+
+        <label style="font-size:0.75rem; font-weight:bold;">WhatsApp para Contato Direto:</label>
+        <input type="text" id="cadWhatsApp" class="form-control" required placeholder="(19) 99999-9999">
+
+        <button type="submit" id="btnSubmitCadPlanilha" class="btn-main" style="background-color:var(--orange-accent); margin-top:10px;">REGISTRAR E REGISTRAR NA PLANILHA</button>
+        <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">CANCELAR</button>
+      </form>
     </div>
   </div>
 
@@ -483,7 +620,6 @@
     const CAPACIDADE_MENSAL = 12000;
     let mediaPesoPeca = parseFloat(localStorage.getItem('sos_media_peso')) || 3.2;
 
-    // DICIONÁRIO COMPLETO E REVISADO DE EXPLICAÇÃO DOS SERVIÇOS TÉCNICOS
     const explicacoesServicos = {
       "inspecao": {
         titulo: "Inspeção Operacional de Qualidade (Filtro Obrigatório + Separação + CDI)",
@@ -526,16 +662,16 @@
       }
     };
 
-    // BASE DE DADOS DOS USUÁRIOS
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, colagem: 1.00, montagem: 1.20 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Silver", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, colagem: 1.20, montagem: 1.50 } }
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Silver", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 } }
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
     let usuarioLogado = null;
     let mesSelecionado = "2026-09";
+    let mesSelecionadoDash = "2026-09";
     let planoModalAtual = "";
 
     function abrirModalExplicacao(chave) {
@@ -548,6 +684,56 @@
 
     function fecharModalExplicacao() {
       document.getElementById('modalExplicacaoServico').style.display = 'none';
+    }
+
+    function abrirModalCadastro(plano) {
+      planoModalAtual = plano;
+      document.getElementById('cadCategoriaPretendida').value = (plano === 'Gold') ? 'VIP GOLD' : 'VIP SILVER';
+      document.getElementById('modalCadastroClube').style.display = 'flex';
+    }
+
+    function fecharModalCadastro() {
+      document.getElementById('modalCadastroClube').style.display = 'none';
+    }
+
+    function enviarCadastroParaPlanilha() {
+      const btn = document.getElementById('btnSubmitCadPlanilha');
+      btn.innerText = "ENVIANDO PARA A PLANILHA...";
+      btn.disabled = true;
+
+      const dadosCadastro = {
+        tipoCliente: document.getElementById('cadTipoCliente').value,
+        nomeClienteRenovacao: document.getElementById('cadNomeRenovacao').value,
+        dataHora: new Date().toLocaleString('pt-BR'),
+        categoriaPretendida: document.getElementById('cadCategoriaPretendida').value,
+        nomeCargo: document.getElementById('cadNomeCargo').value,
+        nomeMarca: document.getElementById('cadNomeMarca').value,
+        instagram: document.getElementById('cadInstagram').value,
+        cidadeEstado: document.getElementById('cadCidadeEstado').value,
+        tempoMercado: document.getElementById('cadTempoMercado').value,
+        modeloNegocio: document.getElementById('cadModeloNegocio').value,
+        volumePecas: document.getElementById('cadVolumePecas').value,
+        gargalos: document.getElementById('cadGargalos').value,
+        solucoesDesejadas: document.getElementById('cadSolucoesDesejadas').value,
+        whatsapp: document.getElementById('cadWhatsApp').value
+      };
+
+      fetch(URL_SCRIPT_DRIVE, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosCadastro)
+      }).then(() => {
+        alert(`Obrigado, ${dadosCadastro.nomeMarca}! Seus dados foram registrados na planilha oficial do HUB S.O.S. Kelvin entrará em contato em breve.`);
+        btn.innerText = "REGISTRAR E REGISTRAR NA PLANILHA";
+        btn.disabled = false;
+        fecharModalCadastro();
+      }).catch(err => {
+        alert("Ocorreu um erro no envio para a planilha, mas guardamos seus dados localmente.");
+        btn.innerText = "REGISTRAR E REGISTRAR NA PLANILHA";
+        btn.disabled = false;
+        fecharModalCadastro();
+      });
     }
 
     function abrirModalLogin() { 
@@ -578,7 +764,7 @@
           <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
             <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
             <li>Piso operacional de 250 peças por lote.</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs).</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
           </ul>
 
           <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas VIP Silver (Clique no serviço):</h4>
@@ -590,9 +776,9 @@
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,69</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,30</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 1,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 1,20</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 1,50</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 0,80</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 0,80</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 0,55</td></tr>
             </tbody>
           </table>
         `;
@@ -605,13 +791,10 @@
           <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
             <strong>Como Funciona a Anuidade:</strong> Cota VIP com máxima prioridade de esteira (Fura Fila).
           </p>
-          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>📦 Gestão de Embalagens e Insumos:</strong> Almoxarifado dedicado no HUB S.O.S.
-          </p>
           <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li><strong>Até 4 entradas diretas no mês garantidas</strong> sem agendamento prévio.</li>
-            <li><strong>ISENÇÃO TOTAL de piso mínimo</strong> de peças por lote.</li>
-            <li>Atendimento Executivo 24h direto com a Direção (Kelvin).</li>
+            <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
+            <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
+            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
           </ul>
 
           <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas VIP Gold (Clique no serviço):</h4>
@@ -623,9 +806,9 @@
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,49</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,27</td></tr>
               <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 1,50</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 1,00</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 1,20</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 0,70</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 0,70</td></tr>
+              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 0,50</td></tr>
             </tbody>
           </table>
         `;
@@ -675,6 +858,7 @@
           document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
           renderizarPedidosVagas();
           renderizarLogins();
+          gerenciarAbasMesesDash();
           renderizarFinanceiro();
         } else {
           let plano = usuarios[user].plano || "Silver";
@@ -710,8 +894,8 @@
 
       const plano = u.plano || "Silver";
       const tDefault = (plano === "Gold") 
-        ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 1.50, colagem: 1.00, montagem: 1.20 }
-        : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 1.80, colagem: 1.20, montagem: 1.50 };
+        ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 }
+        : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 };
 
       const t = u.tarifas || tDefault;
       document.getElementById('tituloAbaTarifas').innerText = `🏷️ Suas Tarifas Contratadas — Cota VIP ${plano.toUpperCase()}`;
@@ -758,18 +942,32 @@
       const skus = parseFloat(document.getElementById('skusInput').value) || 120;
       const dataSel = document.getElementById('dataInput').value;
       const usarGarantida = document.getElementById('usarCotaGarantidaCheck').checked;
-      let plano = usuarios[usuarioLogado]?.plano || "Silver";
+      let uObj = usuarios[usuarioLogado];
+      let plano = uObj?.plano || "Silver";
 
       if (!pecas || !dataSel) return alert("Preencha a data e a quantidade de peças.");
 
-      let dt = new Date(dataSel + 'T00:00:00');
-      if (dt.getDay() === 0 || dt.getDay() === 6) {
+      let dtAgendamento = new Date(dataSel + 'T00:00:00');
+      let dtHoje = new Date();
+      dtHoje.setHours(0,0,0,0);
+
+      if (dtAgendamento.getDay() === 0 || dtAgendamento.getDay() === 6) {
         return alert("Sábados e Domingos são dias indisponíveis no HUB S.O.S.");
       }
 
+      let diffDiasUteis = 0;
+      let tempDt = new Date(dtHoje);
+      while (tempDt < dtAgendamento) {
+        tempDt.setDate(tempDt.getDate() + 1);
+        if (tempDt.getDay() !== 0 && tempDt.getDay() !== 6) diffDiasUteis++;
+      }
+
       let statusVaga = "Aprovado";
-      if (usuarios[usuarioLogado].perfil !== "admin" && plano === "Silver" && !usarGarantida) {
-        statusVaga = "Em Avaliacao";
+
+      if (uObj?.perfil !== "admin") {
+        if (!usarGarantida || diffDiasUteis < 3) {
+          statusVaga = "Em Avaliacao";
+        }
       }
 
       agendamentos.push({
@@ -787,14 +985,14 @@
       localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
 
       if (statusVaga === "Em Avaliacao") {
-        alert("Sua solicitação de vaga foi enviada para a Direção! Acompanhe o status pelo calendário.");
+        alert("Sua solicitação de vaga foi enviada para a Direção para avaliação e aprovação!");
       } else {
         alert("Sua vaga garantida foi confirmada com sucesso!");
       }
 
       document.getElementById('pecasInput').value = '';
       renderizarCalendario();
-      if (usuarios[usuarioLogado].perfil === "admin") {
+      if (uObj?.perfil === "admin") {
         renderizarPedidosVagas();
         renderizarFinanceiro();
       } else {
@@ -824,6 +1022,28 @@
       }
     }
 
+    function gerenciarAbasMesesDash() {
+      const container = document.getElementById('monthSelectorDash');
+      container.innerHTML = '';
+      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+      for (let ano = 2026; ano <= 2028; ano++) {
+        let mesInicio = (ano === 2026) ? 8 : 0;
+        for (let m = mesInicio; m < 12; m++) {
+          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
+          let btn = document.createElement('button');
+          btn.className = `month-btn ${mesVal === mesSelecionadoDash ? 'active' : ''}`;
+          btn.innerText = `${mesesNomes[m]}/${ano}`;
+          btn.onclick = () => {
+            mesSelecionadoDash = mesVal;
+            gerenciarAbasMesesDash();
+            renderizarFinanceiro();
+          };
+          container.appendChild(btn);
+        }
+      }
+    }
+
     function renderizarCalendario() {
       const grid = document.getElementById('calendarGrid');
       grid.innerHTML = '';
@@ -845,12 +1065,19 @@
         }
       });
 
-      document.getElementById('mesPecasTotais').innerText = `${totalPecasMes.toLocaleString('pt-BR')} pcs`;
-      let restantes = Math.max(0, CAPACIDADE_MENSAL - totalPecasMes);
-      document.getElementById('mesPecasRestantes').innerText = `${restantes.toLocaleString('pt-BR')} pcs`;
       let pctMensal = Math.min(100, Math.round((totalPecasMes / CAPACIDADE_MENSAL) * 100));
+
+      if (usuarios[usuarioLogado]?.perfil === "admin") {
+        document.getElementById('lblTopoMetricaLeft').innerHTML = `Acumulado do Mês: <strong style="color:var(--blue-val);">${totalPecasMes.toLocaleString('pt-BR')} pcs</strong>`;
+        let restantes = Math.max(0, CAPACIDADE_MENSAL - totalPecasMes);
+        document.getElementById('lblTopoMetricaRight').innerHTML = `Capacidade Restante: <strong style="color:var(--green-val);">${restantes.toLocaleString('pt-BR')} pcs</strong>`;
+      } else {
+        document.getElementById('lblTopoMetricaLeft').innerHTML = `Eficiência da Esteira: <strong style="color:var(--blue-val);">${pctMensal}% Ocupada</strong>`;
+        document.getElementById('lblTopoMetricaRight').innerHTML = `Status de Agendamento: <strong style="color:var(--green-val);">Esteira Ativa</strong>`;
+      }
+
       document.getElementById('barraProgressoMensal').style.width = `${pctMensal}%`;
-      document.getElementById('pctMensalTxt').innerText = `${pctMensal}% da capacidade preenchida`;
+      document.getElementById('pctMensalTxt').innerText = `${pctMensal}% de ocupação da capacidade no mês`;
 
       let diasNoMes = new Date(ano, mes + 1, 0).getDate();
 
@@ -888,11 +1115,15 @@
           cardBgClass = "full";
         }
 
+        let txtExibicaoDia = usuarios[usuarioLogado]?.perfil === "admin" 
+          ? (ehFimDeSemana ? 'INDISPONÍVEL' : pcs + ' / ' + META_DIARIA + ' pcs')
+          : (ehFimDeSemana ? 'INDISPONÍVEL' : pct + '% Ocupado');
+
         let card = document.createElement('div');
         card.className = `day-card ${cardBgClass}`;
         card.innerHTML = `
           <strong>${String(dia).padStart(2, '0')}/${mesStr}</strong>
-          <div style="font-size:0.75rem; margin-top:4px;">${ehFimDeSemana ? 'INDISPONÍVEL' : pcs + ' / ' + META_DIARIA + ' pcs'}</div>
+          <div style="font-size:0.75rem; margin-top:4px;">${txtExibicaoDia}</div>
           <div class="progress-bar">
             <div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehFimDeSemana ? 0 : pct}%"></div>
           </div>
@@ -975,11 +1206,11 @@
       const tbody = document.getElementById('clientsTableBody');
       tbody.innerHTML = '';
       for (let u in usuarios) {
-        if (u === "Diretoria") continue; // DIRETOIAS NEUTRA
+        if (u === "Diretoria") continue;
 
         let t = usuarios[u].tarifas || ((usuarios[u].plano === "Gold") 
-          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
-          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
+          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 }
+          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 });
 
         let tr = document.createElement('tr');
         tr.innerHTML = `
@@ -991,11 +1222,14 @@
               <option value="Gold" ${usuarios[u].plano === 'Gold' ? 'selected' : ''}>Gold</option>
             </select>
           </td>
-          <td><input type="number" step="0.01" value="${t.inspecao}" id="tar_insp_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
-          <td><input type="number" step="0.01" value="${t.foto}" id="tar_foto_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
-          <td><input type="number" step="0.01" value="${t.cde}" id="tar_cde_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
-          <td><input type="number" step="0.01" value="${t.etiqueta}" id="tar_etiq_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
-          <td><input type="number" step="0.01" value="${t.encarte}" id="tar_enc_${u}" class="form-control" style="margin:0; padding:4px; width:70px;"></td>
+          <td><input type="number" step="0.01" value="${t.inspecao}" id="tar_insp_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.foto}" id="tar_foto_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.cde}" id="tar_cde_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.etiqueta}" id="tar_etiq_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.encarte}" id="tar_enc_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.cravacao}" id="tar_crav_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.colagem}" id="tar_col_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td><input type="number" step="0.01" value="${t.montagem}" id="tar_mont_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button></td>
         `;
         tbody.appendChild(tr);
@@ -1014,9 +1248,9 @@
         cde: parseFloat(document.getElementById(`tar_cde_${u}`).value),
         etiqueta: parseFloat(document.getElementById(`tar_etiq_${u}`).value),
         encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value),
-        cravacao: (pl === "Gold") ? 1.50 : 1.80,
-        colagem: (pl === "Gold") ? 1.00 : 1.20,
-        montagem: (pl === "Gold") ? 1.20 : 1.50
+        cravacao: parseFloat(document.getElementById(`tar_crav_${u}`).value),
+        colagem: parseFloat(document.getElementById(`tar_col_${u}`).value),
+        montagem: parseFloat(document.getElementById(`tar_mont_${u}`).value)
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
@@ -1024,45 +1258,83 @@
       renderizarLogins();
     }
 
+    // DASHBOARD DRE MÊS A MÊS COM TERMÔMETRO DE 4 CENÁRIOS
     function renderizarFinanceiro() {
       const tbody = document.getElementById('lotesFechamentoTableBody');
       tbody.innerHTML = '';
 
-      let aprovados = agendamentos.filter(a => a.status === "Aprovado");
+      let aprovadosDoMes = agendamentos.filter(a => a.status === "Aprovado" && a.data.startsWith(mesSelecionadoDash));
       let fatTotalReal = 0;
 
-      if (aprovados.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Nenhum lote aprovado para esteira no momento.</td></tr>';
-        return;
+      if (aprovadosDoMes.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Nenhum lote aprovado para o mês de ${mesSelecionadoDash}.</td></tr>`;
+      } else {
+        aprovadosDoMes.forEach((a) => {
+          let originalIndex = agendamentos.findIndex(x => x.id === a.id);
+          let uObj = usuarios[a.cliente];
+          let planoCliente = uObj?.plano || "Silver";
+          let t = uObj?.tarifas || ((planoCliente === "Gold") 
+            ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
+            : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
+
+          let pcs = a.pecas || 0;
+          let skus = a.skus || 120;
+          let valPrevisto = (pcs * t.inspecao) + (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
+
+          let valEfetivo = (a.valorReal !== null) ? a.valorReal : valPrevisto;
+          fatTotalReal += valEfetivo;
+
+          let tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>${a.cliente}</strong> [${planoCliente}]</td>
+            <td>${a.data}</td>
+            <td>${pcs} pcs</td>
+            <td><strong>${valPrevisto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
+            <td><input type="number" value="${a.pecasReais || pcs}" id="pcs_real_${originalIndex}" class="form-control" style="margin:0; padding:4px; width:80px;"></td>
+            <td><input type="number" step="0.01" value="${valEfetivo.toFixed(2)}" id="val_real_${originalIndex}" class="form-control" style="margin:0; padding:4px; width:100px;"></td>
+            <td><button class="btn-approve" onclick="salvarFechamentoLote(${originalIndex})">Salvar Final</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
       }
 
-      aprovados.forEach((a, index) => {
-        let uObj = usuarios[a.cliente];
-        let planoCliente = uObj?.plano || "Silver";
-        let t = uObj?.tarifas || ((planoCliente === "Gold") 
-          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
-          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
-
-        let pcs = a.pecas || 0;
-        let skus = a.skus || 120;
-        let valPrevisto = (pcs * t.inspecao) + (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
-
-        if (a.valorReal) fatTotalReal += a.valorReal;
-
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${a.cliente}</strong> [${planoCliente}]</td>
-          <td>${a.data}</td>
-          <td>${pcs} pcs</td>
-          <td><strong>${valPrevisto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
-          <td><input type="number" value="${a.pecasReais || pcs}" id="pcs_real_${index}" class="form-control" style="margin:0; padding:4px; width:80px;"></td>
-          <td><input type="number" step="0.01" value="${a.valorReal || valPrevisto.toFixed(2)}" id="val_real_${index}" class="form-control" style="margin:0; padding:4px; width:100px;"></td>
-          <td><button class="btn-approve" onclick="salvarFechamentoLote(${index})">Salvar Final</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-
       document.getElementById('fatRealTxt').innerText = fatTotalReal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+      // CÁLCULO DOS 4 CENÁRIOS DE PRÓ-LABORE (3K, 4K, 5K, 6K)
+      let proLaboreAtingido = 0;
+      let cenarioTxt = "Aguardando faturamento...";
+      let pctBarra = 0;
+
+      const meta3k = 9196.80;   // Faturamento para Pró-Labore de R$ 3.000,00
+      const meta4k = 12262.40;  // Faturamento para Pró-Labore de R$ 4.000,00
+      const meta5k = 15328.00;  // Faturamento para Pró-Labore de R$ 5.000,00
+      const meta6k = 18393.60;  // Faturamento para Pró-Labore de R$ 6.000,00
+
+      if (fatTotalReal >= meta6k) {
+        proLaboreAtingido = 6000;
+        cenarioTxt = "🎉 CENÁRIO 4 ATINGIDO (R$ 6.000,00 Pró-Labore Teto)";
+        pctBarra = 100;
+      } else if (fatTotalReal >= meta5k) {
+        proLaboreAtingido = 5000 + ((fatTotalReal - meta5k) / (meta6k - meta5k)) * 1000;
+        cenarioTxt = "🔥 CENÁRIO 3 ATINGIDO (R$ 5.000,00 Pró-Labore)";
+        pctBarra = 75 + ((fatTotalReal - meta5k) / (meta6k - meta5k)) * 25;
+      } else if (fatTotalReal >= meta4k) {
+        proLaboreAtingido = 4000 + ((fatTotalReal - meta4k) / (meta5k - meta4k)) * 1000;
+        cenarioTxt = "⚡ CENÁRIO 2 ATINGIDO (R$ 4.000,00 Pró-Labore)";
+        pctBarra = 50 + ((fatTotalReal - meta4k) / (meta5k - meta4k)) * 25;
+      } else if (fatTotalReal >= meta3k) {
+        proLaboreAtingido = 3000 + ((fatTotalReal - meta3k) / (meta4k - meta3k)) * 1000;
+        cenarioTxt = "✅ CENÁRIO 1 ATINGIDO (R$ 3.000,00 Pró-Labore)";
+        pctBarra = 25 + ((fatTotalReal - meta3k) / (meta4k - meta3k)) * 25;
+      } else {
+        proLaboreAtingido = (fatTotalReal / meta3k) * 3000;
+        pctBarra = (fatTotalReal / meta3k) * 25;
+        cenarioTxt = `Evoluindo rumo ao Cenário 1 (${Math.round((fatTotalReal/meta3k)*100)}%)`;
+      }
+
+      document.getElementById('proLaboreTxt').innerText = proLaboreAtingido.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+      document.getElementById('barraProLabore').style.width = `${Math.min(100, Math.max(0, pctBarra))}%`;
+      document.getElementById('txtStatusCenarioAtingido').innerText = cenarioTxt;
     }
 
     function salvarFechamentoLote(i) {
