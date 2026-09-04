@@ -161,6 +161,15 @@
 
     .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
+    .checkbox-group {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--input-bg);
+      padding: 12px; border-radius: 10px; border: 1px solid #E2E8F0; margin-bottom: 12px;
+    }
+
+    .checkbox-item {
+      display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #334155; font-weight: 600; cursor: pointer;
+    }
+
     .footer-bar {
       background-color: var(--header-bg); color: #94A3B8; text-align: center;
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
@@ -508,12 +517,12 @@
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO COM TODOS OS 14 CAMPOS PARA PLANILHA GOOGLE DRIVE -->
+  <!-- MODAL DE CADASTRO COM CHECKBOXES PARA SELEÇÃO MÚLTIPLA -->
   <div id="modalCadastroClube" class="modal-overlay">
     <div class="modal-card" style="max-width:780px;">
       <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
       <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
-        Preencha todos os dados abaixo para registrar sua vaga e disparar para nossa planilha oficial de Onboarding.
+        Preencha os dados e marque os itens correspondentes para registrar sua vaga e disparar para nossa planilha oficial de Onboarding.
       </p>
 
       <form onsubmit="event.preventDefault(); enviarCadastroParaPlanilha();">
@@ -582,16 +591,32 @@
           </div>
         </div>
 
-        <label style="font-size:0.75rem; font-weight:bold;">Gargalos Operacionais Atuais:</label>
-        <input type="text" id="cadGargalos" class="form-control" placeholder="Ex: Atrasos no banho, falhas de inspeção, fotógrafo lento...">
+        <!-- SELEÇÃO MÚLTIPLA: GARGALOS OPERACIONAIS -->
+        <label style="font-size:0.75rem; font-weight:bold; display:block; margin-bottom:4px;">Gargalos Operacionais Atuais (Marque todos que se aplicam):</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Atraso no Banho Galvânico"> Atraso no Banho Galvânico</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falha na Inspeção / Peças com Defeito"> Falha na Inspeção / Peças com Defeito</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Demora na Fotografia de Catálogo"> Demora na Fotografia de Catálogo</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Dificuldade no Cadastramento (CDE)"> Dificuldade no Cadastramento (CDE)</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falta de Padrão em Encartes / Etiquetas"> Falta de Padrão em Encartes / Etiquetas</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falta de Mão de Obra Técnica"> Falta de Mão de Obra Técnica</label>
+        </div>
 
-        <label style="font-size:0.75rem; font-weight:bold;">Soluções Desejadas no HUB S.O.S:</label>
-        <input type="text" id="cadSolucoesDesejadas" class="form-control" placeholder="Ex: Foto catálogo com IA, etiquetagem e embalagem completa">
+        <!-- SELEÇÃO MÚLTIPLA: SOLUÇÕES DESEJADAS -->
+        <label style="font-size:0.75rem; font-weight:bold; display:block; margin-bottom:4px;">Soluções Desejadas no HUB S.O.S (Marque todas que se aplicam):</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Fotografia Profissional com IA"> Fotografia Profissional com IA</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Inspeção de Qualidade e CDI/CDE"> Inspeção de Qualidade e CDI/CDE</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Etiquetagem e Encartelamento"> Etiquetagem e Encartelamento</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Gestão/Estoque de Insumos no HUB"> Gestão/Estoque de Insumos no HUB</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Serviços Técnicos (Cravação, Colagem, Montagem)"> Serviços Técnicos (Cravação/Colagem)</label>
+          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Prioridade de Esteira (Fura Fila)"> Prioridade de Esteira (Fura Fila)</label>
+        </div>
 
         <label style="font-size:0.75rem; font-weight:bold;">WhatsApp para Contato Direto:</label>
         <input type="text" id="cadWhatsApp" class="form-control" required placeholder="(19) 99999-9999">
 
-        <button type="submit" id="btnSubmitCadPlanilha" class="btn-main" style="background-color:var(--orange-accent); margin-top:10px;">REGISTRAR E REGISTRAR NA PLANILHA</button>
+        <button type="submit" id="btnSubmitCadPlanilha" class="btn-main" style="background-color:var(--orange-accent); margin-top:10px;">REGISTRAR E ENVIAR PARA PLANILHA</button>
         <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">CANCELAR</button>
       </form>
     </div>
@@ -696,10 +721,17 @@
       document.getElementById('modalCadastroClube').style.display = 'none';
     }
 
+    // CAPTURA AS OPÇÕES MARCADAS NOS CHECKBOXES E ENVIA PARA A PLANILHA
     function enviarCadastroParaPlanilha() {
       const btn = document.getElementById('btnSubmitCadPlanilha');
       btn.innerText = "ENVIANDO PARA A PLANILHA...";
       btn.disabled = true;
+
+      let gargalosSelecionados = Array.from(document.querySelectorAll('input[name="chkGargalos"]:checked'))
+        .map(el => el.value).join(', ');
+
+      let solucoesSelecionadas = Array.from(document.querySelectorAll('input[name="chkSolucoes"]:checked'))
+        .map(el => el.value).join(', ');
 
       const dadosCadastro = {
         tipoCliente: document.getElementById('cadTipoCliente').value,
@@ -713,8 +745,8 @@
         tempoMercado: document.getElementById('cadTempoMercado').value,
         modeloNegocio: document.getElementById('cadModeloNegocio').value,
         volumePecas: document.getElementById('cadVolumePecas').value,
-        gargalos: document.getElementById('cadGargalos').value,
-        solucoesDesejadas: document.getElementById('cadSolucoesDesejadas').value,
+        gargalos: gargalosSelecionados || "Nenhum selecionado",
+        solucoesDesejadas: solucoesSelecionadas || "Nenhuma selecionada",
         whatsapp: document.getElementById('cadWhatsApp').value
       };
 
@@ -725,12 +757,12 @@
         body: JSON.stringify(dadosCadastro)
       }).then(() => {
         alert(`Obrigado, ${dadosCadastro.nomeMarca}! Seus dados foram registrados na planilha oficial do HUB S.O.S. Kelvin entrará em contato em breve.`);
-        btn.innerText = "REGISTRAR E REGISTRAR NA PLANILHA";
+        btn.innerText = "REGISTRAR E ENVIAR PARA PLANILHA";
         btn.disabled = false;
         fecharModalCadastro();
       }).catch(err => {
         alert("Ocorreu um erro no envio para a planilha, mas guardamos seus dados localmente.");
-        btn.innerText = "REGISTRAR E REGISTRAR NA PLANILHA";
+        btn.innerText = "REGISTRAR E ENVIAR PARA PLANILHA";
         btn.disabled = false;
         fecharModalCadastro();
       });
@@ -1258,7 +1290,6 @@
       renderizarLogins();
     }
 
-    // DASHBOARD DRE MÊS A MÊS COM TERMÔMETRO DE 4 CENÁRIOS
     function renderizarFinanceiro() {
       const tbody = document.getElementById('lotesFechamentoTableBody');
       tbody.innerHTML = '';
@@ -1300,15 +1331,14 @@
 
       document.getElementById('fatRealTxt').innerText = fatTotalReal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 
-      // CÁLCULO DOS 4 CENÁRIOS DE PRÓ-LABORE (3K, 4K, 5K, 6K)
       let proLaboreAtingido = 0;
       let cenarioTxt = "Aguardando faturamento...";
       let pctBarra = 0;
 
-      const meta3k = 9196.80;   // Faturamento para Pró-Labore de R$ 3.000,00
-      const meta4k = 12262.40;  // Faturamento para Pró-Labore de R$ 4.000,00
-      const meta5k = 15328.00;  // Faturamento para Pró-Labore de R$ 5.000,00
-      const meta6k = 18393.60;  // Faturamento para Pró-Labore de R$ 6.000,00
+      const meta3k = 9196.80;
+      const meta4k = 12262.40;
+      const meta5k = 15328.00;
+      const meta6k = 18393.60;
 
       if (fatTotalReal >= meta6k) {
         proLaboreAtingido = 6000;
