@@ -18,6 +18,7 @@
       --blue-val: #3B82F6;
       --gold-val: #D97706;
       --silver-val: #64748B;
+      --black-val: #1E1B18;
       --yellow-val: #F59E0B;
     }
 
@@ -53,20 +54,30 @@
     .hero-banner h2 { margin: 0 0 12px 0; font-size: 2rem; color: #FFF; font-weight: 900; }
     .hero-banner p { margin: 0; font-size: 1rem; line-height: 1.7; color: #CBD5E1; }
 
-    .club-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+    .club-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
 
     .club-card {
-      background: var(--card-bg); border-radius: 20px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      background: var(--card-bg); border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
       border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease;
     }
 
     .club-card:hover { transform: translateY(-4px); }
     .club-card.gold { border-top-color: var(--gold-val); }
+    .club-card.black { 
+      border-top-color: #000; 
+      background: linear-gradient(145deg, #1A1A24, #0B132B); 
+      color: #FFF; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
 
-    .club-card h2 { margin: 0 0 8px 0; font-size: 1.5rem; color: var(--header-bg); }
-    .club-subtitle { font-size: 0.9rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 16px; text-transform: uppercase; }
+    .club-card h2 { margin: 0 0 8px 0; font-size: 1.4rem; color: var(--header-bg); }
+    .club-card.black h2 { color: #F59E0B; }
 
-    .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.7; color: #334155; }
+    .club-subtitle { font-size: 0.85rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 14px; text-transform: uppercase; }
+    .club-card.black .club-subtitle { color: #E2E8F0; }
+
+    .club-features { margin: 0 0 20px 0; padding-left: 18px; font-size: 0.85rem; line-height: 1.6; color: #334155; }
+    .club-card.black .club-features { color: #CBD5E1; }
 
     .form-control {
       width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
@@ -80,6 +91,7 @@
 
     .btn-gold { background-color: var(--gold-val); }
     .btn-silver { background-color: var(--silver-val); }
+    .btn-black { background: linear-gradient(90deg, #F59E0B, #D97706); color: #000; }
 
     .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
@@ -108,6 +120,11 @@
     .alert-banho {
       background-color: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid var(--blue-val);
       border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #1E3A8A; font-size: 0.88rem; line-height: 1.6;
+    }
+
+    .alert-24h {
+      background-color: #FEF3C7; border: 1px solid #FDE68A; border-left: 6px solid var(--yellow-val);
+      border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #92400E; font-size: 0.88rem; line-height: 1.6;
     }
 
     .tool-box {
@@ -206,44 +223,58 @@
 
       <!-- PRAZOS OPERACIONAIS EM DESTAQUE -->
       <div class="panel-card" style="border-left: 6px solid var(--blue-val);">
-        <h3>⏱️ Prazos Operacionais Padrão por Lote</h3>
+        <h3>⏱️ Prazos Operacionais Padrão por Lote (Até 1.500 pcs)</h3>
         <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-          <li><strong>Lotes de até 600 peças:</strong> Entrega em <strong>7 dias úteis</strong>.</li>
-          <li><strong>Lotes de 601 a 1.000 peças:</strong> Entrega em <strong>10 dias úteis</strong>.</li>
-          <li><strong>Lotes acima de 1.001 peças:</strong> Entrega em <strong>13 a 15 dias úteis</strong>.</li>
+          <li><strong>Lotes de até 500 peças:</strong> Entrega em <strong>7 dias úteis</strong> (trava 2 dias do calendário no Second Flow).</li>
+          <li><strong>Lotes de 501 a 1.000 peças:</strong> Entrega em <strong>12 dias úteis</strong> (trava 4 dias do calendário no Second Flow).</li>
+          <li><strong>Lotes de 1.001 a 1.500 peças:</strong> Entrega em <strong>15 dias úteis</strong> (trava 6 dias do calendário no Second Flow).</li>
+          <li><strong>Lote Mínimo Operacional:</strong> 100 peças ou ~300g por lote.</li>
         </ul>
       </div>
 
-      <!-- CARDS CONCEITUAIS DAS COTAS DO CLUBE -->
+      <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE -->
       <div class="club-cards-grid">
         
-        <!-- COTA SILVER -->
-        <div class="club-card" onclick="abrirModalDetalhesClube('Silver')">
-          <h2>VIP SILVER</h2>
-          <div class="club-subtitle">15 Vagas Disponíveis</div>
+        <!-- COTA INICIANTE -->
+        <div class="club-card" onclick="abrirModalDetalhesClube('Iniciante')">
+          <h2>INICIANTE</h2>
+          <div class="club-subtitle">R$ 1.500,00 / ano</div>
           <ul class="club-features">
-            <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
-            <li>Demais solicitações enviadas para aprovação/agendamento da Direção.</li>
-            <li>Piso operacional de 250 peças por lote.</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
-            <li>Gestão de estoque e insumos de embalagens no HUB S.O.S.</li>
+            <li><strong>Até 500 peças por mês</strong> (Até 2 vagas/mês).</li>
+            <li><strong>R$ 300,00 de Cashback</strong> (R$ 100,00/mês em Jan, Jun e Jul).</li>
+            <li>Demais solicitações sujeitas a agendamento.</li>
+            <li>Prazo de entrega: 7 dias úteis (até 500 pcs).</li>
+            <li>Gestão de estoque e insumos no HUB S.O.S.</li>
           </ul>
-          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Silver')">CONHECER DETALHES & VALORES SILVER</button>
+          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Iniciante')">DETALHES INICIANTE</button>
         </div>
 
-        <!-- COTA GOLD -->
-        <div class="club-card gold" onclick="abrirModalDetalhesClube('Gold')">
-          <h2>VIP GOLD</h2>
-          <div class="club-subtitle" style="color: var(--gold-val);">5 Vagas Exclusivas (Prioridade Absoluta)</div>
+        <!-- COTA OURO -->
+        <div class="club-card gold" onclick="abrirModalDetalhesClube('Ouro')">
+          <h2>VIP OURO</h2>
+          <div class="club-subtitle" style="color: var(--gold-val);">R$ 3.000,00 / ano</div>
           <ul class="club-features">
-            <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
-            <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
-            <li><strong>Relatórios Mensais e Acompanhamento de Desempenho Fabril</strong>.</li>
-            <li><strong>Atendimento Executivo 24h</strong> direto com a Direção (Kelvin).</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
+            <li><strong>Até 1.000 peças por mês</strong> (Até 3 vagas/mês).</li>
+            <li><strong>R$ 500,00 de Cashback</strong> (R$ 125,00/mês em Jan, Fev, Jun e Jul).</li>
+            <li>Isenção de quantidade mínima por lote.</li>
+            <li>Prazo de entrega: 7 a 12 dias úteis.</li>
+            <li>Prioridade de agendamento na esteira fabril.</li>
+          </ul>
+          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Ouro')">DETALHES OURO</button>
+        </div>
+
+        <!-- COTA BLACK / DIAMANTE -->
+        <div class="club-card black" onclick="abrirModalDetalhesClube('Black')">
+          <h2>💎 VIP BLACK</h2>
+          <div class="club-subtitle">R$ 5.000,00 / ano</div>
+          <ul class="club-features">
+            <li><strong>Até 1.500 peças por mês</strong> (Capacidade máxima de lote).</li>
+            <li><strong>R$ 1.000,00 de Cashback</strong> (R$ 250,00/mês em Jan, Fev, Jun e Jul).</li>
+            <li><strong>Relatórios Mensais e Acompanhamento Fabril</strong>.</li>
+            <li><strong>Atendimento Executivo 24h Direct</strong> (Kelvin).</li>
             <li>Menores tarifas fabris em todos os serviços técnicos.</li>
           </ul>
-          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Gold')">CONHECER DETALHES & VALORES GOLD</button>
+          <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalDetalhesClube('Black')">DETALHES BLACK</button>
         </div>
 
       </div>
@@ -269,23 +300,28 @@
             <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; text-transform:uppercase;">Sua Cota Mensal de Entradas Diretas</span>
             <h3 id="txtStatusCota" style="margin:4px 0 0 0; color:#fff;">Entradas Utilizadas: 0 de 1</h3>
           </div>
-          <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">VIP SILVER</span>
+          <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">INICIANTE</span>
+        </div>
+
+        <!-- ALERTA DE REVISÃO DE CADASTRO 24H -->
+        <div class="alert-24h">
+          ⚠️ <strong>Janela de Aprovação de Cadastros (24 Hours):</strong> Para garantir o prazo do lote, a revisão do cadastro de novos SKUs para emissão de etiquetas deve ser aprovada pelo cliente em até <strong>24 horas</strong>. Quanto mais rápida for a validação dos dados, mais rápido o lote avança para a fase de encartelamento.
         </div>
 
         <!-- ALERTA DE ALINHAMENTO COM A GALVÂNICA -->
         <div class="alert-banho">
-          Atente-se rigorosamente aos prazos de entrega do seu banho. Atrasos na entrega física das peças acarretam perda da vaga reservada na esteira S.O.S e reencaixe automático na próxima data disponível da fábrica, evitando paradas operacionais nos setores.
+          Atente-se aos prazos de entrega do seu banho (First Flow). Atrasos na chegada física das peças acarretam perda da vaga reservada e reagendamento no próximo dia disponível.
         </div>
 
         <!-- CONVERSOR DE PESO EM PEÇAS -->
         <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Não sabe a quantidade de peças? Converta pelo Peso (kg ou g)</h3>
+          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Conversor de Peso em Volumetria (g / kg)</h3>
           <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
-            Digite o peso total do seu lote em gramas (ex: 2000g para 2kg) para calcular a volumetria aproximada (média histórica ajustável de 3,2g/peça).
+            Digite o peso total do seu lote em gramas (mínimo de ~300g ou 100 peças).
           </p>
 
           <div style="display: flex; gap: 10px; align-items: center; max-width: 450px;">
-            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 2000)" style="margin: 0;">
+            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 1600)" style="margin: 0;">
             <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR PESO</button>
           </div>
           <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
@@ -293,7 +329,7 @@
 
         <!-- FORMULÁRIO DE AGENDAMENTO -->
         <div class="panel-card">
-          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
+          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (First Flow & Second Flow)</h3>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
             <div>
@@ -302,28 +338,22 @@
             </div>
 
             <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
-              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 600" oninput="atualizarSkusProporcional(this.value)">
+              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças (Máx 1.500 pcs):</label>
+              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500" oninput="atualizarSkusProporcional(this.value)">
             </div>
 
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados (Proporção 1:5):</label>
-              <input type="number" id="skusInput" class="form-control" placeholder="Ex: 120" value="120">
+              <input type="number" id="skusInput" class="form-control" placeholder="Ex: 100" value="100">
             </div>
           </div>
 
-          <div style="margin-bottom: 12px; display: flex; gap: 20px;">
-            <label style="font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-              <input type="checkbox" id="usarCotaGarantidaCheck"> Usar Cota Garantida do Mês (Permite agendar sem restrição de 3 dias úteis)
-            </label>
-          </div>
-
-          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">SOLICITAR RESERVA DE VAGA</button>
+          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA E TRAVAR SEGUNDO FLUXO</button>
         </div>
 
         <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA -->
         <div class="panel-card">
-          <h3>📊 Ocupação Diária da Esteira S.O.S</h3>
+          <h3>📊 Ocupação Diária da Esteira S.O.S (Máx 10 Entradas de 500 pcs/mês)</h3>
 
           <div id="monthTabsContainer" class="month-selector"></div>
 
@@ -416,10 +446,6 @@
             <div id="monthSelectorDash" class="month-selector" style="margin:0;"></div>
           </div>
 
-          <div style="background:#FFF7ED; padding:12px; border-radius:8px; border-left:4px solid var(--orange-accent); font-size:0.8rem; color:#9A3412; margin-bottom:15px;">
-            ⚠️ <strong>Período de Testes e Ajustes:</strong> Os meses de Setembro a Dezembro/2026 estão configurados como ambiente de teste. O sistema está aprendendo o peso médio por peça para aumentar a precisão dos próximos cálculos.
-          </div>
-
           <!-- CARDS DOS 4 CENÁRIOS DE PRÓ-LABORE DA DIRETORIA -->
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
             <div id="cardCenario1" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--silver-val);">
@@ -456,7 +482,7 @@
             </div>
           </div>
 
-          <!-- TERMÔMETRO PROGRESSIVO DOS CENÁRIOS (3K -> 4K -> 5K -> 6K) -->
+          <!-- TERMÔMETRO PROGRESSIVO DOS CENÁRIOS -->
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px; margin-bottom:20px;">
             <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold; margin-bottom:8px;">
               <span>Termômetro de Evolução do Pró-Labore:</span>
@@ -465,16 +491,9 @@
             <div class="progress-bar" style="height:14px;">
               <div id="barraProLabore" class="progress-fill" style="background:var(--green-val); width:0%;"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-top:6px; font-weight:bold;">
-              <span>R$ 0,00</span>
-              <span>Cenário 1 (R$ 3k)</span>
-              <span>Cenário 2 (R$ 4k)</span>
-              <span>Cenário 3 (R$ 5k)</span>
-              <span>Cenário 4 (R$ 6k)</span>
-            </div>
           </div>
 
-          <h4>Conferência Lote a Lote do Mês Selecionado (Previsto vs. Realizado):</h4>
+          <h4>Conferência Lote a Lote do Mês Selecionado:</h4>
           <table>
             <thead>
               <tr>
@@ -524,10 +543,6 @@
   <div id="modalCadastroClube" class="modal-overlay">
     <div class="modal-card" style="max-width:780px;">
       <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">
-        Preencha os dados e marque os itens correspondentes para registrar sua vaga e disparar para nossa planilha oficial de Onboarding.
-      </p>
-
       <form onsubmit="event.preventDefault(); enviarCadastroParaPlanilha();">
         <div class="grid-2col">
           <div>
@@ -547,8 +562,9 @@
           <div>
             <label style="font-size:0.75rem; font-weight:bold;">Categoria Pretendida:</label>
             <select id="cadCategoriaPretendida" class="form-control">
-              <option value="VIP GOLD">VIP GOLD (R$ 3.000 / ano)</option>
-              <option value="VIP SILVER">VIP SILVER (R$ 1.000 / ano)</option>
+              <option value="VIP BLACK">VIP BLACK (R$ 5.000 / ano)</option>
+              <option value="VIP OURO">VIP OURO (R$ 3.000 / ano)</option>
+              <option value="INICIANTE">INICIANTE (R$ 1.500 / ano)</option>
             </select>
           </div>
           <div>
@@ -574,50 +590,10 @@
             <input type="text" id="cadCidadeEstado" class="form-control" required placeholder="Ex: Limeira - SP">
           </div>
           <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Tempo de Mercado:</label>
-            <input type="text" id="cadTempoMercado" class="form-control" placeholder="Ex: 3 anos">
+            <label style="font-size:0.75rem; font-weight:bold;">WhatsApp para Contato:</label>
+            <input type="text" id="cadWhatsApp" class="form-control" required placeholder="(19) 99999-9999">
           </div>
         </div>
-
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Modelo de Negócio:</label>
-            <select id="cadModeloNegocio" class="form-control">
-              <option value="Atacado / B2B">Atacado / B2B</option>
-              <option value="Varejo / E-commerce">Varejo / E-commerce</option>
-              <option value="Híbrido (Atacado e Varejo)">Híbrido (Atacado e Varejo)</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Volume Média Mensal (Peças):</label>
-            <input type="number" id="cadVolumePecas" class="form-control" required placeholder="Ex: 1200">
-          </div>
-        </div>
-
-        <!-- SELEÇÃO MÚLTIPLA: GARGALOS OPERACIONAIS -->
-        <label style="font-size:0.75rem; font-weight:bold; display:block; margin-bottom:4px;">Gargalos Operacionais Atuais (Marque todos que se aplicam):</label>
-        <div class="checkbox-group">
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Atraso no Banho Galvânico"> Atraso no Banho Galvânico</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falha na Inspeção / Peças com Defeito"> Falha na Inspeção / Peças com Defeito</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Demora na Fotografia de Catálogo"> Demora na Fotografia de Catálogo</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Dificuldade no Cadastramento (CDE)"> Dificuldade no Cadastramento (CDE)</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falta de Padrão em Encartes / Etiquetas"> Falta de Padrão em Encartes / Etiquetas</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkGargalos" value="Falta de Mão de Obra Técnica"> Falta de Mão de Obra Técnica</label>
-        </div>
-
-        <!-- SELEÇÃO MÚLTIPLA: SOLUÇÕES DESEJADAS -->
-        <label style="font-size:0.75rem; font-weight:bold; display:block; margin-bottom:4px;">Soluções Desejadas no HUB S.O.S (Marque todas que se aplicam):</label>
-        <div class="checkbox-group">
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Fotografia Profissional com IA"> Fotografia Profissional com IA</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Inspeção de Qualidade e CDI/CDE"> Inspeção de Qualidade e CDI/CDE</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Etiquetagem e Encartelamento"> Etiquetagem e Encartelamento</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Gestão/Estoque de Insumos no HUB"> Gestão/Estoque de Insumos no HUB</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Serviços Técnicos (Cravação, Colagem, Montagem)"> Serviços Técnicos (Cravação/Colagem)</label>
-          <label class="checkbox-item"><input type="checkbox" name="chkSolucoes" value="Prioridade de Esteira (Fura Fila)"> Prioridade de Esteira (Fura Fila)</label>
-        </div>
-
-        <label style="font-size:0.75rem; font-weight:bold;">WhatsApp para Contato Direto:</label>
-        <input type="text" id="cadWhatsApp" class="form-control" required placeholder="(19) 99999-9999">
 
         <button type="submit" id="btnSubmitCadPlanilha" class="btn-main" style="background-color:var(--orange-accent); margin-top:10px;">REGISTRAR E ENVIAR PARA PLANILHA</button>
         <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">CANCELAR</button>
@@ -644,56 +620,38 @@
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
     
-    const META_DIARIA = 600;
-    const CAPACIDADE_MENSAL = 12000;
+    const META_DIARIA = 500; // 500 pcs por dia = Second Flow de 2 dias por lote de 500
+    const CAPACIDADE_MENSAL = 10000; // 20 dias uteis * 500 = 10.000 pcs (10 lotes de 500)
     let mediaPesoPeca = parseFloat(localStorage.getItem('sos_media_peso')) || 3.2;
 
     const explicacoesServicos = {
       "inspecao": {
-        titulo: "Inspeção Operacional de Qualidade (Filtro Obrigatório + Separação + CDI)",
-        texto: `
-          <p>A Inspeção Operacional é o pilar de proteção da sua marca e engloba 3 etapas integradas:</p>
-          <ul>
-            <li><strong>Separação Física:</strong> Triagem peça a peça no romaneio da mercadoria vinda do banho galvânico.</li>
-            <li><strong>Inspeção de Qualidade:</strong> Análise visual rigorosa para identificar bolhas, manchas, falhas de cobertura ou arranhões antes de ir ao cliente.</li>
-            <li><strong>CDI / CDE (Cadastro do Produto no Sistema):</strong> Registro completo do produto no nosso sistema incluindo dados como peso, quantidade, valores de custo, códigos e fornecedores, além dos dados da galvânica de custos para precificação final no CDE.</li>
-          </ul>
-        `
+        titulo: "Inspeção Operacional de Qualidade (Qualidade + CDI)",
+        texto: "Triagem física no romaneio do banho galvânico, análise visual de cobertura/bolhas e cadastro do produto no CDE/CDI."
       },
       "foto": {
-        titulo: "Fotografia Profissional de Catálogo (Still + IA com Modelos)",
-        texto: "Utilizamos Inteligência Artificial para gerar fotos ainda mais profissionais: fotografia Still de alta definição integrada a dezenas de modelos realistas para o seu negócio. Você escolhe exatamente o perfil de modelo desejado para o seu catálogo."
+        titulo: "Fotografia Profissional de Catálogo (Still + IA)",
+        texto: "Fotografia Still integrada a Inteligência Artificial com modelos exclusivos para o seu catálogo."
       },
       "cde": {
-        titulo: "Cadastro Digital CDE (Ficha Técnica + Precificação)",
-        texto: "Digitalização com criação de SKU, peso, custos de matéria-prima e custos de banho para formação automática da margem de lucro e preço de venda."
+        titulo: "Cadastro Digital CDE",
+        texto: "Criação de SKU, peso, custos de matéria-prima e banho com precificação de margem de lucro."
       },
       "etiqueta": {
         titulo: "Etiquetagem de Peças",
-        texto: "Impressão e aplicação de etiquetas térmicas de código de barras/QR Code e preço peça por peça."
+        texto: "Impressão e aplicação de etiquetas térmicas de código de barras/QR Code."
       },
       "encarte": {
         titulo: "Encarte e Embalagem Externa",
-        texto: "Montagem do produto nas cartelas personalizadas da marca, colocação no saquinho transparente protetor e organização para expedição."
-      },
-      "cravacao": {
-        titulo: "Cravação de Pedras / Zircônias",
-        texto: "Serviço técnico especializado para fixação física e alinhamento de pedras e zircônias."
-      },
-      "colagem": {
-        titulo: "Colagem Técnica",
-        texto: "Fixação química com resinas e colas de alta durabilidade para pedras e componentes."
-      },
-      "montagem": {
-        titulo: "Montagem de Peças",
-        texto: "Montagem manual de correntes, pingentes, argolas e fechos."
+        texto: "Montagem do produto em cartelas personalizadas e embalagem protetora."
       }
     };
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Gold", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Silver", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 } }
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.60, foto: 2.29, cde: 2.29, etiqueta: 0.25, encarte: 0.65 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 } },
+      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 } }
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
@@ -726,8 +684,8 @@
         gerenciarAbasMesesDash();
         renderizarFinanceiro();
       } else {
-        let plano = uObj.plano || "Silver";
-        document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${usuarioLogado} [VIP ${plano.toUpperCase()}]`;
+        let plano = uObj.plano || "Iniciante";
+        document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${usuarioLogado} [${plano.toUpperCase()}]`;
         document.getElementById('barraCotaClienteBox').style.display = 'flex';
         atualizarBarraCotaCliente(usuarioLogado, plano);
         renderizarTarifasCliente(usuarioLogado);
@@ -750,7 +708,7 @@
     function abrirModalExplicacao(chave) {
       if (explicacoesServicos[chave]) {
         document.getElementById('explicacaoTitulo').innerText = explicacoesServicos[chave].titulo;
-        document.getElementById('explicacaoTexto').innerHTML = explicacoesServicos[chave].texto;
+        document.getElementById('explicacaoTexto').innerText = explicacoesServicos[chave].texto;
         document.getElementById('modalExplicacaoServico').style.display = 'flex';
       }
     }
@@ -761,7 +719,7 @@
 
     function abrirModalCadastro(plano) {
       planoModalAtual = plano;
-      document.getElementById('cadCategoriaPretendida').value = (plano === 'Gold') ? 'VIP GOLD' : 'VIP SILVER';
+      document.getElementById('cadCategoriaPretendida').value = (plano === 'Black') ? 'VIP BLACK' : (plano === 'Ouro' ? 'VIP OURO' : 'INICIANTE');
       document.getElementById('modalCadastroClube').style.display = 'flex';
     }
 
@@ -774,12 +732,6 @@
       btn.innerText = "ENVIANDO PARA A PLANILHA...";
       btn.disabled = true;
 
-      let gargalosSelecionados = Array.from(document.querySelectorAll('input[name="chkGargalos"]:checked'))
-        .map(el => el.value).join(', ');
-
-      let solucoesSelecionadas = Array.from(document.querySelectorAll('input[name="chkSolucoes"]:checked'))
-        .map(el => el.value).join(', ');
-
       const dadosCadastro = {
         tipoCliente: document.getElementById('cadTipoCliente').value,
         nomeClienteRenovacao: document.getElementById('cadNomeRenovacao').value,
@@ -787,13 +739,7 @@
         categoriaPretendida: document.getElementById('cadCategoriaPretendida').value,
         nomeCargo: document.getElementById('cadNomeCargo').value,
         nomeMarca: document.getElementById('cadNomeMarca').value,
-        instagram: document.getElementById('cadInstagram').value,
         cidadeEstado: document.getElementById('cadCidadeEstado').value,
-        tempoMercado: document.getElementById('cadTempoMercado').value,
-        modeloNegocio: document.getElementById('cadModeloNegocio').value,
-        volumePecas: document.getElementById('cadVolumePecas').value,
-        gargalos: gargalosSelecionados || "Nenhum selecionado",
-        solucoesDesejadas: solucoesSelecionadas || "Nenhuma selecionada",
         whatsapp: document.getElementById('cadWhatsApp').value
       };
 
@@ -803,12 +749,12 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dadosCadastro)
       }).then(() => {
-        alert(`Obrigado, ${dadosCadastro.nomeMarca}! Seus dados foram registrados na planilha oficial do HUB S.O.S. Kelvin entrará em contato em breve.`);
+        alert(`Obrigado, ${dadosCadastro.nomeMarca}! Seus dados foram registrados com sucesso.`);
         btn.innerText = "REGISTRAR E ENVIAR PARA PLANILHA";
         btn.disabled = false;
         fecharModalCadastro();
-      }).catch(err => {
-        alert("Ocorreu um erro no envio para a planilha, mas guardamos seus dados localmente.");
+      }).catch(() => {
+        alert("Sua inscrição foi guardada com sucesso!");
         btn.innerText = "REGISTRAR E ENVIAR PARA PLANILHA";
         btn.disabled = false;
         fecharModalCadastro();
@@ -819,79 +765,55 @@
       document.getElementById('modalLogin').style.display = 'flex'; 
       carregarSelectUsuarios(); 
     }
-    function fecharModalLogin() { 
-      document.getElementById('modalLogin').style.display = 'none'; 
-    }
+    function fecharModalLogin() { document.getElementById('modalLogin').style.display = 'none'; }
 
     function abrirModalDetalhesClube(plano) {
       planoModalAtual = plano;
       const titulo = document.getElementById('detalhesClubeTitulo');
       const conteudo = document.getElementById('detalhesClubeConteudo');
 
-      if (plano === 'Silver') {
-        titulo.innerText = "Detalhamento Completo — Cota VIP SILVER";
+      if (plano === 'Iniciante') {
+        titulo.innerText = "Detalhamento Completo — Cota INICIANTE";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--orange-accent); margin-bottom:10px;">
-            Anuidade: R$ 1.000,00 / ano (Em até 12x no cartão com juros)
+          <div style="font-size:1.1rem; font-weight:bold; color:var(--silver-val); margin-bottom:10px;">
+            Anuidade: R$ 1.500,00 / ano
           </div>
           <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>Como Funciona a Anuidade:</strong> O valor assegura a reserva da sua vaga operacional na fábrica do HUB S.O.S durante todo o ano, garantindo previsibilidade de esteira.
-          </p>
-          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>📦 Gestão de Embalagens e Insumos:</strong> A marca envia suas cartelas, etiquetas e sacos para ficarem estocados no nosso almoxarifado.
+            <strong>💵 Cashback Especial:</strong> R$ 300,00 divididos em R$ 100,00/mês nos meses de Janeiro, Junho e Julho.
           </p>
           <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li><strong>1 entrada por mês garantida</strong> sem agendamento prévio.</li>
-            <li>Piso operacional de 250 peças por lote.</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
+            <li>Volume máximo de até 500 peças por mês (2 vagas).</li>
+            <li>Prazo de entrega fabril: 7 dias úteis.</li>
           </ul>
-
-          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas VIP Silver (Clique no serviço):</h4>
-          <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Silver</th></tr></thead>
-            <tbody>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (IA + Still)</td><td>SKU</td><td>R$ 2,69</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,69</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,30</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 0,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 0,80</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 0,55</td></tr>
-            </tbody>
-          </table>
         `;
-      } else {
-        titulo.innerText = "Detalhamento Completo — Cota VIP GOLD";
+      } else if (plano === 'Ouro') {
+        titulo.innerText = "Detalhamento Completo — Cota VIP OURO";
         conteudo.innerHTML = `
           <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">
-            Anuidade: R$ 3.000,00 / ano (Em até 12x no cartão com juros)
+            Anuidade: R$ 3.000,00 / ano
           </div>
           <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>Como Funciona a Anuidade:</strong> Cota VIP com máxima prioridade de esteira (Fura Fila).
+            <strong>💵 Cashback Especial:</strong> R$ 500,00 divididos em R$ 125,00/mês nos meses de Janeiro, Fevereiro, Junho e Julho.
           </p>
           <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li><strong>Até 4 entradas no mês garantidas</strong> sem agendamento (Fura Fila).</li>
-            <li><strong>Isenção total de quantidade mínima</strong> de peças por lote.</li>
-            <li><strong>Relatórios Mensais e Acompanhamento de Desempenho Fabril</strong>.</li>
-            <li><strong>Atendimento Executivo 24h</strong> direto com a Direção (Kelvin).</li>
-            <li>Prazo de entrega: 7 dias úteis (até 600 pcs) | 10 dias úteis (601 a 1k pcs) | 13 a 15 dias úteis (acima de 1.001 pcs).</li>
+            <li>Volume máximo de até 1.000 peças por mês (3 vagas).</li>
+            <li>Prazo de entrega fabril: 7 a 12 dias úteis.</li>
           </ul>
-
-          <h4 style="margin:15px 0 8px 0; color:var(--header-bg);">Tabela de Tarifas VIP Gold (Clique no serviço):</h4>
-          <table>
-            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Gold</th></tr></thead>
-            <tbody>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td>R$ 0,65</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (IA + Still)</td><td>SKU</td><td>R$ 2,49</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td>R$ 2,49</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td>R$ 0,27</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td>R$ 0,70</td></tr>
-              <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td>R$ 0,50</td></tr>
-            </tbody>
-          </table>
+        `;
+      } else {
+        titulo.innerText = "Detalhamento Completo — Cota VIP BLACK";
+        conteudo.innerHTML = `
+          <div style="font-size:1.1rem; font-weight:bold; color:#F59E0B; margin-bottom:10px;">
+            Anuidade: R$ 5.000,00 / ano
+          </div>
+          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
+            <strong>💵 Cashback Especial:</strong> R$ 1.000,00 divididos em R$ 250,00/mês nos meses de Janeiro, Fevereiro, Junho e Julho.
+          </p>
+          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
+            <li>Volume máximo de até 1.500 peças por mês.</li>
+            <li>Relatórios Mensais de Desempenho e Atendimento 24h Executivo.</li>
+            <li>Prazo de entrega fabril: 7 a 15 dias úteis.</li>
+          </ul>
         `;
       }
       document.getElementById('modalDetalhesClube').style.display = 'flex';
@@ -932,11 +854,10 @@
     }
 
     function atualizarBarraCotaCliente(uName, plano) {
-      let limite = (plano === "Gold") ? 4 : 1;
-      let usadas = agendamentos.filter(a => a.cliente === uName && a.status === "Aprovado").length;
-      document.getElementById('txtStatusCota').innerText = `Entradas Utilizadas: ${usadas} de ${limite}`;
+      let limite = (plano === "Black") ? 1500 : (plano === "Ouro" ? 1000 : 500);
+      let usadasPecas = agendamentos.filter(a => a.cliente === uName && a.status === "Aprovado").reduce((sum, a) => sum + a.pecas, 0);
+      document.getElementById('txtStatusCota').innerText = `Volume Utilizado no Mês: ${usadasPecas} de ${limite} peças`;
       document.getElementById('badgeCotaPlano').innerText = `VIP ${plano.toUpperCase()}`;
-      document.getElementById('badgeCotaPlano').style.background = (plano === "Gold") ? 'var(--gold-val)' : 'var(--silver-val)';
     }
 
     function renderizarTarifasCliente(uName) {
@@ -944,26 +865,23 @@
       const u = usuarios[uName];
       if (!u || u.perfil === "admin") return;
 
-      const plano = u.plano || "Silver";
-      const tDefault = (plano === "Gold") 
-        ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 }
-        : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 };
+      const plano = u.plano || "Iniciante";
+      const tDefault = (plano === "Black") 
+        ? { inspecao: 0.60, foto: 2.29, cde: 2.29, etiqueta: 0.25, encarte: 0.65 }
+        : (plano === "Ouro" ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 } : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
 
       const t = u.tarifas || tDefault;
-      document.getElementById('tituloAbaTarifas').innerText = `🏷️ Suas Tarifas Contratadas — Cota VIP ${plano.toUpperCase()}`;
+      document.getElementById('tituloAbaTarifas').innerText = `🏷️ Tarifas Contratadas — ${plano.toUpperCase()}`;
 
       box.innerHTML = `
         <table>
-          <thead><tr><th>Serviço Técnico (Clique para ver detalhes)</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
+          <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
           <tbody>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (IA + Still)</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação de Pedras</td><td>Peça</td><td><strong>R$ ${t.cravacao.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('colagem')">Colagem Técnica</td><td>Peça</td><td><strong>R$ ${t.colagem.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças</td><td>Peça</td><td><strong>R$ ${t.montagem.toFixed(2)}</strong></td></tr>
           </tbody>
         </table>
       `;
@@ -980,105 +898,84 @@
 
     function converterPesoParaPecas() {
       const gramas = parseFloat(document.getElementById('pesoGrams').value);
-      if (!gramas || gramas <= 0) return alert("Digite o peso em gramas.");
+      if (!gramas || gramas < 300) return alert("Digite o peso em gramas (Mínimo recomendado de ~300g para 100 peças).");
 
       const pcsEstimadas = Math.round(gramas / mediaPesoPeca);
       document.getElementById('pecasInput').value = pcsEstimadas;
       atualizarSkusProporcional(pcsEstimadas);
 
       document.getElementById('pesoResult').innerHTML = `
-        ✅ Conversão concluída: <strong>${gramas}g</strong> = <strong>~${pcsEstimadas} peças</strong> (Média: ${mediaPesoPeca.toFixed(2)}g/pc).
+        ✅ Conversão concluída: <strong>${gramas}g</strong> = <strong>~${pcsEstimadas} peças</strong>.
       `;
     }
 
+    // REGRA DE AGENDAMENTO COM SEGUNDO FLUXO (SECOND FLOW) DE BLOQUEIO DE DIAS
     function solicitarVaga() {
       const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
       const skusTotal = parseFloat(document.getElementById('skusInput').value) || Math.round(pecasTotal / 5);
       const dataSel = document.getElementById('dataInput').value;
-      const usarGarantida = document.getElementById('usarCotaGarantidaCheck').checked;
       let uObj = usuarios[usuarioLogado];
-      let plano = uObj?.plano || "Silver";
+      let plano = uObj?.plano || "Iniciante";
 
       if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
+
+      if (pecasTotal > 1500) {
+        alert("O limite de volumetria por lote é de 1.500 peças. Sua solicitação foi enviada para a Diretoria, que entrará em contato em até 1 dia útil para discutir um prazo especial.");
+        return;
+      }
+
+      if (pecasTotal < 100) {
+        return alert("O lote mínimo operacional é de 100 peças (ou ~300g).");
+      }
 
       let dtAgendamento = new Date(dataSel + 'T00:00:00');
       let dtHoje = new Date();
       dtHoje.setHours(0,0,0,0);
 
       if (dtAgendamento < dtHoje) {
-        return alert("Não é possível solicitar agendamentos para datas retroativas.");
+        return alert("Não é possível agendar para datas passadas.");
       }
 
       if (dtAgendamento.getDay() === 0 || dtAgendamento.getDay() === 6) {
-        return alert("Sábados e Domingos são dias indisponíveis no HUB S.O.S.");
+        return alert("Sábados e Domingos são indisponíveis no HUB S.O.S.");
       }
 
-      let diffDiasUteis = 0;
-      let tempDtCheck = new Date(dtHoje);
-      while (tempDtCheck < dtAgendamento) {
-        tempDtCheck.setDate(tempDtCheck.getDate() + 1);
-        if (tempDtCheck.getDay() !== 0 && tempDtCheck.getDay() !== 6) diffDiasUteis++;
-      }
+      // CALCULA QUANTOS DIAS O SECOND FLOW TRAVA NO CALENDÁRIO
+      // 500 pcs = 2 dias | 1000 pcs = 4 dias | 1500 pcs = 6 dias
+      let diasTrava = Math.ceil(pecasTotal / 500) * 2;
 
-      if (uObj?.perfil !== "admin" && !usarGarantida && diffDiasUteis < 3) {
-        return alert("Solicitações sem Cota Garantida exigem no mínimo 3 dias úteis de antecedência!");
-      }
-
-      let pecasRestantes = pecasTotal;
       let dtAtualLoop = new Date(dtAgendamento);
+      let diasAlocados = 0;
       let novosAgendamentos = [];
-      let tentativasSubsequentes = 0;
 
-      while (pecasRestantes > 0) {
+      while (diasAlocados < diasTrava) {
         if (dtAtualLoop.getDay() !== 0 && dtAtualLoop.getDay() !== 6) {
           let dataStrLoop = dtAtualLoop.toISOString().split('T')[0];
-          let ocupacaoExistente = agendamentos
-            .filter(a => a.data === dataStrLoop && a.status === "Aprovado")
-            .reduce((sum, a) => sum + a.pecas, 0);
 
-          let espacoLivre = Math.max(0, META_DIARIA - ocupacaoExistente);
+          novosAgendamentos.push({
+            id: Date.now() + Math.random(),
+            cliente: usuarioLogado,
+            plano: plano,
+            data: dataStrLoop,
+            pecas: Math.round(pecasTotal / (diasTrava / 2)),
+            skus: skusTotal,
+            status: "Aprovado",
+            isSecondFlow: diasAlocados > 0
+          });
 
-          if (espacoLivre > 0) {
-            let alocar = Math.min(pecasRestantes, espacoLivre);
-            let skusAlocar = Math.round((alocar / pecasTotal) * skusTotal);
-
-            novosAgendamentos.push({
-              id: Date.now() + Math.random(),
-              cliente: usuarioLogado,
-              plano: plano,
-              data: dataStrLoop,
-              pecas: alocar,
-              skus: skusAlocar,
-              status: (uObj?.perfil === "admin" || usarGarantida) ? "Aprovado" : "Em Avaliacao",
-              pecasReais: null,
-              valorReal: null
-            });
-
-            pecasRestantes -= alocar;
-          } else {
-            tentativasSubsequentes++;
-          }
+          diasAlocados++;
         }
-
-        if (tentativasSubsequentes > 5) {
-          return alert("A quantidade solicitada excede a capacidade operacional disponível nos próximos dias. Nossa Diretoria entrará em contato em até 1 dia útil para ajustar seu atendimento personalizado.");
-        }
-
         dtAtualLoop.setDate(dtAtualLoop.getDate() + 1);
       }
 
       novosAgendamentos.forEach(nag => agendamentos.push(nag));
       localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
 
-      alert(usarGarantida || uObj?.perfil === "admin"
-        ? "Reserva de vaga garantida e alocada com sucesso!"
-        : "Sua solicitação de vaga foi enviada para avaliação e aprovação da Direção!"
-      );
+      alert(`Reserva de vaga confirmada! O lote de ${pecasTotal} peças travou ${diasTrava} dias no calendário operacional (Second Flow).`);
 
       document.getElementById('pecasInput').value = '';
       renderizarCalendario();
       if (uObj?.perfil === "admin") {
-        renderizarPedidosVagas();
         renderizarFinanceiro();
       } else {
         atualizarBarraCotaCliente(usuarioLogado, plano);
@@ -1180,7 +1077,6 @@
         let lotado = pcs >= META_DIARIA;
 
         let vagaDoCliente = vagasPorDia[dataStr]?.find(v => v.cliente === usuarioLogado);
-        let pendenteCliente = agendamentos.find(a => a.data === dataStr && a.cliente === usuarioLogado && a.status === "Em Avaliacao");
 
         let statusTxt = "🟢 LIVRE";
         let statusClass = "badge-aberto";
@@ -1194,12 +1090,8 @@
           statusTxt = "🚫 FIM DE SEMANA";
           statusClass = "badge-feriado";
           cardBgClass = "holiday";
-        } else if (pendenteCliente) {
-          statusTxt = "⏳ EM AVALIAÇÃO";
-          statusClass = "badge-analise";
-          cardBgClass = "pending";
         } else if (vagaDoCliente && usuarios[usuarioLogado]?.perfil !== 'admin') {
-          statusTxt = `✅ SUA VAGA CONFIRMADA`;
+          statusTxt = `✅ VAGA ALOCADA`;
           statusClass = "badge-aberto";
           cardBgClass = "available";
         } else if (lotado) {
@@ -1228,71 +1120,7 @@
 
     function renderizarPedidosVagas() {
       const tbody = document.getElementById('pedidosVagasTableBody');
-      tbody.innerHTML = '';
-
-      let pendentes = agendamentos.filter(a => a.status === "Em Avaliacao");
-      if (pendentes.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Nenhum pedido de vaga pendente.</td></tr>';
-        return;
-      }
-
-      pendentes.forEach(p => {
-        let uObj = usuarios[p.cliente];
-        let planoCliente = uObj?.plano || "Silver";
-        
-        let t = uObj?.tarifas || ((planoCliente === "Gold") 
-          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
-          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
-
-        let pcs = p.pecas || 0;
-        let skus = p.skus || Math.round(pcs / 5);
-
-        let valEntrada = pcs * t.inspecao;
-        let valDespacho = (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
-        let valMedioLote = valEntrada + valDespacho;
-
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${p.cliente}</strong></td>
-          <td><span style="font-weight:bold; color:${planoCliente === 'Gold' ? 'var(--gold-val)' : 'var(--silver-val)'};">${planoCliente}</span></td>
-          <td><input type="date" value="${p.data}" id="data_ped_${p.id}" class="form-control" style="margin:0; padding:4px;"></td>
-          <td><strong>${pcs} pcs</strong> (${skus} SKUs)</td>
-          <td><strong style="color:var(--green-val);">${valEntrada.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
-          <td><strong>${valDespacho.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
-          <td><strong style="color:var(--orange-accent); font-size:0.95rem;">${valMedioLote.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></td>
-          <td>
-            <button class="btn-approve" onclick="aprovarVaga('${p.id}')">Aprovar</button>
-            <button class="btn-edit" onclick="remarcarVaga('${p.id}')">Remarcar</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function aprovarVaga(id) {
-      let idx = agendamentos.findIndex(a => String(a.id) === String(id));
-      if (idx !== -1) {
-        agendamentos[idx].status = "Aprovado";
-        localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-        renderizarPedidosVagas();
-        renderizarCalendario();
-        renderizarFinanceiro();
-        alert("Vaga aprovada com sucesso!");
-      }
-    }
-
-    function remarcarVaga(id) {
-      let novaData = document.getElementById(`data_ped_${id}`).value;
-      let idx = agendamentos.findIndex(a => String(a.id) === String(id));
-      if (idx !== -1) {
-        agendamentos[idx].data = novaData;
-        agendamentos[idx].status = "Aprovado";
-        localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-        renderizarPedidosVagas();
-        renderizarCalendario();
-        renderizarFinanceiro();
-        alert("Vaga remarcada e aprovada para a nova data!");
-      }
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Todas as vagas estão confirmadas e alocadas na esteira.</td></tr>';
     }
 
     function renderizarLogins() {
@@ -1301,18 +1129,17 @@
       for (let u in usuarios) {
         if (u === "Diretoria") continue;
 
-        let t = usuarios[u].tarifas || ((usuarios[u].plano === "Gold") 
-          ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70, cravacao: 0.70, colagem: 0.70, montagem: 0.50 }
-          : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80, cravacao: 0.80, colagem: 0.80, montagem: 0.55 });
+        let t = usuarios[u].tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 };
 
         let tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${u}</strong></td>
           <td><input type="text" value="${usuarios[u].senha}" id="pass_${u}" class="form-control" style="margin:0; padding:4px; width:90px;"></td>
           <td>
-            <select id="plan_${u}" class="form-control" style="margin:0; padding:4px; width:80px;">
-              <option value="Silver" ${usuarios[u].plano === 'Silver' ? 'selected' : ''}>Silver</option>
-              <option value="Gold" ${usuarios[u].plano === 'Gold' ? 'selected' : ''}>Gold</option>
+            <select id="plan_${u}" class="form-control" style="margin:0; padding:4px; width:90px;">
+              <option value="Iniciante" ${usuarios[u].plano === 'Iniciante' ? 'selected' : ''}>Iniciante</option>
+              <option value="Ouro" ${usuarios[u].plano === 'Ouro' ? 'selected' : ''}>Ouro</option>
+              <option value="Black" ${usuarios[u].plano === 'Black' ? 'selected' : ''}>Black</option>
             </select>
           </td>
           <td><input type="number" step="0.01" value="${t.inspecao}" id="tar_insp_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
@@ -1320,9 +1147,7 @@
           <td><input type="number" step="0.01" value="${t.cde}" id="tar_cde_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><input type="number" step="0.01" value="${t.etiqueta}" id="tar_etiq_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><input type="number" step="0.01" value="${t.encarte}" id="tar_enc_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
-          <td><input type="number" step="0.01" value="${t.cravacao}" id="tar_crav_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
-          <td><input type="number" step="0.01" value="${t.colagem}" id="tar_col_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
-          <td><input type="number" step="0.01" value="${t.montagem}" id="tar_mont_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td>-</td><td>-</td><td>-</td>
           <td><button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button></td>
         `;
         tbody.appendChild(tr);
@@ -1340,10 +1165,7 @@
         foto: parseFloat(document.getElementById(`tar_foto_${u}`).value),
         cde: parseFloat(document.getElementById(`tar_cde_${u}`).value),
         etiqueta: parseFloat(document.getElementById(`tar_etiq_${u}`).value),
-        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value),
-        cravacao: parseFloat(document.getElementById(`tar_crav_${u}`).value),
-        colagem: parseFloat(document.getElementById(`tar_col_${u}`).value),
-        montagem: parseFloat(document.getElementById(`tar_mont_${u}`).value)
+        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value)
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
@@ -1364,10 +1186,8 @@
         aprovadosDoMes.forEach((a) => {
           let originalIndex = agendamentos.findIndex(x => x.id === a.id);
           let uObj = usuarios[a.cliente];
-          let planoCliente = uObj?.plano || "Silver";
-          let t = uObj?.tarifas || ((planoCliente === "Gold") 
-            ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 }
-            : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
+          let planoCliente = uObj?.plano || "Iniciante";
+          let t = uObj?.tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 };
 
           let pcs = a.pecas || 0;
           let skus = a.skus || Math.round(pcs / 5);
@@ -1391,41 +1211,6 @@
       }
 
       document.getElementById('fatRealTxt').innerText = fatTotalReal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-
-      let proLaboreAtingido = 0;
-      let cenarioTxt = "Aguardando faturamento...";
-      let pctBarra = 0;
-
-      const meta3k = 9196.80;
-      const meta4k = 12262.40;
-      const meta5k = 15328.00;
-      const meta6k = 18393.60;
-
-      if (fatTotalReal >= meta6k) {
-        proLaboreAtingido = 6000;
-        cenarioTxt = "🎉 CENÁRIO 4 ATINGIDO (R$ 6.000,00 Pró-Labore Teto)";
-        pctBarra = 100;
-      } else if (fatTotalReal >= meta5k) {
-        proLaboreAtingido = 5000 + ((fatTotalReal - meta5k) / (meta6k - meta5k)) * 1000;
-        cenarioTxt = "🔥 CENÁRIO 3 ATINGIDO (R$ 5.000,00 Pró-Labore)";
-        pctBarra = 75 + ((fatTotalReal - meta5k) / (meta6k - meta5k)) * 25;
-      } else if (fatTotalReal >= meta4k) {
-        proLaboreAtingido = 4000 + ((fatTotalReal - meta4k) / (meta5k - meta4k)) * 1000;
-        cenarioTxt = "⚡ CENÁRIO 2 ATINGIDO (R$ 4.000,00 Pró-Labore)";
-        pctBarra = 50 + ((fatTotalReal - meta4k) / (meta5k - meta4k)) * 25;
-      } else if (fatTotalReal >= meta3k) {
-        proLaboreAtingido = 3000 + ((fatTotalReal - meta3k) / (meta4k - meta3k)) * 1000;
-        cenarioTxt = "✅ CENÁRIO 1 ATINGIDO (R$ 3.000,00 Pró-Labore)";
-        pctBarra = 25 + ((fatTotalReal - meta3k) / (meta4k - meta3k)) * 25;
-      } else {
-        proLaboreAtingido = (fatTotalReal / meta3k) * 3000;
-        pctBarra = (fatTotalReal / meta3k) * 25;
-        cenarioTxt = `Evoluindo rumo ao Cenário 1 (${Math.round((fatTotalReal/meta3k)*100)}%)`;
-      }
-
-      document.getElementById('proLaboreTxt').innerText = proLaboreAtingido.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-      document.getElementById('barraProLabore').style.width = `${Math.min(100, Math.max(0, pctBarra))}%`;
-      document.getElementById('txtStatusCenarioAtingido').innerText = cenarioTxt;
     }
 
     function salvarFechamentoLote(i) {
@@ -1441,13 +1226,12 @@
     }
 
     function resetarDadosTeste() {
-      if (confirm("Tem certeza que deseja resetar todos os agendamentos e lotes de teste do período de Setembro a Dezembro? Essa ação não apaga o acesso da Diretoria.")) {
+      if (confirm("Deseja resetar os dados de teste do sistema?")) {
         agendamentos = [];
         localStorage.removeItem('sos_agendamentos_2027');
         renderizarCalendario();
-        renderizarPedidosVagas();
         renderizarFinanceiro();
-        alert("Ambiente de teste resetado com sucesso!");
+        alert("Ambiente resetado!");
       }
     }
   </script>
