@@ -85,6 +85,39 @@
     .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
     .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
+    /* ESTILOS PARA A NOVA ABA/CARD INTERATIVO DE ESTEIRA DE SETORES */
+    .esteira-setores-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 15px;
+    }
+
+    .setor-card-interactive {
+      background: #FFFFFF; border: 2px solid #E2E8F0; border-radius: 16px; padding: 20px;
+      cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+    }
+
+    .setor-card-interactive:hover {
+      border-color: var(--orange-accent); transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(255, 87, 34, 0.15);
+    }
+
+    .setor-card-interactive::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .setor-card-interactive:hover::before { left: 100%; }
+
+    .setor-badge-num {
+      background: var(--header-bg); color: #FFF; width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.8rem; margin-bottom: 10px;
+    }
+
+    .alert-almoxarifado {
+      background: #ECFDF5; border: 1px solid #A7F3D0; border-left: 6px solid var(--green-val);
+      border-radius: 12px; padding: 16px; margin-top: 20px; color: #065F46; font-size: 0.88rem; line-height: 1.6;
+    }
+
     .form-control {
       width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
       background-color: var(--input-bg); color: var(--text-dark); font-size: 0.9rem; margin-bottom: 10px; outline: none;
@@ -186,15 +219,6 @@
 
     .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    .checkbox-group {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--input-bg);
-      padding: 12px; border-radius: 10px; border: 1px solid #E2E8F0; margin-bottom: 12px;
-    }
-
-    .checkbox-item {
-      display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #334155; font-weight: 600; cursor: pointer;
-    }
-
     .footer-bar {
       background-color: var(--header-bg); color: #94A3B8; text-align: center;
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
@@ -227,15 +251,9 @@
         </p>
       </div>
 
-      <!-- PRAZOS OPERACIONAIS EM DESTAQUE -->
-      <div class="panel-card" style="border-left: 6px solid var(--blue-val);">
-        <h3>⏱️ Prazos Operacionais Padrão por Lote (Até 1.500 pcs)</h3>
-        <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-          <li><strong>Lotes de até 500 peças:</strong> Entrega em <strong>7 dias úteis</strong> (trava 2 dias do calendário no Second Flow).</li>
-          <li><strong>Lotes de 501 a 1.000 peças:</strong> Entrega em <strong>12 dias úteis</strong> (trava 4 dias do calendário no Second Flow).</li>
-          <li><strong>Lotes de 1.001 a 1.500 peças:</strong> Entrega em <strong>15 dias úteis</strong> (trava 6 dias do calendário no Second Flow).</li>
-          <li><strong>Lote Mínimo Operacional:</strong> 100 peças ou ~300g por lote.</li>
-        </ul>
+      <!-- BANNER EXCLUSIVO: GESTÃO DE ALMOXARIFADO DE INSUMOS -->
+      <div class="alert-almoxarifado">
+        📦 <strong>Gestão Integrada de Almoxarifado HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o estoque de <strong>cartelas, saquinhos e etiquetas personalizadas</strong> da sua marca diretamente no nosso HUB. Você não precisa se preocupar com envio fracionado de insumos a cada lote.
       </div>
 
       <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE -->
@@ -315,6 +333,59 @@
         </div>
 
       </div>
+
+      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA DE SETORES DO HUB S.O.S -->
+      <div class="panel-card" style="margin-top: 30px;">
+        <h3>⚙️ Como Funciona Nossa Esteira Fabril (Clique no Setor para Ver Detalhes)</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted);">
+          Acompanhe o caminho exato que a sua mercadoria percorre do momento em que sai do banho galvânico até a expedição final.
+        </p>
+
+        <div class="esteira-setores-grid">
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('recebimento')">
+            <div class="setor-badge-num">1</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Triagem & Recebimento</strong>
+            <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">First Flow (Entrada)</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Conferência física com romaneio e peso em balança de precisão.</p>
+          </div>
+
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('inspecao')">
+            <div class="setor-badge-num">2</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Inspeção + CDI</strong>
+            <span style="font-size:0.75rem; color:var(--blue-val); font-weight:bold;">Controle de Qualidade + QR Code</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Filtro de defeitos, dados do banho e emissão do QR Code de rastreio.</p>
+          </div>
+
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('foto')">
+            <div class="setor-badge-num">3</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Fotografia Profissional</strong>
+            <span style="font-size:0.75rem; color:var(--gold-val); font-weight:bold;">Still Natural ou Modelo IA</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Captura em alta resolução para e-commerce e catálogo digital.</p>
+          </div>
+
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('cde')">
+            <div class="setor-badge-num">4</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Catalogação CDE</strong>
+            <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Ficha Técnica via PC</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Criação de SKUs, precificação e margem de lucro digitalizada.</p>
+          </div>
+
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('etiqueta')">
+            <div class="setor-badge-num">5</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Etiquetagem Técnica</strong>
+            <span style="font-size:0.75rem; color:var(--header-bg); font-weight:bold;">Impressora Argox OS-214</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Impressão térmica de alta fixação com etiquetas da marca.</p>
+          </div>
+
+          <div class="setor-card-interactive" onclick="abrirModalExplicacao('encarte')">
+            <div class="setor-badge-num">6</div>
+            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Encarte & Embalagem</strong>
+            <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Expedição Final</span>
+            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Montagem nas cartelas, saquinhos e finalização para envio.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- PAINEL PRINCIPAL (APÓS LOGIN) -->
@@ -557,7 +628,7 @@
     Produzido por Kelvin Lima — CEO S.O.S Soluções
   </div>
 
-  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO -->
+  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO E SETORES -->
   <div id="modalExplicacaoServico" class="modal-overlay">
     <div class="modal-card">
       <h3 id="explicacaoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Serviço</h3>
@@ -576,7 +647,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE CADASTRO COM CHECKBOXES -->
+  <!-- MODAL DE CADASTRO -->
   <div id="modalCadastroClube" class="modal-overlay">
     <div class="modal-card" style="max-width:780px;">
       <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
@@ -657,30 +728,46 @@
   <script>
     const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
     
-    const META_DIARIA = 500; // 500 pcs por dia = Second Flow de 2 dias por lote de 500
-    const CAPACIDADE_MENSAL = 10000; // 20 dias uteis * 500 = 10.000 pcs (10 lotes de 500)
+    const META_DIARIA = 500;
+    const CAPACIDADE_MENSAL = 10000;
     let mediaPesoPeca = parseFloat(localStorage.getItem('sos_media_peso')) || 3.2;
 
     const explicacoesServicos = {
+      "recebimento": {
+        titulo: "1. Triagem & Recebimento (First Flow)",
+        texto: "Conferência física das peças entregues diretamente do banho galvânico contra o romaneio de entrada. Pesagem em balança de precisão para validação volumétrica."
+      },
       "inspecao": {
-        titulo: "Inspeção Operacional de Qualidade (Qualidade + CDI)",
-        texto: "Triagem física no romaneio do banho galvânico, análise visual de cobertura/bolhas e cadastro do produto no CDE/CDI."
+        titulo: "2. Inspeção Operacional de Qualidade & CDI",
+        texto: `
+          <p><strong>Filtro de Qualidade:</strong> Análise visual rigorosa para detectar falhas de banho (bolhas, descascamento, falta de cobertura) e defeitos estruturais.</p>
+          <p><strong>CDI (Cadastro Interno do Modelo):</strong> Cadastro técnico com nome do fornecedor, código do fornecedor, valor do bruto pago, aplicação de descontos, cor e milésimos de banho, valor por grama e custos de insumos.</p>
+          <p><strong>Gerador QR Code:</strong> Utilização de computador e impressora para imprimir o QR Code de acesso exclusivo do cliente aos dados do lote.</p>
+        `
       },
       "foto": {
-        titulo: "Fotografia Profissional de Catálogo (Still + IA)",
-        texto: "Fotografia Still integrada a Inteligência Artificial com modelos exclusivos para o seu catálogo."
+        titulo: "3. Fotografia Profissional de Catálogo",
+        texto: "O cliente escolhe entre foto Natural (fundo branco / cenários gerados por IA) ou Fotografia de Modelo com IA (com custo adicional de R$ 0,30 por foto)."
       },
       "cde": {
-        titulo: "Cadastro Digital CDE",
-        texto: "Criação de SKU, peso, custos de matéria-prima e banho com precificação de margem de lucro."
+        titulo: "4. Cadastro Digital CDE (Catalogação)",
+        texto: "Processamento via Computador para criação de Fichas Técnicas digitais, SKUs, pesos e precificação com margem de lucro sugerida."
       },
       "etiqueta": {
-        titulo: "Etiquetagem de Peças",
-        texto: "Impressão e aplicação de etiquetas térmicas de código de barras/QR Code."
+        titulo: "5. Etiquetagem Técnica de Alta Precisão",
+        texto: "Utilização de Computador, Impressora Argox OS-214 Plus e Ribbon de cera/misto de alta durabilidade. As etiquetas térmicas de código de barras e QR Code são aplicadas peça por peça. (Etiquetas fornecidas pelo cliente)."
       },
       "encarte": {
-        titulo: "Encarte e Embalagem Externa",
-        texto: "Montagem do produto em cartelas personalizadas e embalagem protetora."
+        titulo: "6. Encarte & Embalagem Externa (Expedição)",
+        texto: "Montagem do produto nas cartelas personalizadas da marca, colocação no saquinho transparente protetor e preparação final para despacho."
+      },
+      "montagem": {
+        titulo: "Serviço Técnico: Montagem Manual",
+        texto: "Montagem e junção manual de correntes, pingentes, fechos e argolas."
+      },
+      "cravacao": {
+        titulo: "Serviço Técnico: Cravação & Colagem Técnica",
+        texto: "Cravação de pedras e zircônias. Na colagem técnica, aplicamos exclusivamente colas de alta fixação e durabilidade para semijoias (sem uso de resinas)."
       }
     };
 
@@ -745,7 +832,7 @@
     function abrirModalExplicacao(chave) {
       if (explicacoesServicos[chave]) {
         document.getElementById('explicacaoTitulo').innerText = explicacoesServicos[chave].titulo;
-        document.getElementById('explicacaoTexto').innerText = explicacoesServicos[chave].texto;
+        document.getElementById('explicacaoTexto').innerHTML = explicacoesServicos[chave].texto;
         document.getElementById('modalExplicacaoServico').style.display = 'flex';
       }
     }
