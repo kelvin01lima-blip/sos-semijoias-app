@@ -76,8 +76,14 @@
     .club-subtitle { font-size: 0.85rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 14px; text-transform: uppercase; }
     .club-card.black .club-subtitle { color: #E2E8F0; }
 
-    .club-features { margin: 0 0 20px 0; padding-left: 18px; font-size: 0.85rem; line-height: 1.6; color: #334155; }
+    .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.82rem; line-height: 1.5; color: #334155; }
     .club-card.black .club-features { color: #CBD5E1; }
+
+    .card-price-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.78rem; }
+    .card-price-table th, .card-price-table td { padding: 6px 8px; border-bottom: 1px solid #E2E8F0; }
+    .club-card.black .card-price-table th, .club-card.black .card-price-table td { border-bottom-color: #334155; }
+    .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
+    .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
     .form-control {
       width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
@@ -237,43 +243,74 @@
         
         <!-- COTA INICIANTE -->
         <div class="club-card" onclick="abrirModalDetalhesClube('Iniciante')">
-          <h2>INICIANTE</h2>
-          <div class="club-subtitle">R$ 1.500,00 / ano</div>
+          <h2>INICIANTE / SIMPLES</h2>
+          <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
           <ul class="club-features">
-            <li><strong>Até 500 peças por mês</strong> (Até 2 vagas/mês).</li>
-            <li><strong>R$ 300,00 de Cashback</strong> (R$ 100,00/mês em Jan, Jun e Jul).</li>
-            <li>Demais solicitações sujeitas a agendamento.</li>
-            <li>Prazo de entrega: 7 dias úteis (até 500 pcs).</li>
-            <li>Gestão de estoque e insumos no HUB S.O.S.</li>
+            <li>Lote mínimo: 100 peças ou 300g</li>
+            <li>R$ 300,00 Cashback (R$ 100/mês em Jan, Jun e Jul)</li>
           </ul>
+
+          <table class="card-price-table">
+            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,75 / pc</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,99 / mod</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 2,40 / mod</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,30 / pc</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,60 / pc</td></tr>
+            </tbody>
+          </table>
+
           <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Iniciante')">DETALHES INICIANTE</button>
         </div>
 
         <!-- COTA OURO -->
         <div class="club-card gold" onclick="abrirModalDetalhesClube('Ouro')">
           <h2>VIP OURO</h2>
-          <div class="club-subtitle" style="color: var(--gold-val);">R$ 3.000,00 / ano</div>
+          <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
           <ul class="club-features">
-            <li><strong>Até 1.000 peças por mês</strong> (Até 3 vagas/mês).</li>
-            <li><strong>R$ 500,00 de Cashback</strong> (R$ 125,00/mês em Jan, Fev, Jun e Jul).</li>
-            <li>Isenção de quantidade mínima por lote.</li>
-            <li>Prazo de entrega: 7 a 12 dias úteis.</li>
-            <li>Prioridade de agendamento na esteira fabril.</li>
+            <li>Lote mínimo: 100 peças ou 300g</li>
+            <li>R$ 500,00 Cashback (R$ 125/mês em Jan, Fev, Jun e Jul)</li>
           </ul>
+
+          <table class="card-price-table">
+            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,63 / pc</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,70 / mod</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 2,07 / mod</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,24 / pc</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,50 / pc</td></tr>
+              <tr><td>Montagem (Opcional)</td><td>R$ 0,50 / pc</td></tr>
+              <tr><td>Cravação (Opcional)</td><td>R$ 0,63 / pc</td></tr>
+            </tbody>
+          </table>
+
           <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Ouro')">DETALHES OURO</button>
         </div>
 
         <!-- COTA BLACK / DIAMANTE -->
         <div class="club-card black" onclick="abrirModalDetalhesClube('Black')">
           <h2>💎 VIP BLACK</h2>
-          <div class="club-subtitle">R$ 5.000,00 / ano</div>
+          <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
           <ul class="club-features">
-            <li><strong>Até 1.500 peças por mês</strong> (Capacidade máxima de lote).</li>
-            <li><strong>R$ 1.000,00 de Cashback</strong> (R$ 250,00/mês em Jan, Fev, Jun e Jul).</li>
-            <li><strong>Relatórios Mensais e Acompanhamento Fabril</strong>.</li>
-            <li><strong>Atendimento Executivo 24h Direct</strong> (Kelvin).</li>
-            <li>Menores tarifas fabris em todos os serviços técnicos.</li>
+            <li>Lote mínimo: 100 peças ou 300g</li>
+            <li>R$ 1.000,00 Cashback (R$ 250/mês em Jan, Fev, Jun e Jul)</li>
           </ul>
+
+          <table class="card-price-table">
+            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,58 / pc</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,56 / mod</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 1,90 / mod</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,22 / pc</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,45 / pc</td></tr>
+              <tr><td>Montagem (Opcional)</td><td>R$ 0,45 / pc</td></tr>
+              <tr><td>Cravação / Colagem</td><td>R$ 0,55 / pc</td></tr>
+            </tbody>
+          </table>
+
           <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalDetalhesClube('Black')">DETALHES BLACK</button>
         </div>
 
@@ -649,9 +686,9 @@
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.60, foto: 2.29, cde: 2.29, etiqueta: 0.25, encarte: 0.65 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 } },
-      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 } }
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63 } },
+      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 } }
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
@@ -773,47 +810,59 @@
       const conteudo = document.getElementById('detalhesClubeConteudo');
 
       if (plano === 'Iniciante') {
-        titulo.innerText = "Detalhamento Completo — Cota INICIANTE";
+        titulo.innerText = "Tabela de Preços — PLANO INICIAL / SIMPLES";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--silver-val); margin-bottom:10px;">
-            Anuidade: R$ 1.500,00 / ano
+          <div style="font-size:0.9rem; font-weight:bold; color:var(--silver-val); margin-bottom:10px;">
+            2 vagas disponíveis | Cota mensal: até 500 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>💵 Cashback Especial:</strong> R$ 300,00 divididos em R$ 100,00/mês nos meses de Janeiro, Junho e Julho.
-          </p>
-          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li>Volume máximo de até 500 peças por mês (2 vagas).</li>
-            <li>Prazo de entrega fabril: 7 dias úteis.</li>
-          </ul>
+          <table>
+            <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,75 por peça</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,99 por modelo</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 2,40 por modelo</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,30 por peça</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,60 por peça</td></tr>
+            </tbody>
+          </table>
         `;
       } else if (plano === 'Ouro') {
-        titulo.innerText = "Detalhamento Completo — Cota VIP OURO";
+        titulo.innerText = "Tabela de Preços — PLANO OURO";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">
-            Anuidade: R$ 3.000,00 / ano
+          <div style="font-size:0.9rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">
+            3 vagas disponíveis | Cota mensal: até 1.000 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>💵 Cashback Especial:</strong> R$ 500,00 divididos em R$ 125,00/mês nos meses de Janeiro, Fevereiro, Junho e Julho.
-          </p>
-          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li>Volume máximo de até 1.000 peças por mês (3 vagas).</li>
-            <li>Prazo de entrega fabril: 7 a 12 dias úteis.</li>
-          </ul>
+          <table>
+            <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,63 por peça</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,70 por modelo</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 2,07 por modelo</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,24 por peça</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,50 por peça</td></tr>
+              <tr><td>Montagem (Opcional)</td><td>R$ 0,50 por peça</td></tr>
+              <tr><td>Cravação (Opcional)</td><td>R$ 0,63 por peça</td></tr>
+            </tbody>
+          </table>
         `;
       } else {
-        titulo.innerText = "Detalhamento Completo — Cota VIP BLACK";
+        titulo.innerText = "Tabela de Preços — PLANO BLACK";
         conteudo.innerHTML = `
-          <div style="font-size:1.1rem; font-weight:bold; color:#F59E0B; margin-bottom:10px;">
-            Anuidade: R$ 5.000,00 / ano
+          <div style="font-size:0.9rem; font-weight:bold; color:#F59E0B; margin-bottom:10px;">
+            2 vagas disponíveis | Cota mensal: até 1.500 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.88rem; line-height:1.6; color:#334155;">
-            <strong>💵 Cashback Especial:</strong> R$ 1.000,00 divididos em R$ 250,00/mês nos meses de Janeiro, Fevereiro, Junho e Julho.
-          </p>
-          <ul style="font-size:0.85rem; line-height:1.7; padding-left:20px; color:#334155;">
-            <li>Volume máximo de até 1.500 peças por mês.</li>
-            <li>Relatórios Mensais de Desempenho e Atendimento 24h Executivo.</li>
-            <li>Prazo de entrega fabril: 7 a 15 dias úteis.</li>
-          </ul>
+          <table>
+            <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ 0,58 por peça</td></tr>
+              <tr><td>Fotografia</td><td>R$ 1,56 por modelo</td></tr>
+              <tr><td>CDE / Catalogação</td><td>R$ 1,90 por modelo</td></tr>
+              <tr><td>Etiqueta</td><td>R$ 0,22 por peça</td></tr>
+              <tr><td>Encarte</td><td>R$ 0,45 por peça</td></tr>
+              <tr><td>Montagem (Opcional)</td><td>R$ 0,45 por peça</td></tr>
+              <tr><td>Cravação / Colagem (Opcional)</td><td>R$ 0,55 por peça</td></tr>
+            </tbody>
+          </table>
         `;
       }
       document.getElementById('modalDetalhesClube').style.display = 'flex';
@@ -867,11 +916,17 @@
 
       const plano = u.plano || "Iniciante";
       const tDefault = (plano === "Black") 
-        ? { inspecao: 0.60, foto: 2.29, cde: 2.29, etiqueta: 0.25, encarte: 0.65 }
-        : (plano === "Ouro" ? { inspecao: 0.65, foto: 2.49, cde: 2.49, etiqueta: 0.27, encarte: 0.70 } : { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 });
+        ? { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55 }
+        : (plano === "Ouro" ? { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63 } : { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 });
 
       const t = u.tarifas || tDefault;
       document.getElementById('tituloAbaTarifas').innerText = `🏷️ Tarifas Contratadas — ${plano.toUpperCase()}`;
+
+      let rowsOpceis = '';
+      if (plano === 'Ouro' || plano === 'Black') {
+        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('montagem')">Montagem de Peças (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.montagem || 0).toFixed(2)}</strong></td></tr>`;
+        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('cravacao')">Cravação / Colagem (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 0).toFixed(2)}</strong></td></tr>`;
+      }
 
       box.innerHTML = `
         <table>
@@ -882,6 +937,7 @@
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
+            ${rowsOpceis}
           </tbody>
         </table>
       `;
@@ -909,7 +965,6 @@
       `;
     }
 
-    // REGRA DE AGENDAMENTO COM SEGUNDO FLUXO (SECOND FLOW) DE BLOQUEIO DE DIAS
     function solicitarVaga() {
       const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
       const skusTotal = parseFloat(document.getElementById('skusInput').value) || Math.round(pecasTotal / 5);
@@ -940,8 +995,6 @@
         return alert("Sábados e Domingos são indisponíveis no HUB S.O.S.");
       }
 
-      // CALCULA QUANTOS DIAS O SECOND FLOW TRAVA NO CALENDÁRIO
-      // 500 pcs = 2 dias | 1000 pcs = 4 dias | 1500 pcs = 6 dias
       let diasTrava = Math.ceil(pecasTotal / 500) * 2;
 
       let dtAtualLoop = new Date(dtAgendamento);
@@ -1129,7 +1182,7 @@
       for (let u in usuarios) {
         if (u === "Diretoria") continue;
 
-        let t = usuarios[u].tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 };
+        let t = usuarios[u].tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0, cravacao: 0 };
 
         let tr = document.createElement('tr');
         tr.innerHTML = `
@@ -1147,7 +1200,9 @@
           <td><input type="number" step="0.01" value="${t.cde}" id="tar_cde_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><input type="number" step="0.01" value="${t.etiqueta}" id="tar_etiq_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><input type="number" step="0.01" value="${t.encarte}" id="tar_enc_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
-          <td>-</td><td>-</td><td>-</td>
+          <td><input type="number" step="0.01" value="${t.cravacao || 0}" id="tar_crav_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
+          <td>-</td>
+          <td><input type="number" step="0.01" value="${t.montagem || 0}" id="tar_mont_${u}" class="form-control" style="margin:0; padding:4px; width:65px;"></td>
           <td><button class="btn-edit" onclick="salvarAlteracaoUsuario('${u}')">Salvar</button></td>
         `;
         tbody.appendChild(tr);
@@ -1165,7 +1220,9 @@
         foto: parseFloat(document.getElementById(`tar_foto_${u}`).value),
         cde: parseFloat(document.getElementById(`tar_cde_${u}`).value),
         etiqueta: parseFloat(document.getElementById(`tar_etiq_${u}`).value),
-        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value)
+        encarte: parseFloat(document.getElementById(`tar_enc_${u}`).value),
+        cravacao: parseFloat(document.getElementById(`tar_crav_${u}`).value) || 0,
+        montagem: parseFloat(document.getElementById(`tar_mont_${u}`).value) || 0
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
@@ -1187,7 +1244,7 @@
           let originalIndex = agendamentos.findIndex(x => x.id === a.id);
           let uObj = usuarios[a.cliente];
           let planoCliente = uObj?.plano || "Iniciante";
-          let t = uObj?.tarifas || { inspecao: 0.70, foto: 2.69, cde: 2.69, etiqueta: 0.30, encarte: 0.80 };
+          let t = uObj?.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
 
           let pcs = a.pecas || 0;
           let skus = a.skus || Math.round(pcs / 5);
