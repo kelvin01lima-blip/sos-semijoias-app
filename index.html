@@ -85,32 +85,32 @@
     .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
     .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
-    /* ESTILOS PARA A NOVA ABA/CARD INTERATIVO DE ESTEIRA DE SETORES */
-    .esteira-setores-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 15px;
+    /* ESTEIRA FABRIL COM INTERATIVIDADE E SETAS FLUIDAS */
+    .esteira-container {
+      display: flex; flex-direction: column; gap: 15px; margin-top: 20px;
     }
 
-    .setor-card-interactive {
-      background: #FFFFFF; border: 2px solid #E2E8F0; border-radius: 16px; padding: 20px;
-      cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+    .esteira-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; overflow-x: auto; padding-bottom: 10px;
     }
 
-    .setor-card-interactive:hover {
-      border-color: var(--orange-accent); transform: translateY(-5px);
-      box-shadow: 0 12px 20px rgba(255, 87, 34, 0.15);
+    .setor-card-step {
+      flex: 1; min-width: 220px; background: #FFFFFF; border: 2px solid #CBD5E1; border-radius: 16px; padding: 18px;
+      cursor: pointer; transition: all 0.3s ease; position: relative;
     }
 
-    .setor-card-interactive::before {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-      transition: left 0.5s ease;
+    .setor-card-step:hover {
+      border-color: var(--orange-accent); transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(255, 87, 34, 0.15);
     }
 
-    .setor-card-interactive:hover::before { left: 100%; }
+    .setor-arrow {
+      font-size: 1.5rem; color: var(--orange-accent); font-weight: 900; user-select: none;
+    }
 
-    .setor-badge-num {
-      background: var(--header-bg); color: #FFF; width: 28px; height: 28px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.8rem; margin-bottom: 10px;
+    .setor-header-badge {
+      display: inline-block; background: var(--header-bg); color: #FFF; padding: 4px 10px; border-radius: 12px;
+      font-size: 0.72rem; font-weight: 900; margin-bottom: 8px;
     }
 
     .alert-almoxarifado {
@@ -253,7 +253,7 @@
 
       <!-- BANNER EXCLUSIVO: GESTÃO DE ALMOXARIFADO DE INSUMOS -->
       <div class="alert-almoxarifado">
-        📦 <strong>Gestão Integrada de Almoxarifado HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o estoque de <strong>cartelas, saquinhos e etiquetas personalizadas</strong> da sua marca diretamente no nosso HUB. Você não precisa se preocupar com envio fracionado de insumos a cada lote.
+        📦 <strong>Gestão e Guarda de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o estoque de <strong>cartelas, saquinhos, etiquetas, fechos, argolas e venezianas</strong> da sua marca. A logística de suprimentos é controlada 100% pelo nosso HUB.
       </div>
 
       <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE -->
@@ -334,55 +334,84 @@
 
       </div>
 
-      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA DE SETORES DO HUB S.O.S -->
+      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA FABRIL S.O.S COM SETAS E PASSO A PASSO -->
       <div class="panel-card" style="margin-top: 30px;">
-        <h3>⚙️ Como Funciona Nossa Esteira Fabril (Clique no Setor para Ver Detalhes)</h3>
+        <h3>🔄 Esteira Fabril S.O.S (Caminho da Mercadoria — Clique nas Etapas)</h3>
         <p style="font-size:0.85rem; color:var(--text-muted);">
-          Acompanhe o caminho exato que a sua mercadoria percorre do momento em que sai do banho galvânico até a expedição final.
+          Acompanhe o fluxo exato de processamento, regras de alocação de tempo e protocolos de comunicação com o cliente.
         </p>
 
-        <div class="esteira-setores-grid">
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('recebimento')">
-            <div class="setor-badge-num">1</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Triagem & Recebimento</strong>
-            <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">First Flow (Entrada)</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Conferência física com romaneio e peso em balança de precisão.</p>
+        <div class="esteira-container">
+          
+          <!-- LINHA 1 DA ESTEIRA: DO ENTRADA AO CDE -->
+          <div class="esteira-row">
+            
+            <div class="setor-card-step" onclick="abrirModalExplicacao('entrada')">
+              <span class="setor-header-badge">SETOR 1</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Entrada & Pesagem</strong>
+              <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Média 3,2g / Pç</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Triagem volumétrica, cálculo de prazo e protocolo de análise para grandes lotes.</p>
+            </div>
+
+            <div class="setor-arrow">➔</div>
+
+            <div class="setor-card-step" onclick="abrirModalExplicacao('inspecao_cdi')">
+              <span class="setor-header-badge" style="background:var(--blue-val);">SETOR 2 (3 em 1)</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Separação, Inspeção & CDI</strong>
+              <span style="font-size:0.75rem; color:var(--blue-val); font-weight:bold;">Qualidade + Drive 2TB</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Agrupamento estético, inspeção de falhas e cadastro do lote no CDI com QR Code.</p>
+            </div>
+
+            <div class="setor-arrow">➔</div>
+
+            <div class="setor-card-step" onclick="abrirModalExplicacao('foto')">
+              <span class="setor-header-badge" style="background:var(--gold-val);">SETOR 3</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Fotografia Profissional</strong>
+              <span style="font-size:0.75rem; color:var(--gold-val); font-weight:bold;">Still ou Modelo IA (+R$ 0,50)</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Captura para sites e e-commerce com fundo branco ou estúdio IA.</p>
+            </div>
+
+            <div class="setor-arrow">➔</div>
+
+            <div class="setor-card-step" onclick="abrirModalExplicacao('cde')">
+              <span class="setor-header-badge" style="background:var(--green-val);">SETOR 4</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Catalogação CDE</strong>
+              <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Janela de Aprovação 24h</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Cadastro no sistema do cliente e emissão do lote para validação prévia.</p>
+            </div>
+
           </div>
 
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('inspecao')">
-            <div class="setor-badge-num">2</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Inspeção + CDI</strong>
-            <span style="font-size:0.75rem; color:var(--blue-val); font-weight:bold;">Controle de Qualidade + QR Code</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Filtro de defeitos, dados do banho e emissão do QR Code de rastreio.</p>
+          <!-- LINHA 2 DA ESTEIRA: ETIQUETAGEM ATÉ A SAÍDA -->
+          <div class="esteira-row" style="margin-top: 10px;">
+            
+            <div class="setor-card-step" onclick="abrirModalExplicacao('etiqueta')">
+              <span class="setor-header-badge" style="background:var(--header-bg);">SETOR 5</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Etiquetagem Industrial</strong>
+              <span style="font-size:0.75rem; color:var(--header-bg); font-weight:bold;">Argox 214 Plus + Ribbon</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Impressão térmica de alta fixação com etiquetas fornecidas pelo cliente.</p>
+            </div>
+
+            <div class="setor-arrow">➔</div>
+
+            <div class="setor-card-step" onclick="abrirModalExplicacao('encarte')">
+              <span class="setor-header-badge" style="background:var(--orange-accent);">SETOR 6</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Encarte & Embalagem</strong>
+              <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Ready-to-Sell</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Montagem nas cartelas da marca, colocação no saquinho protetor e lacre.</p>
+            </div>
+
+            <div class="setor-arrow">➔</div>
+
+            <div class="setor-card-step" onclick="abrirModalExplicacao('saida')">
+              <span class="setor-header-badge" style="background:var(--green-val);">SETOR 7</span>
+              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Saída, Fechamento & NF-e</strong>
+              <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Relatório + Nota Fiscal</span>
+              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Conferência pela diretoria, aplicação de descontos e emissão de NF-e.</p>
+            </div>
+
           </div>
 
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('foto')">
-            <div class="setor-badge-num">3</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Fotografia Profissional</strong>
-            <span style="font-size:0.75rem; color:var(--gold-val); font-weight:bold;">Still Natural ou Modelo IA</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Captura em alta resolução para e-commerce e catálogo digital.</p>
-          </div>
-
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('cde')">
-            <div class="setor-badge-num">4</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Catalogação CDE</strong>
-            <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Ficha Técnica via PC</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Criação de SKUs, precificação e margem de lucro digitalizada.</p>
-          </div>
-
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('etiqueta')">
-            <div class="setor-badge-num">5</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Etiquetagem Técnica</strong>
-            <span style="font-size:0.75rem; color:var(--header-bg); font-weight:bold;">Impressora Argox OS-214</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Impressão térmica de alta fixação com etiquetas da marca.</p>
-          </div>
-
-          <div class="setor-card-interactive" onclick="abrirModalExplicacao('encarte')">
-            <div class="setor-badge-num">6</div>
-            <strong style="display:block; color:var(--header-bg); font-size:0.95rem;">Encarte & Embalagem</strong>
-            <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Expedição Final</span>
-            <p style="font-size:0.8rem; color:#475569; margin:8px 0 0 0;">Montagem nas cartelas, saquinhos e finalização para envio.</p>
-          </div>
         </div>
       </div>
 
@@ -733,41 +762,42 @@
     let mediaPesoPeca = parseFloat(localStorage.getItem('sos_media_peso')) || 3.2;
 
     const explicacoesServicos = {
-      "recebimento": {
-        titulo: "1. Triagem & Recebimento (First Flow)",
-        texto: "Conferência física das peças entregues diretamente do banho galvânico contra o romaneio de entrada. Pesagem em balança de precisão para validação volumétrica."
-      },
-      "inspecao": {
-        titulo: "2. Inspeção Operacional de Qualidade & CDI",
+      "entrada": {
+        titulo: "Setor 1 — Entrada & Pesagem Volumétrica",
         texto: `
-          <p><strong>Filtro de Qualidade:</strong> Análise visual rigorosa para detectar falhas de banho (bolhas, descascamento, falta de cobertura) e defeitos estruturais.</p>
-          <p><strong>CDI (Cadastro Interno do Modelo):</strong> Cadastro técnico com nome do fornecedor, código do fornecedor, valor do bruto pago, aplicação de descontos, cor e milésimos de banho, valor por grama e custos de insumos.</p>
-          <p><strong>Gerador QR Code:</strong> Utilização de computador e impressora para imprimir o QR Code de acesso exclusivo do cliente aos dados do lote.</p>
+          <p><strong>Triagem de Entrada:</strong> O lote completo é pesado na chegada para apuração do peso bruto total.</p>
+          <p><strong>Cálculo do Peso Médio Padrão:</strong> O sistema utiliza o histórico dos últimos 6 meses (média atual de 3,2g por peça) e divide o peso total por esse fator, calculando a estimativa exata de peças do lote.</p>
+          <p><strong>Diretrizes & Validação de Cota:</strong> Valida se o lote respeita o mínimo de 100 peças e a cota do plano do cliente. Caso o lote exceda a capacidade contratada, a mercadoria fica em <em>Protocolo de Análise</em> para negociação direta do Diretor Kelvin com o cliente.</p>
+          <p><strong>Registro de Observações:</strong> Registro oficial de aviso prévio do cliente, romaneios anexos e alertas para os próximos setores da esteira.</p>
+        `
+      },
+      "inspecao_cdi": {
+        titulo: "Setor 2 — Separação, Inspeção & CDI (3 Processos em 1)",
+        texto: `
+          <p><strong>1. Separação Técnica:</strong> A equipe confere modelo por modelo com o romaneio de entrada (quantidade e peso). Em caso de divergência ou peça faltante, gera-se o Relatório de Entrada enviado ao cliente. Agrupamento estético inteligente (flor com flor, coração com coração, tipos de zircônia) para agilizar o cadastro e a precificação.</p>
+          <p><strong>2. Inspeção Operacional de Qualidade:</strong> Análise visual minuciosa peça a peça em busca de falhas de banho (bolhas, descascamento, manchas) ou imperfeições estruturais.</p>
+          <p><strong>3. Cadastro do Modelo no CDI:</strong> Registro técnico detalhado por modelo (Nome do Fornecedor, Código do Fornecedor, Valor do Bruto Pago, Descontos aplicados, Cor do Banho, Milésimos, Valor por Grama e Insumos). Dados armazenados com segurança em nosso Drive de 2TB. É impresso um QR Code no romaneio para acesso direto do cliente aos dados do lote.</p>
         `
       },
       "foto": {
-        titulo: "3. Fotografia Profissional de Catálogo",
-        texto: "O cliente escolhe entre foto Natural (fundo branco / cenários gerados por IA) ou Fotografia de Modelo com IA (com custo adicional de R$ 0,30 por foto)."
+        titulo: "Setor 3 — Fotografia Profissional de Catálogo",
+        texto: "Fotografia Still em estúdio com iluminação controlada e edição profissional pronta para e-commerce, redes sociais e catálogos. Oferecemos também o serviço de IA Still Mega Produzida e Fotografia com Modelos de IA de alto padrão por um acréscimo de R$ 0,50 por foto."
       },
       "cde": {
-        titulo: "4. Cadastro Digital CDE (Catalogação)",
-        texto: "Processamento via Computador para criação de Fichas Técnicas digitais, SKUs, pesos e precificação com margem de lucro sugerida."
+        titulo: "Setor 4 — Catalogação CDE & Cadastro no Sistema do Cliente",
+        texto: "Transferência direta dos dados do CDI para o sistema/e-commerce do cliente via computador, aplicando a regra de precificação previamente alinhada. As fotos são anexadas a cada SKU cadastrado e os códigos são exportados para o cliente. O cliente possui 24 horas para conferir e aprovar o cadastro. Com a aprovação, o lote segue imediatamente para a etiquetagem."
       },
       "etiqueta": {
-        titulo: "5. Etiquetagem Técnica de Alta Precisão",
-        texto: "Utilização de Computador, Impressora Argox OS-214 Plus e Ribbon de cera/misto de alta durabilidade. As etiquetas térmicas de código de barras e QR Code são aplicadas peça por peça. (Etiquetas fornecidas pelo cliente)."
+        titulo: "Setor 5 — Etiquetagem Industrial de Alta Precisão",
+        texto: "Conexão ao sistema do cliente e impressão térmica na impressora Argox OS-214 Plus utilizando Ribbon de cera/misto de altíssima durabilidade. Aplicação manual das etiquetas fornecidas pelo cliente (gerenciadas pelo almoxarifado do HUB S.O.S)."
       },
       "encarte": {
-        titulo: "6. Encarte & Embalagem Externa (Expedição)",
-        texto: "Montagem do produto nas cartelas personalizadas da marca, colocação no saquinho transparente protetor e preparação final para despacho."
+        titulo: "Setor 6 — Encarte, Embalagem Externa & Almoxarifado",
+        texto: "A equipe consulta a área de modelos de encarte no sistema, fixa a peça na cartela correspondente, coloca no saquinho protetor transparente e aplica a etiqueta conforme manual do setor. Nosso HUB armazena e gerencia todo o estoque de cartelas, saquinhos, fechos, argolas e venezianas da sua marca."
       },
-      "montagem": {
-        titulo: "Serviço Técnico: Montagem Manual",
-        texto: "Montagem e junção manual de correntes, pingentes, fechos e argolas."
-      },
-      "cravacao": {
-        titulo: "Serviço Técnico: Cravação & Colagem Técnica",
-        texto: "Cravação de pedras e zircônias. Na colagem técnica, aplicamos exclusivamente colas de alta fixação e durabilidade para semijoias (sem uso de resinas)."
+      "saida": {
+        titulo: "Setor 7 — Saída, Fechamento da Diretoria & Emissão de NF-e",
+        texto: "Auditoria final conduzida diretamente pelo Kelvin (CEO S.O.S). Cruzamento dos dados da planilha com o lote físico, aplicação de descontos contratuais e emissão do Relatório Consolidado do Lote. Todos os serviços são finalizados com a emissão da Nota Fiscal de Serviço (NF-e)."
       }
     };
 
@@ -1019,7 +1049,7 @@
         <table>
           <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
           <tbody>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao_cdi')">Inspeção Operacional (Qualidade+CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (IA + Still)</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
             <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
