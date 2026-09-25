@@ -85,7 +85,6 @@
     .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
     .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
-    /* ESTEIRA FABRIL COM INTERATIVIDADE E SETAS FLUIDAS */
     .esteira-container {
       display: flex; flex-direction: column; gap: 15px; margin-top: 20px;
     }
@@ -256,95 +255,100 @@
         📦 <strong>Gestão e Guarda de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o estoque de <strong>cartelas, saquinhos, etiquetas, fechos, argolas e venezianas</strong> da sua marca. A logística de suprimentos é controlada 100% pelo nosso HUB.
       </div>
 
-      <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE -->
+      <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE (PRIMEIRA VISÃO) -->
       <div class="club-cards-grid">
         
-        <!-- COTA INICIANTE / SIMPLES -->
+        <!-- CARD 1: INICIANTE / SIMPLES -->
         <div class="club-card" onclick="abrirModalDetalhesClube('Iniciante')">
-          <h2>INICIANTE / SIMPLES</h2>
+          <h2>🥉 INICIANTE / SIMPLES</h2>
           <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:10px;"><strong>Perfil:</strong> Para quem está iniciando ou profissionalizando a marca e busca padrão técnico imediato.</p>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto:</strong> Elimina o trabalho manual interno e garante catálogo e produto padronizados sem erros.</p>
+          <p style="font-size:0.82rem; color:#475569; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas e empreendedores que estão iniciando ou profissionalizando a operação e precisam de padrão técnico desde as primeiras peças.</p>
+          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Elimina o trabalho manual dentro de casa, garante que o produto chegue com cara de marca grande ao cliente final e constrói o histórico de catálogo sem erros.</p>
           <ul class="club-features">
-            <li>Lote mínimo: 100 peças ou 300g</li>
-            <li>Reserva garantida na esteira da fábrica</li>
-            <li>Acesso ao Sistema S.O.S</li>
+            <li>Reserva de vaga na esteira da fábrica S.O.S</li>
+            <li>Cota de até 500 pçs/mês (mínimo de 100 pçs ou 300g)</li>
+            <li>Acesso ao Sistema S.O.S para acompanhamento em tempo real</li>
+            <li>Tabela tarifária reduzida em relação aos avulsos</li>
           </ul>
 
           <table class="card-price-table">
             <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
             <tbody>
               <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,75 / pc</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,99 / mod</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 2,40 / mod</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,30 / pc</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,60 / pc</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,99 / mod</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,40 / mod</td></tr>
+              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,30 / pc</td></tr>
+              <tr><td>Encarte (Flow Down)</td><td>R$ 0,60 / pc</td></tr>
+              <tr><td>Montagem (Opcional)</td><td>R$ 0,55 / pc</td></tr>
+              <tr><td>Cravação / Colagem (Opcional)</td><td>R$ 0,70 / pc</td></tr>
             </tbody>
           </table>
 
-          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Iniciante')">DETALHES INICIANTE</button>
+          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Iniciante')">SABER MAIS</button>
         </div>
 
-        <!-- COTA OURO -->
+        <!-- CARD 2: OURO -->
         <div class="club-card gold" onclick="abrirModalDetalhesClube('Ouro')">
-          <h2>VIP OURO</h2>
+          <h2>🥇 VIP OURO</h2>
           <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:10px;"><strong>Perfil:</strong> Para marcas com estrutura de vendas no atacado/revenda que buscam crescer rápido.</p>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto:</strong> Acelera a entrada no estoque e reduz o tempo de liberação para o setor comercial.</p>
+          <p style="font-size:0.82rem; color:#475569; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas que já possuem estrutura de vendas consolidada, operam em atacado/revenda e buscam escalar o volume com consistência.</p>
+          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Aumenta o giro de estoque, reduz drasticamente o tempo entre o recebimento das peças e a venda, liberando o gestor para focar nas vendas.</p>
           <ul class="club-features">
-            <li>Lote mínimo: 100 peças ou 300g</li>
-            <li>Prioridade no agendamento da esteira</li>
-            <li>Serviços extras de Montagem e Cravação</li>
+            <li>Prioridade no agendamento e reserva de vaga</li>
+            <li>Cota de até 1.000 pçs/mês (mínimo de 100 pçs ou 300g)</li>
+            <li>Acesso a serviços adicionais de Montagem e Cravação física</li>
+            <li>Suporte técnico diretamente no Sistema S.O.S</li>
           </ul>
 
           <table class="card-price-table">
             <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
             <tbody>
               <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,63 / pc</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,70 / mod</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 2,07 / mod</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,24 / pc</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,50 / pc</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,70 / mod</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,07 / mod</td></tr>
+              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,24 / pc</td></tr>
+              <tr><td>Encarte (Flow Down)</td><td>R$ 0,50 / pc</td></tr>
               <tr><td>Montagem (Opcional)</td><td>R$ 0,50 / pc</td></tr>
-              <tr><td>Cravação (Opcional)</td><td>R$ 0,63 / pc</td></tr>
+              <tr><td>Cravação / Colagem (Opcional)</td><td>R$ 0,63 / pc</td></tr>
             </tbody>
           </table>
 
-          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Ouro')">DETALHES OURO</button>
+          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Ouro')">SABER MAIS</button>
         </div>
 
-        <!-- COTA BLACK / DIAMANTE -->
+        <!-- CARD 3: BLACK -->
         <div class="club-card black" onclick="abrirModalDetalhesClube('Black')">
           <h2>💎 VIP BLACK</h2>
           <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:10px;"><strong>Perfil:</strong> Para marcas consolidadas que buscam terceirizar totalmente os gargalos operacionais.</p>
-          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:12px;"><strong>Impacto:</strong> Terceirização total da fábrica física e digital com o menor custo unitário do mercado.</p>
+          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas grandes e consolidadas que necessitam de uma estrutura terceirizada robusta para eliminar totalmente os gargalos.</p>
+          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Terceirização de ponta a ponta (hub operacional completo), custo por peça significativamente reduzido e alta capacidade de entrega.</p>
           <ul class="club-features">
-            <li>Lote mínimo: 100 peças ou 300g</li>
-            <li>Prioridade máxima de produção na esteira</li>
-            <li>Serviços extras: Montagem, Cravação e Colagem</li>
+            <li>Prioridade máxima na esteira de produção</li>
+            <li>Cota de até 1.500 pçs/mês (mínimo de 100 pçs ou 300g)</li>
+            <li>Menores tarifas unitárias em todos os processos</li>
+            <li>Acompanhamento executivo e gestão dedicada via Sistema S.O.S</li>
           </ul>
 
           <table class="card-price-table">
             <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
             <tbody>
               <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,58 / pc</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,56 / mod</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 1,90 / mod</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,22 / pc</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,45 / pc</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,56 / mod</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 1,90 / mod</td></tr>
+              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,22 / pc</td></tr>
+              <tr><td>Encarte (Flow Down)</td><td>R$ 0,45 / pc</td></tr>
               <tr><td>Montagem (Opcional)</td><td>R$ 0,45 / pc</td></tr>
               <tr><td>Cravação (Opcional)</td><td>R$ 0,55 / pc</td></tr>
               <tr><td>Colagem (Opcional)</td><td>R$ 0,55 / pc</td></tr>
             </tbody>
           </table>
 
-          <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalDetalhesClube('Black')">DETALHES BLACK</button>
+          <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalDetalhesClube('Black')">SABER MAIS</button>
         </div>
 
       </div>
 
-      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA FABRIL S.O.S COM SETAS E PASSO A PASSO -->
+      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA FABRIL S.O.S -->
       <div class="panel-card" style="margin-top: 30px;">
         <h3>🔄 Esteira Fabril S.O.S (S.O.S Workflow — Clique nas Etapas)</h3>
         <p style="font-size:0.85rem; color:var(--text-muted);">
@@ -353,7 +357,6 @@
 
         <div class="esteira-container">
           
-          <!-- LINHA 1 DA ESTEIRA: DO IN FLOW AO FOURTH FLOW -->
           <div class="esteira-row">
             
             <div class="setor-card-step" onclick="abrirModalExplicacao('entrada')">
@@ -392,7 +395,6 @@
 
           </div>
 
-          <!-- LINHA 2 DA ESTEIRA: ETIQUETAGEM ATÉ O END FLOW -->
           <div class="esteira-row" style="margin-top: 10px;">
             
             <div class="setor-card-step" onclick="abrirModalExplicacao('etiqueta')">
@@ -441,7 +443,6 @@
       <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
       <div id="abaAgendamento" class="tab-content active">
 
-        <!-- BARRA DINÂMICA DE COTAS MENSAIS DO CLIENTE -->
         <div id="barraCotaClienteBox" style="background:var(--header-bg); color:#fff; padding:16px; border-radius:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
           <div>
             <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; text-transform:uppercase;">Sua Cota Mensal no Sistema S.O.S</span>
@@ -450,17 +451,14 @@
           <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">INICIANTE</span>
         </div>
 
-        <!-- ALERTA DE REVISÃO DE CADASTRO 24H -->
         <div class="alert-24h">
           ⚠️ <strong>Janela de Aprovação de Cadastros (24 Hours):</strong> Para garantir o prazo do lote, a revisão do cadastro de novos SKUs para emissão de etiquetas deve ser aprovada pelo cliente em até <strong>24 horas</strong>. Quanto mais rápida for a validação dos dados, mais rápido o lote avança para a fase de encartelamento.
         </div>
 
-        <!-- ALERTA DE ALINHAMENTO COM A GALVÂNICA -->
         <div class="alert-banho">
           Atente-se aos prazos de entrega do seu banho (IN FLOW). Atrasos na chegada física das peças acarretam perda da vaga reservada e reagendamento no próximo dia disponível.
         </div>
 
-        <!-- CONVERSOR DE PESO EM PEÇAS -->
         <div class="panel-card tool-box">
           <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Conversor de Peso em Volumetria (g / kg)</h3>
           <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">
@@ -474,7 +472,6 @@
           <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
         </div>
 
-        <!-- FORMULÁRIO DE AGENDAMENTO -->
         <div class="panel-card">
           <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (In Flow & Second Flow)</h3>
 
@@ -498,7 +495,6 @@
           <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA E TRAVAR SEGUNDO FLUXO</button>
         </div>
 
-        <!-- CALENDÁRIO DE OCUPAÇÃO DA FÁBRICA -->
         <div class="panel-card">
           <h3>📊 Ocupação Diária da Esteira S.O.S (Capacidade Máxima: 7.000 pcs/mês)</h3>
 
@@ -587,13 +583,11 @@
             <button class="btn-danger" style="font-size:0.75rem; padding:8px 14px;" onclick="resetarDadosTeste()">🔄 RESETAR DADOS DE TESTE</button>
           </div>
 
-          <!-- SELETOR DE MÊS DA DIRETORIA -->
           <div style="margin:15px 0 10px 0; display:flex; align-items:center; gap:10px;">
             <label style="font-weight:bold; font-size:0.85rem;">Selecione o Mês do Dashboard:</label>
             <div id="monthSelectorDash" class="month-selector" style="margin:0;"></div>
           </div>
 
-          <!-- CARDS DOS 4 CENÁRIOS DE PRÓ-LABORE DA DIRETORIA -->
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
             <div id="cardCenario1" style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--silver-val);">
               <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 1 (Mínimo)</span>
@@ -613,7 +607,6 @@
             </div>
           </div>
 
-          <!-- DADOS GERAIS DO MÊS -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
             <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--blue-val);">
               <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Assertividade de Peso Médio</span>
@@ -629,7 +622,6 @@
             </div>
           </div>
 
-          <!-- TERMÔMETRO PROGRESSIVO DOS CENÁRIOS -->
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px; margin-bottom:20px;">
             <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold; margin-bottom:8px;">
               <span>Termômetro de Evolução do Pró-Labore:</span>
@@ -676,7 +668,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE DETALHES DO CLUBE -->
+  <!-- MODAL DE DETALHES DO CLUBE ("SABER MAIS") -->
   <div id="modalDetalhesClube" class="modal-overlay">
     <div class="modal-card">
       <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
@@ -784,6 +776,7 @@
       "inspecao_cdi": {
         titulo: "Setor 2 — SECOND FLOW (Separação, Inspeção & CDI - Combo 3 em 1)",
         texto: `
+          <p>No Second Flow você contrata o combo completo de preparação: <strong>Separação + Inspeção de Qualidade + CDI (Conferência e Dados de Inspeção)</strong>.</p>
           <p><strong>1. Separação Técnica (GRATUITA):</strong> A equipe confere modelo por modelo com o romaneio de entrada. Agrupamento estético por famílias (flor com flor, coração com coração) para agilizar o cadastro e a precificação.</p>
           <p><strong>2. Inspeção Operacional de Qualidade (PAGA):</strong> Análise visual minuciosa peça a peça em busca de falhas de banho (bolhas, descascamento, manchas) ou imperfeições estruturais.</p>
           <p><strong>3. Cadastro do Modelo no CDI (GRATUITO):</strong> Registro técnico detalhado por modelo (Nome do Fornecedor, Código, Valor do Bruto, Banho e Insumos) totalmente integrado ao <strong>Sistema S.O.S</strong>. É impresso um QR Code no romaneio para acesso direto do cliente aos dados do lote.</p>
@@ -814,8 +807,8 @@
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
       "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55, colagem: 0.55 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63 } },
-      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 } }
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63, colagem: 0.63 } },
+      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 } }
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
@@ -942,15 +935,19 @@
           <div style="font-size:0.9rem; font-weight:bold; color:var(--silver-val); margin-bottom:10px;">
             2 vagas disponíveis | Cota mensal: até 500 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.85rem; color:#475569;"><strong>Forma de Pagamento:</strong> Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.</p>
+          <p style="font-size:0.85rem; color:#475569;"><strong>Formas de Pagamento do Plano Anual:</strong><br>
+          • 💳 <strong>À vista no PIX:</strong> Sem taxas adicionais.<br>
+          • 💳 <strong>Cartão de Crédito:</strong> Em até 10x com juros (taxas repassadas no parcelamento).</p>
           <table>
             <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,75 por peça</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,99 por modelo</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 2,40 por modelo</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,30 por peça</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,60 por peça</td></tr>
+              <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td>R$ 0,75 por peça</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,99 por modelo</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,40 por modelo</td></tr>
+              <tr><td>Etiqueta (Flow Down Start)</td><td>R$ 0,30 por peça</td></tr>
+              <tr><td>Encarte (Flow Down Start)</td><td>R$ 0,60 por peça</td></tr>
+              <tr><td>Montagem (Serviço Adicional)</td><td>R$ 0,55 por peça</td></tr>
+              <tr><td>Cravação / Colagem (Serviço Adicional)</td><td>R$ 0,70 por peça</td></tr>
             </tbody>
           </table>
         `;
@@ -960,17 +957,19 @@
           <div style="font-size:0.9rem; font-weight:bold; color:var(--gold-val); margin-bottom:10px;">
             3 vagas disponíveis | Cota mensal: até 1.000 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.85rem; color:#475569;"><strong>Forma de Pagamento:</strong> Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.</p>
+          <p style="font-size:0.85rem; color:#475569;"><strong>Formas de Pagamento do Plano Anual:</strong><br>
+          • 💳 <strong>À vista no PIX:</strong> Sem taxas adicionais.<br>
+          • 💳 <strong>Cartão de Crédito:</strong> Em até 10x com juros (taxas repassadas no parcelamento).</p>
           <table>
             <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,63 por peça</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,70 por modelo</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 2,07 por modelo</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,24 por peça</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,50 por peça</td></tr>
-              <tr><td>Montagem (Opcional)</td><td>R$ 0,50 por peça</td></tr>
-              <tr><td>Cravação (Opcional)</td><td>R$ 0,63 por peça</td></tr>
+              <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td>R$ 0,63 por peça</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,70 por modelo</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,07 por modelo</td></tr>
+              <tr><td>Etiqueta (Flow Down Start)</td><td>R$ 0,24 por peça</td></tr>
+              <tr><td>Encarte (Flow Down Start)</td><td>R$ 0,50 por peça</td></tr>
+              <tr><td>Montagem (Serviço Adicional)</td><td>R$ 0,50 por peça</td></tr>
+              <tr><td>Cravação / Colagem (Serviço Adicional)</td><td>R$ 0,63 por peça</td></tr>
             </tbody>
           </table>
         `;
@@ -980,18 +979,20 @@
           <div style="font-size:0.9rem; font-weight:bold; color:#F59E0B; margin-bottom:10px;">
             2 vagas disponíveis | Cota mensal: até 1.500 peças/mês | Lote mínimo por envio: 100 peças ou 300g
           </div>
-          <p style="font-size:0.85rem; color:#475569;"><strong>Forma de Pagamento:</strong> Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.</p>
+          <p style="font-size:0.85rem; color:#475569;"><strong>Formas de Pagamento do Plano Anual:</strong><br>
+          • 💳 <strong>À vista no PIX:</strong> Sem taxas adicionais.<br>
+          • 💳 <strong>Cartão de Crédito:</strong> Em até 10x com juros (taxas repassadas no parcelamento).</p>
           <table>
             <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,58 por peça</td></tr>
-              <tr><td>Fotografia</td><td>R$ 1,56 por modelo</td></tr>
-              <tr><td>CDE / Catalogação</td><td>R$ 1,90 por modelo</td></tr>
-              <tr><td>Etiqueta</td><td>R$ 0,22 por peça</td></tr>
-              <tr><td>Encarte</td><td>R$ 0,45 por peça</td></tr>
-              <tr><td>Montagem (Opcional)</td><td>R$ 0,45 por peça</td></tr>
-              <tr><td>Cravação (Opcional)</td><td>R$ 0,55 por peça</td></tr>
-              <tr><td>Colagem (Opcional)</td><td>R$ 0,55 por peça</td></tr>
+              <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td>R$ 0,58 por peça</td></tr>
+              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,56 por modelo</td></tr>
+              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 1,90 por modelo</td></tr>
+              <tr><td>Etiqueta (Flow Down Start)</td><td>R$ 0,22 por peça</td></tr>
+              <tr><td>Encarte (Flow Down Start)</td><td>R$ 0,45 por peça</td></tr>
+              <tr><td>Montagem (Serviço Adicional)</td><td>R$ 0,45 por peça</td></tr>
+              <tr><td>Cravação (Serviço Adicional)</td><td>R$ 0,55 por peça</td></tr>
+              <tr><td>Colagem (Serviço Adicional)</td><td>R$ 0,55 por peça</td></tr>
             </tbody>
           </table>
         `;
@@ -1048,30 +1049,24 @@
       const plano = u.plano || "Iniciante";
       const tDefault = (plano === "Black") 
         ? { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55, colagem: 0.55 }
-        : (plano === "Ouro" ? { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63 } : { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 });
+        : (plano === "Ouro" ? { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63, colagem: 0.63 } : { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 });
 
       const t = u.tarifas || tDefault;
       document.getElementById('tituloAbaTarifas').innerText = `🏷️ Tarifas Contratadas — ${plano.toUpperCase()}`;
 
-      let rowsOpceis = '';
-      if (plano === 'Ouro') {
-        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Montagem de Peças (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.montagem || 0.50).toFixed(2)}</strong></td></tr>`;
-        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Cravação (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 0.63).toFixed(2)}</strong></td></tr>`;
-      } else if (plano === 'Black') {
-        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Montagem de Peças (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.montagem || 0.45).toFixed(2)}</strong></td></tr>`;
-        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Cravação (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 0.55).toFixed(2)}</strong></td></tr>`;
-        rowsOpceis += `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Colagem (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.colagem || 0.55).toFixed(2)}</strong></td></tr>`;
-      }
+      let rowsOpceis = `<tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Montagem de Peças (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.montagem || 0.55).toFixed(2)}</strong></td></tr>
+                       <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Cravação (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 0.70).toFixed(2)}</strong></td></tr>
+                       <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Colagem (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.colagem || 0.70).toFixed(2)}</strong></td></tr>`;
 
       box.innerHTML = `
         <table>
           <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
           <tbody>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao_cdi')">Inspeção Operacional (Qualidade + CDI)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao_cdi')">Separação + Inspeção + CDI (3 em 1)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (Third Flow)</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE (Fourth Flow)</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças (Flow Down Start)</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
+            <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa (Flow Down Start)</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
             ${rowsOpceis}
           </tbody>
         </table>
@@ -1317,7 +1312,7 @@
       for (let u in usuarios) {
         if (u === "Diretoria") continue;
 
-        let t = usuarios[u].tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0, cravacao: 0, colagem: 0 };
+        let t = usuarios[u].tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 };
 
         let tr = document.createElement('tr');
         tr.innerHTML = `
