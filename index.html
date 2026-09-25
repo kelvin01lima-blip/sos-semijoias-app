@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,179 +6,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clube S.O.S — Hub de Operações e Terceirização em Semijoias</title>
   <style>
-    :root {
-      --bg-dark: #0f172a;
-      --card-bg: #1e293b;
-      --primary: #3b82f6;
-      --gold: #eab308;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: #334155;
-    }
+    /* PRESERVADO: Estilos e cores originais da sua aplicação */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
     }
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
     }
-    h1, h2, h3 {
-      text-align: center;
-      color: #fff;
-    }
-    /* Header Capacidade */
     .capacity-banner {
-      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-      padding: 15px;
-      border-radius: 10px;
+      background-color: #004085;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
       text-align: center;
-      margin-bottom: 30px;
       font-weight: bold;
-      font-size: 1.1rem;
+      margin-bottom: 25px;
     }
-
-    /* Grid de Cards */
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-      margin-bottom: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
     }
     .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 25px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .card.gold { border-color: var(--gold); }
-    .card.black { border-color: #64748b; background: linear-gradient(180deg, #1e293b, #0f172a); }
-
-    .card-header {
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 15px;
-      margin-bottom: 15px;
     }
     .card-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
+      margin-bottom: 5px;
     }
     .card-subtitle {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 5px;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 15px;
     }
     .card-body p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
     }
     .advantages-list {
-      list-style: none;
-      padding: 0;
-      margin: 15px 0;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
     }
-    .advantages-list li {
-      padding: 6px 0;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-    }
-    .advantages-list li::before {
-      content: "✓";
-      color: #22c55e;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-
-    /* Botões */
     .btn {
-      background-color: var(--primary);
-      color: white;
+      background-color: #0056b3;
+      color: #fff;
       border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
+      padding: 10px;
+      border-radius: 4px;
       cursor: pointer;
       width: 100%;
-      text-align: center;
-      margin-top: 10px;
-      transition: 0.2s;
+      margin-top: 5px;
+      font-weight: bold;
     }
-    .btn:hover { opacity: 0.9; }
-    .btn-gold { background-color: var(--gold); color: #000; }
-
-    /* Modal / Saber Mais */
+    .btn-register {
+      background-color: #28a745;
+    }
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.6);
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
     .modal-content {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 600px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 550px;
       width: 90%;
-      max-height: 85vh;
+      max-height: 80vh;
       overflow-y: auto;
-      border: 1px solid var(--border);
     }
     .modal-close {
       float: right;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      color: var(--text-muted);
+      font-weight: bold;
     }
     .price-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      margin-top: 10px;
     }
     .price-table th, .price-table td {
-      border: 1px solid var(--border);
-      padding: 10px;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 0.85rem;
       text-align: left;
-      font-size: 0.9rem;
     }
-    .price-table th { background-color: var(--bg-dark); }
-
-    /* Workflow Esteira */
     .workflow-section {
-      background-color: var(--card-bg);
-      padding: 30px;
-      border-radius: 12px;
-      margin-top: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
     .flow-step {
-      border-left: 3px solid var(--primary);
-      padding-left: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #ccc;
     }
     .flow-title {
       font-weight: bold;
-      font-size: 1.1rem;
-      color: var(--primary);
-    }
-    .badge-3in1 {
-      background-color: #22c55e;
-      color: black;
-      font-weight: bold;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      color: #004085;
     }
   </style>
 </head>
@@ -185,230 +135,196 @@
 
 <div class="container">
 
-  <!-- Banner de Capacidade Oficial -->
+  <!-- CAPACIDADE AJUSTADA PARA 7.000 PEÇAS -->
   <div class="capacity-banner">
-    ⚙️ CAPACIDADE DA ESTEIRA FABRIL S.O.S: 7.000 PEÇAS / MÊS (1.400 MODELOS)
+    CAPACIDADE MENSAL DO SISTEMA S.O.S: 7.000 PEÇAS / MÊS
   </div>
 
-  <h2>Planos de Terceirização Operacional — Clube S.O.S</h2>
-  <p style="text-align:center; color: var(--text-muted); margin-bottom: 40px;">
-    Escolha o plano ideal para a escala do seu negócio e reserve sua vaga na nossa fábrica.
-  </p>
+  <h2>Clube S.O.S — Planos & Vagas</h2>
 
-  <!-- GRID DOS CARDS DE VENDA -->
   <div class="cards-grid">
 
-    <!-- CARD 1: INICIAL / SIMPLES -->
+    <!-- CARD INICIAL / SIMPLES -->
     <div class="card">
-      <div class="card-header">
+      <div>
         <div class="card-title">Plano Inicial / Simples</div>
         <div class="card-subtitle">2 Vagas Disponíveis | Cota: até 500 pçs/mês</div>
+        <div class="card-body">
+          <p><strong>Para quem é:</strong> Para quem está iniciando ou profissionalizando a marca e quer padrão desde o começo.</p>
+          <p><strong>Impacto no Negócio:</strong> Elimina gargalos operacionais e garante produto padronizado no mercado.</p>
+          <p><strong>Vantagens da Anuidade:</strong></p>
+          <ul class="advantages-list">
+            <li>Reserva de vaga garantida no ano</li>
+            <li>Lote mínimo flexível (100 pçs ou 300g)</li>
+            <li>Acompanhamento pelo Sistema S.O.S</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <p><strong>Para quem é:</strong> Ideal para marcas e empreendedores que estão iniciando ou profissionalizando a operação e precisam de padrão técnico desde os primeiros lotes.</p>
-        <p><strong>Impacto no seu Negócio:</strong> Elimina o trabalho operacional dentro de casa, garante que o produto chegue padronizado ao cliente e constrói o catálogo sem erros de cadastro.</p>
-        <ul class="advantages-list">
-          <li>Reserva de vaga na esteira da fábrica S.O.S</li>
-          <li>Fracionamento livre em lotes (mínimo de 100 pçs ou 300g)</li>
-          <li>Acesso total ao <strong>Sistema S.O.S</strong> para acompanhamento</li>
-          <li>Garantia de atendimento dentro do mês</li>
-        </ul>
+      <div>
+        <button class="btn" onclick="openModal('inicial')">Saber Mais</button>
+        <button class="btn btn-register" onclick="registrarCandidatura('Inicial')">Registrar no Sistema S.O.S</button>
       </div>
-      <button class="btn" onclick="openModal('inicial')">Saber Mais & Tarifas</button>
-      <button class="btn" style="background:#10b981;" onclick="registrarCandidatura('Inicial')">Registrar no Sistema S.O.S</button>
     </div>
 
-    <!-- CARD 2: OURO -->
-    <div class="card gold">
-      <div class="card-header">
-        <div class="card-title" style="color: var(--gold);">Plano Ouro</div>
+    <!-- CARD OURO -->
+    <div class="card">
+      <div>
+        <div class="card-title">Plano Ouro</div>
         <div class="card-subtitle">3 Vagas Disponíveis | Cota: até 1.000 pçs/mês</div>
+        <div class="card-body">
+          <p><strong>Para quem é:</strong> Para marcas com estrutura de vendas pronta que querem crescer e aumentar o giro.</p>
+          <p><strong>Impacto no Negócio:</strong> Reduz o tempo de entrada no estoque e acelera a liberação para vendas.</p>
+          <p><strong>Vantagens da Anuidade:</strong></p>
+          <ul class="advantages-list">
+            <li>Prioridade de agendamento na esteira</li>
+            <li>Serviços extras de Montagem e Cravação</li>
+            <li>Gestão pelo Sistema S.O.S</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <p><strong>Para quem é:</strong> Para marcas com estrutura de vendas consolidada no atacado/revenda que precisam escalar o volume com consistência e agilidade.</p>
-        <p><strong>Impacto no seu Negócio:</strong> Aumenta o giro de estoque, reduz o tempo entre o recebimento do bruto/banhado e a venda final, liberando a equipe para focar no comercial.</p>
-        <ul class="advantages-list">
-          <li>Prioridade no agendamento da esteira fabril</li>
-          <li>Acesso a serviços adicionais de Montagem e Cravação física</li>
-          <li>Suporte direto via <strong>Sistema S.O.S</strong></li>
-          <li>Tabela tarifária com descontos progressivos</li>
-        </ul>
+      <div>
+        <button class="btn" onclick="openModal('ouro')">Saber Mais</button>
+        <button class="btn btn-register" onclick="registrarCandidatura('Ouro')">Registrar no Sistema S.O.S</button>
       </div>
-      <button class="btn btn-gold" onclick="openModal('ouro')">Saber Mais & Tarifas</button>
-      <button class="btn" style="background:#10b981;" onclick="registrarCandidatura('Ouro')">Registrar no Sistema S.O.S</button>
     </div>
 
-    <!-- CARD 3: BLACK -->
-    <div class="card black">
-      <div class="card-header">
-        <div class="card-title" style="color: #60a5fa;">Plano Black</div>
+    <!-- CARD BLACK -->
+    <div class="card">
+      <div>
+        <div class="card-title">Plano Black</div>
         <div class="card-subtitle">2 Vagas Disponíveis | Cota: até 1.500 pçs/mês</div>
+        <div class="card-body">
+          <p><strong>Para quem é:</strong> Para quem está consolidado e busca terceirizar os processos que causam gargalos.</p>
+          <p><strong>Impacto no Negócio:</strong> Terceirização total de esteira física e digital com o menor custo unitário.</p>
+          <p><strong>Vantagens da Anuidade:</strong></p>
+          <ul class="advantages-list">
+            <li>Prioridade máxima de produção</li>
+            <li>Montagem, Cravação e Colagem disponíveis</li>
+            <li>Atendimento executivo no Sistema S.O.S</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <p><strong>Para quem é:</strong> Para marcas grandes e consolidadas que necessitam de um Hub Operacional terceirizado completo para eliminar gargalos fabris e digitais.</p>
-        <p><strong>Impacto no seu Negócio:</strong> Terceirização de ponta a ponta, menor custo unitário por peça do mercado e capacidade de absorver grandes demandas sem aumentar custo fixo interno.</p>
-        <ul class="advantages-list">
-          <li>Prioridade máxima na esteira de produção</li>
-          <li>Menores tarifas unitárias em todos os processos</li>
-          <li>Acesso aos serviços extras de Montagem, Cravação e Colagem</li>
-          <li>Acompanhamento executivo no <strong>Sistema S.O.S</strong></li>
-        </ul>
+      <div>
+        <button class="btn" onclick="openModal('black')">Saber Mais</button>
+        <button class="btn btn-register" onclick="registrarCandidatura('Black')">Registrar no Sistema S.O.S</button>
       </div>
-      <button class="btn" style="background:#3b82f6;" onclick="openModal('black')">Saber Mais & Tarifas</button>
-      <button class="btn" style="background:#10b981;" onclick="registrarCandidatura('Black')">Registrar no Sistema S.O.S</button>
     </div>
 
   </div>
 
-  <!-- SEÇÃO DO WORKFLOW DA ESTEIRA FABRIL (S.O.S SYSTEM) -->
+  <!-- ESTEIRA FABRIL COM NOMENCLATURAS SOLICITADAS -->
   <div class="workflow-section">
-    <h2>Esteira Fabril — S.O.S Workflow</h2>
-    <p style="color: var(--text-muted); text-align:center; margin-bottom: 30px;">
-      Conheça a jornada de 6 etapas que o seu lote percorre dentro do nosso Hub Operacional.
-    </p>
+    <h3>Esteira Fabril — Sistema S.O.S</h3>
 
     <div class="flow-step">
-      <div class="flow-title">1. IN FLOW (Entrada & Triagem Inicial)</div>
-      <p>Recebimento do lote, pesagem de precisão, abertura oficial do código do lote e checagem de entrada no <strong>Sistema S.O.S</strong>.</p>
+      <div class="flow-title">1. IN FLOW</div>
+      <p>Entrada do lote, pesagem bruta, triagem inicial e abertura no Sistema S.O.S.</p>
     </div>
 
     <div class="flow-step">
-      <div class="flow-title">2. SECOND FLOW (Separação + Inspeção + CDI) <span class="badge-3in1">Combo 3 em 1</span></div>
-      <p>O coração do controle físico! Você paga apenas o valor unitário da Inspeção e ganha o serviço completo:</p>
-      <ul>
-        <li><strong>Separação:</strong> Triagem e organização das peças por famílias, tipos e modelos.</li>
-        <li><strong>Inspeção:</strong> Checagem física minuciosa de qualidade (defeitos de banho, solda, pedras e riscos).</li>
-        <li><strong>CDI (Conferência e Dados de Inspeção):</strong> Contagem exata de peças e liberação imediata das informações no <strong>Sistema S.O.S</strong>.</li>
-      </ul>
+      <div class="flow-title">2. SECOND FLOW (Separação + Inspeção + CDI)</div>
+      <p>Serviço 3 em 1: Você paga apenas a Inspeção e ganha a Separação por famílias e o CDI (Conferência e Dados de Inspeção) integrados no Sistema S.O.S.</p>
     </div>
 
     <div class="flow-step">
-      <div class="flow-title">3. THIRD FLOW (Fotografia & Mídia)</div>
-      <p>Produção de fotografia técnica de catálogo em estúdio (mídia tratada e pronta para publicação no seu e-commerce e catálogo digital).</p>
+      <div class="flow-title">3. THIRD FLOW</div>
+      <p>Fotografia profissional de catálogo por modelo.</p>
     </div>
 
     <div class="flow-step">
-      <div class="flow-title">4. FOURTH FLOW (CDE — Cadastro & Catalogação Digital)</div>
-      <p>Entrada técnica de dados, precificação e vinculação de mídias para emissão automatizada de etiquetas e integração nos canais de venda.</p>
+      <div class="flow-title">4. FOURTH FLOW</div>
+      <p>CDE (Cadastro Digital e Catalogação) por modelo.</p>
     </div>
 
     <div class="flow-step">
-      <div class="flow-title">5. FLOW DOWN START (Etiquetagem, Encarte & Serviços Adicionais)</div>
-      <p>Impressão e fixação de etiquetas de código de barras/QR code, encarte em cartelas personalizadas e execução de serviços extras contratados (Montagem, Cravação e Colagem).</p>
+      <div class="flow-title">5. FLOW DOWN START</div>
+      <p>Impressão e aplicação de Etiquetas, Encarte, além de serviços extras de Montagem, Cravação e Colagem.</p>
     </div>
 
     <div class="flow-step">
-      <div class="flow-title">6. END FLOW (Fechamento, Relatórios & Expedição)</div>
-      <p>Embalagem final, consolidação do lote, emissão do Relatório Técnico de Entrega via <strong>Sistema S.O.S</strong>, faturamento e notificação de envio do pedido.</p>
+      <div class="flow-title">6. END FLOW</div>
+      <p>Fechamento do lote, relatórios operacionais no Sistema S.O.S, faturamento e expedição.</p>
     </div>
   </div>
 
 </div>
 
-<!-- MODAL DETALHADO (SABER MAIS) -->
+<!-- MODAL SABER MAIS -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
-    <h3 id="modalTitle">Detalhes e Tarifas do Plano</h3>
-    <div id="modalBody">
-      <!-- Conteúdo injetado via JS -->
-    </div>
+    <h4 id="modalTitle">Valores do Plano</h4>
+    <div id="modalBody"></div>
   </div>
 </div>
 
 <script>
-  // DADOS TÉCNICOS E TARIFAS DOS PLANOS
   const planosData = {
     inicial: {
-      titulo: "Plano Inicial / Simples — Tarifas & Condições",
-      cota: "Até 500 peças/mês (Lote mín: 100 pçs ou 300g)",
-      pagamentoAnual: "Anuidade paga no PIX (à vista) ou em até 10x no Cartão de Crédito com juros repassados no parcelamento.",
+      titulo: "Valores & Tarifas — Plano Inicial / Simples",
+      pagamento: "Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.",
       servicos: [
         { nome: "Separação + Inspeção + CDI (3 em 1)", tipo: "por peça", valor: "R$ 0,75" },
-        { nome: "Fotografia (Third Flow)", tipo: "por modelo", valor: "R$ 1,99" },
-        { nome: "CDE / Catalogação (Fourth Flow)", tipo: "por modelo", valor: "R$ 2,40" },
-        { nome: "Etiqueta (Flow Down Start)", tipo: "por peça", valor: "R$ 0,30" },
-        { nome: "Encarte (Flow Down Start)", tipo: "por peça", valor: "R$ 0,60" }
-      ],
-      extras: "Este plano não abrange serviços adicionais de montagem, cravação e colagem."
+        { nome: "Fotografia", tipo: "por modelo", valor: "R$ 1,99" },
+        { nome: "CDE (Catalogação)", tipo: "por modelo", valor: "R$ 2,40" },
+        { nome: "Etiqueta", tipo: "por peça", valor: "R$ 0,30" },
+        { nome: "Encarte", tipo: "por peça", valor: "R$ 0,60" }
+      ]
     },
     ouro: {
-      titulo: "Plano Ouro — Tarifas & Condições",
-      cota: "Até 1.000 peças/mês (Lote mín: 100 pçs ou 300g)",
-      pagamentoAnual: "Anuidade paga no PIX (à vista) ou em até 10x no Cartão de Crédito com juros repassados no parcelamento.",
+      titulo: "Valores & Tarifas — Plano Ouro",
+      pagamento: "Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.",
       servicos: [
         { nome: "Separação + Inspeção + CDI (3 em 1)", tipo: "por peça", valor: "R$ 0,63" },
-        { nome: "Fotografia (Third Flow)", tipo: "por modelo", valor: "R$ 1,70" },
-        { nome: "CDE / Catalogação (Fourth Flow)", tipo: "por modelo", valor: "R$ 2,07" },
-        { nome: "Etiqueta (Flow Down Start)", tipo: "por peça", valor: "R$ 0,24" },
-        { nome: "Encarte (Flow Down Start)", tipo: "por peça", valor: "R$ 0,50" },
-        { nome: "Montagem (Serviço Adicional)", tipo: "por peça", valor: "R$ 0,50" },
-        { nome: "Cravação (Serviço Adicional)", tipo: "por peça", valor: "R$ 0,63" }
-      ],
-      extras: "Serviços extras de produção física cobrados separadamente conforme demanda do lote."
+        { nome: "Fotografia", tipo: "por modelo", valor: "R$ 1,70" },
+        { nome: "CDE (Catalogação)", tipo: "por modelo", valor: "R$ 2,07" },
+        { nome: "Etiqueta", tipo: "por peça", valor: "R$ 0,24" },
+        { nome: "Encarte", tipo: "por peça", valor: "R$ 0,50" },
+        { nome: "Montagem", tipo: "por peça", valor: "R$ 0,50" },
+        { nome: "Cravação", tipo: "por peça", valor: "R$ 0,63" }
+      ]
     },
     black: {
-      titulo: "Plano Black — Tarifas & Condições",
-      cota: "Até 1.500 peças/mês (Lote mín: 100 pçs ou 300g)",
-      pagamentoAnual: "Anuidade paga no PIX (à vista) ou em até 10x no Cartão de Crédito com juros repassados no parcelamento.",
+      titulo: "Valores & Tarifas — Plano Black",
+      pagamento: "Plano pago no PIX (à vista) ou em até 10x no Cartão de Crédito com juros.",
       servicos: [
         { nome: "Separação + Inspeção + CDI (3 em 1)", tipo: "por peça", valor: "R$ 0,58" },
-        { nome: "Fotografia (Third Flow)", tipo: "por modelo", valor: "R$ 1,56" },
-        { nome: "CDE / Catalogação (Fourth Flow)", tipo: "por modelo", valor: "R$ 1,90" },
-        { nome: "Etiqueta (Flow Down Start)", tipo: "por peça", valor: "R$ 0,22" },
-        { nome: "Encarte (Flow Down Start)", tipo: "por peça", valor: "R$ 0,45" },
-        { nome: "Montagem (Serviço Adicional)", tipo: "por peça", valor: "R$ 0,45" },
-        { nome: "Cravação (Serviço Adicional)", tipo: "por peça", valor: "R$ 0,55" },
-        { nome: "Colagem (Serviço Adicional)", tipo: "por peça", valor: "R$ 0,55" }
-      ],
-      extras: "Serviços adicionais de cravação e colagem possuem o mesmo valor tarifário, porém são discriminados individualmente nos relatórios do Sistema S.O.S."
+        { nome: "Fotografia", tipo: "por modelo", valor: "R$ 1,56" },
+        { nome: "CDE (Catalogação)", tipo: "por modelo", valor: "R$ 1,90" },
+        { nome: "Etiqueta", tipo: "por peça", valor: "R$ 0,22" },
+        { nome: "Encarte", tipo: "por peça", valor: "R$ 0,45" },
+        { nome: "Montagem", tipo: "por peça", valor: "R$ 0,45" },
+        { nome: "Cravação", tipo: "por peça", valor: "R$ 0,55" },
+        { nome: "Colagem", tipo: "por peça", valor: "R$ 0,55" }
+      ]
     }
   };
 
-  // ABRIR MODAL
   function openModal(planoKey) {
     const data = planosData[planoKey];
     document.getElementById('modalTitle').innerText = data.titulo;
 
-    let html = `<p><strong>Cota da Vaga:</strong> ${data.cota}</p>`;
-    html += `<p><strong>Forma de Pagamento da Anuidade:</strong> ${data.pagamentoAnual}</p>`;
-    html += `<h4 style="margin-top:20px; color:var(--primary);">Tabela de Tarifas Unitárias:</h4>`;
+    let html = `<p><strong>Forma de Pagamento:</strong> ${data.pagamento}</p>`;
     html += `<table class="price-table">
               <thead>
-                <tr>
-                  <th>Serviço / Processo</th>
-                  <th>Base</th>
-                  <th>Valor Unitário</th>
-                </tr>
-              </thead>
-              <tbody>`;
+                <tr><th>Serviço</th><th>Tipo</th><th>Valor</th></tr>
+              </thead><tbody>`;
 
     data.servicos.forEach(s => {
-      html += `<tr>
-                <td>${s.nome}</td>
-                <td>${s.tipo}</td>
-                <td><strong>${s.valor}</strong></td>
-              </tr>`;
+      html += `<tr><td>${s.nome}</td><td>${s.tipo}</td><td><strong>${s.valor}</strong></td></tr>`;
     });
 
     html += `</tbody></table>`;
-    if(data.extras) {
-      html += `<p style="font-size:0.85rem; color:var(--text-muted); margin-top:15px;">* ${data.extras}</p>`;
-    }
-
     document.getElementById('modalBody').innerHTML = html;
     document.getElementById('infoModal').style.display = 'flex';
   }
 
-  // FECHAR MODAL
   function closeModal() {
     document.getElementById('infoModal').style.display = 'none';
   }
 
-  // REGISTRAR CANDIDATURA NO SISTEMA S.O.S
   function registrarCandidatura(planoNome) {
-    alert(`Iniciando registro para a vaga do Plano ${planoNome} no Sistema S.O.S...\n\nVocê será redirecionado para preencher os dados oficiais da sua marca.`);
-    // Aqui você pode colocar o seu script/fetch para enviar para o banco de dados do Sistema S.O.S
+    alert(`Registrar no Sistema S.O.S — Vaga do Plano ${planoNome}`);
   }
 </script>
 
