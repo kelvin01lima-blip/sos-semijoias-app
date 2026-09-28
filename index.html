@@ -53,7 +53,7 @@
     .hero-banner p { margin: 0; font-size: 1rem; line-height: 1.7; color: #CBD5E1; }
 
     .banner-agradecimento {
-      background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--orange-accent);
+      background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--green-val);
       border-radius: 12px; padding: 18px; margin-bottom: 20px; font-size: 0.88rem; line-height: 1.6;
     }
 
@@ -82,12 +82,6 @@
 
     .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.82rem; line-height: 1.5; color: #334155; }
     .club-card.black .club-features { color: #CBD5E1; }
-
-    .card-price-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.78rem; }
-    .card-price-table th, .card-price-table td { padding: 6px 8px; border-bottom: 1px solid #E2E8F0; }
-    .club-card.black .card-price-table th, .club-card.black .card-price-table td { border-bottom-color: #334155; }
-    .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
-    .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
     .box-frete-aviso {
       background: var(--input-bg); border: 1px dashed #CBD5E1; border-radius: 10px; padding: 10px;
@@ -178,20 +172,7 @@
 
   <div class="main-container">
 
-    <!-- BANNER DE AGRADECIMENTO & METAS -->
-    <div class="banner-agradecimento">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <strong style="color: var(--header-bg); font-size: 1rem;">🙏 Agradecimento pelo seu Trabalho & Dedicação</strong>
-          <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.83rem;">
-            Obrigado por fazer parte da nossa esteira de excelência. Cada detalhe verificado no banho, foto tratada e etiqueta aplicada constrói o valor das maiores marcas de semijoias do Brasil.
-          </p>
-        </div>
-        <button class="btn-action-top" style="font-size: 0.75rem; padding: 8px 14px;" onclick="abrirModalMetas()">🎯 VER METAS S.O.S</button>
-      </div>
-    </div>
-
-    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE -->
+    <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE (TELAS DE ENTRADA PÚBLICA) -->
     <div id="portalLanding" class="portal-landing">
       
       <div class="hero-banner">
@@ -201,7 +182,7 @@
         </p>
       </div>
 
-      <!-- CARDS CONCEITUAIS -->
+      <!-- CARDS CONCEITUAIS DAS COTAS -->
       <div class="club-cards-grid">
         
         <!-- CARD 1: INICIANTE -->
@@ -214,22 +195,11 @@
             <ul class="club-features" style="font-size:0.78rem;">
               <li><strong>1. Entrada:</strong> Triagem de peso bruto e protocolo de análise</li>
               <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Separação, testes de LED e cadastro em sistema</li>
-              <li><strong>3. Cravação / Montagem / Colagem (Opcional):</strong> Executado mediante aprovação prévia do cliente caso a inspeção detecte falha</li>
+              <li><strong>3. Cravação / Montagem / Colagem (Opcional):</strong> Executado mediante aprovação prévia caso a inspeção detecte falha</li>
               <li><strong>4. Fotografia Still / IA:</strong> Tratamento em estúdio</li>
               <li><strong>5. CDE & Etiquetagem:</strong> Catalogação digital e impressão térmica</li>
               <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem e despacho</li>
             </ul>
-
-            <table class="card-price-table">
-              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
-              <tbody>
-                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,75 / pc</td></tr>
-                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,99 / mod</td></tr>
-                <tr><td>CDE / Catalogação</td><td>R$ 2,40 / mod</td></tr>
-                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,30 / pc</td></tr>
-                <tr><td>Encarte (Flow Down)</td><td>R$ 0,60 / pc</td></tr>
-              </tbody>
-            </table>
 
             <div class="box-frete-aviso">
               🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
@@ -257,17 +227,6 @@
               <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem e despacho</li>
             </ul>
 
-            <table class="card-price-table">
-              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
-              <tbody>
-                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,63 / pc</td></tr>
-                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,70 / mod</td></tr>
-                <tr><td>CDE / Catalogação</td><td>R$ 2,07 / mod</td></tr>
-                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,24 / pc</td></tr>
-                <tr><td>Encarte (Flow Down)</td><td>R$ 0,50 / pc</td></tr>
-              </tbody>
-            </table>
-
             <div class="box-frete-aviso">
               🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
             </div>
@@ -293,17 +252,6 @@
               <li><strong>5. CDE & Etiquetagem:</strong> Validação em janela reduzida</li>
               <li><strong>6. Encarte & Fechamento/Envio:</strong> Despacho expresso</li>
             </ul>
-
-            <table class="card-price-table">
-              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
-              <tbody>
-                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,58 / pc</td></tr>
-                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,56 / mod</td></tr>
-                <tr><td>CDE / Catalogação</td><td>R$ 1,90 / mod</td></tr>
-                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,22 / pc</td></tr>
-                <tr><td>Encarte (Flow Down)</td><td>R$ 0,45 / pc</td></tr>
-              </tbody>
-            </table>
 
             <div class="box-frete-aviso">
               🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
@@ -395,8 +343,22 @@
         </div>
       </div>
 
-      <!-- ABA COLABORADOR: VISÃO POR CLIENTE -->
+      <!-- ABA COLABORADOR: VISÃO POR CLIENTE (COM O AGRADECIMENTO AQUI) -->
       <div id="abaColaboradorVisao" class="tab-content">
+        
+        <!-- BANNER ELEGANTE DE AGRADECIMENTO DENTRO DA ÁREA DO COLABORADOR -->
+        <div class="banner-agradecimento">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="color: var(--header-bg); font-size: 1rem;">🙏 Agradecimento da Diretoria S.O.S pelo seu Trabalho & Dedicação</strong>
+              <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.83rem;">
+                Obrigado por fazer parte da nossa esteira de excelência! Cada peça inspecionada, foto produzida e etiqueta aplicada garante o padrão de alto nível das melhores marcas do mercado.
+              </p>
+            </div>
+            <button class="btn-action-top" style="font-size: 0.75rem; padding: 8px 14px;" onclick="abrirModalMetas()">🎯 VER METAS S.O.S</button>
+          </div>
+        </div>
+
         <div class="panel-card">
           <h3>📋 Consulta e Instruções de Operação Por Cliente</h3>
           <label style="font-size:0.85rem; font-weight:bold;">Selecione o Cliente / Marca:</label>
@@ -433,7 +395,6 @@
         <div class="panel-card">
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px; margin-bottom:15px;">
             <h3 style="margin:0;">👥 Gestão Completa Por Cliente</h3>
-            <!-- BOTÃO DE BACKUP INTEGRADINHO AQUI -->
             <button class="btn-main btn-gold" style="width: auto; padding: 10px 18px;" onclick="executarBackupDrive()">
               💾 FAZER BACKUP NO GOOGLE DRIVE
             </button>
@@ -515,10 +476,10 @@
     </div>
   </div>
 
-  <!-- MODAL "MAIS INFORMAÇÕES" DAS COTAS -->
+  <!-- MODAL "MAIS INFORMAÇÕES" REESTRUTURADO E COMPLETO -->
   <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
-      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Informações Detalhadas do Clube</h2>
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes e Valores da Cota</h2>
       <div id="modalInfoConteudo"></div>
       <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
     </div>
@@ -554,7 +515,6 @@
   </div>
 
   <script>
-    // URL DO SEU APPS SCRIPT CONFIGURADA!
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
 
     function executarBackupDrive() {
@@ -845,36 +805,86 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
+    // MODAL MAIS INFORMAÇÕES REFEITO DO ZERO COM TABELA DE PREÇOS, CASHBACK CORRETO E BOTÕES
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
-      tit.innerText = `Detalhes e Comparativo — Cota ${categoria.toUpperCase()}`;
+      tit.innerText = `Detalhamento e Tarifas — Cota ${categoria.toUpperCase()}`;
 
-      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / ano" : ((categoria === "Ouro") ? "R$ 3.000,00 / ano" : "R$ 5.000,00 / ano");
-      let minPcs = "100 peças ou ~300g por lote";
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : "R$ 5.000,00 / anuidade");
+      let tInsp = (categoria === "Iniciante") ? "0,75" : ((categoria === "Ouro") ? "0,63" : "0,58");
+      let tFoto = (categoria === "Iniciante") ? "1,99" : ((categoria === "Ouro") ? "1,70" : "1,56");
+      let tCde = (categoria === "Iniciante") ? "2,40" : ((categoria === "Ouro") ? "2,07" : "1,90");
+      let tEtiq = (categoria === "Iniciante") ? "0,30" : ((categoria === "Ouro") ? "0,24" : "0,22");
+      let tEnc = (categoria === "Iniciante") ? "0,60" : ((categoria === "Ouro") ? "0,50" : "0,45");
+
+      let textoCashBack = "";
+      if (categoria === "Iniciante") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 1.500,00 aportados na anuidade do clube, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Como é liberado:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto.<br>
+          • <strong>Regra de Abatimento:</strong> Válido para abatimento em serviços livres dentro do mês vigente.<br>
+          • <i>Atenção:</i> Se o faturamento do mês ultrapassar R$ 100,00, você paga apenas a diferença. Se não atingir ou não utilizar no mês em questão, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else if (categoria === "Ouro") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 3.000,00 aportados na anuidade, <strong>R$ 600,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Como é liberado:</strong> R$ 200,00 em Junho + R$ 200,00 em Julho + R$ 200,00 em Agosto em serviços livres.<br>
+          • <i>Atenção:</i> O saldo não utilizado no mês vigente não acumula para os meses seguintes.
+        `;
+      } else {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack VIP BLACK S.O.S:</strong><br>
+          Dos R$ 5.000,00 aportados na anuidade, <strong>R$ 1.200,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Como é liberado:</strong> R$ 400,00 em Junho + R$ 400,00 em Julho + R$ 400,00 em Agosto.<br>
+          • <i>Atenção:</i> O saldo não utilizado no mês vigente não acumula para os meses seguintes.
+        `;
+      }
 
       cont.innerHTML = `
         <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
-          <p><strong>Adesão / Anuidade:</strong> ${adesao}</p>
-          <p><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto.</p>
-          <p><strong>Lote Mínimo Exigido:</strong> ${minPcs}</p>
-          <p><strong>Programa de CashBack S.O.S:</strong> 3% do valor faturado no mês retorna como crédito para os serviços do mês seguinte.</p>
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
+            <p style="margin:0 0 6px 0;"><strong>Valor da Anuidade:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
+            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX à vista com desconto.</p>
+            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por pedido de entrada.</p>
+          </div>
 
-          <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
-
-          <h4 style="color:var(--header-bg); margin-bottom:8px;">⚖️ Comparativo de Preços com o VIP BLACK:</h4>
+          <h4 style="color:var(--header-bg); margin:12px 0 6px 0;">🏷️ Tabela de Tarifas da Cota ${categoria}:</h4>
           <table style="font-size:0.8rem; margin-bottom:15px;">
-            <thead><tr><th>Serviço</th><th>Sua Cota (${categoria})</th><th>Cota VIP BLACK</th></tr></thead>
+            <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Valor Unitário</th></tr></thead>
             <tbody>
-              <tr><td>Inspeção + CDI</td><td>R$ ${categoria === 'Iniciante' ? '0,75' : '0,63'} / pc</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58 / pc</td></tr>
-              <tr><td>Fotografia Still</td><td>R$ ${categoria === 'Iniciante' ? '1,99' : '1,70'} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56 / mod</td></tr>
-              <tr><td>CDE Catalogação</td><td>R$ ${categoria === 'Iniciante' ? '2,40' : '2,07'} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90 / mod</td></tr>
+              <tr><td>Inspeção de Qualidade + CDI (3 em 1)</td><td>Por Peça</td><td><strong>R$ ${tInsp}</strong></td></tr>
+              <tr><td>Fotografia Profissional (Still/IA)</td><td>Por Modelo/SKU</td><td><strong>R$ ${tFoto}</strong></td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo/SKU</td><td><strong>R$ ${tCde}</strong></td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td><strong>R$ ${tEtiq}</strong></td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td><strong>R$ ${tEnc}</strong></td></tr>
             </tbody>
           </table>
 
-          ${categoria !== 'Black' ? `<button class="btn-main btn-black" onclick="fecharModalInfo(); irParaCardBlack();">MUDAR PARA COTA VIP BLACK AGORA 💎</button>` : ''}
+          <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:12px; border-radius:10px; margin-bottom:15px; font-size:0.82rem; color:#1E3A8A;">
+            ${textoCashBack}
+          </div>
+
+          <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
+
+          <h4 style="color:var(--header-bg); margin-bottom:8px;">⚖️ Comparativo Tarifário com a Cota VIP BLACK:</h4>
+          <table style="font-size:0.8rem; margin-bottom:15px;">
+            <thead><tr><th>Serviço</th><th>Sua Cota (${categoria})</th><th>Cota VIP BLACK</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ ${tInsp} / pc</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58 / pc</td></tr>
+              <tr><td>Fotografia Still/IA</td><td>R$ ${tFoto} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56 / mod</td></tr>
+              <tr><td>CDE Catalogação</td><td>R$ ${tCde} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90 / mod</td></tr>
+            </tbody>
+          </table>
+
+          <div style="display:flex; gap:10px; margin-top:15px;">
+            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">💎 QUERO SER CLUBE BLACK S.O.S</button>` : ''}
+            <button class="btn-main btn-gold" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); abrirModalCadastro('${categoria}');">CONTRATAR COTA ${categoria.toUpperCase()}</button>
+          </div>
         </div>
       `;
 
@@ -1020,6 +1030,7 @@
 
     function abrirModalMetas() { document.getElementById('modalMetas').style.display = 'flex'; }
     function fecharModalMetas() { document.getElementById('modalMetas').style.display = 'none'; }
+    function abrirModalCadastro(plano) { alert("Abrir formulário de cadastro para " + plano); }
   </script>
 </body>
 </html>
