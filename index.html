@@ -564,20 +564,12 @@
       <div id="abaEstoqueInsumos" class="tab-content">
         <div class="panel-card">
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px; margin-bottom:15px;">
-            <h3 style="margin:0;">📦 Gestão de Estoque de Insumos & Categorias</h3>
-            <div>
-              <button id="btnNovaCategoriaGlobal" class="btn-main" style="width:auto; padding:8px 16px; background:var(--blue-val); display:inline-block; margin-right:5px;" onclick="abrirModalNovaCategoria()">+ Nova Categoria</button>
-              <button id="btnNovoInsumoDiretoria" class="btn-main btn-gold" style="width:auto; padding:8px 16px; display:inline-block;" onclick="abrirModalCadastrarInsumo()">+ Cadastrar Novo Insumo</button>
-            </div>
+            <h3 style="margin:0;">📦 Gestão de Estoque de Insumos HUB S.O.S</h3>
+            <button id="btnNovoInsumoDiretoria" class="btn-main btn-gold" style="width:auto; padding:8px 16px; display:none;" onclick="abrirModalCadastrarInsumo()">+ Cadastrar Novo Insumo</button>
           </div>
 
-          <!-- SELETOR DE CLIENTE (DIRETORIA) E FILTROS DE INSUMOS -->
+          <!-- FILTROS DE INSUMOS -->
           <div class="grid-2col" style="margin-bottom:15px;">
-            <div id="boxSeletorClienteEstoque" style="grid-column: span 2; display:none; background:#F1F5F9; padding:10px; border-radius:8px; margin-bottom:10px;">
-              <label style="font-size:0.8rem; font-weight:bold; color:var(--header-bg);">👤 Selecionar Cliente para Gestão de Estoque:</label>
-              <select id="seletorClienteEstoqueDiretoria" class="form-control" style="margin-top:4px;" onchange="alterarClienteEstoqueAtual(this.value)">
-              </select>
-            </div>
             <div>
               <label style="font-size:0.78rem; font-weight:bold;">🔍 Buscar Insumo por Nome:</label>
               <input type="text" id="filtroInsumoNome" class="form-control" placeholder="Digite o nome..." oninput="renderizarTabelaEstoqueInsumos()">
@@ -742,17 +734,6 @@
   <!-- RODAPÉ OFICIAL -->
   <div class="footer-bar">
     Produzido por Kelvin Lima — CEO S.O.S Soluções
-  </div>
-
-  <!-- MODAL NOVA CATEGORIA GLOBAL -->
-  <div id="modalNovaCategoria" class="modal-overlay">
-    <div class="modal-card" style="max-width:400px;">
-      <h3 style="margin-top:0; color:var(--header-bg);">📂 Nova Categoria de Produto</h3>
-      <label style="font-size:0.78rem; font-weight:bold;">Nome da Categoria:</label>
-      <input type="text" id="novaCatNomeInput" class="form-control" placeholder="Ex: Tornozeleira, Choker, Broche...">
-      <button class="btn-main btn-gold" style="margin-top:10px;" onclick="salvarNovaCategoria()">CADASTRAR CATEGORIA</button>
-      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalNovaCategoria()">CANCELAR</button>
-    </div>
   </div>
 
   <!-- MODAL CADASTRO / EDIÇÃO DE INSUMO NO ESTOQUE -->
@@ -921,7 +902,7 @@
         cde: "Catalogar com SKU prefixo NIA-2027 e descrições técnicas no ERP Niara.",
         etiqueta: "Etiqueta térmica dupla aplicada no saquinho 8x8cm.",
         encartesCategorias: {
-          "Colar": { driveLinkFrente: "https://drive.google.com", driveLinkVerso: "https://drive.google.com", saquinho: "Saquinho Grande 18x4cm", cartela: "Cartela Colar P", etiqueta: "Etiqueta Térmica Argox", acessórios: "Trava Anel", textoEspecial: "Encartelar com corrente dobrada em 2 voltas." }
+          "Colar": { driveLink: "https://drive.google.com", saquinho: "Saquinho Grande 18x4cm", cartela: "Cartela Colar P", etiqueta: "Etiqueta Térmica Argox", acessórios: "Trava Anel", textoEspecial: "Encartelar com corrente dobrada em 2 voltas." }
         }
       }
     };
@@ -931,9 +912,6 @@
         { id: 1, nome: "Saquinho Grande 18x4cm", unidade: "Un", quantidade: 1500, categorias: ["Colar", "Pulseira"] },
         { id: 2, nome: "Cartela Colar P", unidade: "Un", quantidade: 180, categorias: ["Colar"] }, // < 200 (CRÍTICO)
         { id: 3, nome: "Argolas de Prata", unidade: "g", quantidade: 25, categorias: ["Colar", "Brinco"] } // < 30g (CRÍTICO)
-      ],
-      "Ulli": [
-        { id: 10, nome: "Cartela Anel Luxo", unidade: "Un", quantidade: 500, categorias: ["Anel"] }
       ]
     };
 
@@ -941,7 +919,6 @@
     let capacidadeDiasCustom = JSON.parse(localStorage.getItem('sos_capacidade_dias_custom')) || {};
     let diasBloqueadosManual = JSON.parse(localStorage.getItem('sos_dias_bloqueados_manual')) || [];
     let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
-    let clienteEstoqueAtivoView = "Niara";
 
     window.onload = function() {
       if (usuarioLogado && usuarios[usuarioLogado]) {
@@ -950,29 +927,6 @@
         logout();
       }
     };
-
-    function abrirModalNovaCategoria() {
-      document.getElementById('modalNovaCategoria').style.display = 'flex';
-    }
-
-    function fecharModalNovaCategoria() {
-      document.getElementById('modalNovaCategoria').style.display = 'none';
-    }
-
-    function salvarNovaCategoria() {
-      let cat = document.getElementById('novaCatNomeInput').value.trim();
-      if (!cat) return alert("Digite o nome da categoria.");
-      if (!categoriasGlobais.includes(cat)) {
-        categoriasGlobais.push(cat);
-        localStorage.setItem('sos_categorias_globais', JSON.stringify(categoriasGlobais));
-        carregarFiltroCategoriasInsumos();
-        alert(`Categoria "${cat}" cadastrada com sucesso!`);
-      } else {
-        alert("Esta categoria já existe.");
-      }
-      fecharModalNovaCategoria();
-      document.getElementById('novaCatNomeInput').value = '';
-    }
 
     function executarBackupDrive() {
       const dadosBackup = {
@@ -983,7 +937,6 @@
         capacidadeDiasCustom: capacidadeDiasCustom,
         diasBloqueadosManual: diasBloqueadosManual,
         mediaPesoGramasGlobal: mediaPesoGramasGlobal,
-        categoriasGlobais: categoriasGlobais,
         dataHoraBackup: new Date().toLocaleString('pt-BR')
       };
 
@@ -1015,8 +968,6 @@
         document.getElementById('barraCotaClienteBox').style.display = 'none';
         document.getElementById('boxSolicitacaoClienteForm').style.display = 'none';
         document.getElementById('btnNovoInsumoDiretoria').style.display = 'inline-block';
-        document.getElementById('btnNovaCategoriaGlobal').style.display = 'inline-block';
-        document.getElementById('boxSeletorClienteEstoque').style.display = 'block';
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
         document.getElementById('tabPendentesBtn').style.display = 'inline-block';
@@ -1028,7 +979,6 @@
         document.getElementById('tabColaboradoresBtn').style.display = 'inline-block';
         document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
 
-        carregarSeletorClientesEstoque();
         renderizarSolicitacoesPendentes();
         renderizarLogins();
         renderizarColaboradores();
@@ -1037,8 +987,6 @@
         document.getElementById('barraCotaClienteBox').style.display = 'none';
         document.getElementById('boxSolicitacaoClienteForm').style.display = 'none';
         document.getElementById('btnNovoInsumoDiretoria').style.display = 'none';
-        document.getElementById('btnNovaCategoriaGlobal').style.display = 'none';
-        document.getElementById('boxSeletorClienteEstoque').style.display = 'none';
 
         document.getElementById('tabAgendamentoBtn').style.display = 'none';
         document.getElementById('tabPendentesBtn').style.display = 'none';
@@ -1054,13 +1002,10 @@
         trocarAba('abaColaboradorVisao');
       } else {
         let plano = uObj.plano || "Iniciante";
-        clienteEstoqueAtivoView = usuarioLogado;
         document.getElementById('welcomeTitle').innerText = `📅 Painel do Cliente — ${usuarioLogado} [${plano.toUpperCase()}]`;
         document.getElementById('barraCotaClienteBox').style.display = 'flex';
         document.getElementById('boxSolicitacaoClienteForm').style.display = 'block';
-        document.getElementById('btnNovoInsumoDiretoria').style.display = 'inline-block';
-        document.getElementById('btnNovaCategoriaGlobal').style.display = 'inline-block';
-        document.getElementById('boxSeletorClienteEstoque').style.display = 'none';
+        document.getElementById('btnNovoInsumoDiretoria').style.display = 'none';
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
         document.getElementById('tabPendentesBtn').style.display = 'none';
@@ -1079,25 +1024,6 @@
       renderizarTabelaEstoqueInsumos();
       renderizarCalendarioDiretoria();
       renderizarHistoricoCliente();
-    }
-
-    function carregarSeletorClientesEstoque() {
-      const select = document.getElementById('seletorClienteEstoqueDiretoria');
-      select.innerHTML = '';
-      for (let u in usuarios) {
-        if (usuarios[u].perfil === 'cliente') {
-          let opt = document.createElement('option');
-          opt.value = u;
-          opt.innerText = u;
-          if (u === clienteEstoqueAtivoView) opt.selected = true;
-          select.appendChild(opt);
-        }
-      }
-    }
-
-    function alterarClienteEstoqueAtual(u) {
-      clienteEstoqueAtivoView = u;
-      renderizarTabelaEstoqueInsumos();
     }
 
     function verificarAlertasEstoqueInsumos() {
@@ -1424,7 +1350,7 @@
       const tbody = document.getElementById('tabelaEstoqueInsumosTbody');
       tbody.innerHTML = '';
 
-      let clienteAlvo = (usuarios[usuarioLogado]?.perfil === 'cliente') ? usuarioLogado : clienteEstoqueAtivoView;
+      let clienteAlvo = (usuarios[usuarioLogado]?.perfil === 'cliente') ? usuarioLogado : 'Niara'; // SE FOR DIRETORIA, EXIBE DO CLIENTE SELECIONADO OU PADRÃO
       let estoque = clienteEstoqueInsumos[clienteAlvo] || [];
 
       let fNome = document.getElementById('filtroInsumoNome').value.toLowerCase();
@@ -1437,7 +1363,7 @@
       });
 
       if (filtrados.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:15px;">Nenhum insumo encontrado no estoque de [${clienteAlvo}] para esta busca.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:15px;">Nenhum insumo encontrado no estoque para esta busca.</td></tr>`;
         return;
       }
 
@@ -1500,7 +1426,7 @@
 
       if (!nome) return alert("Digite o nome do insumo.");
 
-      let clienteTarget = (usuarios[usuarioLogado]?.perfil === 'cliente') ? usuarioLogado : clienteEstoqueAtivoView;
+      let clienteTarget = "Niara"; // NO CASO DA DIRETORIA CADASTRAR
       if (!clienteEstoqueInsumos[clienteTarget]) clienteEstoqueInsumos[clienteTarget] = [];
 
       clienteEstoqueInsumos[clienteTarget].push({
@@ -1528,60 +1454,44 @@
       document.getElementById('cardClienteTitle').innerText = `Card Completo do Cliente — ${u}`;
 
       let estoqueCliente = clienteEstoqueInsumos[u] || [];
+      let opcoesInsumosHtml = `<option value="">-- Selecione do Estoque --</option>` + estoqueCliente.map(i => `<option value="${i.nome}">${i.nome} (${i.quantidade}${i.unidade})</option>`).join('');
 
       let categoriasHtml = categoriasGlobais.map(cat => {
-        let dadosCat = d.encartesCategorias?.[cat] || { driveLinkFrente: "", driveLinkVerso: "", saquinho: "", cartela: "", etiqueta: "", acessórios: "", textoEspecial: "" };
-        
-        let insumosDaCategoria = estoqueCliente.filter(ins => ins.categorias && ins.categorias.includes(cat));
-        let insumosListaTexto = insumosDaCategoria.length > 0 
-          ? insumosDaCategoria.map(ins => `• ${ins.nome} (${ins.quantidade} ${ins.unidade})`).join('<br>')
-          : '<em style="color:var(--text-muted);">Nenhum insumo específico vinculado a esta categoria no estoque.</em>';
-
+        let dadosCat = d.encartesCategorias?.[cat] || { driveLink: "", saquinho: "", cartela: "", etiqueta: "", acessórios: "", textoEspecial: "" };
         return `
-          <div style="background:#FFF; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:12px;">
-            <strong style="color:var(--header-bg); font-size:0.95rem;">🏷️ Categoria: ${cat}</strong>
+          <div style="background:#FFF; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:10px;">
+            <strong style="color:var(--header-bg); font-size:0.9rem;">🏷️ Categoria: ${cat}</strong>
             
-            <div style="margin-top:8px;" class="grid-2col">
-              <div>
-                <label style="font-size:0.7rem; font-weight:bold;">📸 Link Foto Modelo (FRENTE):</label>
-                <input type="url" id="encDriveFrente_${cat}" class="form-control" value="${dadosCat.driveLinkFrente || ''}" placeholder="https://drive.google.com/...">
-              </div>
-              <div>
-                <label style="font-size:0.7rem; font-weight:bold;">📸 Link Foto Modelo (VERSO):</label>
-                <input type="url" id="encDriveVerso_${cat}" class="form-control" value="${dadosCat.driveLinkVerso || ''}" placeholder="https://drive.google.com/...">
-              </div>
-            </div>
-
-            <div style="background:#F1F5F9; border-left:3px solid var(--blue-val); padding:8px 10px; border-radius:6px; font-size:0.75rem; margin-bottom:10px;">
-              <strong>📦 Insumos Disponíveis Cadastrados nesta Categoria:</strong><br>
-              ${insumosListaTexto}
+            <div style="margin-top:8px;">
+              <label style="font-size:0.7rem; font-weight:bold;">Link da Foto do Modelo no Google Drive:</label>
+              <input type="url" id="encDrive_${cat}" class="form-control" value="${dadosCat.driveLink}" placeholder="https://drive.google.com/...">
             </div>
 
             <div class="grid-2col">
               <div>
                 <label style="font-size:0.7rem;">Saquinho Selecionado:</label>
-                <input type="text" id="encSaq_${cat}" class="form-control" value="${dadosCat.saquinho || ''}" placeholder="Ex: Saquinho 18x4cm">
+                <input type="text" id="encSaq_${cat}" class="form-control" value="${dadosCat.saquinho}" placeholder="Ex: Saquinho 18x4cm">
               </div>
               <div>
                 <label style="font-size:0.7rem;">Cartela Selecionada:</label>
-                <input type="text" id="encCart_${cat}" class="form-control" value="${dadosCat.cartela || ''}" placeholder="Ex: Cartela Colar P">
+                <input type="text" id="encCart_${cat}" class="form-control" value="${dadosCat.cartela}" placeholder="Ex: Cartela Colar P">
               </div>
             </div>
 
             <div class="grid-2col">
               <div>
                 <label style="font-size:0.7rem;">Etiqueta Aplicada:</label>
-                <input type="text" id="encEtiq_${cat}" class="form-control" value="${dadosCat.etiqueta || ''}" placeholder="Ex: Etiqueta Argox">
+                <input type="text" id="encEtiq_${cat}" class="form-control" value="${dadosCat.etiqueta}" placeholder="Ex: Etiqueta Argox">
               </div>
               <div>
                 <label style="font-size:0.7rem;">Acessórios Extra (Trava Anel, etc.):</label>
-                <input type="text" id="encAces_${cat}" class="form-control" value="${dadosCat.acessórios || ''}" placeholder="Ex: Trava Anel de Silicone">
+                <input type="text" id="encAces_${cat}" class="form-control" value="${dadosCat.acessórios}" placeholder="Ex: Trava Anel de Silicone">
               </div>
             </div>
 
             <div>
               <label style="font-size:0.7rem; font-weight:bold;">Instruções Especiais de Encarte (${cat}):</label>
-              <textarea id="encTxt_${cat}" class="form-control" style="min-height:50px;">${dadosCat.textoEspecial || ''}</textarea>
+              <textarea id="encTxt_${cat}" class="form-control" style="min-height:50px;">${dadosCat.textoEspecial}</textarea>
             </div>
           </div>
         `;
@@ -1628,7 +1538,7 @@
         </div>
 
         <div class="client-card-section">
-          <h4>🎴 Modelos de Encarte por Categoria, Insumos & Links Drive (Frente e Verso)</h4>
+          <h4>🎴 Modelos de Encarte por Categoria & Links Drive</h4>
           ${categoriasHtml}
         </div>
 
@@ -1683,8 +1593,7 @@
       let encartesAtualizados = {};
       categoriasGlobais.forEach(cat => {
         encartesAtualizados[cat] = {
-          driveLinkFrente: document.getElementById(`encDriveFrente_${cat}`).value,
-          driveLinkVerso: document.getElementById(`encDriveVerso_${cat}`).value,
+          driveLink: document.getElementById(`encDrive_${cat}`).value,
           saquinho: document.getElementById(`encSaq_${cat}`).value,
           cartela: document.getElementById(`encCart_${cat}`).value,
           etiqueta: document.getElementById(`encEtiq_${cat}`).value,
@@ -1760,10 +1669,7 @@
           b.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <strong style="color:var(--header-bg);">🏷️ Categoria: ${k}</strong>
-              <div>
-                ${item.driveLinkFrente ? `<a href="${item.driveLinkFrente}" target="_blank" style="color:var(--blue-val); font-weight:bold; font-size:0.78rem; margin-right:8px;">🖼️ Foto FRENTE</a>` : ''}
-                ${item.driveLinkVerso ? `<a href="${item.driveLinkVerso}" target="_blank" style="color:var(--blue-val); font-weight:bold; font-size:0.78rem;">🖼️ Foto VERSO</a>` : ''}
-              </div>
+              ${item.driveLink ? `<a href="${item.driveLink}" target="_blank" style="color:var(--blue-val); font-weight:bold; font-size:0.8rem;">🔗 Ver Foto do Encarte no Drive</a>` : ''}
             </div>
             <p style="margin:6px 0 0 0; font-size:0.8rem; line-height:1.4;">
               • <strong>Saquinho:</strong> ${item.saquinho || 'Padrão'}<br>
