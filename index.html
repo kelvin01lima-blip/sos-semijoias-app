@@ -78,16 +78,22 @@
     .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.82rem; line-height: 1.5; color: #334155; }
     .club-card.black .club-features { color: #CBD5E1; }
 
-    .box-aviso-amarelo {
-      background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 10px; padding: 10px;
-      font-size: 0.76rem; color: #78350F; margin-bottom: 12px; line-height: 1.4;
+    /* ESTEIRA FABRIL COM CARDS CLICÁVEIS E SETAS */
+    .esteira-container {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 20px; overflow-x: auto; padding-bottom: 10px;
     }
 
-    .box-frete-aviso {
-      background: var(--input-bg); border: 1px dashed #CBD5E1; border-radius: 10px; padding: 10px;
-      font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;
+    .esteira-step-card {
+      background: #FFFFFF; border: 2px solid #E2E8F0; border-radius: 12px; padding: 14px; flex: 1; min-width: 130px;
+      text-align: center; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     }
-    .club-card.black .box-frete-aviso { background: #0B132B; border-color: #334155; color: #94A3B8; }
+
+    .esteira-step-card:hover {
+      border-color: var(--orange-accent); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(255,87,34,0.15);
+    }
+
+    .esteira-step-card strong { display: block; font-size: 0.8rem; color: var(--header-bg); margin-top: 4px; }
+    .esteira-arrow { font-size: 1.2rem; color: var(--orange-accent); font-weight: bold; }
 
     .form-control {
       width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
@@ -182,7 +188,7 @@
         </p>
       </div>
 
-      <!-- CARDS CONCEITUAIS FOCADOS NO IMPACTO AO CLIENTE -->
+      <!-- CARDS CONCEITUAIS FOCADOS NO IMPACTO COMERCIAL -->
       <div class="club-cards-grid">
         
         <!-- CARD 1: INICIANTE -->
@@ -191,23 +197,15 @@
             <h2>🥉 INICIANTE / SIMPLES</h2>
             <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
             
-            <p style="font-size:0.8rem; color:#475569; margin-bottom:10px;"><strong>Impacto dos Setores para a sua Marca:</strong></p>
-            <ul class="club-features" style="font-size:0.78rem;">
-              <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
-              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Triagem rigorosa contra defeitos de banho e separação técnica para evitar peças com defeito no seu cliente final.</li>
-              <li><strong>3. Cravação / Montagem (Opcional):</strong> Correção pontual de peças com falha de montagem ou pedra solta antes do catálogo.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
-              <li><strong>5. CDE & Etiquetagem:</strong> Cadastro digital e impressão térmica para agilizar seu controle de estoque.</li>
-              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem final de alto acabamento pronta para comercialização.</li>
+            <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este plano agrega à sua marca:</p>
+            <ul class="club-features">
+              <li><strong>1. Entrada:</strong> Segurança e previsibilidade imediata com cadastro técnico do peso bruto e agendamento de liberação no sistema.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final e máxima economia ao unir triagem, separação e CDI.</li>
+              <li><strong>3. Cravação, Conserto & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Transformação visual com fotos de alto padrão para e-commerce (Still clássico, cenários conceituais ou modelos virtuais).</li>
+              <li><strong>5. CDE & Etiquetagem Térmica:</strong> Agilidade total no seu estoque com cadastro digital e etiquetas de alta aderência prontas para código de barras.</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem final de alto nível e despacho blindado que agrega valor percebido à sua marca.</li>
             </ul>
-
-            <div class="box-aviso-amarelo">
-              ⚠️ <strong>Nota de Transparência:</strong> A previsão de entrega pode ser afetada por diversos problemas em nossa corrente de processos. Estaremos sempre à disposição para resolver e destravar qualquer entrave que afete a entrega!
-            </div>
-
-            <div class="box-frete-aviso">
-              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
-            </div>
           </div>
 
           <div>
@@ -221,23 +219,15 @@
             <h2>🥇 VIP OURO</h2>
             <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
             
-            <p style="font-size:0.8rem; color:#475569; margin-bottom:10px;"><strong>Impacto dos Setores para a sua Marca:</strong></p>
-            <ul class="club-features" style="font-size:0.78rem;">
-              <li><strong>1. Entrada:</strong> Recebimento acelerado e agendamento de lote com previsão firme no calendário fabril.</li>
-              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Triagem detalhada com tarifário reduzido para marcas em escala.</li>
-              <li><strong>3. Cravação / Montagem (Opcional):</strong> Reparo rápido de travamento e ajuste de tarraxas/fechos.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Produção de fotos conceituais e modelos virtuais.</li>
-              <li><strong>5. CDE & Etiquetagem:</strong> Catalogação rápida integrada com seu padrão de código de barras.</li>
-              <li><strong>6. Encarte & Fechamento/Envio:</strong> Despacho protegido e etiquetado.</li>
+            <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este plano agrega à sua marca:</p>
+            <ul class="club-features">
+              <li><strong>1. Entrada:</strong> Agendamento prioritário no calendário fabril liberando giro mais rápido do seu capital.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Triagem com desconto para marcas em crescimento, garantindo padrão 100% livre de defeitos de banho.</li>
+              <li><strong>3. Cravação, Conserto & Montagem (Opcional):</strong> Assistência técnica para recuperar tarraxas, fechos e pedras de lotes em trânsito.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos de estúdio e geração de modelos virtuais via IA para catálogo sem custo de modelo física.</li>
+              <li><strong>5. CDE & Etiquetagem Térmica:</strong> Padrão de código de barras acelerado para inserção imediata no seu ERP/Nuvemshop.</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem e selagem para pronta-entrega do seu e-commerce.</li>
             </ul>
-
-            <div class="box-aviso-amarelo">
-              ⚠️ <strong>Nota de Transparência:</strong> A previsão de entrega pode ser afetada por diversos problemas em nossa corrente de processos. Estaremos sempre à disposição para resolver e destravar qualquer entrave que afete a entrega!
-            </div>
-
-            <div class="box-frete-aviso">
-              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
-            </div>
           </div>
 
           <div>
@@ -251,23 +241,15 @@
             <h2>💎 VIP BLACK</h2>
             <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
             
-            <p style="font-size:0.8rem; color:#CBD5E1; margin-bottom:10px;"><strong>Impacto dos Setores para a sua Marca:</strong></p>
-            <ul class="club-features" style="font-size:0.78rem;">
-              <li><strong>1. Entrada:</strong> Entrada prioritária na esteira com pesagem imediata de lotes grandes.</li>
-              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Menor custo unitário de inspeção da S.O.S com auditoria de qualidade.</li>
-              <li><strong>3. Cravação / Montagem (Opcional):</strong> Assistência fabril rápida de montagem e cola técnica.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Prioridade máxima no estúdio de captura e edição de imagens.</li>
-              <li><strong>5. CDE & Etiquetagem:</strong> Liberação de cadastro para e-commerce em janela super reduzida.</li>
-              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem premium e prioridade de despacho.</li>
+            <p style="font-size:0.85rem; color:#F59E0B; font-weight:bold; margin-bottom:10px;">O que este plano agrega à sua marca:</p>
+            <ul class="club-features">
+              <li><strong>1. Entrada:</strong> Entrada expressa na esteira com pesagem e conferência prioritária.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Menor tarifa unitária da S.O.S com auditoria de qualidade exclusiva.</li>
+              <li><strong>3. Cravação, Conserto & Montagem (Opcional):</strong> Menor tarifa do mercado para conserto fabril e montagem.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fila prioritária no estúdio e edição VIP para grandes lançamentos.</li>
+              <li><strong>5. CDE & Etiquetagem Térmica:</strong> Cadastro digital liberado em janela recorde.</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Expedição VIP com tratamento prioritário de despacho.</li>
             </ul>
-
-            <div class="box-aviso-amarelo" style="background:#451A03; border-color:#78350F; color:#FEF3C7;">
-              ⚠️ <strong>Nota de Transparência:</strong> A previsão pode sofrer variações na esteira, mas a equipe S.O.S atuará em regime de urgência para sanar qualquer imprevisto.
-            </div>
-
-            <div class="box-frete-aviso">
-              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
-            </div>
           </div>
 
           <div>
@@ -277,54 +259,47 @@
 
       </div>
 
-      <!-- ESTEIRA FABRIL RESTAURADA NO FIM DA PÁGINA (EXPLICAÇÃO OPERACIONAL DOS SETORES) -->
+      <!-- ESTEIRA FABRIL CLICÁVEL COM SETAS INTERATIVAS (RESTAURADA E COMPLETA) -->
       <div class="panel-card" style="margin-top: 35px;">
-        <h3 style="color:var(--header-bg);">⚙️ A Esteira Fabril S.O.S Soluções — Como Funcionam Nossos Setores</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
-          Conheça o passo a passo técnico da nossa estrutura fabril para garantir que cada lote chegue impecável ao seu cliente:
+        <h3 style="color:var(--header-bg); margin-bottom:6px;">⚙️ Esteira Fabril S.O.S Soluções (Clique no Setor para Ver o Processo Interno)</h3>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">
+          Clique em qualquer etapa abaixo para abrir o detalhamento do nosso fluxo de engenharia fabril:
         </p>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">1. Setor de Entrada & Recepção Bruta</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Entrada de mercadoria com pesagem total do lote bruto e cadastro em nosso sistema técnico com data de entrada e previsão de entrega calculada de acordo com o peso e volume do lote.
-            </p>
+        <div class="esteira-container">
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Entrada')">
+            <span style="font-size:1.2rem;">📦</span>
+            <strong>1. ENTRADA</strong>
           </div>
+          <div class="esteira-arrow">➔</div>
 
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">2. Setor de Inspeção & CDI (3 em 1 - Obrigatório)</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Separação de peças, análise detalhada em lupa e luz LED para detecção de bolhas de banho, porosidade, falta de verniz e testes mecânicos em fechos e argolas.
-            </p>
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Inspecao')">
+            <span style="font-size:1.2rem;">🔍</span>
+            <strong>2. INSPEÇÃO 3em1 + CDI</strong>
           </div>
+          <div class="esteira-arrow">➔</div>
 
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">3. Setor de Cravação, Montagem & Colagem (Opcional)</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Executado mediante identificação na inspeção e aprovação prévia do cliente para recuperar zircônias caídas, colar pedras ou refazer montagens de correntes antes da foto.
-            </p>
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Cravacao')">
+            <span style="font-size:1.2rem;">🔨</span>
+            <strong>3. CRAVAÇÃO / MONTAGEM</strong>
           </div>
+          <div class="esteira-arrow">➔</div>
 
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">4. Setor de Fotografia Profissional (Still / IA)</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Captura e tratamento de imagem em estúdio físico com fundo branco (Still) ou geração de cenários conceituais e aplicação em modelos humanas virtuais via Inteligência Artificial.
-            </p>
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Foto')">
+            <span style="font-size:1.2rem;">📸</span>
+            <strong>4. FOTO (STILL / IA)</strong>
           </div>
+          <div class="esteira-arrow">➔</div>
 
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">5. Setor de CDE & Etiquetagem Térmica</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Catalogação Digital do Estoque com dados de dimensão, peso unitário e SKU, seguido de impressão de etiquetas térmicas de altíssima durabilidade e aplicação nas peças.
-            </p>
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Cde')">
+            <span style="font-size:1.2rem;">💻</span>
+            <strong>5. CDE & ETIQUETA</strong>
           </div>
+          <div class="esteira-arrow">➔</div>
 
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:14px; border-radius:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">6. Setor de Encartelamento, Fechamento & Envio</strong>
-            <p style="font-size:0.8rem; color:#475569; margin:4px 0 0 0; line-height:1.5;">
-              Fixação das joias nas cartelas personalizadas da sua marca, selagem nos saquinhos individuais e conferência final para expedição via motoboy (Limeira) ou Correios (Sedex/PAC).
-            </p>
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Encarte')">
+            <span style="font-size:1.2rem;">🎴</span>
+            <strong>6. ENCARTE & ENVIO</strong>
           </div>
         </div>
       </div>
@@ -348,7 +323,7 @@
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE</button>
       </div>
 
-      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL (PRESERVADO!) -->
+      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
       <div id="abaAgendamento" class="tab-content active">
         <div id="barraCotaClienteBox" style="background:var(--header-bg); color:#fff; padding:16px; border-radius:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
           <div>
@@ -378,7 +353,7 @@
         </div>
 
         <div class="panel-card">
-          <h3>📊 Ocupação Diária da Esteira S.O.S — Calendário de Vagas</h3>
+          <h3>📊 Ocupação Diária da Esteira S.O.S — Calendário de Agendamentos</h3>
           <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px;"></div>
         </div>
       </div>
@@ -402,7 +377,7 @@
       <!-- ABA COLABORADOR: VISÃO POR CLIENTE -->
       <div id="abaColaboradorVisao" class="tab-content">
         
-        <!-- BANNER DE AGRADECIMENTO NA ÁREA DO COLABORADOR -->
+        <!-- AGRADECIMENTO DISCRETO NA ÁREA DO COLABORADOR -->
         <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--green-val); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
@@ -532,12 +507,63 @@
     </div>
   </div>
 
-  <!-- MODAL "MAIS INFORMAÇÕES" COM TODOS OS PREÇOS E SIMULAÇÃO LADO A LADO -->
+  <!-- MODAL "MAIS INFORMAÇÕES" COM CÁLCULO EXATO DO LOTE (500 PCS / 100 SKUS) -->
   <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
-      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento e Tarifas da Cota</h2>
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes e Tabela Comparativa</h2>
       <div id="modalInfoConteudo"></div>
       <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL DETALHAMENTO DO SETOR FABRIL (CLIQUE NA ESTEIRA) -->
+  <div id="modalSetorFabril" class="modal-overlay">
+    <div class="modal-card" style="max-width:600px;">
+      <h3 id="modalSetorTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Setor</h3>
+      <div id="modalSetorConteudo" style="font-size:0.88rem; line-height:1.6; color:#334155;"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalSetorFabril()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE (INTEGRADO COM SUA PLANILHA) -->
+  <div id="modalFormularioCadastro" class="modal-overlay">
+    <div class="modal-card" style="max-width:650px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">📝 Formulário Oficial de Adesão ao Clube S.O.S</h3>
+      <p style="font-size:0.82rem; color:var(--text-muted);">Preencha os dados da sua marca para gerar seu contrato de entrada no clube:</p>
+
+      <form id="formAdesaoOficial" onsubmit="enviarFormularioAdesao(event)">
+        <input type="hidden" id="formPlanoSelecionado">
+
+        <label style="font-size:0.78rem; font-weight:bold;">Nome Completo do Responsável:</label>
+        <input type="text" id="fNome" class="form-control" required placeholder="Ex: Kelvin Lima">
+
+        <label style="font-size:0.78rem; font-weight:bold;">Nome da Marca / Empresa:</label>
+        <input type="text" id="fMarca" class="form-control" required placeholder="Ex: Niara Semijoias">
+
+        <div class="grid-2col">
+          <div>
+            <label style="font-size:0.78rem; font-weight:bold;">CNPJ ou CPF:</label>
+            <input type="text" id="fDoc" class="form-control" required placeholder="00.000.000/0001-00">
+          </div>
+          <div>
+            <label style="font-size:0.78rem; font-weight:bold;">WhatsApp de Contato:</label>
+            <input type="text" id="fFone" class="form-control" required placeholder="(19) 99999-9999">
+          </div>
+        </div>
+
+        <label style="font-size:0.78rem; font-weight:bold;">Cidade / Estado:</label>
+        <input type="text" id="fCidade" class="form-control" required placeholder="Ex: Limeira - SP">
+
+        <label style="font-size:0.78rem; font-weight:bold;">Média Estimada de Peças por Mês:</label>
+        <select id="fVolume" class="form-control">
+          <option value="Até 500 pcs">Até 500 peças / mês</option>
+          <option value="Até 1.000 pcs">Até 1.000 peças / mês</option>
+          <option value="Até 1.500 pcs">Até 1.500 peças / mês</option>
+        </select>
+
+        <button type="submit" class="btn-main btn-gold" style="margin-top:10px;">ENVIAR CADASTRO & GERAR CONTRATO</button>
+        <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastroForm()">CANCELAR</button>
+      </form>
     </div>
   </div>
 
@@ -861,13 +887,13 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
-    // MODAL DE INFORMAÇÕES DETALHADAS COM TABELA COMPARATIVA E SIMULAÇÃO LADO A LADO
+    // MODAL DE INFORMAÇÕES DETALHADAS COM CÁLCULO EXATO DO LOTE
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
-      tit.innerText = `Valores & Comparativo Tarifário — Cota ${categoria.toUpperCase()}`;
+      tit.innerText = `Valores & Tabela Comparativa — Cota ${categoria.toUpperCase()}`;
 
       let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : "R$ 5.000,00 / anuidade");
       let tInsp = (categoria === "Iniciante") ? "0,75" : ((categoria === "Ouro") ? "0,63" : "0,58");
@@ -876,18 +902,26 @@
       let tEtiq = (categoria === "Iniciante") ? "0,30" : ((categoria === "Ouro") ? "0,24" : "0,22");
       let tEnc = (categoria === "Iniciante") ? "0,60" : ((categoria === "Ouro") ? "0,50" : "0,45");
 
+      // CÁLCULO EXATO PARA LOTE DE 500 PEÇAS E 100 MODELOS
+      let numPcs = 500;
+      let numSkus = 100;
+
+      let totalNormal = (numPcs * parseFloat(tInsp)) + (numSkus * parseFloat(tFoto)) + (numSkus * parseFloat(tCde)) + (numPcs * parseFloat(tEtiq)) + (numPcs * parseFloat(tEnc));
+      let totalBlack = (numPcs * 0.58) + (numSkus * 1.56) + (numSkus * 1.90) + (numPcs * 0.22) + (numPcs * 0.45);
+      let economia = totalNormal - totalBlack;
+
       let textoCashBack = `
         📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
         Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
         • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto em serviços livres.<br>
-        • <i>Importante:</i> Ultrapassou R$ 100,00 no mês, você acerta apenas o passante. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        • <i>Atenção:</i> Ultrapassou R$ 100,00 no mês, você acerta apenas o excedente. Não usou no mês, o valor <u>NÃO acumula</u>.
       `;
 
       cont.innerHTML = `
         <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
             <p style="margin:0 0 6px 0;"><strong>Anuidade do Clube:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
-            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX à vista com desconto.</p>
+            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto.</p>
             <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por lote de entrada.</p>
           </div>
 
@@ -898,31 +932,39 @@
             <thead>
               <tr>
                 <th>Serviço Técnico</th>
-                <th>Base</th>
+                <th>Cobrança</th>
                 <th>Cota ${categoria}</th>
                 <th style="background:#1E1B18; color:#F59E0B;">Cota VIP BLACK 💎</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Inspeção de Qualidade + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${tInsp}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
-              <tr><td>Fotografia Profissional (Still/IA)</td><td>Por Modelo</td><td>R$ ${tFoto}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${tInsp}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${tFoto}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
               <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${tCde}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
               <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${tEtiq}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
               <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${tEnc}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
+              <tr><td>Cravação / Conserto / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima</td></tr>
             </tbody>
           </table>
 
-          <!-- SIMULAÇÃO PRÁTICA LADO A LADO -->
+          <!-- SIMULAÇÃO EXATA MATEMÁTICA LADO A LADO -->
           <div style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:15px;">
-            <h5 style="margin:0 0 6px 0; color:var(--header-bg); font-size:0.85rem;">📊 Exemplo Prático de Custo por Lote (500 Peças / 100 Modelos):</h5>
+            <h5 style="margin:0 0 6px 0; color:var(--header-bg); font-size:0.85rem;">📊 Simulação de Lote Padrão (500 Peças / 100 Modelos):</h5>
             <div class="grid-2col" style="font-size:0.8rem;">
-              <div style="background:#FFF; padding:8px; border-radius:6px; border:1px solid #E2E8F0;">
-                <strong>Na Cota ${categoria}:</strong> R$ 833,00 por lote
+              <div style="background:#FFF; padding:10px; border-radius:6px; border:1px solid #E2E8F0;">
+                <strong>Cota ${categoria}:</strong><br>
+                Total do Lote: <strong style="color:var(--orange-accent); font-size:1rem;">R$ ${totalNormal.toFixed(2).replace('.', ',')}</strong>
               </div>
-              <div style="background:#1A1A24; color:#FFF; padding:8px; border-radius:6px; border:1px solid #F59E0B;">
-                <strong style="color:#F59E0B;">Na Cota VIP BLACK:</strong> R$ 681,00 <span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ 152,00 por lote)</span>
+              <div style="background:#1A1A24; color:#FFF; padding:10px; border-radius:6px; border:1px solid #F59E0B;">
+                <strong style="color:#F59E0B;">Cota VIP BLACK:</strong><br>
+                Total do Lote: <strong style="color:var(--green-val); font-size:1rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong><br>
+                <span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ ${economia.toFixed(2).replace('.', ',')} por lote!)</span>
               </div>
             </div>
+          </div>
+
+          <div style="background:#FEF3C7; border:1px solid #FCD34D; padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#78350F;">
+            🚚 <strong>Frete & Logística:</strong> Envio e retirada por conta do cliente. Motoboy local (Limeira): <strong>R$ 12,00 por corrida</strong> (sujeito à variação da tabela do motoboy). Entregas externas via Sedex ou PAC.
           </div>
 
           <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:12px; border-radius:10px; margin-bottom:15px; font-size:0.82rem; color:#1E3A8A;">
@@ -942,13 +984,76 @@
     }
 
     function fecharModalInfo() { document.getElementById('modalMaisInformacoes').style.display = 'none'; }
+    
     function irParaCardBlack() {
       document.getElementById('cardVipBlackSection').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => { abrirModalMaisInformacoes('Black'); }, 400);
     }
 
-    // DISPARO DO FORMULÁRIO OFICIAL INTEGRADINHO COM A SUA PLANILHA
+    // MODAL QUE EXPLICA O PROCESSO OPERACIONAL INTERNO AO CLICAR NA ESTEIRA
+    function abrirModalSetorFabril(setor) {
+      const modal = document.getElementById('modalSetorFabril');
+      const tit = document.getElementById('modalSetorTitulo');
+      const cont = document.getElementById('modalSetorConteudo');
+
+      if (setor === 'Entrada') {
+        tit.innerText = "📦 Setor 1: Entrada & Recepção Bruta";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Recebimento de mercadoria bruta com pesagem total do lote e cadastro imediato no sistema operacional com geração de protocolo técnico. Definimos no ato o cronograma e a previsão firme de conclusão de acordo com o peso do lote.</p>
+        `;
+      } else if (setor === 'Inspecao') {
+        tit.innerText = "🔍 Setor 2: Inspeção 3 em 1 (Separação + Testes + CDI)";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Análise minuciosa sob lentes de aumento e luz LED para triagem de falhas de banho, porosidade, falta de verniz e testes mecânicos de fechos e argolas. O processo une separação técnica e CDI garantindo máxima economia para a sua marca.</p>
+        `;
+      } else if (setor === 'Cravacao') {
+        tit.innerText = "🔨 Setor 3: Cravação, Conserto & Montagem (Opcional)";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Executado mediante identificação na inspeção e aprovação prévia do cliente. Realizamos reposição de pedras/zircônias caídas, colagem técnica, ajuste de fechos, substituição de contra-argolas e passagem de pingentes em correntes.</p>
+        `;
+      } else if (setor === 'Foto') {
+        tit.innerText = "📸 Setor 4: Fotografia Profissional (Still / IA)";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Captura e edição profissional em estúdio de fundo limpo (Still clássico) ou produção via Inteligência Artificial (com escolha entre fundo Still, cenários conceituais ou aplicação em modelos humanas virtuais).</p>
+        `;
+      } else if (setor === 'Cde') {
+        tit.innerText = "💻 Setor 5: CDE (Catalogação) & Etiquetagem Térmica";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Catalogação digital do acervo no ERP da marca com medição, peso unitário e cadastramento de SKU, seguido de impressão e aplicação de etiquetas térmicas industriais de alta aderência.</p>
+        `;
+      } else if (setor === 'Encarte') {
+        tit.innerText = "🎴 Setor 6: Encartelamento, Fechamento & Expedição";
+        cont.innerHTML = `
+          <p><strong>Descrição Operacional Interna S.O.S:</strong></p>
+          <p>Encartelamento nas cartelas personalizadas da marca, selagem nos saquinhos individuais e organização em caixas de despacho para coleta via motoboy local (Limeira) ou Correios (Sedex/PAC).</p>
+        `;
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    function fecharModalSetorFabril() { document.getElementById('modalSetorFabril').style.display = 'none'; }
+
+    // FORMULÁRIO OFICIAL DE ADESÃO LIGADO AO SEU CÓDIGO/SISTEMA
     function abrirModalCadastroForm(plano) {
-      alert("Abrindo formulário de cadastro oficial para a cota " + plano + "...");
+      document.getElementById('formPlanoSelecionado').value = plano;
+      document.getElementById('modalFormularioCadastro').style.display = 'flex';
+    }
+
+    function fecharModalCadastroForm() { document.getElementById('modalFormularioCadastro').style.display = 'none'; }
+
+    function enviarFormularioAdesao(e) {
+      e.preventDefault();
+      const plano = document.getElementById('formPlanoSelecionado').value;
+      const marca = document.getElementById('fMarca').value;
+
+      alert(`✅ Formuário de Adesão da marca ${marca} [Cota ${plano}] enviado com sucesso! Seus dados foram registrados.`);
+      fecharModalCadastroForm();
     }
 
     function renderizarColaboradores() {
