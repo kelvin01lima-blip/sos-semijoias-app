@@ -211,30 +211,6 @@
     }
 
     .client-card-section h4 { margin-top: 0; color: var(--header-bg); border-bottom: 1px solid #E2E8F0; padding-bottom: 8px; }
-
-    /* ESTILOS DO CALENDÁRIO DA DIRETORIA */
-    .cal-grid {
-      display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 15px;
-    }
-    .cal-day-card {
-      border: 1px solid #E2E8F0; border-radius: 12px; padding: 10px; background: #FFF; min-height: 110px;
-      display: flex; flex-direction: column; justify-content: space-between; font-size: 0.8rem;
-    }
-    .cal-day-card.weekend { background: #F1F5F9; color: #94A3B8; opacity: 0.7; }
-    .cal-day-card.feriado { background: #FEF2F2; border-color: #FCA5A5; color: #991B1B; }
-    .cal-day-card.bloqueado { background: #FFF1F2; border-color: #FDA4AF; }
-    .cal-day-card.livre { background: #F0FDF4; border-color: #86EFAC; }
-    .cal-day-card.lotado { background: #FEF3C7; border-color: #FDE68A; }
-
-    .cal-header-day { text-align: center; font-weight: 900; color: var(--header-bg); padding: 6px; font-size: 0.8rem; text-transform: uppercase; }
-
-    /* ESTOQUE / INSUMOS BADGES E ALERTAS */
-    .badge-alerta-critico {
-      background-color: var(--red-val); color: white; padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 0.72rem; display: inline-block; animation: pulse 1.5s infinite;
-    }
-    .badge-ok {
-      background-color: var(--green-val); color: white; padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 0.72rem; display: inline-block;
-    }
   </style>
 </head>
 <body>
@@ -253,14 +229,16 @@
 
   <div class="main-container">
 
-    <!-- LANDING PAGE DE APRESENTAÇÃO PÚBLICA DO CLUBE (TRAVADA) -->
+    <!-- LANDING PAGE DE APRESENTAÇÃO PÚBLICA DO CLUBE -->
     <div id="portalLanding" class="portal-landing">
+      
       <div class="hero-banner">
         <h2>HUB de Operações S.O.S 2027</h2>
         <p>
           Estrutura técnica e esteira fabril de alta performance para marcas de semijoias. Garantimos triagem de banho, inspeção de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encartelamento com alto padrão de acabamento.
         </p>
 
+        <!-- TABELA DE PRAZOS DE ENTREGA -->
         <div class="prazos-box">
           <h4>⏱️ Tabela Oficial de Prazos de Entrega na Esteira S.O.S:</h4>
           <div class="prazos-grid">
@@ -272,7 +250,10 @@
         </div>
       </div>
 
+      <!-- CARDS CONCEITUAIS -->
       <div class="club-cards-grid">
+        
+        <!-- CARD 1: INICIANTE -->
         <div class="club-card" onclick="abrirModalMaisInformacoes('Iniciante')">
           <div>
             <div class="badge-vagas">🔥 VAGAS LIMITADAS — CORRA!</div>
@@ -311,6 +292,7 @@
           </div>
         </div>
 
+        <!-- CARD 2: OURO -->
         <div class="club-card gold" onclick="abrirModalMaisInformacoes('Ouro')">
           <div>
             <div class="badge-vagas" style="background:#D97706;">🔥 VAGAS LIMITADAS — CORRA!</div>
@@ -349,6 +331,7 @@
           </div>
         </div>
 
+        <!-- CARD 3: BLACK -->
         <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
           <div>
             <div class="badge-vagas" style="background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;">🔥 VAGAS LIMITADAS — CORRA!</div>
@@ -386,8 +369,10 @@
             <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Black')">MAIS INFORMAÇÕES</button>
           </div>
         </div>
+
       </div>
 
+      <!-- ESTEIRA FABRIL CLICÁVEL -->
       <div class="panel-card" style="margin-top: 35px;">
         <h3 style="color:var(--header-bg); margin-bottom:6px;">⚙️ Esteira Fabril S.O.S Soluções (Clique no Setor para Ver o Processo Interno Detalhado)</h3>
         <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">
@@ -431,21 +416,14 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- PAINEL PRINCIPAL (APÓS LOGIN) -->
     <div id="dashboardPanel" class="dashboard-panel">
 
-      <!-- BANNER DE AVISO DE ALERTA DE INSUMOS CRÍTICOS -->
-      <div id="alertaEstoqueCriticoBanner" style="display:none; background:#FEF2F2; border:2px solid #EF4444; border-radius:12px; padding:12px 18px; margin-bottom:15px;">
-        <strong style="color:#991B1B; font-size:0.9rem;">⚠️ ALERTA DE REPOSIÇÃO DE INSUMOS NO HUB S.O.S:</strong>
-        <p id="alertaEstoqueTexto" style="margin:4px 0 0 0; color:#B91C1C; font-size:0.83rem;"></p>
-      </div>
-
       <div class="nav-tabs">
-        <button id="tabAgendamentoBtn" class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Vagas & Calendário Fabril</button>
-        <button id="tabPendentesBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPendentes')">📥 Solicitações Pendentes <span id="badgePendentesCount" style="background:var(--red-val); color:#fff; padding:2px 8px; border-radius:10px; font-size:0.75rem;">0</span></button>
-        <button id="tabEstoqueBtn" class="tab-btn" onclick="trocarAba('abaEstoqueInsumos')">📦 Estoque de Insumos & Suprimentos</button>
+        <button id="tabAgendamentoBtn" class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
         <button id="tabTarifasBtn" class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
         <button id="tabHistoricoBtn" class="tab-btn" onclick="trocarAba('abaHistorico')">📈 Histórico & Frequência</button>
         
@@ -456,10 +434,8 @@
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE</button>
       </div>
 
-      <!-- ABA 1: CALENDÁRIO DA ESTEIRA FABRIL -->
+      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
       <div id="abaAgendamento" class="tab-content active">
-        
-        <!-- BLINDAGEM DE COTA CLIENTE -->
         <div id="barraCotaClienteBox" style="background:var(--header-bg); color:#fff; padding:16px; border-radius:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
           <div>
             <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; text-transform:uppercase;">Sua Cota Mensal no Sistema S.O.S</span>
@@ -468,133 +444,28 @@
           <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">INICIANTE</span>
         </div>
 
-        <!-- FORMULÁRIO EXCLUSIVO DO CLIENTE COM CONVERSOR AUTOMÁTICO DE PESO -->
-        <div id="boxSolicitacaoClienteForm" class="panel-card">
-          <h3 id="welcomeTitle">📅 Solicitar Vaga na Esteira Fabril S.O.S</h3>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">
-            Digite a data desejada e a quantidade de peças (ou informe o peso bruto para conversão automática). A solicitação irá para validação da diretoria.
-          </p>
-          
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px;">
+        <div class="panel-card">
+          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (In Flow & Second Flow)</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
             <div>
-              <label style="font-size: 0.78rem; font-weight: bold;">Data Desejada de Entrada:</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
               <input type="date" id="dataInput" class="form-control">
             </div>
             <div>
-              <label style="font-size: 0.78rem; font-weight: bold;">Peso Bruto Estimado (g):</label>
-              <input type="number" id="pesoBrutoInput" class="form-control" placeholder="Ex: 1600" oninput="calcularPecasPorPeso()">
-            </div>
-            <div>
-              <label style="font-size: 0.78rem; font-weight: bold;">Quantidade de Peças:</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças (Máx 1.500 pcs):</label>
               <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500">
             </div>
             <div>
-              <label style="font-size: 0.78rem; font-weight: bold;">SKUs / Modelos Estimados:</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados:</label>
               <input type="number" id="skusInput" class="form-control" placeholder="Ex: 100" value="100">
             </div>
           </div>
-
-          <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">
-            ℹ️ Média atual configurada: <strong id="lblMediaPeso">3.2g por peça</strong> (Conversão automática acionada ao preencher o peso em gramas).
-          </div>
-
-          <button class="btn-main btn-gold" style="margin-top: 5px;" onclick="solicitarVaga()">SOLICITAR VAGA NA ESTEIRA</button>
+          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA NA ESTEIRA</button>
         </div>
 
-        <!-- CALENDÁRIO GERAL DE OCUPAÇÃO DA ESTEIRA (LIMEIRA - SP) -->
         <div class="panel-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px;">
-            <h3 style="margin:0;">📊 Ocupação Diária da Esteira Fabril (Limeira - SP)</h3>
-            <div>
-              <button class="btn-edit" onclick="mudarMesCalendario(-1)">◀ Mês Anterior</button>
-              <strong id="labelMesAnoCal" style="font-size:0.95rem; color:var(--header-bg); margin:0 10px;">Mês / Ano</strong>
-              <button class="btn-edit" onclick="mudarMesCalendario(1)">Próximo Mês ▶</button>
-            </div>
-          </div>
-
-          <p style="font-size:0.78rem; color:var(--text-muted); margin-top:8px;">
-            • Dias Úteis: Liberação padrão de <strong>500 peças/dia</strong>.<br>
-            • Finais de Semana e Feriados em Limeira-SP: Bloqueados automaticamente.<br>
-            • Clique em qualquer dia como Diretoria para alterar limites ou bloquear o dia.
-          </p>
-
-          <div class="cal-grid">
-            <div class="cal-header-day">Dom</div>
-            <div class="cal-header-day">Seg</div>
-            <div class="cal-header-day">Ter</div>
-            <div class="cal-header-day">Qua</div>
-            <div class="cal-header-day">Qui</div>
-            <div class="cal-header-day">Sex</div>
-            <div class="cal-header-day">Sáb</div>
-          </div>
-
-          <div id="diretoriaCalendarGrid" class="cal-grid" style="margin-top:5px;"></div>
-        </div>
-      </div>
-
-      <!-- ABA 2: ABA DE SOLICITAÇÕES PENDENTES (EXCLUSIVA DIRETORIA) -->
-      <div id="abaPendentes" class="tab-content">
-        <div class="panel-card">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="margin:0;">📥 Solicitações de Vagas Pendentes de Aprovação</h3>
-            <button class="btn-edit" onclick="editarMediaPesoGlobal()">⚙️ Configurar Média de Peso (Atual: <span id="valMediaPesoBadge">3.2</span>g)</button>
-          </div>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:6px;">
-            Analise os pedidos dos clientes. Ao aprovar, o lote sequencial será gerado automaticamente (Lote 150+ para 2026 e Lote 01+ a partir de 2027) e a vaga será marcada no calendário.
-          </p>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Lote</th>
-                <th>Cliente / Marca</th>
-                <th>Data Solicitada</th>
-                <th>Peso (g)</th>
-                <th>Qtd Peças</th>
-                <th>SKUs</th>
-                <th>Ações da Diretoria</th>
-              </tr>
-            </thead>
-            <tbody id="solicitacoesPendentesTbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ABA ESTOQUE DE INSUMOS HUB S.O.S (CLIENTE & DIRETORIA) -->
-      <div id="abaEstoqueInsumos" class="tab-content">
-        <div class="panel-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px; margin-bottom:15px;">
-            <h3 style="margin:0;">📦 Gestão de Estoque de Insumos HUB S.O.S</h3>
-            <button id="btnNovoInsumoDiretoria" class="btn-main btn-gold" style="width:auto; padding:8px 16px; display:none;" onclick="abrirModalCadastrarInsumo()">+ Cadastrar Novo Insumo</button>
-          </div>
-
-          <!-- FILTROS DE INSUMOS -->
-          <div class="grid-2col" style="margin-bottom:15px;">
-            <div>
-              <label style="font-size:0.78rem; font-weight:bold;">🔍 Buscar Insumo por Nome:</label>
-              <input type="text" id="filtroInsumoNome" class="form-control" placeholder="Digite o nome..." oninput="renderizarTabelaEstoqueInsumos()">
-            </div>
-            <div>
-              <label style="font-size:0.78rem; font-weight:bold;">📂 Filtrar por Categoria:</label>
-              <select id="filtroInsumoCat" class="form-control" onchange="renderizarTabelaEstoqueInsumos()">
-                <option value="">Todas as Categorias</option>
-              </select>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Item / Insumo</th>
-                <th>Categorias Vinculadas</th>
-                <th>Unidade</th>
-                <th>Saldo em Estoque</th>
-                <th>Status do Estoque</th>
-                <th>Ações de Entrada / Saída</th>
-              </tr>
-            </thead>
-            <tbody id="tabelaEstoqueInsumosTbody"></tbody>
-          </table>
+          <h3>📊 Ocupação Diária da Esteira S.O.S — Calendário de Agendamentos</h3>
+          <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px;"></div>
         </div>
       </div>
 
@@ -652,7 +523,7 @@
             </div>
 
             <div class="client-card-section">
-              <h4>🎴 Modelos de Encarte por Categoria</h4>
+              <h4>🎴 Modelos de Encarte Cadastrados</h4>
               <div id="colabEncartesContainer"></div>
             </div>
           </div>
@@ -736,33 +607,7 @@
     Produzido por Kelvin Lima — CEO S.O.S Soluções
   </div>
 
-  <!-- MODAL CADASTRO / EDIÇÃO DE INSUMO NO ESTOQUE -->
-  <div id="modalCadastrarInsumo" class="modal-overlay">
-    <div class="modal-card" style="max-width:550px;">
-      <h3 style="margin-top:0; color:var(--header-bg);">📦 Cadastrar Novo Insumo de Estoque</h3>
-      
-      <label style="font-size:0.78rem; font-weight:bold;">Nome do Insumo / Item:</label>
-      <input type="text" id="insumoNomeInput" class="form-control" placeholder="Ex: Saquinho Plástico 18x4cm, Cartela Colar P, Trava Anel...">
-
-      <label style="font-size:0.78rem; font-weight:bold;">Unidade de Medida:</label>
-      <select id="insumoUnidadeInput" class="form-control">
-        <option value="Un">Unidades (Un)</option>
-        <option value="g">Gramas (g)</option>
-      </select>
-
-      <label style="font-size:0.78rem; font-weight:bold;">Quantidade Inicial:</label>
-      <input type="number" id="insumoQtdInput" class="form-control" placeholder="Ex: 1000">
-
-      <label style="font-size:0.78rem; font-weight:bold;">Selecione as Categorias em que este insumo é utilizado (Segure Ctrl para selecionar mais de uma):</label>
-      <select id="insumoCategoriasInput" class="form-control" multiple style="height:110px;">
-      </select>
-
-      <button class="btn-main btn-gold" style="margin-top:10px;" onclick="salvarNovoInsumo()">SALVAR INSUMO</button>
-      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastrarInsumo()">CANCELAR</button>
-    </div>
-  </div>
-
-  <!-- MODAL CARD DO CLIENTE COMPLETO (DIRETORIA) -->
+  <!-- MODAL CARD DO CLIENTE COMPLETO -->
   <div id="modalCardClienteCompleto" class="modal-overlay">
     <div class="modal-card">
       <h3 id="cardClienteTitle" style="margin-top:0; color:var(--header-bg);">Card Completo do Cliente — Diretoria</h3>
@@ -789,7 +634,7 @@
     </div>
   </div>
 
-  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE -->
+  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE (10 PERGUNTAS OFICIAIS) -->
   <div id="modalFormularioCadastro" class="modal-overlay">
     <div class="modal-card" style="max-width:700px;">
       <h3 style="margin-top:0; color:var(--header-bg);">📝 Formulário Oficial de Adesão ao Clube S.O.S</h3>
@@ -875,72 +720,15 @@
   <script>
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
 
-    let mesAtualCal = new Date().getMonth();
-    let anoAtualCal = new Date().getFullYear();
-
-    // FERIADOS OFICIAIS LIMEIRA - SP
-    const FERIADOS_LIMEIRA = [
-      "01-01", "03-27", "04-21", "05-01", "05-27", "07-09", "09-07", "09-15", "10-12", "11-02", "11-15", "11-20", "12-25"
-    ];
-
-    let mediaPesoGramasGlobal = parseFloat(localStorage.getItem('sos_media_peso_global')) || 3.2;
-
-    let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
-      "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
-      "Cintia.Lima": { senha: "123456", perfil: "colaborador", plano: "Colaborador", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, cravacao: 0.80, colagem: 0.50, montagem: 0.60, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, cravacao: 0.90, colagem: 0.60, montagem: 0.70, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50 } }
-    };
-
-    let categoriasGlobais = JSON.parse(localStorage.getItem('sos_categorias_globais')) || ["Brinco", "Colar", "Anel", "Pulseira", "Conjunto", "Piercing"];
-
-    let clienteDadosSetores = JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {
-      "Niara": {
-        inspecao: "Protocolo Niara: Conferência rigorosa de fechos de lagosta e teste de brilho no LED.",
-        fotoTipo: "IA",
-        fotoIaSubopcao: "IA - Modelo",
-        cde: "Catalogar com SKU prefixo NIA-2027 e descrições técnicas no ERP Niara.",
-        etiqueta: "Etiqueta térmica dupla aplicada no saquinho 8x8cm.",
-        encartesCategorias: {
-          "Colar": { driveLink: "https://drive.google.com", saquinho: "Saquinho Grande 18x4cm", cartela: "Cartela Colar P", etiqueta: "Etiqueta Térmica Argox", acessórios: "Trava Anel", textoEspecial: "Encartelar com corrente dobrada em 2 voltas." }
-        }
-      }
-    };
-
-    let clienteEstoqueInsumos = JSON.parse(localStorage.getItem('sos_cliente_estoque_insumos')) || {
-      "Niara": [
-        { id: 1, nome: "Saquinho Grande 18x4cm", unidade: "Un", quantidade: 1500, categorias: ["Colar", "Pulseira"] },
-        { id: 2, nome: "Cartela Colar P", unidade: "Un", quantidade: 180, categorias: ["Colar"] }, // < 200 (CRÍTICO)
-        { id: 3, nome: "Argolas de Prata", unidade: "g", quantidade: 25, categorias: ["Colar", "Brinco"] } // < 30g (CRÍTICO)
-      ]
-    };
-
-    let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-    let capacidadeDiasCustom = JSON.parse(localStorage.getItem('sos_capacidade_dias_custom')) || {};
-    let diasBloqueadosManual = JSON.parse(localStorage.getItem('sos_dias_bloqueados_manual')) || [];
-    let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
-
-    window.onload = function() {
-      if (usuarioLogado && usuarios[usuarioLogado]) {
-        restaurarSessaoLogada();
-      } else {
-        logout();
-      }
-    };
-
     function executarBackupDrive() {
       const dadosBackup = {
-        usuarios: usuarios,
-        agendamentos: agendamentos,
-        clienteDadosSetores: clienteDadosSetores,
-        clienteEstoqueInsumos: clienteEstoqueInsumos,
-        capacidadeDiasCustom: capacidadeDiasCustom,
-        diasBloqueadosManual: diasBloqueadosManual,
-        mediaPesoGramasGlobal: mediaPesoGramasGlobal,
+        usuarios: JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {},
+        agendamentos: JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [],
+        clienteDadosSetores: JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {},
         dataHoraBackup: new Date().toLocaleString('pt-BR')
       };
 
-      alert("⏳ Enviando backup completo do Sistema S.O.S para o Google Drive...");
+      alert("⏳ Enviando backup do Sistema S.O.S para a sua pasta do Google Drive...");
 
       fetch(URL_WEBHOOK_DRIVE, {
         method: 'POST',
@@ -952,26 +740,49 @@
       .catch(err => alert("❌ Falha ao realizar o backup: " + err));
     }
 
+    let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
+      "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
+      "Cintia.Lima": { senha: "123456", perfil: "colaborador", plano: "Colaborador", tarifas: null },
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50 } }
+    };
+
+    let clienteDadosSetores = JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {
+      "Niara": {
+        inspecao: "Protocolo Niara: Conferência rigorosa de fechos de lagosta e teste de brilho no LED.",
+        fotoTipo: "IA",
+        fotoIaSubopcao: "Modelo",
+        cde: "Catalogar com SKU prefixo NIA-2027 e descrições técnicas no ERP Niara.",
+        etiqueta: "Etiqueta térmica dupla aplicada no saquinho 8x8cm.",
+        encartes: [
+          { categoria: "Anel Regulável", titulo: "CARTELA P - ANEL REGULÁVEL NIARA", descricao: "Colocar no saquinho com durex de silicone e etiqueta visível." }
+        ]
+      }
+    };
+
+    let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
+    let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
+
+    window.onload = function() {
+      if (usuarioLogado && usuarios[usuarioLogado]) {
+        restaurarSessaoLogada();
+      } else {
+        logout();
+      }
+    };
+
     function restaurarSessaoLogada() {
       let uObj = usuarios[usuarioLogado];
       document.getElementById('portalLanding').style.display = 'none';
       document.getElementById('btnOpenLoginModal').style.display = 'none';
       document.getElementById('dashboardPanel').style.display = 'block';
       document.getElementById('btnLogout').style.display = 'inline-block';
-      document.getElementById('lblMediaPeso').innerText = `${mediaPesoGramasGlobal}g por peça`;
-      document.getElementById('valMediaPesoBadge').innerText = mediaPesoGramasGlobal;
-
-      verificarAlertasEstoqueInsumos();
 
       if (uObj.perfil === "admin") {
         document.getElementById('welcomeTitle').innerText = `📅 Gestão da Esteira Fabril — Painel da Diretoria`;
         document.getElementById('barraCotaClienteBox').style.display = 'none';
-        document.getElementById('boxSolicitacaoClienteForm').style.display = 'none';
-        document.getElementById('btnNovoInsumoDiretoria').style.display = 'inline-block';
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
-        document.getElementById('tabPendentesBtn').style.display = 'inline-block';
-        document.getElementById('tabEstoqueBtn').style.display = 'inline-block';
         document.getElementById('tabTarifasBtn').style.display = 'none';
         document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
         document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
@@ -979,18 +790,13 @@
         document.getElementById('tabColaboradoresBtn').style.display = 'inline-block';
         document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
 
-        renderizarSolicitacoesPendentes();
         renderizarLogins();
         renderizarColaboradores();
       } else if (uObj.perfil === "colaborador") {
         document.getElementById('welcomeTitle').innerText = `📋 Painel do Colaborador — ${usuarioLogado}`;
         document.getElementById('barraCotaClienteBox').style.display = 'none';
-        document.getElementById('boxSolicitacaoClienteForm').style.display = 'none';
-        document.getElementById('btnNovoInsumoDiretoria').style.display = 'none';
 
         document.getElementById('tabAgendamentoBtn').style.display = 'none';
-        document.getElementById('tabPendentesBtn').style.display = 'none';
-        document.getElementById('tabEstoqueBtn').style.display = 'inline-block';
         document.getElementById('tabTarifasBtn').style.display = 'none';
         document.getElementById('tabHistoricoBtn').style.display = 'none';
         document.getElementById('tabColaboradorVisaoBtn').style.display = 'inline-block';
@@ -1004,12 +810,8 @@
         let plano = uObj.plano || "Iniciante";
         document.getElementById('welcomeTitle').innerText = `📅 Painel do Cliente — ${usuarioLogado} [${plano.toUpperCase()}]`;
         document.getElementById('barraCotaClienteBox').style.display = 'flex';
-        document.getElementById('boxSolicitacaoClienteForm').style.display = 'block';
-        document.getElementById('btnNovoInsumoDiretoria').style.display = 'none';
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
-        document.getElementById('tabPendentesBtn').style.display = 'none';
-        document.getElementById('tabEstoqueBtn').style.display = 'inline-block';
         document.getElementById('tabTarifasBtn').style.display = 'inline-block';
         document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
         document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
@@ -1020,482 +822,84 @@
         renderizarTarifasCliente(usuarioLogado);
       }
 
-      carregarFiltroCategoriasInsumos();
-      renderizarTabelaEstoqueInsumos();
-      renderizarCalendarioDiretoria();
       renderizarHistoricoCliente();
     }
 
-    function verificarAlertasEstoqueInsumos() {
-      let banner = document.getElementById('alertaEstoqueCriticoBanner');
-      let txt = document.getElementById('alertaEstoqueTexto');
-      banner.style.display = 'none';
-      let itensCriticos = [];
-
-      let listaClientes = (usuarios[usuarioLogado]?.perfil === 'cliente') ? [usuarioLogado] : Object.keys(usuarios).filter(u => usuarios[u].perfil === 'cliente');
-
-      listaClientes.forEach(cli => {
-        let estoque = clienteEstoqueInsumos[cli] || [];
-        estoque.forEach(item => {
-          let ehCritico = (item.unidade === 'Un' && item.quantidade < 200) || (item.unidade === 'g' && item.quantidade < 30);
-          if (ehCritico) {
-            itensCriticos.push(`[${cli}] ${item.nome} (${item.quantidade}${item.unidade})`);
-          }
-        });
-      });
-
-      if (itensCriticos.length > 0) {
-        txt.innerText = "Atenção! Os seguintes insumos estão em nível crítico de reposição: " + itensCriticos.join(', ');
-        banner.style.display = 'block';
+    function carregarSelectColaboradorClientes() {
+      const select = document.getElementById('colabSelectCliente');
+      select.innerHTML = '<option value="">-- Selecione o Cliente --</option>';
+      for (let u in usuarios) {
+        if (usuarios[u].perfil === 'cliente') {
+          let opt = document.createElement('option');
+          opt.value = u;
+          opt.innerText = u;
+          select.appendChild(opt);
+        }
       }
     }
 
-    function calcularPecasPorPeso() {
-      let pesoG = parseFloat(document.getElementById('pesoBrutoInput').value);
-      if (pesoG && pesoG > 0) {
-        let q = Math.round(pesoG / mediaPesoGramasGlobal);
-        document.getElementById('pecasInput').value = q;
-      }
-    }
+    function carregarPainelColaboradorPorCliente(u) {
+      const container = document.getElementById('painelOperacaoColaboradorConteudo');
+      if (!u) { container.style.display = 'none'; return; }
 
-    function editarMediaPesoGlobal() {
-      let n = prompt("Digite a nova média de peso por peça em gramas (g):", mediaPesoGramasGlobal);
-      if (n && !isNaN(parseFloat(n))) {
-        mediaPesoGramasGlobal = parseFloat(n);
-        localStorage.setItem('sos_media_peso_global', mediaPesoGramasGlobal);
-        document.getElementById('lblMediaPeso').innerText = `${mediaPesoGramasGlobal}g por peça`;
-        document.getElementById('valMediaPesoBadge').innerText = mediaPesoGramasGlobal;
-        alert("Média global atualizada!");
-      }
-    }
+      let dados = clienteDadosSetores[u] || {
+        inspecao: "Sem instruções específicas de inspeção.",
+        cde: "Sem instruções de CDE.",
+        etiqueta: "Padrão térmico tradicional.",
+        encartes: []
+      };
 
-    function GERAR_PROXIMO_LOTE_AUTOMATICO(dataSolicitada) {
-      let anoSolicitado = new Date(dataSolicitada + 'T00:00:00').getFullYear();
-      let prefixoAno = anoSolicitado.toString();
+      document.getElementById('colabInspecaoTexto').innerText = dados.inspecao;
+      document.getElementById('colabCdeTexto').innerText = dados.cde;
+      document.getElementById('colabEtiquetaTexto').innerText = dados.etiqueta;
 
-      let lotesNoAno = agendamentos.filter(a => {
-        if (!a.data) return false;
-        let anoA = new Date(a.data + 'T00:00:00').getFullYear();
-        return anoA === anoSolicitado && a.numeroLote;
-      });
+      const encContainer = document.getElementById('colabEncartesContainer');
+      encContainer.innerHTML = '';
 
-      if (lotesNoAno.length === 0) {
-        return (anoSolicitado >= 2027) ? 1 : 150; // REINICIA NO LOTE 01 EM 2027
+      if (!dados.encartes || dados.encartes.length === 0) {
+        encContainer.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Nenhum encarte cadastrado para esta marca.</p>';
       } else {
-        let maxLote = Math.max(...lotesNoAno.map(a => a.numeroLote));
-        return maxLote + 1;
-      }
-    }
-
-    function renderizarCalendarioDiretoria() {
-      const grid = document.getElementById('diretoriaCalendarGrid');
-      const label = document.getElementById('labelMesAnoCal');
-      grid.innerHTML = '';
-
-      const mesesNomes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-      label.innerText = `${mesesNomes[mesAtualCal]} / ${anoAtualCal}`;
-
-      const primeiroDia = new Date(anoAtualCal, mesAtualCal, 1).getDay();
-      const totalDiasNoMes = new Date(anoAtualCal, mesAtualCal + 1, 0).getDate();
-
-      for (let i = 0; i < primeiroDia; i++) {
-        let emptyDiv = document.createElement('div');
-        emptyDiv.style.background = 'transparent';
-        grid.appendChild(emptyDiv);
-      }
-
-      for (let dia = 1; dia <= totalDiasNoMes; dia++) {
-        let dataObj = new Date(anoAtualCal, mesAtualCal, dia);
-        let diaSemana = dataObj.getDay();
-        let mm = String(mesAtualCal + 1).padStart(2, '0');
-        let dd = String(dia).padStart(2, '0');
-        let dataIso = `${anoAtualCal}-${mm}-${dd}`;
-        let mesDiaKey = `${mm}-${dd}`;
-
-        let card = document.createElement('div');
-        card.className = 'cal-day-card';
-
-        let ehFimDeSemana = (diaSemana === 0 || diaSemana === 6);
-        let ehFeriadoLimeira = FERIADOS_LIMEIRA.includes(mesDiaKey);
-        let ehBloqueadoManual = diasBloqueadosManual.includes(dataIso);
-
-        let pecasAgendadasNoDia = 0;
-        let agendamentosAprovadosDia = [];
-
-        agendamentos.forEach(a => {
-          if (a.status === 'Aprovado') {
-            let dataAprov = new Date(a.data + 'T00:00:00');
-            let dataSeguinte = obterProximoDiaUtil(dataAprov);
-
-            let strDataAprov = a.data;
-            let strDataSeguinte = dataSeguinte.toISOString().split('T')[0];
-
-            if (dataIso === strDataAprov || dataIso === strDataSeguinte) {
-              pecasAgendadasNoDia += a.pecas;
-              agendamentosAprovadosDia.push(a);
-            }
-          }
+        dados.encartes.forEach(e => {
+          let b = document.createElement('div');
+          b.style.background = '#FFFFFF';
+          b.style.padding = '10px';
+          b.style.borderRadius = '8px';
+          b.style.marginTop = '8px';
+          b.style.border = '1px solid #E2E8F0';
+          b.innerHTML = `<strong>${e.categoria} - ${e.titulo}</strong><p style="margin:4px 0 0 0; font-size:0.8rem;">${e.descricao}</p>`;
+          encContainer.appendChild(b);
         });
-
-        let limiteCapacidadeDia = capacidadeDiasCustom[dataIso] || 500;
-
-        let statusTxt = "";
-        let classeStatus = "";
-
-        if (ehFimDeSemana) {
-          classeStatus = "weekend";
-          statusTxt = "<strong>Final de Semana</strong><br>Sem Produção";
-        } else if (ehFeriadoLimeira) {
-          classeStatus = "feriado";
-          statusTxt = "<strong>Feriado Limeira-SP</strong><br>Folha Fabril";
-        } else if (ehBloqueadoManual) {
-          classeStatus = "bloqueado";
-          statusTxt = "<strong>Fechado/Bloqueado</strong><br>Pela Diretoria";
-        } else {
-          if (pecasAgendadasNoDia >= limiteCapacidadeDia) {
-            classeStatus = "lotado";
-            statusTxt = `<strong style="color:#B45309;">LOTADO (${pecasAgendadasNoDia}/${limiteCapacidadeDia} pcs)</strong>`;
-          } else {
-            classeStatus = "livre";
-            statusTxt = `<strong style="color:#15803D;">LIVRE (${pecasAgendadasNoDia}/${limiteCapacidadeDia} pcs)</strong>`;
-          }
-        }
-
-        card.classList.add(classeStatus);
-
-        let clientesNomesHtml = agendamentosAprovadosDia.map(a => `<span style="font-size:0.7rem; background:#E2E8F0; padding:2px 4px; border-radius:4px; margin-top:2px; display:inline-block;">Lote ${a.numeroLote || '-'}: ${a.cliente} (${a.pecas}pcs)</span>`).join('<br>');
-
-        card.innerHTML = `
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="font-size:0.95rem;">${dia}</strong>
-            <span style="font-size:0.65rem; font-weight:bold; color:var(--text-muted);">${['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'][diaSemana]}</span>
-          </div>
-          <div style="margin:4px 0; font-size:0.72rem;">${statusTxt}</div>
-          <div>${clientesNomesHtml}</div>
-        `;
-
-        if (usuarios[usuarioLogado]?.perfil === 'admin' && !ehFimDeSemana && !ehFeriadoLimeira) {
-          card.style.cursor = 'pointer';
-          card.onclick = () => abrirMenuOpcoesDiaDiretoria(dataIso, limiteCapacidadeDia, ehBloqueadoManual);
-        }
-
-        grid.appendChild(card);
       }
+
+      container.style.display = 'block';
     }
 
-    function obterProximoDiaUtil(dataInicio) {
-      let d = new Date(dataInicio);
-      d.setDate(d.getDate() + 1);
-
-      while (true) {
-        let diaSemana = d.getDay();
-        let mm = String(d.getMonth() + 1).padStart(2, '0');
-        let dd = String(d.getDate()).padStart(2, '0');
-        let mesDiaKey = `${mm}-${dd}`;
-
-        if (diaSemana !== 0 && diaSemana !== 6 && !FERIADOS_LIMEIRA.includes(mesDiaKey)) {
-          break;
-        }
-        d.setDate(d.getDate() + 1);
-      }
-      return d;
-    }
-
-    function mudarMesCalendario(delta) {
-      mesAtualCal += delta;
-      if (mesAtualCal > 11) { mesAtualCal = 0; anoAtualCal++; }
-      if (mesAtualCal < 0) { mesAtualCal = 11; anoAtualCal--; }
-      renderizarCalendarioDiretoria();
-    }
-
-    function abrirMenuOpcoesDiaDiretoria(dataIso, limiteAtual, estaBloqueado) {
-      let acao = prompt(
-        `⚙️ GESTÃO DA DIREÇÃO — DIA: ${dataIso}\n\n` +
-        `Capacidade Atual: ${limiteAtual} peças\n` +
-        `Status de Bloqueio: ${estaBloqueado ? "BLOQUEADO" : "LIBERADO"}\n\n` +
-        `1 = Alterar Limite de Peças do Dia\n` +
-        `2 = ${estaBloqueado ? "DESBLOQUEAR DIA" : "BLOQUEAR DIA MANUAMENTE"}\n` +
-        `0 = Cancelar`
-      );
-
-      if (acao === '1') {
-        let novaCap = parseInt(prompt("Digite o novo limite de peças:", limiteAtual));
-        if (!isNaN(novaCap) && novaCap >= 0) {
-          capacidadeDiasCustom[dataIso] = novaCap;
-          localStorage.setItem('sos_capacidade_dias_custom', JSON.stringify(capacidadeDiasCustom));
-          renderizarCalendarioDiretoria();
-        }
-      } else if (acao === '2') {
-        if (estaBloqueado) {
-          diasBloqueadosManual = diasBloqueadosManual.filter(d => d !== dataIso);
-        } else {
-          diasBloqueadosManual.push(dataIso);
-        }
-        localStorage.setItem('sos_dias_bloqueados_manual', JSON.stringify(diasBloqueadosManual));
-        renderizarCalendarioDiretoria();
-      }
-    }
-
-    // SOLICITAÇÕES PENDENTES DE VAGA (DIRETORIA)
-    function renderizarSolicitacoesPendentes() {
-      const tbody = document.getElementById('solicitacoesPendentesTbody');
-      const badgeCount = document.getElementById('badgePendentesCount');
+    function renderizarLogins() {
+      const tbody = document.getElementById('clientsTableBody');
       tbody.innerHTML = '';
 
-      let pendentes = agendamentos.filter(a => a.status === 'Pendente');
-      badgeCount.innerText = pendentes.length;
-
-      if (pendentes.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted); padding:15px;">Nenhuma solicitação pendente no momento.</td></tr>`;
-        return;
-      }
-
-      pendentes.forEach(a => {
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong style="color:var(--orange-accent);">Lote ${a.numeroLote || 'Gerando...'}</strong></td>
-          <td><strong>👤 ${a.cliente}</strong></td>
-          <td>${a.data}</td>
-          <td>${a.pesoG ? a.pesoG + 'g' : '-'}</td>
-          <td><strong>${a.pecas} pcs</strong></td>
-          <td>${a.skus || 100} SKUs</td>
-          <td>
-            <button class="btn-main btn-gold" style="padding:6px 10px; font-size:0.75rem; width:auto; display:inline-block;" onclick="aprovarSolicitacaoVaga(${a.id})">Aprovar Vaga</button>
-            <button class="btn-edit" style="font-size:0.75rem;" onclick="ajustarEAprovarVaga(${a.id}, '${a.data}')">Reajustar Data</button>
-            <button class="btn-danger" style="font-size:0.75rem;" onclick="rejeitarSolicitacaoVaga(${a.id})">Rejeitar</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function aprovarSolicitacaoVaga(id) {
-      let item = agendamentos.find(a => a.id === id);
-      if (item) {
-        item.numeroLote = GERAR_PROXIMO_LOTE_AUTOMATICO(item.data);
-        item.status = 'Aprovado';
-        localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-        alert(`✅ Vaga aprovada para ${item.cliente}! Gerado Lote nº ${item.numeroLote}. Produção alocada no calendário.`);
-        renderizarSolicitacoesPendentes();
-        renderizarCalendarioDiretoria();
-      }
-    }
-
-    function ajustarEAprovarVaga(id, dataAtual) {
-      let novaData = prompt("Digite a nova data para realocar esta produção (AAAA-MM-DD):", dataAtual);
-      if (novaData) {
-        let item = agendamentos.find(a => a.id === id);
-        if (item) {
-          item.data = novaData;
-          item.numeroLote = GERAR_PROXIMO_LOTE_AUTOMATICO(novaData);
-          item.status = 'Aprovado';
-          localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-          alert(`✅ Vaga ajustada para ${novaData} e APROVADA com Lote nº ${item.numeroLote}!`);
-          renderizarSolicitacoesPendentes();
-          renderizarCalendarioDiretoria();
-        }
-      }
-    }
-
-    function rejeitarSolicitacaoVaga(id) {
-      if (confirm("Deseja rejeitar este pedido de vaga?")) {
-        let idx = agendamentos.findIndex(a => a.id === id);
-        if (idx !== -1) {
-          agendamentos.splice(idx, 1);
-          localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-          renderizarSolicitacoesPendentes();
-          renderizarCalendarioDiretoria();
-        }
-      }
-    }
-
-    function solicitarVaga() {
-      const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
-      const dataSel = document.getElementById('dataInput').value;
-      const pesoG = parseFloat(document.getElementById('pesoBrutoInput').value) || null;
-      const skusTotal = parseFloat(document.getElementById('skusInput').value) || 100;
-
-      if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
-
-      agendamentos.push({
-        id: Date.now(),
-        cliente: usuarioLogado,
-        data: dataSel,
-        pesoG: pesoG,
-        pecas: pecasTotal,
-        skus: skusTotal,
-        numeroLote: null,
-        status: "Pendente"
-      });
-
-      localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-      alert(`⏳ Solicitação enviada com sucesso! Aguardando aprovação da Diretoria S.O.S.`);
-      document.getElementById('pecasInput').value = '';
-      document.getElementById('pesoBrutoInput').value = '';
-    }
-
-    // GESTÃO DE ESTOQUE E INSUMOS POR CLIENTE
-    function carregarFiltroCategoriasInsumos() {
-      const select = document.getElementById('filtroInsumoCat');
-      select.innerHTML = '<option value="">Todas as Categorias</option>';
-      categoriasGlobais.forEach(c => {
-        let opt = document.createElement('option');
-        opt.value = c;
-        opt.innerText = c;
-        select.appendChild(opt);
-      });
-    }
-
-    function renderizarTabelaEstoqueInsumos() {
-      const tbody = document.getElementById('tabelaEstoqueInsumosTbody');
-      tbody.innerHTML = '';
-
-      let clienteAlvo = (usuarios[usuarioLogado]?.perfil === 'cliente') ? usuarioLogado : 'Niara'; // SE FOR DIRETORIA, EXIBE DO CLIENTE SELECIONADO OU PADRÃO
-      let estoque = clienteEstoqueInsumos[clienteAlvo] || [];
-
-      let fNome = document.getElementById('filtroInsumoNome').value.toLowerCase();
-      let fCat = document.getElementById('filtroInsumoCat').value;
-
-      let filtrados = estoque.filter(item => {
-        let baterNome = item.nome.toLowerCase().includes(fNome);
-        let baterCat = !fCat || (item.categorias && item.categorias.includes(fCat));
-        return baterNome && baterCat;
-      });
-
-      if (filtrados.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:15px;">Nenhum insumo encontrado no estoque para esta busca.</td></tr>`;
-        return;
-      }
-
-      filtrados.forEach(item => {
-        let ehCritico = (item.unidade === 'Un' && item.quantidade < 200) || (item.unidade === 'g' && item.quantidade < 30);
-        let badgeStatus = ehCritico ? `<span class="badge-alerta-critico">⚠️ REPOSIÇÃO NECESSÁRIA (&lt; ${item.unidade === 'Un' ? '200 Un' : '30g'})</span>` : `<span class="badge-ok">✅ ESTOQUE REGULAR</span>`;
+      for (let u in usuarios) {
+        if (usuarios[u].perfil !== 'cliente') continue;
 
         let tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><strong>${item.nome}</strong></td>
-          <td>${item.categorias ? item.categorias.join(', ') : 'Geral'}</td>
-          <td>${item.unidade}</td>
-          <td><strong style="font-size:1rem; color:${ehCritico ? 'var(--red-val)' : 'var(--header-bg)'};">${item.quantidade} ${item.unidade}</strong></td>
-          <td>${badgeStatus}</td>
-          <td>
-            <button class="btn-edit" style="font-size:0.75rem;" onclick="movimentarEstoque('${clienteAlvo}', ${item.id}, 'Entrada')">+ Entrada</button>
-            <button class="btn-danger" style="font-size:0.75rem;" onclick="movimentarEstoque('${clienteAlvo}', ${item.id}, 'Saida')">- Saída</button>
-          </td>
+          <td><strong style="color:var(--blue-val); cursor:pointer;" onclick="abrirCardClienteCompleto('${u}')">👤 ${u}</strong></td>
+          <td>${usuarios[u].senha}</td>
+          <td><strong>${usuarios[u].plano || 'Iniciante'}</strong></td>
+          <td><button class="btn-edit" onclick="abrirCardClienteCompleto('${u}')">Abrir Card Geral</button></td>
         `;
         tbody.appendChild(tr);
-      });
-    }
-
-    function movimentarEstoque(cliente, insumoId, tipo) {
-      let qtd = parseFloat(prompt(`Digite a quantidade de ${tipo} no estoque:`));
-      if (!isNaN(qtd) && qtd > 0) {
-        let item = clienteEstoqueInsumos[cliente].find(i => i.id === insumoId);
-        if (item) {
-          if (tipo === 'Entrada') item.quantidade += qtd;
-          if (tipo === 'Saida') item.quantidade = Math.max(0, item.quantidade - qtd);
-
-          localStorage.setItem('sos_cliente_estoque_insumos', JSON.stringify(clienteEstoqueInsumos));
-          verificarAlertasEstoqueInsumos();
-          renderizarTabelaEstoqueInsumos();
-        }
       }
     }
 
-    function abrirModalCadastrarInsumo() {
-      const selectCat = document.getElementById('insumoCategoriasInput');
-      selectCat.innerHTML = '';
-      categoriasGlobais.forEach(c => {
-        let opt = document.createElement('option');
-        opt.value = c;
-        opt.innerText = c;
-        selectCat.appendChild(opt);
-      });
-      document.getElementById('modalCadastrarInsumo').style.display = 'flex';
-    }
-
-    function fecharModalCadastrarInsumo() { document.getElementById('modalCadastrarInsumo').style.display = 'none'; }
-
-    function salvarNovoInsumo() {
-      let nome = document.getElementById('insumoNomeInput').value.trim();
-      let unidade = document.getElementById('insumoUnidadeInput').value;
-      let qtd = parseFloat(document.getElementById('insumoQtdInput').value) || 0;
-      
-      let selectCat = document.getElementById('insumoCategoriasInput');
-      let catsSelecionadas = Array.from(selectCat.selectedOptions).map(option => option.value);
-
-      if (!nome) return alert("Digite o nome do insumo.");
-
-      let clienteTarget = "Niara"; // NO CASO DA DIRETORIA CADASTRAR
-      if (!clienteEstoqueInsumos[clienteTarget]) clienteEstoqueInsumos[clienteTarget] = [];
-
-      clienteEstoqueInsumos[clienteTarget].push({
-        id: Date.now(),
-        nome: nome,
-        unidade: unidade,
-        quantidade: qtd,
-        categorias: catsSelecionadas
-      });
-
-      localStorage.setItem('sos_cliente_estoque_insumos', JSON.stringify(clienteEstoqueInsumos));
-      fecharModalCadastrarInsumo();
-      renderizarTabelaEstoqueInsumos();
-      verificarAlertasEstoqueInsumos();
-    }
-
-    // CARD COMPLETO DO CLIENTE (DIRETORIA)
     function abrirCardClienteCompleto(u) {
       const modal = document.getElementById('modalCardClienteCompleto');
       const box = document.getElementById('cardClienteConteudoIntegrado');
       const uObj = usuarios[u];
-      const t = uObj.tarifas || { inspecao: 0.75, cravacao: 0.90, colagem: 0.60, montagem: 0.70, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-      const d = clienteDadosSetores[u] || { inspecao: "", fotoTipo: "Estudio", fotoIaSubopcao: "IA - Still", cde: "", etiqueta: "", encartesCategorias: {} };
+      const t = uObj.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
+      const d = clienteDadosSetores[u] || { inspecao: "", fotoTipo: "Estudio", fotoIaSubopcao: "Still", cde: "", etiqueta: "", encartes: [] };
 
       document.getElementById('cardClienteTitle').innerText = `Card Completo do Cliente — ${u}`;
-
-      let estoqueCliente = clienteEstoqueInsumos[u] || [];
-      let opcoesInsumosHtml = `<option value="">-- Selecione do Estoque --</option>` + estoqueCliente.map(i => `<option value="${i.nome}">${i.nome} (${i.quantidade}${i.unidade})</option>`).join('');
-
-      let categoriasHtml = categoriasGlobais.map(cat => {
-        let dadosCat = d.encartesCategorias?.[cat] || { driveLink: "", saquinho: "", cartela: "", etiqueta: "", acessórios: "", textoEspecial: "" };
-        return `
-          <div style="background:#FFF; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:10px;">
-            <strong style="color:var(--header-bg); font-size:0.9rem;">🏷️ Categoria: ${cat}</strong>
-            
-            <div style="margin-top:8px;">
-              <label style="font-size:0.7rem; font-weight:bold;">Link da Foto do Modelo no Google Drive:</label>
-              <input type="url" id="encDrive_${cat}" class="form-control" value="${dadosCat.driveLink}" placeholder="https://drive.google.com/...">
-            </div>
-
-            <div class="grid-2col">
-              <div>
-                <label style="font-size:0.7rem;">Saquinho Selecionado:</label>
-                <input type="text" id="encSaq_${cat}" class="form-control" value="${dadosCat.saquinho}" placeholder="Ex: Saquinho 18x4cm">
-              </div>
-              <div>
-                <label style="font-size:0.7rem;">Cartela Selecionada:</label>
-                <input type="text" id="encCart_${cat}" class="form-control" value="${dadosCat.cartela}" placeholder="Ex: Cartela Colar P">
-              </div>
-            </div>
-
-            <div class="grid-2col">
-              <div>
-                <label style="font-size:0.7rem;">Etiqueta Aplicada:</label>
-                <input type="text" id="encEtiq_${cat}" class="form-control" value="${dadosCat.etiqueta}" placeholder="Ex: Etiqueta Argox">
-              </div>
-              <div>
-                <label style="font-size:0.7rem;">Acessórios Extra (Trava Anel, etc.):</label>
-                <input type="text" id="encAces_${cat}" class="form-control" value="${dadosCat.acessórios}" placeholder="Ex: Trava Anel de Silicone">
-              </div>
-            </div>
-
-            <div>
-              <label style="font-size:0.7rem; font-weight:bold;">Instruções Especiais de Encarte (${cat}):</label>
-              <textarea id="encTxt_${cat}" class="form-control" style="min-height:50px;">${dadosCat.textoEspecial}</textarea>
-            </div>
-          </div>
-        `;
-      }).join('');
 
       box.innerHTML = `
         <div class="client-card-section">
@@ -1523,23 +927,17 @@
           <label style="font-size:0.75rem; font-weight:bold;">Tipo de Fotografia:</label>
           <select id="cFotoTipo" class="form-control" onchange="toggleOpcoesFotoIa(this.value)">
             <option value="Estudio" ${d.fotoTipo === 'Estudio' ? 'selected' : ''}>Estúdio Físico (Still Tradicional)</option>
-            <option value="Cenario" ${d.fotoTipo === 'Cenario' ? 'selected' : ''}>Fotografia em Cenário Físico</option>
             <option value="IA" ${d.fotoTipo === 'IA' ? 'selected' : ''}>Fotografia com Inteligência Artificial (IA)</option>
           </select>
 
           <div id="boxIaSubopcoes" style="display: ${d.fotoTipo === 'IA' ? 'block' : 'none'}; background: #EFF6FF; padding: 10px; border-radius: 8px;">
             <label style="font-size:0.75rem; font-weight:bold; color: #1E40AF;">Selecione o Estilo de IA:</label>
             <select id="cFotoIaSub" class="form-control">
-              <option value="IA - Still" ${d.fotoIaSubopcao === 'IA - Still' ? 'selected' : ''}>IA - Fundo Still Limpo</option>
-              <option value="IA - Cenario" ${d.fotoIaSubopcao === 'IA - Cenario' ? 'selected' : ''}>IA - Cenário Conceitual</option>
-              <option value="IA - Modelo" ${d.fotoIaSubopcao === 'IA - Modelo' ? 'selected' : ''}>IA - Modelo Humana Virtual</option>
+              <option value="Still" ${d.fotoIaSubopcao === 'Still' ? 'selected' : ''}>IA - Fundo Still Limpo</option>
+              <option value="Cenario" ${d.fotoIaSubopcao === 'Cenario' ? 'selected' : ''}>IA - Cenário Conceitual</option>
+              <option value="Modelo" ${d.fotoIaSubopcao === 'Modelo' ? 'selected' : ''}>IA - Modelo Humana Virtual</option>
             </select>
           </div>
-        </div>
-
-        <div class="client-card-section">
-          <h4>🎴 Modelos de Encarte por Categoria & Links Drive</h4>
-          ${categoriasHtml}
         </div>
 
         <div class="client-card-section">
@@ -1553,16 +951,13 @@
         </div>
 
         <div class="client-card-section">
-          <h4>💲 Tabela Tarifária Personalizada (Com Cravação, Colagem e Montagem)</h4>
+          <h4>💲 Tabela Tarifária Personalizada com Desconto (R$)</h4>
           <div class="grid-2col">
-            <div><label style="font-size:0.7rem;">Inspeção (R$):</label><input type="number" step="0.01" id="cTarInsp" class="form-control" value="${t.inspecao}"></div>
-            <div><label style="font-size:0.7rem;">Cravação (R$):</label><input type="number" step="0.01" id="cTarCrav" class="form-control" value="${t.cravacao || 0.90}"></div>
-            <div><label style="font-size:0.7rem;">Colagem (R$):</label><input type="number" step="0.01" id="cTarCol" class="form-control" value="${t.colagem || 0.60}"></div>
-            <div><label style="font-size:0.7rem;">Montagem (R$):</label><input type="number" step="0.01" id="cTarMont" class="form-control" value="${t.montagem || 0.70}"></div>
-            <div><label style="font-size:0.7rem;">Foto (R$):</label><input type="number" step="0.01" id="cTarFoto" class="form-control" value="${t.foto}"></div>
-            <div><label style="font-size:0.7rem;">CDE (R$):</label><input type="number" step="0.01" id="cTarCde" class="form-control" value="${t.cde}"></div>
-            <div><label style="font-size:0.7rem;">Etiqueta (R$):</label><input type="number" step="0.01" id="cTarEtiq" class="form-control" value="${t.etiqueta}"></div>
-            <div><label style="font-size:0.7rem;">Encarte (R$):</label><input type="number" step="0.01" id="cTarEnc" class="form-control" value="${t.encarte}"></div>
+            <div><label style="font-size:0.7rem;">Inspeção:</label><input type="number" step="0.01" id="cTarInsp" class="form-control" value="${t.inspecao}"></div>
+            <div><label style="font-size:0.7rem;">Foto:</label><input type="number" step="0.01" id="cTarFoto" class="form-control" value="${t.foto}"></div>
+            <div><label style="font-size:0.7rem;">CDE:</label><input type="number" step="0.01" id="cTarCde" class="form-control" value="${t.cde}"></div>
+            <div><label style="font-size:0.7rem;">Etiqueta:</label><input type="number" step="0.01" id="cTarEtiq" class="form-control" value="${t.etiqueta}"></div>
+            <div><label style="font-size:0.7rem;">Encarte:</label><input type="number" step="0.01" id="cTarEnc" class="form-control" value="${t.encarte}"></div>
           </div>
         </div>
 
@@ -1581,26 +976,11 @@
       usuarios[u].plano = document.getElementById('cPlano').value;
       usuarios[u].tarifas = {
         inspecao: parseFloat(document.getElementById('cTarInsp').value),
-        cravacao: parseFloat(document.getElementById('cTarCrav').value),
-        colagem: parseFloat(document.getElementById('cTarCol').value),
-        montagem: parseFloat(document.getElementById('cTarMont').value),
         foto: parseFloat(document.getElementById('cTarFoto').value),
         cde: parseFloat(document.getElementById('cTarCde').value),
         etiqueta: parseFloat(document.getElementById('cTarEtiq').value),
         encarte: parseFloat(document.getElementById('cTarEnc').value)
       };
-
-      let encartesAtualizados = {};
-      categoriasGlobais.forEach(cat => {
-        encartesAtualizados[cat] = {
-          driveLink: document.getElementById(`encDrive_${cat}`).value,
-          saquinho: document.getElementById(`encSaq_${cat}`).value,
-          cartela: document.getElementById(`encCart_${cat}`).value,
-          etiqueta: document.getElementById(`encEtiq_${cat}`).value,
-          acessórios: document.getElementById(`encAces_${cat}`).value,
-          textoEspecial: document.getElementById(`encTxt_${cat}`).value
-        };
-      });
 
       clienteDadosSetores[u] = {
         inspecao: document.getElementById('cInsp').value,
@@ -1608,7 +988,7 @@
         fotoIaSubopcao: document.getElementById('cFotoIaSub').value,
         cde: document.getElementById('cCde').value,
         etiqueta: document.getElementById('cEtiq').value,
-        encartesCategorias: encartesAtualizados
+        encartes: clienteDadosSetores[u]?.encartes || []
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
@@ -1621,135 +1001,311 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
-    function carregarSelectColaboradorClientes() {
-      const select = document.getElementById('colabSelectCliente');
-      select.innerHTML = '<option value="">-- Selecione o Cliente --</option>';
-      for (let u in usuarios) {
-        if (usuarios[u].perfil === 'cliente') {
-          let opt = document.createElement('option');
-          opt.value = u;
-          opt.innerText = u;
-          select.appendChild(opt);
-        }
-      }
-    }
-
-    function carregarPainelColaboradorPorCliente(u) {
-      const container = document.getElementById('painelOperacaoColaboradorConteudo');
-      if (!u) { container.style.display = 'none'; return; }
-
-      let dados = clienteDadosSetores[u] || {
-        inspecao: "Sem instruções específicas de inspeção.",
-        cde: "Sem instruções de CDE.",
-        etiqueta: "Padrão térmico tradicional.",
-        encartesCategorias: {}
-      };
-
-      document.getElementById('colabInspecaoTexto').innerText = dados.inspecao;
-      document.getElementById('colabCdeTexto').innerText = dados.cde;
-      document.getElementById('colabEtiquetaTexto').innerText = dados.etiqueta;
-
-      const encContainer = document.getElementById('colabEncartesContainer');
-      encContainer.innerHTML = '';
-
-      let encMap = dados.encartesCategorias || {};
-      let keys = Object.keys(encMap);
-
-      if (keys.length === 0) {
-        encContainer.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Nenhum encarte cadastrado para esta marca.</p>';
-      } else {
-        keys.forEach(k => {
-          let item = encMap[k];
-          let b = document.createElement('div');
-          b.style.background = '#FFFFFF';
-          b.style.padding = '12px';
-          b.style.borderRadius = '8px';
-          b.style.marginTop = '8px';
-          b.style.border = '1px solid #E2E8F0';
-          b.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong style="color:var(--header-bg);">🏷️ Categoria: ${k}</strong>
-              ${item.driveLink ? `<a href="${item.driveLink}" target="_blank" style="color:var(--blue-val); font-weight:bold; font-size:0.8rem;">🔗 Ver Foto do Encarte no Drive</a>` : ''}
-            </div>
-            <p style="margin:6px 0 0 0; font-size:0.8rem; line-height:1.4;">
-              • <strong>Saquinho:</strong> ${item.saquinho || 'Padrão'}<br>
-              • <strong>Cartela:</strong> ${item.cartela || 'Padrão'}<br>
-              • <strong>Etiqueta:</strong> ${item.etiqueta || 'Padrão'}<br>
-              • <strong>Acessórios:</strong> ${item.acessórios || 'Nenhum'}<br>
-              • <strong>Instrução Especial:</strong> ${item.textoEspecial || 'Nenhuma'}
-            </p>
-          `;
-          encContainer.appendChild(b);
-        });
-      }
-
-      container.style.display = 'block';
-    }
-
-    function renderizarLogins() {
-      const tbody = document.getElementById('clientsTableBody');
-      tbody.innerHTML = '';
-
-      for (let u in usuarios) {
-        if (usuarios[u].perfil !== 'cliente') continue;
-
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong style="color:var(--blue-val); cursor:pointer;" onclick="abrirCardClienteCompleto('${u}')">👤 ${u}</strong></td>
-          <td>${usuarios[u].senha}</td>
-          <td><strong>${usuarios[u].plano || 'Iniciante'}</strong></td>
-          <td><button class="btn-edit" onclick="abrirCardClienteCompleto('${u}')">Abrir Card Geral</button></td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
-
-    function renderizarTarifasCliente(uName) {
-      const box = document.getElementById('conteudoTabelaTarifasCliente');
-      const u = usuarios[uName];
-      if (!u || u.perfil === "admin") return;
-
-      const t = u.tarifas || { inspecao: 0.75, cravacao: 0.90, colagem: 0.60, montagem: 0.70, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-
-      box.innerHTML = `
-        <table>
-          <thead><tr><th>Serviço Técnico</th><th>Seu Valor Vigente</th></tr></thead>
-          <tbody>
-            <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
-            <tr><td>Cravação de Pedras (Opcional)</td><td><strong>R$ ${(t.cravacao || 0.90).toFixed(2)}</strong></td></tr>
-            <tr><td>Colagem de Peças (Opcional)</td><td><strong>R$ ${(t.colagem || 0.60).toFixed(2)}</strong></td></tr>
-            <tr><td>Montagem de Pingentes (Opcional)</td><td><strong>R$ ${(t.montagem || 0.70).toFixed(2)}</strong></td></tr>
-            <tr><td>Fotografia Profissional</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
-            <tr><td>Cadastro Digital CDE</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
-            <tr><td>Etiquetagem de Peças</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
-            <tr><td>Encarte / Embalagem Externa</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
-          </tbody>
-        </table>
-      `;
-    }
-
-    function renderizarHistoricoCliente() {
-      const container = document.getElementById('graficoFrequenciaContainer');
-      container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Acompanhamento de volumetria ativa no Sistema S.O.S.</p>';
-    }
-
+    // MODAL DE INFORMAÇÕES COM PRAZOS E SEM COMPARATIVO NO BLACK
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
-      tit.innerText = `Valores & Tabela Comparativa — Cota ${categoria}`;
-      cont.innerHTML = `<p style="font-size:0.85rem;">Consulte os detalhes das tarifas e serviços no seu painel ou solicite à direção S.O.S.</p>`;
+      let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : "VIP BLACK");
+      tit.innerText = `Valores & Tabela Comparativa — Cota ${nomeCategoriaOficial}`;
+
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : "R$ 5.000,00 / anuidade");
+      
+      let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : 0.58);
+      let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : 0.22);
+      let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : 0.45);
+      let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : 1.56);
+      let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : 1.90);
+
+      let subInsp = 500 * valInsp;
+      let subEtiq = 500 * valEtiq;
+      let subEnc = 500 * valEnc;
+      let subFoto = 100 * valFoto;
+      let subCde = 100 * valCde;
+      let totalPlanoAtual = subInsp + subEtiq + subEnc + subFoto + subCde;
+
+      let blackInsp = 500 * 0.58;
+      let blackEtiq = 500 * 0.22;
+      let blackEnc = 500 * 0.45;
+      let blackFoto = 100 * 1.56;
+      let blackCde = 100 * 1.90;
+      let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde;
+      let economiaLote = totalPlanoAtual - totalBlack;
+
+      let textoCashBack = "";
+      if (categoria === "Iniciante") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else if (categoria === "Ouro") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 3.000,00 da anuidade, <strong>R$ 500,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      }
+
+      let tabelaHtml = "";
+      let simulacaoHtml = "";
+
+      if (categoria === "Black") {
+        // MODAL DO BLACK SEM COMPARATIVO
+        tabelaHtml = `
+          <h4 style="color:var(--gold-bright); margin:14px 0 6px 0;">💎 Tabela Exclusiva Cota VIP BLACK (Menores Valores do Mercado):</h4>
+          <table style="font-size:0.82rem; margin-bottom:15px; background:#111; color:#fff; border-radius:8px; overflow:hidden;">
+            <thead>
+              <tr style="background:#1E1B18; color:#F59E0B;">
+                <th>Serviço Técnico</th>
+                <th>Cobrança</th>
+                <th>Sua Tarifa Exclusiva BLACK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
+              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima Especial</td></tr>
+            </tbody>
+          </table>
+        `;
+
+        simulacaoHtml = `
+          <div style="background:#1A1A24; color:#FFF; border:1px solid #F59E0B; border-radius:10px; padding:12px; margin-bottom:15px; font-size:0.8rem;">
+            <strong style="color:#F59E0B; font-size:0.85rem;">📊 Simulação de Lote Padrão no Cota BLACK (500 Peças / 100 Modelos):</strong><br><br>
+            • Inspeção (500 x R$ 0,58): R$ ${blackInsp.toFixed(2)}<br>
+            • Etiqueta (500 x R$ 0,22): R$ ${blackEtiq.toFixed(2)}<br>
+            • Encarte (500 x R$ 0,45): R$ ${blackEnc.toFixed(2)}<br>
+            • Foto (100 x R$ 1,56): R$ ${blackFoto.toFixed(2)}<br>
+            • CDE (100 x R$ 1,90): R$ ${blackCde.toFixed(2)}<br>
+            <hr style="margin:6px 0; border:0; border-top:1px solid #444;">
+            Total do Lote no Black: <strong style="color:var(--green-val); font-size:1rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong> 
+            <span style="color:var(--green-val); font-size:0.75rem;">(Sua marca no nível máximo de economia e prioridade!)</span>
+          </div>
+        `;
+      } else {
+        // MODAL COM COMPARATIVO PARA INICIANTE E OURO
+        tabelaHtml = `
+          <h4 style="color:var(--header-bg); margin:14px 0 6px 0;">💲 Tabela Comparativa de Tarifas Unitárias:</h4>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0;">* Serviços de Entrada e Fechamento/Envio não possuem custos adicionais.</p>
+          
+          <table style="font-size:0.82rem; margin-bottom:15px;">
+            <thead>
+              <tr>
+                <th>Serviço Técnico</th>
+                <th>Cobrança</th>
+                <th>Cota ${categoria}</th>
+                <th style="background:#1E1B18; color:#F59E0B;">Cota VIP BLACK 💎</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${valInsp.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${valFoto.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
+              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima</td></tr>
+            </tbody>
+          </table>
+        `;
+
+        simulacaoHtml = `
+          <div style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:15px;">
+            <h5 style="margin:0 0 6px 0; color:var(--header-bg); font-size:0.85rem;">📊 Simulação de Lote Padrão (500 Peças / 100 Modelos):</h5>
+            <div class="grid-2col" style="font-size:0.8rem;">
+              <div style="background:#FFF; padding:10px; border-radius:6px; border:1px solid #E2E8F0;">
+                <strong>Cota ${nomeCategoriaOficial}:</strong><br>
+                • Inspeção (500 x R$ ${valInsp.toFixed(2)}): R$ ${subInsp.toFixed(2)}<br>
+                • Etiqueta (500 x R$ ${valEtiq.toFixed(2)}): R$ ${subEtiq.toFixed(2)}<br>
+                • Encarte (500 x R$ ${valEnc.toFixed(2)}): R$ ${subEnc.toFixed(2)}<br>
+                • Foto (100 x R$ ${valFoto.toFixed(2)}): R$ ${subFoto.toFixed(2)}<br>
+                • CDE (100 x R$ ${valCde.toFixed(2)}): R$ ${subCde.toFixed(2)}<br>
+                <hr style="margin:4px 0; border:0; border-top:1px solid #ddd;">
+                Total do Lote: <strong style="color:var(--orange-accent); font-size:0.95rem;">R$ ${totalPlanoAtual.toFixed(2).replace('.', ',')}</strong>
+              </div>
+              <div style="background:#1A1A24; color:#FFF; padding:10px; border-radius:6px; border:1px solid #F59E0B;">
+                <strong style="color:#F59E0B;">Cota VIP BLACK:</strong><br>
+                • Inspeção (500 x R$ 0,58): R$ ${blackInsp.toFixed(2)}<br>
+                • Etiqueta (500 x R$ 0,22): R$ ${blackEtiq.toFixed(2)}<br>
+                • Encarte (500 x R$ 0,45): R$ ${blackEnc.toFixed(2)}<br>
+                • Foto (100 x R$ 1,56): R$ ${blackFoto.toFixed(2)}<br>
+                • CDE (100 x R$ 1,90): R$ ${blackCde.toFixed(2)}<br>
+                <hr style="margin:4px 0; border:0; border-top:1px solid #444;">
+                Total no Black: <strong style="color:var(--green-val); font-size:0.95rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong><br>
+                <span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ ${economiaLote.toFixed(2).replace('.', ',')} por lote!)</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      cont.innerHTML = `
+        <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
+            <p style="margin:0 0 6px 0;"><strong>Anuidade do Clube:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
+            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto. <span style="color:var(--red-val); font-size:0.75rem; font-weight:bold;">*(Pagamentos via cartão sujeitos aos juros/taxa da maquininha).*</span></p>
+            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por lote de entrada.</p>
+          </div>
+
+          ${tabelaHtml}
+          ${simulacaoHtml}
+
+          <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:12px; border-radius:10px; margin-bottom:15px; font-size:0.82rem; color:#1E3A8A;">
+            ${textoCashBack}
+          </div>
+
+          <div style="background:#FEF3C7; border:1px solid #FCD34D; padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#78350F;">
+            🚚 <strong>Frete & Logística:</strong> Envio e retirada por conta do cliente. Motoboy local (Limeira): <strong>R$ 12,00 por corrida</strong> (sujeito à variação da tabela do motoboy). Entregas externas via Sedex ou PAC.
+          </div>
+
+          <div style="background:#FFF7ED; border:1px solid #FFEDD5; border-left:4px solid var(--orange-accent); padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#9A3412;">
+            ⚠️ <strong>Nota de Transparência S.O.S:</strong> A previsão de entrega pode ser afetada por diversos imprevistos na corrente de processos. Estaremos sempre à disposição para resolver e destravar qualquer entrave!<br><br>
+            🤝 <strong>Aviso de Qualidade:</strong> Jamais garantimos 100% de isenção de erros — na esteira fabril real, falhas podem e vão acontecer. Porém, a equipe S.O.S estará sempre à disposição para corrigi-los rapidamente e aprimorar continuamente nossa operação para a sua marca.
+          </div>
+
+          <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
+
+          <div style="display:flex; gap:10px; margin-top:15px;">
+            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">💎 QUERO SER CLUBE BLACK S.O.S</button>` : ''}
+            <button class="btn-main btn-gold" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); abrirModalCadastroForm('${categoria}');">CONTRATAR COTA ${categoria.toUpperCase()}</button>
+          </div>
+        </div>
+      `;
+
       modal.style.display = 'flex';
     }
 
     function fecharModalInfo() { document.getElementById('modalMaisInformacoes').style.display = 'none'; }
-    function abrirModalSetorFabril(setor) { document.getElementById('modalSetorFabril').style.display = 'flex'; }
+    
+    function irParaCardBlack() {
+      document.getElementById('cardVipBlackSection').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => { abrirModalMaisInformacoes('Black'); }, 400);
+    }
+
+    function abrirModalSetorFabril(setor) {
+      const modal = document.getElementById('modalSetorFabril');
+      const tit = document.getElementById('modalSetorTitulo');
+      const cont = document.getElementById('modalSetorConteudo');
+
+      if (setor === 'Entrada') {
+        tit.innerText = "📦 Setor 1: Entrada & Recepção Bruta de Lotes";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Recepção e conferência do lote enviado pelo cliente. Realizamos a pesagem bruta em balança digital calibrada, conferência visual de saquinhos/caixas e cadastro imediato no sistema operacional com geração de protocolo técnico. Definimos a previsão de entrega de acordo com a tabela de prazos por peças (8, 10 ou 13 dias úteis).</p>`;
+      } else if (setor === 'Inspecao') {
+        tit.innerText = "🔍 Setor 2: Inspeção 3 em 1 (Separação + Testes + CDI)";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Análise peça por peça sob lupas e lâmpadas de LED para detecção de bolhas de banho, manchas, falhas de verniz e porosidade. Realizamos a separação por modelos semelhantes e teste mecânico rigoroso em fechos e argolas. Lançamos todas as métricas no sistema CDI (Cadastro Digital Interno) para monitoramento de peso, lote, fornecedores e taxas de defeito.</p>`;
+      } else if (setor === 'Cravacao') {
+        tit.innerText = "🔨 Setor 3: Cravação, Colagem & Montagem (Opcional)";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Ativado quando a inspeção detecta peças com zircônias/pedras soltas, fechos travados ou necessidade de montagem. Nossa bancada realiza a cravação/colagem de pedras, troca de fechos e montagem de pingentes em correntes para que nenhuma peça seja perdida.</p>`;
+      } else if (setor === 'Foto') {
+        tit.innerText = "📸 Setor 4: Fotografia Profissional (Still / IA)";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Captura em estúdio fotográfico com iluminação controlada e fundo branco absoluto (Still tradicional) ou produção por Inteligência Artificial (gerando cenários conceituais ou aplicando as joias em modelos virtuais humanas), entregando arquivos de imagem otimizados para e-commerce e redes sociais.</p>`;
+      } else if (setor === 'Cde') {
+        tit.innerText = "💻 Setor 5: CDE (Catalogação) & Etiquetagem Térmica";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Catalogação Digital de Estoque no ERP do cliente com medição de dimensões, peso unitário e cadastramento do código SKU com precificação assistida. Na sequência, nosso setor de etiquetagem realiza a impressão de etiquetas térmicas de alta resistência na impressora Argox 214 Plus com aplicação de QR Code/código de barras.</p>`;
+      } else if (setor === 'Encarte') {
+        tit.innerText = "🎴 Setor 6: Encartelamento, Fechamento & Expedição";
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Encartelamento manual das joias nas tags/cartelas e saquinhos fornecidos pelo cliente. O fechamento gera o relatório final de expedição e liberamos o lote para envio via motoboy local (Limeira) ou Correios (Sedex/PAC) mediante confirmação do acerto.</p>`;
+      }
+
+      modal.style.display = 'flex';
+    }
+
     function fecharModalSetorFabril() { document.getElementById('modalSetorFabril').style.display = 'none'; }
-    function abrirModalCadastroForm(p) { document.getElementById('modalFormularioCadastro').style.display = 'flex'; }
+
+    function abrirModalCadastroForm(plano) {
+      document.getElementById('formPlanoSelecionado').value = plano;
+      document.getElementById('modalFormularioCadastro').style.display = 'flex';
+    }
+
     function fecharModalCadastroForm() { document.getElementById('modalFormularioCadastro').style.display = 'none'; }
-    function abrirModalMetas() { document.getElementById('modalMetas').style.display = 'flex'; }
-    function fecharModalMetas() { document.getElementById('modalMetas').style.display = 'none'; }
+
+    function enviarFormularioAdesao(e) {
+      e.preventDefault();
+      const plano = document.getElementById('formPlanoSelecionado').value;
+      
+      const payloadForm = {
+        carimboDataHora: new Date().toLocaleString('pt-BR'),
+        plano: plano,
+        q1_nome_cargo: document.getElementById('q1_nome_cargo').value,
+        q2_marca: document.getElementById('q2_marca').value,
+        q3_instagram: document.getElementById('q3_instagram').value,
+        q4_cidade: document.getElementById('q4_cidade').value,
+        q5_tempo_mercado: document.getElementById('q5_tempo_mercado').value,
+        q6_modelo_negocio: document.getElementById('q6_modelo_negocio').value,
+        q7_volume_mensal: document.getElementById('q7_volume_mensal').value,
+        q8_gargalos: document.getElementById('q8_gargalos').value,
+        q9_solucoes: document.getElementById('q9_solucoes').value,
+        q10_whatsapp: document.getElementById('q10_whatsapp').value
+      };
+
+      fetch(URL_WEBHOOK_DRIVE, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tipo: 'adesao_formulario', dados: payloadForm })
+      })
+      .then(() => {
+        alert(`✅ Cadastro da marca ${payloadForm.q2_marca} enviado com sucesso!`);
+        fecharModalCadastroForm();
+        document.getElementById('formAdesaoOficial').reset();
+      })
+      .catch(err => alert("Erro ao enviar formulário: " + err));
+    }
+
+    function renderizarColaboradores() {
+      const tbody = document.getElementById('colaboradoresTableBody');
+      tbody.innerHTML = '';
+
+      for (let u in usuarios) {
+        if (usuarios[u].perfil !== 'colaborador') continue;
+
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${u}</strong></td>
+          <td>${usuarios[u].senha}</td>
+          <td>COLABORADOR</td>
+          <td><button class="btn-danger" style="font-size:0.7rem;" onclick="deletarColaborador('${u}')">Excluir</button></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function cadastrarColaborador() {
+      const nome = document.getElementById('colabNomeInput').value.trim();
+      const senha = document.getElementById('colabSenhaInput').value.trim();
+
+      if (!nome || !senha) return alert("Digite Nome e Senha.");
+
+      usuarios[nome] = { senha: senha, perfil: "colaborador", plano: "Colaborador", tarifas: null };
+      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
+
+      document.getElementById('colabNomeInput').value = '';
+      document.getElementById('colabSenhaInput').value = '';
+
+      alert(`Colaborador ${nome} cadastrado!`);
+      renderizarColaboradores();
+    }
+
+    function deletarColaborador(u) {
+      if (confirm(`Remover acesso de ${u}?`)) {
+        delete usuarios[u];
+        localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
+        renderizarColaboradores();
+      }
+    }
 
     function trocarAba(abaId) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -1796,40 +1352,53 @@
       document.getElementById('btnLogout').style.display = 'none';
     }
 
-    function renderizarColaboradores() {
-      const tbody = document.getElementById('colaboradoresTableBody');
-      tbody.innerHTML = '';
-      for (let u in usuarios) {
-        if (usuarios[u].perfil !== 'colaborador') continue;
-        let tr = document.createElement('tr');
-        tr.innerHTML = `<td><strong>${u}</strong></td><td>${usuarios[u].senha}</td><td>COLABORADOR</td><td><button class="btn-danger" style="font-size:0.7rem;" onclick="deletarColaborador('${u}')">Excluir</button></td>`;
-        tbody.appendChild(tr);
-      }
+    function renderizarTarifasCliente(uName) {
+      const box = document.getElementById('conteudoTabelaTarifasCliente');
+      const u = usuarios[uName];
+      if (!u || u.perfil === "admin") return;
+
+      const t = u.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
+
+      box.innerHTML = `
+        <table>
+          <thead><tr><th>Serviço Técnico</th><th>Seu Valor Vigente</th></tr></thead>
+          <tbody>
+            <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
+            <tr><td>Fotografia Profissional</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
+            <tr><td>Cadastro Digital CDE</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
+            <tr><td>Etiquetagem de Peças</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
+            <tr><td>Encarte / Embalagem Externa</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
+          </tbody>
+        </table>
+      `;
     }
 
-    function cadastrarColaborador() {
-      const nome = document.getElementById('colabNomeInput').value.trim();
-      const senha = document.getElementById('colabSenhaInput').value.trim();
-      if (!nome || !senha) return alert("Digite Nome e Senha.");
-      usuarios[nome] = { senha: senha, perfil: "colaborador", plano: "Colaborador", tarifas: null };
-      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-      alert(`Colaborador ${nome} cadastrado!`);
-      renderizarColaboradores();
+    function solicitarVaga() {
+      const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
+      const dataSel = document.getElementById('dataInput').value;
+
+      if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
+
+      agendamentos.push({
+        id: Date.now(),
+        cliente: usuarioLogado,
+        data: dataSel,
+        pecas: pecasTotal,
+        status: "Aprovado"
+      });
+
+      localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
+      alert(`Vaga reservada com sucesso!`);
+      document.getElementById('pecasInput').value = '';
     }
 
-    function deletarColaborador(u) {
-      if (confirm(`Remover acesso de ${u}?`)) {
-        delete usuarios[u];
-        localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-        renderizarColaboradores();
-      }
+    function renderizarHistoricoCliente() {
+      const container = document.getElementById('graficoFrequenciaContainer');
+      container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Acompanhamento de volumetria ativa no Sistema S.O.S.</p>';
     }
 
-    function enviarFormularioAdesao(e) {
-      e.preventDefault();
-      alert("Formulário de adesão enviado com sucesso!");
-      fecharModalCadastroForm();
-    }
+    function abrirModalMetas() { document.getElementById('modalMetas').style.display = 'flex'; }
+    function fecharModalMetas() { document.getElementById('modalMetas').style.display = 'none'; }
   </script>
 </body>
 </html>
