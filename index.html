@@ -62,6 +62,23 @@
     .prazos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
     .prazo-item { background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--orange-accent); }
 
+    /* ESTEIRA FABRIL PASSOS VISUAIS */
+    .esteira-container {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 20px; overflow-x: auto; padding-bottom: 10px;
+    }
+
+    .esteira-step-card {
+      background: #FFFFFF; border: 2px solid #E2E8F0; border-radius: 12px; padding: 14px; flex: 1; min-width: 125px;
+      text-align: center; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .esteira-step-card:hover {
+      border-color: var(--orange-accent); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(255,87,34,0.15);
+    }
+
+    .esteira-step-card strong { display: block; font-size: 0.8rem; color: var(--header-bg); margin-top: 4px; }
+    .esteira-arrow { font-size: 1.2rem; color: var(--orange-accent); font-weight: bold; }
+
     .club-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
 
     .club-card {
@@ -236,13 +253,64 @@
 
   <div class="main-container">
 
-    <!-- LANDING PAGE DE APRESENTAÇÃO PÚBLICA DO CLUBE (ENTRADA ORIGINAL RESTAURADA) -->
+    <!-- LANDING PAGE COMPLETA E INTACADA -->
     <div id="portalLanding" class="portal-landing">
       <div class="hero-banner">
         <h2>HUB de Operações S.O.S 2027</h2>
         <p>
           Estrutura técnica e esteira fabril de alta performance para marcas de semijoias. Garantimos triagem de banho, inspeção de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encartelamento com alto padrão de acabamento.
         </p>
+
+        <!-- ESTEIRA FABRIL VISUAL COMPLETA -->
+        <h3 style="color:var(--gold-bright); margin-top:24px; font-size:1.1rem; text-transform:uppercase;">⚙️ Conheça a Esteira Fabril S.O.S:</h3>
+        <div class="esteira-container">
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(1)">
+            <span style="font-size:1.3rem;">📥</span>
+            <strong>1. Entrada & Triagem</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(2)">
+            <span style="font-size:1.3rem;">🔍</span>
+            <strong>2. Inspeção 3 em 1 + CDI</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(3)">
+            <span style="font-size:1.3rem;">💎</span>
+            <strong>3. Cravação & Montagem</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(4)">
+            <span style="font-size:1.3rem;">📷</span>
+            <strong>4. Fotografia Still / IA</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(5)">
+            <span style="font-size:1.3rem;">💻</span>
+            <strong>5. CDE (Catalogação)</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(6)">
+            <span style="font-size:1.3rem;">🏷️</span>
+            <strong>6. Etiquetagem</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(7)">
+            <span style="font-size:1.3rem;">🎴</span>
+            <strong>7. Encarte & Embalagem</strong>
+          </div>
+          <span class="esteira-arrow">➔</span>
+
+          <div class="esteira-step-card" onclick="abrirModalDetalheSetor(8)">
+            <span style="font-size:1.3rem;">🚀</span>
+            <strong>8. Expedição Expressa</strong>
+          </div>
+        </div>
 
         <div class="prazos-box">
           <h4>⏱️ TABELA OFICIAL DE PRAZOS DE ENTREGA NA ESTEIRA S.O.S:</h4>
@@ -275,13 +343,13 @@
             <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
               <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem de banho, verificação de fechos e cadastro digital.</li>
-              <li><strong>3. Cravação, Colagem & Montagem:</strong> Recuperação técnica do seu acervo.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Imagens em alta definição para venda imediata.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro completo no seu ERP com descrição e fotos.</li>
-              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras.</li>
-              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado.</li>
-              <li><strong>8. Expedição:</strong> Relatório e liberação expressa.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem rigorosa de banho, verificação de fechos e cadastro digital com histórico técnico.</li>
+              <li><strong>3. Cravação, Colagem & Montagem:</strong> Manutenção e recuperação técnica rápida para o seu acervo.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Produção de fotos profissionais limpas ou simuladas por IA prontas para catálogo e e-commerce.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro digital completo dos seus produtos com especificações detalhadas no seu ERP.</li>
+              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras de alta aderência.</li>
+              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado conforme o manual da marca.</li>
+              <li><strong>8. Expedição:</strong> Separação, conferência final e liberação expressa para envio seguro.</li>
             </ul>
 
             <div class="box-hub-estoque">
@@ -313,13 +381,13 @@
             <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
               <li><strong>1. Entrada:</strong> Entrada prioritária na esteira fabril.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem de banho, verificação de fechos e cadastro digital.</li>
-              <li><strong>3. Cravação, Colagem & Montagem:</strong> Recuperação técnica do seu acervo.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Imagens em alta definição para venda imediata.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro completo no seu ERP com descrição e fotos.</li>
-              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras.</li>
-              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado.</li>
-              <li><strong>8. Expedição:</strong> Relatório e liberação expressa.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem rigorosa de banho, verificação de fechos e cadastro digital com histórico técnico.</li>
+              <li><strong>3. Cravação, Colagem & Montagem:</strong> Manutenção e recuperação técnica rápida para o seu acervo.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Produção de fotos profissionais limpas ou simuladas por IA prontas para catálogo e e-commerce.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro digital completo dos seus produtos com especificações detalhadas no seu ERP.</li>
+              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras de alta aderência.</li>
+              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado conforme o manual da marca.</li>
+              <li><strong>8. Expedição:</strong> Separação, conferência final e liberação expressa para envio seguro.</li>
             </ul>
 
             <div class="box-hub-estoque">
@@ -351,13 +419,13 @@
             <p style="font-size:0.85rem; color:#FFB703; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
               <li><strong>1. Entrada:</strong> Entrada expressa em janela de processamento recorde.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem de banho, verificação de fechos e cadastro digital.</li>
-              <li><strong>3. Cravação, Colagem & Montagem:</strong> Recuperação técnica do seu acervo.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Imagens em alta definição para venda imediata.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro completo no seu ERP com descrição e fotos.</li>
-              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras.</li>
-              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado.</li>
-              <li><strong>8. Expedição:</strong> Relatório e liberação expressa.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI:</strong> Triagem rigorosa de banho, verificação de fechos e cadastro digital com histórico técnico.</li>
+              <li><strong>3. Cravação, Colagem & Montagem:</strong> Manutenção e recuperação técnica rápida para o seu acervo.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Produção de fotos profissionais limpas ou simuladas por IA prontas para catálogo e e-commerce.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro digital completo dos seus produtos com especificações detalhadas no seu ERP.</li>
+              <li><strong>6. Etiqueta Térmica:</strong> Emissão industrial Argox em QR Code ou código de barras de alta aderência.</li>
+              <li><strong>7. Encarte & Embalagem:</strong> Aplicação em cartelas e saquinhos com acabamento refinado conforme o manual da marca.</li>
+              <li><strong>8. Expedição:</strong> Separação, conferência final e liberação expressa para envio seguro.</li>
             </ul>
 
             <div class="box-hub-estoque" style="background:#064E3B; border-color:#059669; color:#A7F3D0;">
@@ -668,7 +736,16 @@
     Produzido por Kelvin Lima — CEO S.O.S Soluções
   </div>
 
-  <!-- MODAL CARD DO CLIENTE COMPLETO (DIRETORIA) RESTAURADO 100% -->
+  <!-- MODAL DE MAIS INFORMAÇÕES DO PLANO / ESTEIRA -->
+  <div id="modalMaisInfo" class="modal-overlay">
+    <div class="modal-card">
+      <h3 id="modalInfoTitle" style="margin-top:0; color:var(--header-bg);">Informações do Plano</h3>
+      <div id="modalInfoContent" style="font-size:0.9rem; line-height:1.6; color:#334155;"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:20px;" onclick="fecharModalMaisInfo()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL CARD DO CLIENTE COMPLETO (DIRETORIA) -->
   <div id="modalCardClienteCompleto" class="modal-overlay">
     <div class="modal-card">
       <h3 id="cardClienteTitle" style="margin-top:0; color:var(--header-bg);">Card Completo do Cliente — Diretoria</h3>
@@ -788,6 +865,53 @@
         logout();
       }
     };
+
+    function abrirModalMaisInformacoes(plano) {
+      const modal = document.getElementById('modalMaisInfo');
+      const title = document.getElementById('modalInfoTitle');
+      const content = document.getElementById('modalInfoContent');
+
+      title.innerText = `Detalhes Técnicos — Plano ${plano.toUpperCase()}`;
+
+      content.innerHTML = `
+        <p><strong>Operação e Capacidade do Plano:</strong></p>
+        <p>Ao assinar o plano <strong>${plano}</strong>, sua marca garante prioridade na esteira fabril S.O.S com processamento contínuo, triagem de qualidade, catalogação e guarda dedicada de insumos.</p>
+        <ul>
+          <li><strong>Garantia de Prazos:</strong> Processamento dentro dos prazos da tabela oficial (8 a 13 dias úteis).</li>
+          <li><strong>Gestão de Suprimentos:</strong> Seu estoque de cartelas e embalagens mantido de forma segura no HUB S.O.S.</li>
+          <li><strong>Suporte Técnico:</strong> Atendimento via canal direto para liberação de lotes e acompanhamento.</li>
+        </ul>
+      `;
+
+      modal.style.display = 'flex';
+    }
+
+    function fecharModalMaisInfo() {
+      document.getElementById('modalMaisInfo').style.display = 'none';
+    }
+
+    function abrirModalDetalheSetor(passo) {
+      const modal = document.getElementById('modalMaisInfo');
+      const title = document.getElementById('modalInfoTitle');
+      const content = document.getElementById('modalInfoContent');
+
+      const setores = {
+        1: { nome: "1. Entrada & Triagem", desc: "Recepção física do lote de semijoias no HUB S.O.S. Conferência inicial de quantidade brutos e registro de protocolo de lote." },
+        2: { nome: "2. Inspeção 3 em 1 + CDI", desc: "Triagem rigorosa de banho (tonalidade e bolhas), verificação mecânica de fechos e pinos, e cadastro digital (CDI) com registro de inconsistências." },
+        3: { nome: "3. Cravação, Colagem & Montagem", desc: "Manutenção técnica imediata: substituição de pedras faltantes, colagem de strass e montagem de pingentes e componentes soltos." },
+        4: { nome: "4. Fotografia Still / IA", desc: "Captação de imagens profissionais de alta resolução em fundo limpo ou geradas por IA para alimentar e-commerce e catálogos da marca." },
+        5: { nome: "5. CDE (Catalogação)", desc: "Cadastro digital estruturado dos produtos com descrição técnica, especificações de banho, medidas e fotos prontas para sincronização no ERP do cliente." },
+        6: { nome: "6. Etiquetagem Térmica", desc: "Impressão e aplicação de etiquetas industriais Argox resistentes a atrito, contendo QR Code e Código de Barras." },
+        7: { nome: "7. Encarte & Embalagem", desc: "Encartelamento e montagem em saquinhos plásticos protetores e embalagens conforme a identidade visual e o manual de marca de cada cliente." },
+        8: { nome: "8. Expedição Expressa", desc: "Conferência final do lote, emissão do relatório consolidado de saída e embalagem técnica segura para envio via transportadora ou Correios." }
+      };
+
+      if (setores[passo]) {
+        title.innerText = setores[passo].nome;
+        content.innerHTML = `<p style="font-size:1rem; line-height:1.7;">${setores[passo].desc}</p>`;
+        modal.style.display = 'flex';
+      }
+    }
 
     function restaurarSessaoLogada() {
       let uObj = usuarios[usuarioLogado];
@@ -913,7 +1037,6 @@
       }
     }
 
-    // RENDERIZAÇÃO COMPLETA DO CARD DO CLIENTE
     function abrirCardClienteCompleto(u) {
       const modal = document.getElementById('modalCardClienteCompleto');
       const box = document.getElementById('cardClienteConteudoIntegrado');
@@ -1088,7 +1211,6 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
-    // RENDERIZAÇÃO DO ESTOQUE COM BOTÃO DE EXCLUIR E CONFIRMAÇÃO DE SEGURANÇA
     function renderizarTabelaEstoqueInsumos() {
       const tbody = document.getElementById('tabelaEstoqueInsumosTbody');
       tbody.innerHTML = '';
@@ -1195,7 +1317,6 @@
       verificarAlertasEstoqueInsumos();
     }
 
-    // GESTÃO DE COLABORADORES RESTAURADA
     function renderizarColaboradores() {
       const tbody = document.getElementById('colaboradoresTableBody');
       tbody.innerHTML = '';
@@ -1341,11 +1462,6 @@
           <div style="margin:2px 0; font-size:0.72rem;">${statusTxt}</div>
           <div>${clientesNomesHtml}</div>
         `;
-
-        if (usuarios[usuarioLogado]?.perfil === 'admin' && !ehFimDeSemana && !ehFeriadoLimeira && !ehDiaPassado) {
-          card.style.cursor = 'pointer';
-          card.onclick = () => abrirMenuOpcoesDiaDiretoria(dataIso, limiteCapacidadeDia, ehBloqueadoManual);
-        }
 
         grid.appendChild(card);
       }
@@ -1610,7 +1726,6 @@
 
     function carregarSelectColaboradorClientes() {}
     function carregarPainelColaboradorPorCliente() {}
-    function abrirModalMaisInformacoes() {}
     function renderizarHistoricoCliente() {}
   </script>
 </body>
