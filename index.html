@@ -17,6 +17,7 @@
       --red-val: #EF4444;
       --blue-val: #3B82F6;
       --gold-val: #D97706;
+      --gold-bright: #FFB703;
       --silver-val: #64748B;
       --black-val: #1E1B18;
       --yellow-val: #F59E0B;
@@ -52,28 +53,73 @@
     .hero-banner h2 { margin: 0 0 12px 0; font-size: 2rem; color: #FFF; font-weight: 900; }
     .hero-banner p { margin: 0; font-size: 1rem; line-height: 1.7; color: #CBD5E1; }
 
+    /* TABELA DE PRAZOS DE ENTREGA NO HERO */
+    .prazos-box {
+      background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
+      padding: 16px; margin-top: 18px; color: #F8FAFC; font-size: 0.85rem;
+    }
+
+    .prazos-box h4 { margin: 0 0 8px 0; color: var(--gold-bright); text-transform: uppercase; font-size: 0.9rem; }
+    .prazos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .prazo-item { background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--orange-accent); }
+
     .club-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
 
     .club-card {
       background: var(--card-bg); border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease;
-      display: flex; flex-direction: column; justify-content: space-between;
+      border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex; flex-direction: column; justify-content: space-between; position: relative;
     }
 
-    .club-card:hover { transform: translateY(-4px); }
-    .club-card.gold { border-top-color: var(--gold-val); }
-    .club-card.black { 
-      border-top-color: #000; 
-      background: linear-gradient(145deg, #1A1A24, #0B132B); 
-      color: #FFF; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    .club-card:hover { transform: translateY(-5px); }
+
+    /* ESTILO OURO BRILHANTE */
+    .club-card.gold {
+      border-top: 6px solid var(--gold-bright);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF0 100%);
+      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15);
+    }
+
+    /* ESTILO BLACK VIVO COM BRILHO */
+    .club-card.black {
+      border-top: 6px solid var(--gold-bright);
+      background: linear-gradient(145deg, #0D0D11 0%, #171821 100%);
+      color: #FFF;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 183, 3, 0.2);
+      border: 1px solid rgba(255, 183, 3, 0.3);
     }
 
     .club-card h2 { margin: 0 0 8px 0; font-size: 1.4rem; color: var(--header-bg); }
-    .club-card.black h2 { color: #F59E0B; }
+    .club-card.gold h2 { color: #B45309; }
+    .club-card.black h2 { color: var(--gold-bright); text-shadow: 0 0 8px rgba(255, 183, 3, 0.4); }
 
-    .club-subtitle { font-size: 0.85rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 14px; text-transform: uppercase; }
-    .club-card.black .club-subtitle { color: #E2E8F0; }
+    .club-subtitle { font-size: 0.82rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 10px; text-transform: uppercase; }
+    .club-card.black .club-subtitle { color: #FCD34D; }
+
+    .badge-vagas {
+      display: inline-block; background: #EF4444; color: #FFF; font-size: 0.72rem; font-weight: 900;
+      padding: 4px 10px; border-radius: 12px; margin-bottom: 12px; text-transform: uppercase; animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .aviso-cota-box {
+      background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 8px 12px;
+      font-size: 0.78rem; font-weight: bold; color: #1E40AF; margin-bottom: 12px;
+    }
+    .club-card.gold .aviso-cota-box { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
+    .club-card.black .aviso-cota-box { background: rgba(255, 183, 3, 0.1); border-color: rgba(255, 183, 3, 0.3); color: #FDE68A; }
+
+    .diferenciais-box {
+      background: #F8FAFC; border-left: 4px solid var(--blue-val); padding: 8px 10px;
+      border-radius: 6px; font-size: 0.76rem; color: #334155; margin-bottom: 12px; line-height: 1.4;
+    }
+    .club-card.gold .diferenciais-box { border-left-color: var(--gold-bright); background: #FFFBEB; color: #78350F; }
+    .club-card.black .diferenciais-box { border-left-color: var(--gold-bright); background: rgba(255,255,255,0.05); color: #CBD5E1; }
 
     .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.81rem; line-height: 1.5; color: #334155; }
     .club-card.black .club-features { color: #CBD5E1; }
@@ -112,9 +158,12 @@
       color: #FFFFFF; font-size: 0.9rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
     }
 
-    .btn-gold { background-color: var(--gold-val); }
+    .btn-gold { background: linear-gradient(90deg, #D97706, #FFB703); color: #000; font-weight: 900; }
     .btn-silver { background-color: var(--silver-val); }
-    .btn-black { background: linear-gradient(90deg, #F59E0B, #D97706); color: #000; font-weight: 900; }
+    .btn-black { 
+      background: linear-gradient(90deg, #FFB703, #FB8500); 
+      color: #000; font-weight: 900; box-shadow: 0 0 12px rgba(255, 183, 3, 0.4); 
+    }
     .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
 
@@ -191,6 +240,17 @@
         <p>
           Estrutura técnica e esteira fabril de alta performance para marcas de semijoias. Garantimos triagem de banho, inspeção de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encartelamento com alto padrão de acabamento.
         </p>
+
+        <!-- TABELA DE PRAZOS DE ENTREGA -->
+        <div class="prazos-box">
+          <h4>⏱️ Tabela Oficial de Prazos de Entrega na Esteira S.O.S:</h4>
+          <div class="prazos-grid">
+            <div class="prazo-item"><strong>100 a 500 peças:</strong> 8 dias úteis</div>
+            <div class="prazo-item"><strong>501 a 1.000 peças:</strong> 10 dias úteis</div>
+            <div class="prazo-item"><strong>1.001 a 1.500 peças:</strong> 13 dias úteis</div>
+            <div class="prazo-item" style="border-left-color:var(--gold-bright);"><strong>Acima de 1.500 peças:</strong> Agendamento diferenciado sob aprovação da Direção</div>
+          </div>
+        </div>
       </div>
 
       <!-- CARDS CONCEITUAIS -->
@@ -199,23 +259,34 @@
         <!-- CARD 1: INICIANTE -->
         <div class="club-card" onclick="abrirModalMaisInformacoes('Iniciante')">
           <div>
+            <div class="badge-vagas">🔥 VAGAS LIMITADAS — CORRA!</div>
             <h2>🥉 INICIANTE / SIMPLES</h2>
-            <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
+            <div class="club-subtitle">Cota de Entrada | Até 500 pcs/mês</div>
+
+            <div class="aviso-cota-box">
+              ⚠️ <strong>Cota Máxima:</strong> 500 peças/mês. Agendamentos de volumes maiores sujeitos à aprovação prévia da Direção.
+            </div>
+
+            <div class="diferenciais-box">
+              📊 <strong>Suporte & Relatórios:</strong><br>
+              • Relatório detalhado por lote.<br>
+              • Acompanhamento da equipe S.O.S em horário comercial.
+            </div>
             
             <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+              <li><strong>1. Entrada:</strong> Entrada das joias para conferência e aplicação no sistema com prazo definido.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção e blindagem da sua marca com separação e cadastro interno.</li>
+              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Recuperação e montagem de peças do seu acervo.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para e-commerce.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu ERP com precificação assistida.</li>
+              <li><strong>6. Etiqueta:</strong> Emissão de etiquetas Argox 214 Plus com QR Code/Código de barras.</li>
+              <li><strong>7. Encarte:</strong> Encartelamento técnico em cartelas e saquinhos.</li>
+              <li><strong>8. Fechamento & Envio:</strong> Relatório e expedição rápida do lote.</li>
             </ul>
 
             <div class="box-hub-estoque">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas e insumos.
             </div>
           </div>
 
@@ -227,23 +298,34 @@
         <!-- CARD 2: OURO -->
         <div class="club-card gold" onclick="abrirModalMaisInformacoes('Ouro')">
           <div>
+            <div class="badge-vagas" style="background:#D97706;">🔥 VAGAS LIMITADAS — CORRA!</div>
             <h2>🥇 VIP OURO</h2>
-            <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
+            <div class="club-subtitle" style="color: #B45309;">Cota Intermediária | Até 1.000 pcs/mês</div>
+
+            <div class="aviso-cota-box">
+              ⚠️ <strong>Cota Máxima:</strong> 1.000 peças/mês. Agendamentos de volumes maiores sujeitos à aprovação prévia da Direção.
+            </div>
+
+            <div class="diferenciais-box">
+              📊 <strong>Suporte & Relatórios:</strong><br>
+              • Relatório por lote + <strong>Relatório Semestral Consolidado</strong>.<br>
+              • Acompanhamento da equipe S.O.S em horário comercial.
+            </div>
             
             <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores com prioridade média de agendamento na esteira e liberação de prazo.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+              <li><strong>1. Entrada:</strong> Agendamento prioritário na esteira fabril.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Blindagem técnica e cadastro no CDI.</li>
+              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Recuperação de peças.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Imagens em alta qualidade para catálogo.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro completo no seu sistema ERP.</li>
+              <li><strong>6. Etiqueta:</strong> Etiquetagem térmica industrial.</li>
+              <li><strong>7. Encarte:</strong> Encartelamento de alto padrão visual.</li>
+              <li><strong>8. Fechamento & Envio:</strong> Expedição com acompanhamento do relatório.</li>
             </ul>
 
             <div class="box-hub-estoque">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Controle e logística total dos seus insumos pelo HUB S.O.S.
             </div>
           </div>
 
@@ -255,23 +337,34 @@
         <!-- CARD 3: BLACK -->
         <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
           <div>
+            <div class="badge-vagas" style="background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;">🔥 VAGAS LIMITADAS — CORRA!</div>
             <h2>💎 VIP BLACK</h2>
-            <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
+            <div class="club-subtitle">Cota Máxima Exclusiva | Até 1.500 pcs/mês</div>
+
+            <div class="aviso-cota-box">
+              ⚠️ <strong>Cota Máxima:</strong> 1.500 peças/mês (tudo dentro do mesmo mês).
+            </div>
+
+            <div class="diferenciais-box">
+              📊 <strong>Suporte & Relatórios VIP:</strong><br>
+              • Relatório por lote + <strong>Relatório Mensal Completo</strong>.<br>
+              • <strong>Acompanhamento VIP 24h por dia</strong> direto com nossa equipe.
+            </div>
             
-            <p style="font-size:0.85rem; color:#F59E0B; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
+            <p style="font-size:0.85rem; color:#FFB703; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada expressa e prioritária das joias na esteira fabril para liberação em janela recorde.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+              <li><strong>1. Entrada Expressa:</strong> Fila prioritária máxima e liberação em janela recorde.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção total da reputação da sua marca.</li>
+              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Serviços com tarifa mínima especial.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais com estética exclusiva.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Janela de cadastro acelerada em até 24h.</li>
+              <li><strong>6. Etiqueta:</strong> Etiquetagem Argox de alta velocidade.</li>
+              <li><strong>7. Encarte:</strong> Encartelamento luxo em saquinhos/cartelas.</li>
+              <li><strong>8. Fechamento & Envio:</strong> Expedição imediata.</li>
             </ul>
 
             <div class="box-hub-estoque" style="background:#064E3B; border-color:#059669; color:#A7F3D0;">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos e gerenciamos 100% dos seus insumos com prioridade máxima.
             </div>
           </div>
 
@@ -357,14 +450,14 @@
         </div>
 
         <div class="panel-card">
-          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (In Flow & Second Flow)</h3>
+          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção</h3>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
               <input type="date" id="dataInput" class="form-control">
             </div>
             <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças (Máx 1.500 pcs):</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças:</label>
               <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500">
             </div>
             <div>
@@ -399,13 +492,12 @@
 
       <!-- ABA COLABORADOR: VISÃO POR CLIENTE -->
       <div id="abaColaboradorVisao" class="tab-content">
-        
         <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--green-val); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <strong style="color: var(--header-bg); font-size: 1rem;">🙏 Agradecimento da Diretoria S.O.S pelo seu Trabalho & Dedicação</strong>
               <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.83rem;">
-                Obrigado por fazer parte da nossa esteira de excelência! Cada peça inspecionada, foto produzida e etiqueta aplicada garante o padrão de alto nível das melhores marcas do mercado.
+                Obrigado por fazer parte da nossa esteira de excelência! Cada peça inspecionada, foto produzida e etiqueta aplicada garante o padrão de alto nível das melhores marcas.
               </p>
             </div>
             <button class="btn-action-top" style="font-size: 0.75rem; padding: 8px 14px;" onclick="abrirModalMetas()">🎯 VER METAS S.O.S</button>
@@ -529,10 +621,10 @@
     </div>
   </div>
 
-  <!-- MODAL "MAIS INFORMAÇÕES" (COM CASHBACKS EXATOS DE CADA COTA) -->
+  <!-- MODAL "MAIS INFORMAÇÕES" -->
   <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
-      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Valores & Tabela Comparativa</h2>
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Valores & Tabela da Cota</h2>
       <div id="modalInfoConteudo"></div>
       <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
     </div>
@@ -638,8 +730,6 @@
         usuarios: JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {},
         agendamentos: JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [],
         clienteDadosSetores: JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {},
-        modelosEncarte: JSON.parse(localStorage.getItem('sos_modelos_encarte')) || {},
-        textosInspecao: JSON.parse(localStorage.getItem('sos_textos_inspecao')) || {},
         dataHoraBackup: new Date().toLocaleString('pt-BR')
       };
 
@@ -651,12 +741,8 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dadosBackup)
       })
-      .then(() => {
-        alert("✅ Backup realizado com sucesso! O arquivo .json com todos os dados foi salvo na sua pasta do Google Drive.");
-      })
-      .catch(err => {
-        alert("❌ Falha ao realizar o backup: " + err);
-      });
+      .then(() => alert("✅ Backup realizado com sucesso!"))
+      .catch(err => alert("❌ Falha ao realizar o backup: " + err));
     }
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
@@ -680,7 +766,6 @@
     };
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-
     let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
 
     window.onload = function() {
@@ -921,79 +1006,85 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
-    // MODAL DE INFORMAÇÕES COM CASHBACK CORRIGIDO PARA OURO E BLACK
+    // MODAL DE INFORMAÇÕES COM PRAZOS E SEM COMPARATIVO NO BLACK
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
       let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : "VIP BLACK");
-      tit.innerText = `Valores & Comparativo Tarifário — Cota ${nomeCategoriaOficial}`;
+      tit.innerText = `Valores & Tabela da Cota ${nomeCategoriaOficial}`;
 
       let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : "R$ 5.000,00 / anuidade");
       
-      // VALORES UNITÁRIOS REAIS
       let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : 0.58);
       let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : 0.22);
       let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : 0.45);
       let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : 1.56);
       let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : 1.90);
 
-      // CÁLCULO EXATO MATEMÁTICO DA COTA SELECIONADA
       let subInsp = 500 * valInsp;
       let subEtiq = 500 * valEtiq;
       let subEnc = 500 * valEnc;
       let subFoto = 100 * valFoto;
       let subCde = 100 * valCde;
-
       let totalPlanoAtual = subInsp + subEtiq + subEnc + subFoto + subCde;
 
-      // CÁLCULO EXATO DA COTA VIP BLACK
       let blackInsp = 500 * 0.58;
       let blackEtiq = 500 * 0.22;
       let blackEnc = 500 * 0.45;
       let blackFoto = 100 * 1.56;
       let blackCde = 100 * 1.90;
-
-      let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde; // R$ 971,00
+      let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde;
       let economiaLote = totalPlanoAtual - totalBlack;
 
-      // REGRA DE CASHBACK POR PLANO
       let textoCashBack = "";
       if (categoria === "Iniciante") {
         textoCashBack = `
           📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
           Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
-          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto.
         `;
       } else if (categoria === "Ouro") {
         textoCashBack = `
           📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
           Dos R$ 3.000,00 da anuidade, <strong>R$ 500,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
-          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto.
         `;
       } else {
         textoCashBack = `
           📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
           Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
-          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto.
         `;
       }
 
-      cont.innerHTML = `
-        <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
-            <p style="margin:0 0 6px 0;"><strong>Anuidade do Clube:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
-            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto. <span style="color:var(--red-val); font-size:0.75rem; font-weight:bold;">*(Pagamentos via cartão sujeitos aos juros/taxa da maquininha).*</span></p>
-            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por lote de entrada.</p>
-          </div>
-
+      let tabelaHtml = "";
+      if (categoria === "Black") {
+        // CARD E MODAL DO BLACK SEM COMPARATIVO
+        tabelaHtml = `
+          <h4 style="color:var(--gold-bright); margin:14px 0 6px 0;">💎 Tabela Exclusiva Cota VIP BLACK (Menores Valores do Mercado):</h4>
+          <table style="font-size:0.82rem; margin-bottom:15px; background:#111; color:#fff; border-radius:8px; overflow:hidden;">
+            <thead>
+              <tr style="background:#1E1B18; color:#F59E0B;">
+                <th>Serviço Técnico</th>
+                <th>Cobrança</th>
+                <th>Sua Tarifa Exclusiva BLACK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        // DEMAIS MODAIS COM COMPARATIVO
+        tabelaHtml = `
           <h4 style="color:var(--header-bg); margin:14px 0 6px 0;">💲 Tabela Comparativa de Tarifas Unitárias:</h4>
-          <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0;">* Serviços de Entrada e Fechamento/Envio não possuem custos adicionais.</p>
-          
           <table style="font-size:0.82rem; margin-bottom:15px;">
             <thead>
               <tr>
@@ -1009,50 +1100,31 @@
               <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
               <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
               <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
-              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima</td></tr>
             </tbody>
           </table>
+        `;
+      }
 
-          <!-- SIMULAÇÃO MATEMÁTICA CORRETA -->
-          <div style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:15px;">
-            <h5 style="margin:0 0 6px 0; color:var(--header-bg); font-size:0.85rem;">📊 Simulação de Lote Padrão (500 Peças / 100 Modelos):</h5>
-            <div class="grid-2col" style="font-size:0.8rem;">
-              <div style="background:#FFF; padding:10px; border-radius:6px; border:1px solid #E2E8F0;">
-                <strong>Cota ${nomeCategoriaOficial}:</strong><br>
-                • Inspeção (500 x R$ ${valInsp.toFixed(2)}): R$ ${subInsp.toFixed(2)}<br>
-                • Etiqueta (500 x R$ ${valEtiq.toFixed(2)}): R$ ${subEtiq.toFixed(2)}<br>
-                • Encarte (500 x R$ ${valEnc.toFixed(2)}): R$ ${subEnc.toFixed(2)}<br>
-                • Foto (100 x R$ ${valFoto.toFixed(2)}): R$ ${subFoto.toFixed(2)}<br>
-                • CDE (100 x R$ ${valCde.toFixed(2)}): R$ ${subCde.toFixed(2)}<br>
-                <hr style="margin:4px 0; border:0; border-top:1px solid #ddd;">
-                Total do Lote: <strong style="color:var(--orange-accent); font-size:0.95rem;">R$ ${totalPlanoAtual.toFixed(2).replace('.', ',')}</strong>
-              </div>
-              <div style="background:#1A1A24; color:#FFF; padding:10px; border-radius:6px; border:1px solid #F59E0B;">
-                <strong style="color:#F59E0B;">Cota VIP BLACK:</strong><br>
-                • Inspeção (500 x R$ 0,58): R$ ${blackInsp.toFixed(2)}<br>
-                • Etiqueta (500 x R$ 0,22): R$ ${blackEtiq.toFixed(2)}<br>
-                • Encarte (500 x R$ 0,45): R$ ${blackEnc.toFixed(2)}<br>
-                • Foto (100 x R$ 1,56): R$ ${blackFoto.toFixed(2)}<br>
-                • CDE (100 x R$ 1,90): R$ ${blackCde.toFixed(2)}<br>
-                <hr style="margin:4px 0; border:0; border-top:1px solid #444;">
-                Total no Black: <strong style="color:var(--green-val); font-size:0.95rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong><br>
-                ${categoria !== 'Black' ? `<span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ ${economiaLote.toFixed(2).replace('.', ',')} por lote!)</span>` : '<span style="color:var(--green-val); font-size:0.75rem;">(Sua marca no nível máximo de economia!)</span>'}
-              </div>
-            </div>
+      cont.innerHTML = `
+        <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
+            <p style="margin:0 0 6px 0;"><strong>Anuidade do Clube:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
+            <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto.</p>
+            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por lote de entrada.</p>
           </div>
 
-          <div style="background:#FEF3C7; border:1px solid #FCD34D; padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#78350F;">
-            🚚 <strong>Frete & Logística:</strong> Envio e retirada por conta do cliente. Motoboy local (Limeira): <strong>R$ 12,00 por corrida</strong> (sujeito à variação da tabela do motoboy). Entregas externas via Sedex ou PAC.
-          </div>
-
-          <!-- NOTAS DE TRANSPARÊNCIA E ERROS RESTAURADAS -->
-          <div style="background:#FFF7ED; border:1px solid #FFEDD5; border-left:4px solid var(--orange-accent); padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#9A3412;">
-            ⚠️ <strong>Nota de Transparência S.O.S:</strong> A previsão de entrega pode ser afetada por diversos imprevistos na corrente de processos. Estaremos sempre à disposição para resolver e destravar qualquer entrave!<br><br>
-            🤝 <strong>Aviso de Qualidade:</strong> Jamais garantimos 100% de isenção de erros — na esteira fabril real, falhas podem e vão acontecer. Porém, a equipe S.O.S estará sempre à disposição para corrigi-los rapidamente e aprimorar continuamente nossa operação para a sua marca.
-          </div>
+          ${tabelaHtml}
 
           <div style="background:#EFF6FF; border:1px solid #BFDBFE; padding:12px; border-radius:10px; margin-bottom:15px; font-size:0.82rem; color:#1E3A8A;">
             ${textoCashBack}
+          </div>
+
+          <div style="background:#FEF3C7; border:1px solid #FCD34D; padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#78350F;">
+            🚚 <strong>Frete & Logística:</strong> Envio e retirada por conta do cliente. Motoboy local (Limeira): <strong>R$ 12,00 por corrida</strong>.
+          </div>
+
+          <div style="background:#FFF7ED; border:1px solid #FFEDD5; border-left:4px solid var(--orange-accent); padding:10px; border-radius:8px; margin-bottom:12px; font-size:0.78rem; color:#9A3412;">
+            ⚠️ <strong>Nota de Transparência S.O.S:</strong> A previsão de entrega pode ser afetada por imprevistos. Nossa equipe sempre corrigirá falhas rapidamente para garantir excelência.
           </div>
 
           <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
@@ -1074,7 +1146,6 @@
       setTimeout(() => { abrirModalMaisInformacoes('Black'); }, 400);
     }
 
-    // MODAL DE DETALHAMENTO PROFUNDO DOS SETORES NA ESTEIRA FABRIL
     function abrirModalSetorFabril(setor) {
       const modal = document.getElementById('modalSetorFabril');
       const tit = document.getElementById('modalSetorTitulo');
@@ -1082,40 +1153,22 @@
 
       if (setor === 'Entrada') {
         tit.innerText = "📦 Setor 1: Entrada & Recepção Bruta de Lotes";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Recepção e conferência do lote enviado pelo cliente. Realizamos a pesagem bruta em balança digital calibrada, conferência visual de saquinhos/caixas e cadastro imediato no sistema operacional com geração de protocolo técnico. Definimos a previsão de entrega de acordo com a volumetria e peso do lote.</p>
-        `;
+        cont.innerHTML = `<p>Recepção e conferência do lote. Pesagem digital e cadastro imediato no sistema operacional com liberação da previsão de entrega de acordo com a tabela de peças (8, 10 ou 13 dias úteis).</p>`;
       } else if (setor === 'Inspecao') {
         tit.innerText = "🔍 Setor 2: Inspeção 3 em 1 (Separação + Testes + CDI)";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Análise peça por peça sob lupas e lâmpadas de LED para detecção de bolhas de banho, manchas, falhas de verniz e porosidade. Realizamos a separação por modelos semelhantes e teste mecânico rigoroso em fechos e argolas. Lançamos todas as métricas no sistema CDI (Cadastro Digital Interno) para monitoramento de peso, lote, fornecedores e taxas de defeito.</p>
-        `;
+        cont.innerHTML = `<p>Análise sob lâmpadas de LED para detecção de bolhas, manchas e falhas. Teste mecânico rigoroso em fechos e argolas com lançamento no CDI.</p>`;
       } else if (setor === 'Cravacao') {
         tit.innerText = "🔨 Setor 3: Cravação, Colagem & Montagem (Opcional)";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Ativado quando a inspeção detecta peças com zircônias/pedras soltas, fechos travados ou necessidade de montagem. Nossa bancada realiza a cravação/colagem de pedras, troca de fechos e montagem de pingentes em correntes para que nenhuma peça seja perdida.</p>
-        `;
+        cont.innerHTML = `<p>Cravação e colagem de zircônias/pedras soltas, troca de fechos e montagem de pingentes em correntes.</p>`;
       } else if (setor === 'Foto') {
         tit.innerText = "📸 Setor 4: Fotografia Profissional (Still / IA)";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Captura em estúdio fotográfico com iluminação controlada e fundo branco absoluto (Still tradicional) ou produção por Inteligência Artificial (gerando cenários conceituais ou aplicando as joias em modelos virtuais humanas), entregando arquivos de imagem otimizados para e-commerce e redes sociais.</p>
-        `;
+        cont.innerHTML = `<p>Captura em estúdio com iluminação controlada (Still) ou produção via IA (cenários ou modelos humanas virtuais).</p>`;
       } else if (setor === 'Cde') {
         tit.innerText = "💻 Setor 5: CDE (Catalogação) & Etiquetagem Térmica";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Catalogação Digital de Estoque no ERP do cliente com medição de dimensões, peso unitário e cadastramento do código SKU com precificação assistida. Na sequência, nosso setor de etiquetagem realiza a impressão de etiquetas térmicas de alta resistência na impressora Argox 214 Plus com aplicação de QR Code/código de barras.</p>
-        `;
+        cont.innerHTML = `<p>Catalogação no ERP do cliente com medição e precificação assistida. Emissão de etiquetas Argox 214 Plus com QR Code/Código de barras.</p>`;
       } else if (setor === 'Encarte') {
         tit.innerText = "🎴 Setor 6: Encartelamento, Fechamento & Expedição";
-        cont.innerHTML = `
-          <p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p>
-          <p>Encartelamento manual das joias nas tags/cartelas e saquinhos fornecidos pelo cliente. O fechamento gera o relatório final de expedição e liberamos o lote para envio via motoboy local (Limeira) ou Correios (Sedex/PAC) mediante confirmação do acerto.</p>
-        `;
+        cont.innerHTML = `<p>Encartelamento manual em cartelas/saquinhos do cliente. Fechamento com relatório e liberação via motoboy ou Correios.</p>`;
       }
 
       modal.style.display = 'flex';
@@ -1123,7 +1176,6 @@
 
     function fecharModalSetorFabril() { document.getElementById('modalSetorFabril').style.display = 'none'; }
 
-    // DISPARO E ENVIO DO FORMULÁRIO OFICIAL INTEGRADINHO À PLANILHA
     function abrirModalCadastroForm(plano) {
       document.getElementById('formPlanoSelecionado').value = plano;
       document.getElementById('modalFormularioCadastro').style.display = 'flex';
@@ -1157,7 +1209,7 @@
         body: JSON.stringify({ tipo: 'adesao_formulario', dados: payloadForm })
       })
       .then(() => {
-        alert(`✅ Cadastro da marca ${payloadForm.q2_marca} enviado com sucesso! Seus dados foram salvos e nossa equipe entrará em contato.`);
+        alert(`✅ Cadastro da marca ${payloadForm.q2_marca} enviado com sucesso!`);
         fecharModalCadastroForm();
         document.getElementById('formAdesaoOficial').reset();
       })
