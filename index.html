@@ -44,8 +44,6 @@
 
     .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-    .portal-landing { display: block; }
-    
     .hero-banner {
       background: var(--header-bg); color: #FFF; border-radius: 20px; padding: 36px; margin-bottom: 24px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-left: 8px solid var(--orange-accent);
@@ -54,11 +52,17 @@
     .hero-banner h2 { margin: 0 0 12px 0; font-size: 2rem; color: #FFF; font-weight: 900; }
     .hero-banner p { margin: 0; font-size: 1rem; line-height: 1.7; color: #CBD5E1; }
 
+    .banner-agradecimento {
+      background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--orange-accent);
+      border-radius: 12px; padding: 18px; margin-bottom: 20px; font-size: 0.88rem; line-height: 1.6;
+    }
+
     .club-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
 
     .club-card {
       background: var(--card-bg); border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
       border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
 
     .club-card:hover { transform: translateY(-4px); }
@@ -85,31 +89,11 @@
     .card-price-table th { text-align: left; background: var(--input-bg); color: var(--text-dark); }
     .club-card.black .card-price-table th { background: #0B132B; color: #F59E0B; }
 
-    .esteira-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-
-    .esteira-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
-
-    .setor-card-step {
-      flex: 1; min-width: 220px; background: #FFFFFF; border: 2px solid #CBD5E1; border-radius: 16px; padding: 18px;
-      cursor: pointer; transition: all 0.3s ease; position: relative;
+    .box-frete-aviso {
+      background: var(--input-bg); border: 1px dashed #CBD5E1; border-radius: 10px; padding: 10px;
+      font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;
     }
-
-    .setor-card-step:hover {
-      border-color: var(--orange-accent); transform: scale(1.02);
-      box-shadow: 0 10px 20px rgba(255, 87, 34, 0.15);
-    }
-
-    .setor-arrow { font-size: 1.5rem; color: var(--orange-accent); font-weight: 900; user-select: none; }
-
-    .setor-header-badge {
-      display: inline-block; background: var(--header-bg); color: #FFF; padding: 4px 10px; border-radius: 12px;
-      font-size: 0.72rem; font-weight: 900; margin-bottom: 8px;
-    }
-
-    .alert-almoxarifado {
-      background: #ECFDF5; border: 1px solid #A7F3D0; border-left: 6px solid var(--green-val);
-      border-radius: 12px; padding: 16px; margin-top: 20px; color: #065F46; font-size: 0.88rem; line-height: 1.6;
-    }
+    .club-card.black .box-frete-aviso { background: #0B132B; border-color: #334155; color: #94A3B8; }
 
     .form-control {
       width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E2E8F0;
@@ -126,10 +110,8 @@
     .btn-gold { background-color: var(--gold-val); }
     .btn-silver { background-color: var(--silver-val); }
     .btn-black { background: linear-gradient(90deg, #F59E0B, #D97706); color: #000; }
-
     .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
-    .btn-approve { background-color: var(--green-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
 
     .dashboard-panel { display: none; }
 
@@ -151,61 +133,16 @@
 
     .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
-    .alert-banho {
-      background-color: #EFF6FF; border: 1px solid #BFDBFE; border-left: 6px solid var(--blue-val);
-      border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #1E3A8A; font-size: 0.88rem; line-height: 1.6;
-    }
-
-    .alert-24h {
-      background-color: #FEF3C7; border: 1px solid #FDE68A; border-left: 6px solid var(--yellow-val);
-      border-radius: 12px; padding: 16px; margin-bottom: 20px; color: #92400E; font-size: 0.88rem; line-height: 1.6;
-    }
-
-    .tool-box { background-color: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
-
-    .month-selector { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
-
-    .month-btn {
-      background: var(--input-bg); border: 1px solid #CBD5E1; padding: 8px 14px; border-radius: 6px;
-      font-size: 0.8rem; font-weight: bold; cursor: pointer; white-space: nowrap;
-    }
-
-    .month-btn.active { background: var(--orange-accent); color: #FFF; border-color: var(--orange-accent); }
-
-    .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 15px; }
-
-    .day-card { background: var(--input-bg); border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center; }
-    .day-card.full { border-color: var(--red-val); background-color: #FEF2F2; }
-    .day-card.available { border-color: var(--green-val); background-color: #F0FDF4; }
-    .day-card.holiday { border-color: var(--orange-accent); background-color: #FFF7ED; }
-    .day-card.pending { border-color: var(--yellow-val); background-color: #FEF3C7; }
-    .day-card.past { border-color: #CBD5E1; background-color: #E2E8F0; opacity: 0.6; }
-
-    .progress-bar { height: 12px; background: #E2E8F0; border-radius: 6px; overflow: hidden; margin-top: 6px; }
-    .progress-fill { height: 100%; background: var(--blue-val); transition: width 0.3s ease; }
-
-    .badge-status { display: block; padding: 6px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: bold; margin-top: 8px; }
-    .badge-aberto { background-color: #D1FAE5; color: #065F46; }
-    .badge-fechado { background-color: #FEE2E2; color: #991B1B; border: 1px solid var(--red-val); }
-    .badge-feriado { background-color: #FFEDD5; color: #C2410C; }
-    .badge-analise { background-color: #FEF3C7; color: #92400E; border: 1px solid var(--yellow-val); }
-    .badge-passado { background-color: #CBD5E1; color: #475569; }
-
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
       background: rgba(11, 19, 43, 0.88); z-index: 9990; justify-content: center; align-items: center;
       overflow-y: auto; padding: 20px;
     }
+
     .modal-card {
-      background: #fff; padding: 28px; border-radius: 20px; max-width: 720px; width: 100%;
+      background: #fff; padding: 28px; border-radius: 20px; max-width: 780px; width: 100%;
       max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative;
     }
-
-    #modalExplicacaoServico { z-index: 10005; }
-    #modalCadastroClube { z-index: 10010; }
-
-    .clickable-service { color: var(--blue-val); text-decoration: underline; cursor: pointer; font-weight: bold; }
-    .client-row-link { cursor: pointer; color: var(--blue-val); text-decoration: underline; font-weight: bold; }
 
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
     th, td { text-align: left; padding: 10px; border-bottom: 1px solid #E2E8F0; font-size: 0.85rem; }
@@ -218,8 +155,11 @@
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
     }
 
-    .chart-bar-container { margin-bottom: 12px; }
-    .chart-label { font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .client-card-section {
+      background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 12px; padding: 16px; margin-bottom: 15px;
+    }
+
+    .client-card-section h4 { margin-top: 0; color: var(--header-bg); border-bottom: 1px solid #E2E8F0; padding-bottom: 8px; }
   </style>
 </head>
 <body>
@@ -238,6 +178,19 @@
 
   <div class="main-container">
 
+    <!-- BANNER DE AGRADECIMENTO & METAS -->
+    <div class="banner-agradecimento">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <strong style="color: var(--header-bg); font-size: 1rem;">🙏 Agradecimento pelo seu Trabalho & Dedicação</strong>
+          <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.83rem;">
+            Obrigado por fazer parte da nossa esteira de excelência. Cada detalhe verificado no banho, foto tratada e etiqueta aplicada constrói o valor das maiores marcas de semijoias do Brasil.
+          </p>
+        </div>
+        <button class="btn-action-top" style="font-size: 0.75rem; padding: 8px 14px;" onclick="abrirModalMetas()">🎯 VER METAS S.O.S</button>
+      </div>
+    </div>
+
     <!-- LANDING PAGE DE APRESENTAÇÃO DO CLUBE -->
     <div id="portalLanding" class="portal-landing">
       
@@ -248,175 +201,128 @@
         </p>
       </div>
 
-      <!-- BANNER EXCLUSIVO: GESTÃO DE ALMOXARIFADO DE INSUMOS -->
-      <div class="alert-almoxarifado">
-        📦 <strong>Gestão e Guarda de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o estoque de <strong>cartelas, saquinhos, etiquetas, fechos, argolas e venezianas</strong> da sua marca. A logística de suprimentos é controlada 100% pelo nosso HUB.
-      </div>
-
-      <!-- CARDS CONCEITUAIS DAS 3 COTAS DO CLUBE -->
+      <!-- CARDS CONCEITUAIS -->
       <div class="club-cards-grid">
         
-        <!-- CARD 1: INICIANTE / SIMPLES -->
-        <div class="club-card" onclick="abrirModalDetalhesClube('Iniciante')">
-          <h2>🥉 INICIANTE / SIMPLES</h2>
-          <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas e empreendedores que estão iniciando ou profissionalizando a operação e precisam de padrão técnico desde as primeiras peças.</p>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Elimina o trabalho manual dentro de casa, garante que o produto chegue com cara de marca grande ao cliente final e constrói o histórico de catálogo sem erros.</p>
-          <ul class="club-features">
-            <li>Reserva de vaga na esteira da fábrica S.O.S</li>
-            <li>Cota de até 500 pçs/mês (mínimo de 100 pçs ou 300g)</li>
-            <li>Acesso ao Sistema S.O.S para acompanhamento em tempo real</li>
-            <li>Tabela tarifária reduzida em relação aos avulsos</li>
-          </ul>
+        <!-- CARD 1: INICIANTE -->
+        <div class="club-card" onclick="abrirModalMaisInformacoes('Iniciante')">
+          <div>
+            <h2>🥉 INICIANTE / SIMPLES</h2>
+            <div class="club-subtitle">2 Vagas Disponíveis | Até 500 pcs/mês</div>
+            
+            <p style="font-size:0.8rem; color:#475569; margin-bottom:10px;"><strong>Fluxo Técnico Sequencial da Esteira Fabril:</strong></p>
+            <ul class="club-features" style="font-size:0.78rem;">
+              <li><strong>1. Entrada:</strong> Triagem de peso bruto e protocolo de análise</li>
+              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Separação, testes de LED e cadastro em sistema</li>
+              <li><strong>3. Cravação / Montagem / Colagem (Opcional):</strong> Executado mediante aprovação prévia do cliente caso a inspeção detecte falha</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Tratamento em estúdio</li>
+              <li><strong>5. CDE & Etiquetagem:</strong> Catalogação digital e impressão térmica</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem e despacho</li>
+            </ul>
 
-          <table class="card-price-table">
-            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
-            <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,75 / pc</td></tr>
-              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,99 / mod</td></tr>
-              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,40 / mod</td></tr>
-              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,30 / pc</td></tr>
-              <tr><td>Encarte (Flow Down)</td><td>R$ 0,60 / pc</td></tr>
-              <tr><td>Montagem (Opcional)</td><td>R$ 0,55 / pc</td></tr>
-              <tr><td>Cravação / Colagem (Opcional)</td><td>R$ 0,70 / pc</td></tr>
-            </tbody>
-          </table>
+            <table class="card-price-table">
+              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+              <tbody>
+                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,75 / pc</td></tr>
+                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,99 / mod</td></tr>
+                <tr><td>CDE / Catalogação</td><td>R$ 2,40 / mod</td></tr>
+                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,30 / pc</td></tr>
+                <tr><td>Encarte (Flow Down)</td><td>R$ 0,60 / pc</td></tr>
+              </tbody>
+            </table>
 
-          <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalDetalhesClube('Iniciante')">SABER MAIS</button>
+            <div class="box-frete-aviso">
+              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
+            </div>
+          </div>
+
+          <div>
+            <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Iniciante')">MAIS INFORMAÇÕES</button>
+          </div>
         </div>
 
         <!-- CARD 2: OURO -->
-        <div class="club-card gold" onclick="abrirModalDetalhesClube('Ouro')">
-          <h2>🥇 VIP OURO</h2>
-          <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas que já possuem estrutura de vendas consolidada, operam em atacado/revenda e buscam escalar o volume com consistência.</p>
-          <p style="font-size:0.82rem; color:#475569; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Aumenta o giro de estoque, reduz drasticamente o tempo entre o recebimento das peças e a venda, liberando o gestor para focar nas vendas.</p>
-          <ul class="club-features">
-            <li>Prioridade no agendamento e reserva de vaga</li>
-            <li>Cota de até 1.000 pçs/mês (mínimo de 100 pçs ou 300g)</li>
-            <li>Acesso a serviços adicionais de Montagem e Cravação física</li>
-            <li>Suporte técnico diretamente no Sistema S.O.S</li>
-          </ul>
+        <div class="club-card gold" onclick="abrirModalMaisInformacoes('Ouro')">
+          <div>
+            <h2>🥇 VIP OURO</h2>
+            <div class="club-subtitle" style="color: var(--gold-val);">3 Vagas Disponíveis | Até 1.000 pcs/mês</div>
+            
+            <p style="font-size:0.8rem; color:#475569; margin-bottom:10px;"><strong>Fluxo Técnico Sequencial da Esteira Fabril:</strong></p>
+            <ul class="club-features" style="font-size:0.78rem;">
+              <li><strong>1. Entrada:</strong> Triagem de peso bruto e protocolo de análise</li>
+              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Separação, testes de LED e cadastro em sistema</li>
+              <li><strong>3. Cravação / Montagem / Colagem (Opcional):</strong> Executado mediante aprovação prévia do cliente</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Tratamento em estúdio</li>
+              <li><strong>5. CDE & Etiquetagem:</strong> Catalogação digital e impressão térmica</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Embalagem e despacho</li>
+            </ul>
 
-          <table class="card-price-table">
-            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
-            <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,63 / pc</td></tr>
-              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,70 / mod</td></tr>
-              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 2,07 / mod</td></tr>
-              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,24 / pc</td></tr>
-              <tr><td>Encarte (Flow Down)</td><td>R$ 0,50 / pc</td></tr>
-              <tr><td>Montagem (Opcional)</td><td>R$ 0,50 / pc</td></tr>
-              <tr><td>Cravação / Colagem (Opcional)</td><td>R$ 0,63 / pc</td></tr>
-            </tbody>
-          </table>
+            <table class="card-price-table">
+              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+              <tbody>
+                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,63 / pc</td></tr>
+                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,70 / mod</td></tr>
+                <tr><td>CDE / Catalogação</td><td>R$ 2,07 / mod</td></tr>
+                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,24 / pc</td></tr>
+                <tr><td>Encarte (Flow Down)</td><td>R$ 0,50 / pc</td></tr>
+              </tbody>
+            </table>
 
-          <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalDetalhesClube('Ouro')">SABER MAIS</button>
+            <div class="box-frete-aviso">
+              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
+            </div>
+          </div>
+
+          <div>
+            <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Ouro')">MAIS INFORMAÇÕES</button>
+          </div>
         </div>
 
         <!-- CARD 3: BLACK -->
-        <div class="club-card black" onclick="abrirModalDetalhesClube('Black')">
-          <h2>💎 VIP BLACK</h2>
-          <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
-          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:8px;"><strong>Para quem é:</strong> Para marcas grandes e consolidadas que necessitam de uma estrutura terceirizada robusta para eliminar totalmente os gargalos.</p>
-          <p style="font-size:0.82rem; color:#CBD5E1; margin-bottom:12px;"><strong>Impacto no Negócio:</strong> Terceirização de ponta a ponta (hub operacional completo), custo por peça significativamente reduzido e alta capacidade de entrega.</p>
-          <ul class="club-features">
-            <li>Prioridade máxima na esteira de produção</li>
-            <li>Cota de até 1.500 pçs/mês (mínimo de 100 pçs ou 300g)</li>
-            <li>Menores tarifas unitárias em todos os processos</li>
-            <li>Acompanhamento executivo e gestão dedicada via Sistema S.O.S</li>
-          </ul>
+        <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
+          <div>
+            <h2>💎 VIP BLACK</h2>
+            <div class="club-subtitle">2 Vagas Disponíveis | Até 1.500 pcs/mês</div>
+            
+            <p style="font-size:0.8rem; color:#CBD5E1; margin-bottom:10px;"><strong>Fluxo Técnico Sequencial da Esteira Fabril:</strong></p>
+            <ul class="club-features" style="font-size:0.78rem;">
+              <li><strong>1. Entrada:</strong> Prioridade máxima no recebimento e pesagem</li>
+              <li><strong>2. Inspeção + CDI (Obrigatório):</strong> Triagem urgente de falhas com auditoria</li>
+              <li><strong>3. Cravação / Montagem / Colagem (Opcional):</strong> Menor tarifa unitária</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Prioridade em estúdio</li>
+              <li><strong>5. CDE & Etiquetagem:</strong> Validação em janela reduzida</li>
+              <li><strong>6. Encarte & Fechamento/Envio:</strong> Despacho expresso</li>
+            </ul>
 
-          <table class="card-price-table">
-            <thead><tr><th>Serviço</th><th>Valor</th></tr></thead>
-            <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,58 / pc</td></tr>
-              <tr><td>Fotografia (Third Flow)</td><td>R$ 1,56 / mod</td></tr>
-              <tr><td>CDE / Catalogação (Fourth Flow)</td><td>R$ 1,90 / mod</td></tr>
-              <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,22 / pc</td></tr>
-              <tr><td>Encarte (Flow Down)</td><td>R$ 0,45 / pc</td></tr>
-              <tr><td>Montagem (Opcional)</td><td>R$ 0,45 / pc</td></tr>
-              <tr><td>Cravação (Opcional)</td><td>R$ 0,55 / pc</td></tr>
-              <tr><td>Colagem (Opcional)</td><td>R$ 0,55 / pc</td></tr>
-            </tbody>
-          </table>
+            <table class="card-price-table">
+              <thead><tr><th>Serviço</th><th>Valor Unitário</th></tr></thead>
+              <tbody>
+                <tr><td>Inspeção + CDI (3 em 1)</td><td>R$ 0,58 / pc</td></tr>
+                <tr><td>Fotografia (Third Flow)</td><td>R$ 1,56 / mod</td></tr>
+                <tr><td>CDE / Catalogação</td><td>R$ 1,90 / mod</td></tr>
+                <tr><td>Etiqueta (Flow Down)</td><td>R$ 0,22 / pc</td></tr>
+                <tr><td>Encarte (Flow Down)</td><td>R$ 0,45 / pc</td></tr>
+              </tbody>
+            </table>
 
-          <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalDetalhesClube('Black')">SABER MAIS</button>
+            <div class="box-frete-aviso">
+              🚚 <strong>Logística de Envio/Retirada:</strong> Envio e retirada por conta do cliente. Taxa de motoboy local (Limeira): <strong>R$ 12,00 por corrida/retirada</strong> (sujeito à variação da tabela do motoboy). Envios externos via Sedex ou PAC.
+            </div>
+          </div>
+
+          <div>
+            <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Black')">MAIS INFORMAÇÕES</button>
+          </div>
         </div>
 
       </div>
 
-      <!-- SEÇÃO INTERATIVA: ESTEIRA TÉCNICA FABRIL S.O.S -->
-      <div class="panel-card" style="margin-top: 30px;">
-        <h3>🔄 Esteira Fabril S.O.S (S.O.S Workflow — Clique nas Etapas)</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted);">
-          Acompanhe o fluxo exato de processamento, regras de alocação de tempo e protocolos de comunicação com o cliente dentro do Sistema S.O.S.
+      <!-- AVISO DE QUALIDADE -->
+      <div class="panel-card" style="margin-top: 30px; background: #FFF7ED; border: 1px solid #FFEDD5; border-left: 6px solid var(--orange-accent);">
+        <h4 style="margin-top:0; color: #C2410C;">⚠️ Compromisso de Qualidade & Suporte Operacional S.O.S</h4>
+        <p style="font-size:0.85rem; color:#9A3412; line-height:1.6; margin:0;">
+          A S.O.S Soluções trabalha com rigorosos padrões de controle de qualidade, mas reconhecemos que falhas humanas ou operacionais podem acontecer. <strong>Jamais garantimos 100% de isenção de erros</strong>, porém a equipe S.O.S estará sempre pronta para corrigir rapidamente qualquer divergência e aprimorar nossos processos para a sua marca.
         </p>
-
-        <div class="esteira-container">
-          <div class="esteira-row">
-            <div class="setor-card-step" onclick="abrirModalExplicacao('entrada')">
-              <span class="setor-header-badge">SETOR 1 (IN FLOW)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Entrada & Pesagem</strong>
-              <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Média 3,2g / Pç</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Triagem volumétrica, cálculo de prazo e protocolo de análise para grandes lotes.</p>
-            </div>
-
-            <div class="setor-arrow">➔</div>
-
-            <div class="setor-card-step" onclick="abrirModalExplicacao('inspecao_cdi')">
-              <span class="setor-header-badge" style="background:var(--blue-val);">SETOR 2 (SECOND FLOW - 3 em 1)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Separação, Inspeção & CDI</strong>
-              <span style="font-size:0.75rem; color:var(--blue-val); font-weight:bold;">Qualidade + Sistema S.O.S</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Separação por famílias, inspeção minuciosa de falhas e cadastro do lote no CDI com QR Code.</p>
-            </div>
-
-            <div class="setor-arrow">➔</div>
-
-            <div class="setor-card-step" onclick="abrirModalExplicacao('foto')">
-              <span class="setor-header-badge" style="background:var(--gold-val);">SETOR 3 (THIRD FLOW)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Fotografia Profissional</strong>
-              <span style="font-size:0.75rem; color:var(--gold-val); font-weight:bold;">Still de Catálogo</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Captura para sites e e-commerce com fundo tratado de estúdio.</p>
-            </div>
-
-            <div class="setor-arrow">➔</div>
-
-            <div class="setor-card-step" onclick="abrirModalExplicacao('cde')">
-              <span class="setor-header-badge" style="background:var(--green-val);">SETOR 4 (FOURTH FLOW)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Catalogação CDE</strong>
-              <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Janela de Aprovação 24h</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Cadastro no sistema do cliente e emissão do lote para validação prévia.</p>
-            </div>
-          </div>
-
-          <div class="esteira-row" style="margin-top: 10px;">
-            <div class="setor-card-step" onclick="abrirModalExplicacao('etiqueta')">
-              <span class="setor-header-badge" style="background:var(--header-bg);">SETOR 5 (FLOW DOWN START)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Etiquetagem Industrial</strong>
-              <span style="font-size:0.75rem; color:var(--header-bg); font-weight:bold;">Impressão Térmica</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Impressão e fixação de etiquetas, com execução de serviços extras (Montagem, Cravação e Colagem).</p>
-            </div>
-
-            <div class="setor-arrow">➔</div>
-
-            <div class="setor-card-step" onclick="abrirModalExplicacao('encarte')">
-              <span class="setor-header-badge" style="background:var(--orange-accent);">SETOR 6 (FLOW DOWN FINISH)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Encarte & Embalagem</strong>
-              <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold;">Ready-to-Sell</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Montagem nas cartelas da marca, colocação no saquinho protetor e lacre.</p>
-            </div>
-
-            <div class="setor-arrow">➔</div>
-
-            <div class="setor-card-step" onclick="abrirModalExplicacao('saida')">
-              <span class="setor-header-badge" style="background:var(--green-val);">SETOR 7 (END FLOW)</span>
-              <strong style="display:block; font-size:0.9rem; color:var(--header-bg);">Saída, Fechamento & NF-e</strong>
-              <span style="font-size:0.75rem; color:var(--green-val); font-weight:bold;">Relatório + Nota Fiscal</span>
-              <p style="font-size:0.78rem; color:#475569; margin:6px 0 0 0;">Conferência final, emissão de relatórios no Sistema S.O.S e faturamento.</p>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -427,18 +333,14 @@
       <div class="nav-tabs">
         <button id="tabAgendamentoBtn" class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
         <button id="tabTarifasBtn" class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
-        <button id="tabEncarteBtn" class="tab-btn" onclick="trocarAba('abaModelosEncarte')">🎴 Modelos de Encarte</button>
-        
-        <!-- ABAS OPERACIONAIS RESTRITAS (APENAS DIRETORIA E COLABORADORES) -->
-        <button id="tabInspecaoCdiBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaInspecaoCdi')">🔍 Inspeção & CDI</button>
-        <button id="tabCdeBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaCde')">💻 CDE - Catalogação</button>
-        <button id="tabEtiquetaBtn" class="tab-btn" onclick="trocarAba('abaEtiqueta')">🏷️ Etiquetagem</button>
         <button id="tabHistoricoBtn" class="tab-btn" onclick="trocarAba('abaHistorico')">📈 Histórico & Frequência</button>
         
+        <!-- ABA EXCLUSIVA DO COLABORADOR -->
+        <button id="tabColaboradorVisaoBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaColaboradorVisao')">📋 Minha Operação por Cliente</button>
+
         <!-- ABAS EXCLUSIVAS DA DIRETORIA -->
-        <button id="tabPedidosBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaPedidos')">📥 Pedidos de Vagas</button>
-        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão de Clientes & Tabela</button>
-        <button id="tabColaboradoresBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaColaboradores')">👔 Gestão de Colaboradores</button>
+        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão por Cliente & Card Geral</button>
+        <button id="tabColaboradoresBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaColaboradores')">👔 Acessos da Equipe</button>
         <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE</button>
       </div>
 
@@ -452,24 +354,6 @@
           <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">INICIANTE</span>
         </div>
 
-        <div class="alert-24h">
-          ⚠️ <strong>Janela de Aprovação de Cadastros (24 Hours):</strong> Para garantir o prazo do lote, a revisão do cadastro de novos SKUs para emissão de etiquetas deve ser aprovada pelo cliente em até <strong>24 horas</strong>.
-        </div>
-
-        <div class="alert-banho">
-          Atente-se aos prazos de entrega do seu banho (IN FLOW). Atrasos na chegada física das peças acarretam perda da vaga reservada.
-        </div>
-
-        <div class="panel-card tool-box">
-          <h3 style="color: #1E40AF; border-bottom: 1px solid #BFDBFE;">⚖️ Conversor de Peso em Volumetria (g / kg)</h3>
-          <p style="font-size: 0.85rem; color: #1E3A8A; margin-bottom: 12px;">Digite o peso total do seu lote em gramas (mínimo de ~300g ou 100 peças).</p>
-          <div style="display: flex; gap: 10px; align-items: center; max-width: 450px;">
-            <input type="number" id="pesoGrams" class="form-control" placeholder="Peso em gramas (ex: 1600)" style="margin: 0;">
-            <button class="btn-main" style="width: auto; background-color: #2563EB; padding: 12px 16px;" onclick="converterPesoParaPecas()">CALCULAR PESO</button>
-          </div>
-          <div id="pesoResult" style="font-size: 0.85rem; font-weight: bold; color: #1E40AF; margin-top: 8px;"></div>
-        </div>
-
         <div class="panel-card">
           <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (In Flow & Second Flow)</h3>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
@@ -479,184 +363,89 @@
             </div>
             <div>
               <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças (Máx 1.500 pcs):</label>
-              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500" oninput="atualizarSkusProporcional(this.value)">
+              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500">
             </div>
             <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados (Proporção 1:5):</label>
+              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados:</label>
               <input type="number" id="skusInput" class="form-control" placeholder="Ex: 100" value="100">
             </div>
           </div>
-          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA E TRAVAR SEGUNDO FLUXO</button>
+          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA NA ESTEIRA</button>
         </div>
 
         <div class="panel-card">
-          <h3>📊 Ocupação Diária da Esteira S.O.S (Capacidade Máxima: 7.000 pcs/mês)</h3>
-          <div id="monthTabsContainer" class="month-selector"></div>
-          <div style="background: var(--input-bg); border: 1px solid #CBD5E1; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; margin-bottom: 6px;">
-              <span id="lblTopoMetricaLeft">Eficiência Atual da Esteira: <strong id="mesPecasTotais" style="color: var(--blue-val);">0%</strong></span>
-              <span id="lblTopoMetricaRight">Status de Agendamento: <strong id="mesPecasRestantes" style="color: var(--green-val);">Normal</strong></span>
-            </div>
-            <div class="progress-bar">
-              <div id="barraProgressoMensal" class="progress-fill" style="width: 0%;"></div>
-            </div>
-            <p style="margin: 6px 0 0 0; font-size: 0.75rem; color: var(--text-muted); text-align: right;" id="pctMensalTxt">0% de ocupação no mês</p>
-          </div>
-          <div id="calendarGrid" class="calendar-grid"></div>
+          <h3>📊 Ocupação Diária da Esteira S.O.S</h3>
+          <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px;"></div>
         </div>
       </div>
 
-      <!-- ABA EXCLUSIVA DO CLIENTE: MINHAS TARIFAS -->
+      <!-- ABA MINHAS TARIFAS (CLIENTE) -->
       <div id="abaMinhasTarifas" class="tab-content">
         <div class="panel-card">
           <h3 id="tituloAbaTarifas">🏷️ Tabela Tarifária Contratada</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Clique no nome do serviço para ver a explicação técnica completa.</p>
           <div id="conteudoTabelaTarifasCliente"></div>
         </div>
       </div>
 
-      <!-- ABA MODELOS DE ENCARTE -->
-      <div id="abaModelosEncarte" class="tab-content">
-        <div class="panel-card">
-          <h3>🎴 Modelos e Padrões de Encarte por Categoria</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Consulte ou edite o catálogo de padrões de montagem em cartelas.</p>
-
-          <div id="areaAdminAddCategoriaEncarte" style="display:none; background:#EFF6FF; border:1px solid #BFDBFE; padding:15px; border-radius:12px; margin-bottom:20px;">
-            <h4 style="margin-top:0; color:var(--header-bg);">+ Cadastrar / Atualizar Modelo de Encarte (Diretoria)</h4>
-            <div class="grid-2col">
-              <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Categoria do Produto:</label>
-                <input type="text" id="encarteCatInput" class="form-control" placeholder="Ex: Anel, Anel Regulável, Colar Grande">
-              </div>
-              <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Link da Foto no Google Drive:</label>
-                <input type="text" id="encarteFotoInput" class="form-control" placeholder="https://drive.google.com/...">
-              </div>
-            </div>
-            <div>
-              <label style="font-size:0.75rem; font-weight:bold;">Título Maior do Encarte:</label>
-              <input type="text" id="encarteTituloInput" class="form-control" placeholder="Ex: PADRÃO CARTELA M - COLAR REGULÁVEL">
-            </div>
-            <div>
-              <label style="font-size:0.75rem; font-weight:bold;">Descrição e Instruções Detalhadas de Montagem:</label>
-              <textarea id="encarteDescInput" class="form-control" placeholder="Descreva passo a passo como dobrar, fixar o saquinho, tipo de tag ou fecho..."></textarea>
-            </div>
-            <button class="btn-main btn-gold" style="margin-top:8px;" onclick="salvarModeloEncarte()">SALVAR MODELO DE ENCARTE</button>
-          </div>
-
-          <div id="listaCategoriasEncarteContainer"></div>
-        </div>
-      </div>
-
-      <!-- ABA INSPEÇÃO & CDI (SÓ DIRETORIA E COLABORADORES VÊEM; CLIENTES NÃO VÊEM) -->
-      <div id="abaInspecaoCdi" class="tab-content">
-        <div class="panel-card">
-          <h3>🔍 Dados do Setor de Separação, Inspeção de Qualidade & CDI</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Instruções técnicas internas de triagem física e dados cadastrais no CDI para a esteira fabril.</p>
-
-          <div id="areaEdicaoInspecaoCdi" style="display:none; margin-bottom:20px;">
-            <button class="btn-edit" onclick="salvarTextosInspecaoCdi()">Salvar Dados Técnicos (Diretoria)</button>
-          </div>
-
-          <div class="grid-2col">
-            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px;">
-              <h4 style="margin-top:0; color:var(--header-bg);">📋 Protocolo de Separação & Inspeção</h4>
-              <div id="viewTextoSepInspecao" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-              <textarea id="editTextoSepInspecao" class="form-control" style="display:none; height:180px;"></textarea>
-            </div>
-
-            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px;">
-              <h4 style="margin-top:0; color:var(--header-bg);">💻 Dados de Registro e Liberação CDI</h4>
-              <div id="viewTextoCdi" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-              <textarea id="editTextoCdi" class="form-control" style="display:none; height:180px;"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABA CDE CATALOGAÇÃO (SÓ DIRETORIA E COLABORADORES VÊEM; CLIENTES NÃO VÊEM) -->
-      <div id="abaCde" class="tab-content">
-        <div class="panel-card">
-          <h3>💻 CDE — Cadastro Digital & Regras Internas de Catalogação</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Diretrizes operacionais e manuais para catalogação nos sistemas dos clientes.</p>
-
-          <div id="areaEdicaoCde" style="display:none; margin-bottom:15px;">
-            <button class="btn-edit" onclick="salvarTextosCde()">Salvar Manual CDE (Diretoria)</button>
-          </div>
-
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px;">
-            <div id="viewTextoCde" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-            <textarea id="editTextoCde" class="form-control" style="display:none; height:200px;"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABA ETIQUETA -->
-      <div id="abaEtiqueta" class="tab-content">
-        <div class="panel-card">
-          <h3>🏷️ Flow Down Start — Protocolos de Etiquetagem</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Padrões de impressão térmica e aplicação de etiquetas nas peças.</p>
-
-          <div id="areaEdicaoEtiqueta" style="display:none; margin-bottom:15px;">
-            <button class="btn-edit" onclick="salvarTextosEtiqueta()">Salvar Padrão Etiqueta (Diretoria)</button>
-          </div>
-
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px;">
-            <div id="viewTextoEtiqueta" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-            <textarea id="editTextoEtiqueta" class="form-control" style="display:none; height:200px;"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABA HISTÓRICO & FREQUÊNCIA (EXCLUSIVA CLIENTE & DIRETORIA) -->
+      <!-- ABA HISTÓRICO -->
       <div id="abaHistorico" class="tab-content">
         <div class="panel-card">
           <h3 id="tituloAbaHistorico">📈 Histórico de Uso & Frequência do Cliente</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Acompanhamento volumétrico dos lotes aprovados e frequência na esteira fabril S.O.S.</p>
-
           <div id="graficoFrequenciaContainer" style="margin-top:20px;"></div>
         </div>
       </div>
 
-      <!-- ABA APROVAÇÃO DE VAGAS (EXCLUSIVO DIRETORIA) -->
-      <div id="abaPedidos" class="tab-content">
+      <!-- ABA COLABORADOR: VISÃO POR CLIENTE -->
+      <div id="abaColaboradorVisao" class="tab-content">
         <div class="panel-card">
-          <h3>📥 Soluções e Pedidos de Vagas Pendentes (Aprovação & Financeiro)</h3>
+          <h3>📋 Consulta e Instruções de Operação Por Cliente</h3>
+          <label style="font-size:0.85rem; font-weight:bold;">Selecione o Cliente / Marca:</label>
+          <select id="colabSelectCliente" class="form-control" style="margin-bottom:20px;" onchange="carregarPainelColaboradorPorCliente(this.value)">
+            <option value="">-- Selecione o Cliente --</option>
+          </select>
+
+          <div id="painelOperacaoColaboradorConteudo" style="display:none;">
+            <div class="client-card-section">
+              <h4>🔍 Inspeção & CDI (Instruções Técnicas)</h4>
+              <div id="colabInspecaoTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
+            </div>
+
+            <div class="client-card-section">
+              <h4>💻 CDE — Catalogação</h4>
+              <div id="colabCdeTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
+            </div>
+
+            <div class="client-card-section">
+              <h4>🏷️ Etiquetagem</h4>
+              <div id="colabEtiquetaTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
+            </div>
+
+            <div class="client-card-section">
+              <h4>🎴 Modelos de Encarte Cadastrados</h4>
+              <div id="colabEncartesContainer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA GESTÃO DE CLIENTES E CARD INTEGRADO (DIRETORIA) -->
+      <div id="abaLogins" class="tab-content">
+        <div class="panel-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px; margin-bottom:15px;">
+            <h3 style="margin:0;">👥 Gestão Completa Por Cliente</h3>
+            <!-- BOTÃO DE BACKUP INTEGRADINHO AQUI -->
+            <button class="btn-main btn-gold" style="width: auto; padding: 10px 18px;" onclick="executarBackupDrive()">
+              💾 FAZER BACKUP NO GOOGLE DRIVE
+            </button>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Toda a gestão dos setores (Inspeção, Foto, CDE, Etiqueta, Encarte e Preços) está reunida dentro do card de cada cliente.</p>
+
           <table>
             <thead>
               <tr>
                 <th>Cliente / Marca</th>
-                <th>Cota</th>
-                <th>Data Solicitada</th>
-                <th>Peças (Qtd)</th>
-                <th>Entrada Antecipada (Inspeção)</th>
-                <th>Estimativa Despacho</th>
-                <th>Valor Médio Previsto</th>
-                <th>Ações da Direção</th>
-              </tr>
-            </thead>
-            <tbody id="pedidosVagasTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ABA GESTÃO DE LOGINS E PREÇOS (EXCLUSIVO DIRETORIA) -->
-      <div id="abaLogins" class="tab-content">
-        <div class="panel-card">
-          <h3>👥 Gestão de Clientes & Edição Personalizada de Tarifas (Clique no Cliente)</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Clique sobre o nome do cliente para abrir o Card de Edição com aplicação de descontos.</p>
-          
-          <table>
-            <thead>
-              <tr>
-                <th>Cliente / Marca (Clique)</th>
                 <th>Senha</th>
                 <th>Plano / Cota</th>
-                <th>Inspeção (R$)</th>
-                <th>Foto (R$)</th>
-                <th>CDE (R$)</th>
-                <th>Etiqueta (R$)</th>
-                <th>Encarte (R$)</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -665,33 +454,31 @@
         </div>
       </div>
 
-      <!-- ABA GESTÃO DE COLABORADORES (EXCLUSIVO DIRETORIA) -->
+      <!-- ABA GESTÃO DE COLABORADORES (DIRETORIA) -->
       <div id="abaColaboradores" class="tab-content">
         <div class="panel-card">
           <h3>👔 Gestão de Acessos de Colaboradores</h3>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Cadastre logins para sua equipe com acesso restrito às abas operacionais (Encarte, Inspeção/CDI, CDE e Etiqueta).</p>
-
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px; margin-bottom:20px;">
-            <h4 style="margin-top:0; color:var(--header-bg);">+ Novo Colaborador</h4>
+            <h4 style="margin-top:0; color:var(--header-bg);">+ Cadastrar Novo Colaborador</h4>
             <div class="grid-2col">
               <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Nome / Login:</label>
+                <label style="font-size:0.75rem; font-weight:bold;">Login / Nome:</label>
                 <input type="text" id="colabNomeInput" class="form-control" placeholder="Ex: Cintia.Lima">
               </div>
               <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Senha de Acesso:</label>
+                <label style="font-size:0.75rem; font-weight:bold;">Senha:</label>
                 <input type="password" id="colabSenhaInput" class="form-control" placeholder="Senha">
               </div>
             </div>
-            <button class="btn-main btn-gold" style="margin-top:8px;" onclick="cadastrarColaborador()">CADASTRAR COLABORADOR</button>
+            <button class="btn-main btn-gold" style="margin-top:8px;" onclick="cadastrarColaborador()">CADASTRAR</button>
           </div>
 
           <table>
             <thead>
               <tr>
-                <th>Nome do Colaborador</th>
+                <th>Nome</th>
                 <th>Senha</th>
-                <th>Perfil de Acesso</th>
+                <th>Perfil</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -700,68 +487,13 @@
         </div>
       </div>
 
-      <!-- ABA DASHBOARD FINANCEIRO (EXCLUSIVO DIRETORIA) -->
+      <!-- ABA DASHBOARD FINANCEIRO (DIRETORIA) -->
       <div id="abaFinanceiro" class="tab-content">
         <div class="panel-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px;">
-            <h3 style="margin:0;">📊 Dashboard Estratégico & Assertividade de Lotes</h3>
-            <button class="btn-danger" style="font-size:0.75rem; padding:8px 14px;" onclick="resetarDadosTeste()">🔄 RESETAR DADOS DE TESTE</button>
+          <h3>📊 Dashboard Estratégico & Fechamento de Lotes</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <h4>Faturamento Realizado: <strong id="fatRealTxt" style="color:var(--orange-accent);">R$ 0,00</strong></h4>
           </div>
-
-          <div style="margin:15px 0 10px 0; display:flex; align-items:center; gap:10px;">
-            <label style="font-weight:bold; font-size:0.85rem;">Selecione o Mês do Dashboard:</label>
-            <div id="monthSelectorDash" class="month-selector" style="margin:0;"></div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
-            <div style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--silver-val);">
-              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 1 (Mínimo)</span>
-              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 3.000,00</h3>
-            </div>
-            <div style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--blue-val);">
-              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 2 (Intermediário)</span>
-              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 4.000,00</h3>
-            </div>
-            <div style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--yellow-val);">
-              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 3 (Avançado)</span>
-              <h3 style="margin:4px 0 0 0; color:var(--header-bg);">R$ 5.000,00</h3>
-            </div>
-            <div style="background:#F1F5F9; padding:12px; border-radius:10px; border-left:4px solid var(--green-val);">
-              <span style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">Cenário 4 (Meta Teto)</span>
-              <h3 style="margin:4px 0 0 0; color:var(--green-val);">R$ 6.000,00</h3>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
-            <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--blue-val);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Assertividade de Peso Médio</span>
-              <h2 style="margin:5px 0 0 0; color:var(--header-bg);" id="assertividadeTxt">3,20 g / peça</h2>
-            </div>
-            <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--green-val);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Pró-Labore Família Conquistado</span>
-              <h2 style="margin:5px 0 0 0; color:var(--green-val);" id="proLaboreTxt">R$ 0,00</h2>
-            </div>
-            <div style="background:#F1F5F9; padding:15px; border-radius:10px; border-left:4px solid var(--orange-accent);">
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Faturamento Real Acumulado</span>
-              <h2 style="margin:5px 0 0 0; color:var(--orange-accent);" id="fatRealTxt">R$ 0,00</h2>
-            </div>
-          </div>
-
-          <h4>Conferência Lote a Lote do Mês Selecionado:</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Lote / Cliente</th>
-                <th>Data</th>
-                <th>Peças Previstas</th>
-                <th>Valor Previsto</th>
-                <th>Peças Reais (Final)</th>
-                <th>Valor Realizado (Final)</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="lotesFechamentoTableBody"></tbody>
-          </table>
         </div>
       </div>
 
@@ -774,93 +506,34 @@
     Produzido por Kelvin Lima — CEO S.O.S Soluções
   </div>
 
-  <!-- MODAL CARD DO CLIENTE (EDITÁVEL PELA DIRETORIA) -->
-  <div id="modalCardCliente" class="modal-overlay">
+  <!-- MODAL CARD DO CLIENTE COMPLETO -->
+  <div id="modalCardClienteCompleto" class="modal-overlay">
     <div class="modal-card">
-      <h3 id="cardClienteTitle" style="margin-top:0; color:var(--header-bg);">Card do Cliente — Gestão de Tarifas & Descontos</h3>
-      <div id="cardClienteForm"></div>
-      <button class="btn-main" style="background:#94A3B8; margin-top:12px;" onclick="fecharModalCardCliente()">FECHAR</button>
+      <h3 id="cardClienteTitle" style="margin-top:0; color:var(--header-bg);">Card Completo do Cliente — Diretoria</h3>
+      <div id="cardClienteConteudoIntegrado"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalCardCliente()">FECHAR CARD</button>
     </div>
   </div>
 
-  <!-- MODAL DE EXPLICAÇÃO DO SERVIÇO TÉCNICO -->
-  <div id="modalExplicacaoServico" class="modal-overlay">
+  <!-- MODAL "MAIS INFORMAÇÕES" DAS COTAS -->
+  <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
-      <h3 id="explicacaoTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Serviço</h3>
-      <div id="explicacaoTexto" style="font-size:0.9rem; line-height:1.7; color:#334155;"></div>
-      <button class="btn-main" style="background:#94A3B8; margin-top:20px;" onclick="fecharModalExplicacao()">FECHAR</button>
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Informações Detalhadas do Clube</h2>
+      <div id="modalInfoConteudo"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
     </div>
   </div>
 
-  <!-- MODAL DE DETALHES DO CLUBE ("SABER MAIS") -->
-  <div id="modalDetalhesClube" class="modal-overlay">
-    <div class="modal-card">
-      <h2 id="detalhesClubeTitulo" style="margin-top:0; color:var(--header-bg);">Detalhes do Clube S.O.S</h2>
-      <div id="detalhesClubeConteudo"></div>
-      <button class="btn-main" style="background-color:var(--orange-accent); margin-top:15px;" onclick="fecharModalDetalhes(); abrirModalCadastro(planoModalAtual);">QUERO SER DESTE CLUBE</button>
-      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalDetalhes()">FECHAR</button>
-    </div>
-  </div>
-
-  <!-- MODAL DE CADASTRO -->
-  <div id="modalCadastroClube" class="modal-overlay">
-    <div class="modal-card" style="max-width:780px;">
-      <h3 style="margin-top:0; color:var(--header-bg);" id="cadClubeTitle">Formulário Oficial de Inscrição — Clube S.O.S</h3>
-      <form onsubmit="event.preventDefault(); enviarCadastroParaPlanilha();">
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Tipo de Cliente:</label>
-            <select id="cadTipoCliente" class="form-control">
-              <option value="Novo Cliente">Novo Cliente</option>
-              <option value="Renovação">Renovação de Cota</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Nome do Cliente (Renovação):</label>
-            <input type="text" id="cadNomeRenovacao" class="form-control" placeholder="Se for renovação, informe o nome">
-          </div>
-        </div>
-
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Categoria Pretendida:</label>
-            <select id="cadCategoriaPretendida" class="form-control">
-              <option value="VIP BLACK">VIP BLACK (R$ 5.000 / ano)</option>
-              <option value="VIP OURO">VIP OURO (R$ 3.000 / ano)</option>
-              <option value="INICIANTE">INICIANTE (R$ 1.500 / ano)</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Nome e Cargo do Responsável:</label>
-            <input type="text" id="cadNomeCargo" class="form-control" required placeholder="Ex: Maria Silva (Diretora)">
-          </div>
-        </div>
-
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Nome da Marca:</label>
-            <input type="text" id="cadNomeMarca" class="form-control" required placeholder="Ex: Niara Joias">
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Instagram da Marca:</label>
-            <input type="text" id="cadInstagram" class="form-control" placeholder="@suamarca">
-          </div>
-        </div>
-
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Cidade / Estado:</label>
-            <input type="text" id="cadCidadeEstado" class="form-control" required placeholder="Ex: Limeira - SP">
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">WhatsApp para Contato:</label>
-            <input type="text" id="cadWhatsApp" class="form-control" required placeholder="(19) 99999-9999">
-          </div>
-        </div>
-
-        <button type="submit" id="btnSubmitCadPlanilha" class="btn-main" style="background-color:var(--orange-accent); margin-top:10px;">REGISTRAR NO SISTEMA S.O.S</button>
-        <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastro()">CANCELAR</button>
-      </form>
+  <!-- MODAL METAS S.O.S -->
+  <div id="modalMetas" class="modal-overlay">
+    <div class="modal-card" style="max-width:500px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">🎯 Metas de Desempenho S.O.S 2027</h3>
+      <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
+        • <strong>Meta Operacional:</strong> Processamento diário de 500 peças na esteira.<br>
+        • <strong>Assertividade:</strong> 99,2% de precisão nos testes do CDI.<br>
+        • <strong>Janela CDE:</strong> Cadastro e liberação em até 24 horas.
+      </p>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalMetas()">FECHAR</button>
     </div>
   </div>
 
@@ -881,73 +554,64 @@
   </div>
 
   <script>
-    const URL_SCRIPT_DRIVE = "https://script.google.com/macros/s/AKfycby0O3S9aTuciTOUz0Zw-8zeVIC-rSYzYhabaRW70A8/exec";
-    
-    const META_DIARIA = 500;
-    const CAPACIDADE_MENSAL = 7000;
-    let mediaPesoPeca = parseFloat(localStorage.getItem('sos_media_peso')) || 3.2;
+    // URL DO SEU APPS SCRIPT CONFIGURADA!
+    const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
 
-    const explicacoesServicos = {
-      "entrada": {
-        titulo: "Setor 1 — IN FLOW (Entrada & Pesagem Volumétrica)",
-        texto: `<p><strong>Triagem de Entrada:</strong> O lote completo é pesado na chegada para apuração do peso bruto total.</p>`
-      },
-      "inspecao_cdi": {
-        titulo: "Setor 2 — SECOND FLOW (Separação, Inspeção & CDI - Combo 3 em 1)",
-        texto: `<p>No Second Flow você contrata o combo completo de preparação: <strong>Separação + Inspeção de Qualidade + CDI</strong>.</p>`
-      },
-      "foto": {
-        titulo: "Setor 3 — THIRD FLOW (Fotografia Profissional de Catálogo)",
-        texto: "Fotografia Still em estúdio com iluminação controlada e edição profissional pronta para e-commerce."
-      },
-      "cde": {
-        titulo: "Setor 4 — FOURTH FLOW (Catalogação CDE & Cadastro Digital)",
-        texto: "Transferência direta dos dados do CDI para o sistema do cliente. Janela de 24h para aprovação."
-      },
-      "etiqueta": {
-        titulo: "Setor 5 — FLOW DOWN START (Etiquetagem Industrial)",
-        texto: "Impressão térmica e fixação de etiquetas, além dos serviços extras de Montagem, Cravação e Colagem."
-      },
-      "encarte": {
-        titulo: "Setor 6 — FLOW DOWN FINISH (Encarte & Embalagem Externa)",
-        texto: "Montagem nas cartelas da marca, colocação no saquinho protetor e lacre."
-      },
-      "saida": {
-        titulo: "Setor 7 — END FLOW (Saída & Fechamento)",
-        texto: "Auditoria final, emissão de relatórios no Sistema S.O.S e faturamento."
-      }
-    };
+    function executarBackupDrive() {
+      const dadosBackup = {
+        usuarios: JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {},
+        agendamentos: JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [],
+        clienteDadosSetores: JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {},
+        modelosEncarte: JSON.parse(localStorage.getItem('sos_modelos_encarte')) || [],
+        textosInspecao: JSON.parse(localStorage.getItem('sos_textos_inspecao')) || {},
+        dataHoraBackup: new Date().toLocaleString('pt-BR')
+      };
+
+      alert("⏳ Enviando backup do Sistema S.O.S para a sua pasta do Google Drive...");
+
+      fetch(URL_WEBHOOK_DRIVE, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosBackup)
+      })
+      .then(() => {
+        alert("✅ Backup realizado com sucesso! O arquivo .json com todos os dados foi salvo na sua pasta do Google Drive.");
+      })
+      .catch(err => {
+        alert("❌ Falha ao realizar o backup: " + err);
+      });
+    }
 
     let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
       "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
       "Cintia.Lima": { senha: "123456", perfil: "colaborador", plano: "Colaborador", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55, colagem: 0.55 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63, colagem: 0.63 } },
-      "Iniciante Teste": { senha: "123", perfil: "cliente", plano: "Iniciante", tarifas: { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 } }
+      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45 } },
+      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50 } }
     };
 
-    let modelosEncarte = JSON.parse(localStorage.getItem('sos_modelos_encarte')) || [
-      { categoria: "Anel Regulável", foto: "https://drive.google.com/...", titulo: "PADRÃO CARTELA P - ANEL REGULÁVEL", descricao: "Ajustar o anel na cartela com saquinho de 6x6cm. Fixar etiqueta na haste inferior sem ocultar a timbragem do banho." },
-      { categoria: "Colar Grande", foto: "https://drive.google.com/...", titulo: "PADRÃO CARTELA L - COLAR GRANDE & GRAVATA", descricao: "Passar a corrente pela ranhura dupla superior, dar a volta traseira e prender com durex de silicone sem esticar a malha." }
-    ];
-
-    let textosInspecaoCdi = JSON.parse(localStorage.getItem('sos_textos_inspecao')) || {
-      sepInspecao: "1. Conter romaneio impresso.\n2. Separação por famílias (Anel, Brinco, Colar).\n3. Inspeção visual minuciosa sob luz LED para detectar bolhas e falhas de banho.",
-      cdi: "1. Constar código do fornecedor.\n2. Inserir quantidade de peças exata por SKU no Sistema S.O.S.\n3. Gerar etiqueta QR Code para o lote."
+    let clienteDadosSetores = JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {
+      "Niara": {
+        inspecao: "Protocolo Niara: Conferência rigorosa de fechos de lagosta e teste de brilho no LED.",
+        fotoTipo: "IA",
+        fotoIaSubopcao: "Modelo",
+        cde: "Catalogar com SKU prefixo NIA-2027 e descrições técnicas no ERP Niara.",
+        etiqueta: "Etiqueta térmica dupla aplicada no saquinho 8x8cm.",
+        encartes: [
+          { categoria: "Anel Regulável", titulo: "CARTELA P - ANEL REGULÁVEL NIARA", descricao: "Colocar no saquinho com durex de silicone e etiqueta visível." }
+        ]
+      }
     };
-
-    let textoCde = localStorage.getItem('sos_texto_cde') || "Instruções do CDE: Verificar tabelas de preços e cadastrar descrições completas com fotos anexadas no ERP do cliente em até 24h.";
-    let textoEtiqueta = localStorage.getItem('sos_texto_etiqueta') || "Instruções de Etiquetagem: Impressão térmica com ribbon resina. Aplicar no saquinho ou na cartela sem cobrir a marca.";
 
     let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-    let usuarioLogado = localStorage.getItem('sos_usuario_logado') || null;
-    let mesSelecionado = "2026-09";
-    let mesSelecionadoDash = "2026-09";
-    let planoModalAtual = "";
+
+    let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
 
     window.onload = function() {
       if (usuarioLogado && usuarios[usuarioLogado]) {
         restaurarSessaoLogada();
+      } else {
+        logout();
       }
     };
 
@@ -964,237 +628,94 @@
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
         document.getElementById('tabTarifasBtn').style.display = 'none';
-        document.getElementById('tabEncarteBtn').style.display = 'inline-block';
-        document.getElementById('tabInspecaoCdiBtn').style.display = 'inline-block';
-        document.getElementById('tabCdeBtn').style.display = 'inline-block';
-        document.getElementById('tabEtiquetaBtn').style.display = 'inline-block';
         document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
-        document.getElementById('tabPedidosBtn').style.display = 'inline-block';
+        document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
         document.getElementById('tabLoginsBtn').style.display = 'inline-block';
         document.getElementById('tabColaboradoresBtn').style.display = 'inline-block';
         document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
 
-        document.getElementById('areaAdminAddCategoriaEncarte').style.display = 'block';
-        document.getElementById('areaEdicaoInspecaoCdi').style.display = 'block';
-        document.getElementById('areaEdicaoCde').style.display = 'block';
-        document.getElementById('areaEdicaoEtiqueta').style.display = 'block';
-
         renderizarLogins();
         renderizarColaboradores();
-        renderizarPedidosVagas();
-        gerenciarAbasMesesDash();
-        renderizarFinanceiro();
       } else if (uObj.perfil === "colaborador") {
-        document.getElementById('welcomeTitle').innerText = `📋 Painel Operacional do Colaborador — ${usuarioLogado}`;
+        document.getElementById('welcomeTitle').innerText = `📋 Painel do Colaborador — ${usuarioLogado}`;
         document.getElementById('barraCotaClienteBox').style.display = 'none';
 
         document.getElementById('tabAgendamentoBtn').style.display = 'none';
         document.getElementById('tabTarifasBtn').style.display = 'none';
-        document.getElementById('tabEncarteBtn').style.display = 'inline-block';
-        document.getElementById('tabInspecaoCdiBtn').style.display = 'inline-block';
-        document.getElementById('tabCdeBtn').style.display = 'inline-block';
-        document.getElementById('tabEtiquetaBtn').style.display = 'inline-block';
         document.getElementById('tabHistoricoBtn').style.display = 'none';
-        document.getElementById('tabPedidosBtn').style.display = 'none';
+        document.getElementById('tabColaboradorVisaoBtn').style.display = 'inline-block';
         document.getElementById('tabLoginsBtn').style.display = 'none';
         document.getElementById('tabColaboradoresBtn').style.display = 'none';
         document.getElementById('tabFinanceiroBtn').style.display = 'none';
 
-        document.getElementById('areaAdminAddCategoriaEncarte').style.display = 'none';
-        document.getElementById('areaEdicaoInspecaoCdi').style.display = 'none';
-        document.getElementById('areaEdicaoCde').style.display = 'none';
-        document.getElementById('areaEdicaoEtiqueta').style.display = 'none';
-
-        trocarAba('abaModelosEncarte');
-      } else { // CLIENTE
+        carregarSelectColaboradorClientes();
+        trocarAba('abaColaboradorVisao');
+      } else {
         let plano = uObj.plano || "Iniciante";
-        document.getElementById('welcomeTitle').innerText = `📅 Solicitar Vaga de Produção — ${usuarioLogado} [${plano.toUpperCase()}]`;
+        document.getElementById('welcomeTitle').innerText = `📅 Painel do Cliente — ${usuarioLogado} [${plano.toUpperCase()}]`;
         document.getElementById('barraCotaClienteBox').style.display = 'flex';
         
         document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
         document.getElementById('tabTarifasBtn').style.display = 'inline-block';
-        document.getElementById('tabEncarteBtn').style.display = 'inline-block';
-        
-        // CLIENTES NÃO VÊEM INSPEÇÃO/CDI E NEM CDE
-        document.getElementById('tabInspecaoCdiBtn').style.display = 'none';
-        document.getElementById('tabCdeBtn').style.display = 'none';
-        
-        document.getElementById('tabEtiquetaBtn').style.display = 'inline-block';
         document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
-        document.getElementById('tabPedidosBtn').style.display = 'none';
+        document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
         document.getElementById('tabLoginsBtn').style.display = 'none';
         document.getElementById('tabColaboradoresBtn').style.display = 'none';
         document.getElementById('tabFinanceiroBtn').style.display = 'none';
 
-        document.getElementById('areaAdminAddCategoriaEncarte').style.display = 'none';
-        document.getElementById('areaEdicaoInspecaoCdi').style.display = 'none';
-        document.getElementById('areaEdicaoCde').style.display = 'none';
-        document.getElementById('areaEdicaoEtiqueta').style.display = 'none';
-
-        atualizarBarraCotaCliente(usuarioLogado, plano);
         renderizarTarifasCliente(usuarioLogado);
       }
 
-      renderizarModelosEncarte();
-      renderizarInspecaoCdi();
-      renderizarCde();
-      renderizarEtiqueta();
       renderizarHistoricoCliente();
-
-      gerenciarAbasMeses();
-      renderizarCalendario();
     }
 
-    function renderizarModelosEncarte() {
-      const container = document.getElementById('listaCategoriasEncarteContainer');
-      container.innerHTML = '';
-
-      if (modelosEncarte.length === 0) {
-        container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Nenhum modelo de encarte cadastrado no momento.</p>';
-        return;
-      }
-
-      modelosEncarte.forEach((m, idx) => {
-        let box = document.createElement('div');
-        box.style.background = '#F8FAFC';
-        box.style.border = '1px solid #E2E8F0';
-        box.style.borderRadius = '12px';
-        box.style.padding = '16px';
-        box.style.marginBottom = '15px';
-
-        box.innerHTML = `
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="setor-header-badge" style="background:var(--orange-accent);">${m.categoria.toUpperCase()}</span>
-            ${usuarios[usuarioLogado]?.perfil === 'admin' ? `<button class="btn-danger" style="font-size:0.7rem;" onclick="deletarModeloEncarte(${idx})">Excluir</button>` : ''}
-          </div>
-          <h4 style="margin:8px 0; color:var(--header-bg);">${m.titulo}</h4>
-          <p style="font-size:0.85rem; color:#334155; line-height:1.6; white-space:pre-wrap;">${m.descricao}</p>
-          ${m.foto ? `<p style="font-size:0.8rem; margin-top:8px;">📷 <strong>Link/Foto Drive:</strong> <a href="${m.foto}" target="_blank" style="color:var(--blue-val);">${m.foto}</a></p>` : ''}
-        `;
-        container.appendChild(box);
-      });
-    }
-
-    function salvarModeloEncarte() {
-      const cat = document.getElementById('encarteCatInput').value.trim();
-      const foto = document.getElementById('encarteFotoInput').value.trim();
-      const tit = document.getElementById('encarteTituloInput').value.trim();
-      const desc = document.getElementById('encarteDescInput').value.trim();
-
-      if (!cat || !tit || !desc) return alert("Preencha Categoria, Título e Descrição do encarte.");
-
-      modelosEncarte.push({ categoria: cat, foto: foto, titulo: tit, descricao: desc });
-      localStorage.setItem('sos_modelos_encarte', JSON.stringify(modelosEncarte));
-
-      document.getElementById('encarteCatInput').value = '';
-      document.getElementById('encarteFotoInput').value = '';
-      document.getElementById('encarteTituloInput').value = '';
-      document.getElementById('encarteDescInput').value = '';
-
-      alert("Modelo de Encarte cadastrado com sucesso!");
-      renderizarModelosEncarte();
-    }
-
-    function deletarModeloEncarte(idx) {
-      if (confirm("Deseja remover este modelo de encarte?")) {
-        modelosEncarte.splice(idx, 1);
-        localStorage.setItem('sos_modelos_encarte', JSON.stringify(modelosEncarte));
-        renderizarModelosEncarte();
+    function carregarSelectColaboradorClientes() {
+      const select = document.getElementById('colabSelectCliente');
+      select.innerHTML = '<option value="">-- Selecione o Cliente --</option>';
+      for (let u in usuarios) {
+        if (usuarios[u].perfil === 'cliente') {
+          let opt = document.createElement('option');
+          opt.value = u;
+          opt.innerText = u;
+          select.appendChild(opt);
+        }
       }
     }
 
-    function renderizarInspecaoCdi() {
-      const viewSep = document.getElementById('viewTextoSepInspecao');
-      const editSep = document.getElementById('editTextoSepInspecao');
-      const viewCdi = document.getElementById('viewTextoCdi');
-      const editCdi = document.getElementById('editTextoCdi');
+    function carregarPainelColaboradorPorCliente(u) {
+      const container = document.getElementById('painelOperacaoColaboradorConteudo');
+      if (!u) { container.style.display = 'none'; return; }
 
-      viewSep.innerHTML = textosInspecaoCdi.sepInspecao.replace(/\n/g, '<br>');
-      editSep.value = textosInspecaoCdi.sepInspecao;
+      let dados = clienteDadosSetores[u] || {
+        inspecao: "Sem instruções específicas de inspeção.",
+        cde: "Sem instruções de CDE.",
+        etiqueta: "Padrão térmico tradicional.",
+        encartes: []
+      };
 
-      viewCdi.innerHTML = textosInspecaoCdi.cdi.replace(/\n/g, '<br>');
-      editCdi.value = textosInspecaoCdi.cdi;
+      document.getElementById('colabInspecaoTexto').innerText = dados.inspecao;
+      document.getElementById('colabCdeTexto').innerText = dados.cde;
+      document.getElementById('colabEtiquetaTexto').innerText = dados.etiqueta;
 
-      if (usuarios[usuarioLogado]?.perfil === 'admin') {
-        editSep.style.display = 'block';
-        editCdi.style.display = 'block';
+      const encContainer = document.getElementById('colabEncartesContainer');
+      encContainer.innerHTML = '';
+
+      if (!dados.encartes || dados.encartes.length === 0) {
+        encContainer.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Nenhum encarte cadastrado para esta marca.</p>';
       } else {
-        editSep.style.display = 'none';
-        editCdi.style.display = 'none';
-      }
-    }
-
-    function salvarTextosInspecaoCdi() {
-      textosInspecaoCdi.sepInspecao = document.getElementById('editTextoSepInspecao').value;
-      textosInspecaoCdi.cdi = document.getElementById('editTextoCdi').value;
-      localStorage.setItem('sos_textos_inspecao', JSON.stringify(textosInspecaoCdi));
-      alert("Dados de Inspeção & CDI salvos com sucesso!");
-      renderizarInspecaoCdi();
-    }
-
-    function renderizarCde() {
-      document.getElementById('viewTextoCde').innerHTML = textoCde.replace(/\n/g, '<br>');
-      document.getElementById('editTextoCde').value = textoCde;
-      document.getElementById('editTextoCde').style.display = (usuarios[usuarioLogado]?.perfil === 'admin') ? 'block' : 'none';
-    }
-
-    function salvarTextosCde() {
-      textoCde = document.getElementById('editTextoCde').value;
-      localStorage.setItem('sos_texto_cde', textoCde);
-      alert("Manual do CDE atualizado!");
-      renderizarCde();
-    }
-
-    function renderizarEtiqueta() {
-      document.getElementById('viewTextoEtiqueta').innerHTML = textoEtiqueta.replace(/\n/g, '<br>');
-      document.getElementById('editTextoEtiqueta').value = textoEtiqueta;
-      document.getElementById('editTextoEtiqueta').style.display = (usuarios[usuarioLogado]?.perfil === 'admin') ? 'block' : 'none';
-    }
-
-    function salvarTextosEtiqueta() {
-      textoEtiqueta = document.getElementById('editTextoEtiqueta').value;
-      localStorage.setItem('sos_texto_etiqueta', textoEtiqueta);
-      alert("Manual de Etiquetagem atualizado!");
-      renderizarEtiqueta();
-    }
-
-    function renderizarHistoricoCliente() {
-      const container = document.getElementById('graficoFrequenciaContainer');
-      container.innerHTML = '';
-
-      let uAlvo = (usuarios[usuarioLogado]?.perfil === 'admin') ? 'Niara' : usuarioLogado;
-      document.getElementById('tituloAbaHistorico').innerText = `📈 Histórico & Frequência Operacional — ${uAlvo}`;
-
-      let lotesCliente = agendamentos.filter(a => a.cliente === uAlvo && a.status === 'Aprovado');
-
-      if (lotesCliente.length === 0) {
-        container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Ainda não há histórico de lotes concluídos para esta marca.</p>';
-        return;
+        dados.encartes.forEach(e => {
+          let b = document.createElement('div');
+          b.style.background = '#FFFFFF';
+          b.style.padding = '10px';
+          b.style.borderRadius = '8px';
+          b.style.marginTop = '8px';
+          b.style.border = '1px solid #E2E8F0';
+          b.innerHTML = `<strong>${e.categoria} - ${e.titulo}</strong><p style="margin:4px 0 0 0; font-size:0.8rem;">${e.descricao}</p>`;
+          encContainer.appendChild(b);
+        });
       }
 
-      let resumoMeses = {};
-      lotesCliente.forEach(l => {
-        let mesK = l.data.substring(0, 7);
-        resumoMeses[mesK] = (resumoMeses[mesK] || 0) + (l.pecasReais || l.pecas);
-      });
-
-      for (let m in resumoMeses) {
-        let qtd = resumoMeses[m];
-        let pctBarra = Math.min(100, Math.round((qtd / 1500) * 100));
-
-        let chartRow = document.createElement('div');
-        chartRow.className = 'chart-bar-container';
-        chartRow.innerHTML = `
-          <div class="chart-label">
-            <span>Mês: ${m}</span>
-            <strong style="color:var(--blue-val);">${qtd} peças processadas</strong>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: ${pctBarra}%;"></div>
-          </div>
-        `;
-        container.appendChild(chartRow);
-      }
+      container.style.display = 'block';
     }
 
     function renderizarLogins() {
@@ -1204,90 +725,166 @@
       for (let u in usuarios) {
         if (usuarios[u].perfil !== 'cliente') continue;
 
-        let t = usuarios[u].tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-
         let tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><span class="client-row-link" onclick="abrirCardCliente('${u}')">👤 ${u}</span></td>
+          <td><strong style="color:var(--blue-val); cursor:pointer;" onclick="abrirCardClienteCompleto('${u}')">👤 ${u}</strong></td>
           <td>${usuarios[u].senha}</td>
           <td><strong>${usuarios[u].plano || 'Iniciante'}</strong></td>
-          <td>R$ ${t.inspecao.toFixed(2)}</td>
-          <td>R$ ${t.foto.toFixed(2)}</td>
-          <td>R$ ${t.cde.toFixed(2)}</td>
-          <td>R$ ${t.etiqueta.toFixed(2)}</td>
-          <td>R$ ${t.encarte.toFixed(2)}</td>
-          <td><button class="btn-edit" onclick="abrirCardCliente('${u}')">Editar Card</button></td>
+          <td><button class="btn-edit" onclick="abrirCardClienteCompleto('${u}')">Abrir Card Geral</button></td>
         `;
         tbody.appendChild(tr);
       }
     }
 
-    function abrirCardCliente(u) {
-      const modal = document.getElementById('modalCardCliente');
-      const form = document.getElementById('cardClienteForm');
+    function abrirCardClienteCompleto(u) {
+      const modal = document.getElementById('modalCardClienteCompleto');
+      const box = document.getElementById('cardClienteConteudoIntegrado');
       const uObj = usuarios[u];
-      const t = uObj.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 };
+      const t = uObj.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
+      const d = clienteDadosSetores[u] || { inspecao: "", fotoTipo: "Estudio", fotoIaSubopcao: "Still", cde: "", etiqueta: "", encartes: [] };
 
-      document.getElementById('cardClienteTitle').innerText = `Card do Cliente — ${u}`;
+      document.getElementById('cardClienteTitle').innerText = `Card Completo do Cliente — ${u}`;
 
-      form.innerHTML = `
-        <div class="grid-2col">
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Login / Nome da Marca:</label>
-            <input type="text" id="cardUserLogin" class="form-control" value="${u}" disabled>
-          </div>
-          <div>
-            <label style="font-size:0.75rem; font-weight:bold;">Senha de Acesso:</label>
-            <input type="text" id="cardUserPass" class="form-control" value="${uObj.senha}">
+      box.innerHTML = `
+        <div class="client-card-section">
+          <h4>🔑 Dados de Acesso & Plano</h4>
+          <div class="grid-2col">
+            <div><label style="font-size:0.75rem;">Senha:</label><input type="text" id="cPass" class="form-control" value="${uObj.senha}"></div>
+            <div>
+              <label style="font-size:0.75rem;">Plano:</label>
+              <select id="cPlano" class="form-control">
+                <option value="Iniciante" ${uObj.plano === 'Iniciante' ? 'selected' : ''}>Iniciante</option>
+                <option value="Ouro" ${uObj.plano === 'Ouro' ? 'selected' : ''}>Ouro</option>
+                <option value="Black" ${uObj.plano === 'Black' ? 'selected' : ''}>Black</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <label style="font-size:0.75rem; font-weight:bold;">Plano do Cliente:</label>
-        <select id="cardUserPlano" class="form-control">
-          <option value="Iniciante" ${uObj.plano === 'Iniciante' ? 'selected' : ''}>Iniciante</option>
-          <option value="Ouro" ${uObj.plano === 'Ouro' ? 'selected' : ''}>Ouro</option>
-          <option value="Black" ${uObj.plano === 'Black' ? 'selected' : ''}>Black</option>
-        </select>
-
-        <h4 style="margin:12px 0 6px 0; color:var(--header-bg);">Editar Tarifas com Desconto (R$):</h4>
-        <div class="grid-2col">
-          <div><label style="font-size:0.7rem;">Inspeção (3 em 1):</label><input type="number" step="0.01" id="cardTarInsp" class="form-control" value="${t.inspecao}"></div>
-          <div><label style="font-size:0.7rem;">Fotografia:</label><input type="number" step="0.01" id="cardTarFoto" class="form-control" value="${t.foto}"></div>
-          <div><label style="font-size:0.7rem;">CDE Catalogação:</label><input type="number" step="0.01" id="cardTarCde" class="form-control" value="${t.cde}"></div>
-          <div><label style="font-size:0.7rem;">Etiqueta:</label><input type="number" step="0.01" id="cardTarEtiq" class="form-control" value="${t.etiqueta}"></div>
-          <div><label style="font-size:0.7rem;">Encarte:</label><input type="number" step="0.01" id="cardTarEnc" class="form-control" value="${t.encarte}"></div>
-          <div><label style="font-size:0.7rem;">Montagem:</label><input type="number" step="0.01" id="cardTarMont" class="form-control" value="${t.montagem || 0.55}"></div>
-          <div><label style="font-size:0.7rem;">Cravação:</label><input type="number" step="0.01" id="cardTarCrav" class="form-control" value="${t.cravacao || 0.70}"></div>
-          <div><label style="font-size:0.7rem;">Colagem:</label><input type="number" step="0.01" id="cardTarCol" class="form-control" value="${t.colagem || 0.70}"></div>
+        <div class="client-card-section">
+          <h4>🔍 Setor de Inspeção & CDI</h4>
+          <textarea id="cInsp" class="form-control" placeholder="Instruções de inspeção e CDI da marca...">${d.inspecao}</textarea>
         </div>
 
-        <button class="btn-main btn-gold" style="margin-top:10px;" onclick="salvarCardCliente('${u}')">SALVAR ALTERAÇÕES DO CLIENTE</button>
+        <div class="client-card-section">
+          <h4>📷 Setor de Fotografia</h4>
+          <label style="font-size:0.75rem; font-weight:bold;">Tipo de Fotografia:</label>
+          <select id="cFotoTipo" class="form-control" onchange="toggleOpcoesFotoIa(this.value)">
+            <option value="Estudio" ${d.fotoTipo === 'Estudio' ? 'selected' : ''}>Estúdio Físico (Still Tradicional)</option>
+            <option value="IA" ${d.fotoTipo === 'IA' ? 'selected' : ''}>Fotografia com Inteligência Artificial (IA)</option>
+          </select>
+
+          <div id="boxIaSubopcoes" style="display: ${d.fotoTipo === 'IA' ? 'block' : 'none'}; background: #EFF6FF; padding: 10px; border-radius: 8px;">
+            <label style="font-size:0.75rem; font-weight:bold; color: #1E40AF;">Selecione o Estilo de IA:</label>
+            <select id="cFotoIaSub" class="form-control">
+              <option value="Still" ${d.fotoIaSubopcao === 'Still' ? 'selected' : ''}>IA - Fundo Still Limpo</option>
+              <option value="Cenario" ${d.fotoIaSubopcao === 'Cenario' ? 'selected' : ''}>IA - Cenário Conceitual</option>
+              <option value="Modelo" ${d.fotoIaSubopcao === 'Modelo' ? 'selected' : ''}>IA - Modelo Humana Virtual</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="client-card-section">
+          <h4>💻 Setor de CDE (Catalogação)</h4>
+          <textarea id="cCde" class="form-control" placeholder="Regras de CDE do cliente...">${d.cde}</textarea>
+        </div>
+
+        <div class="client-card-section">
+          <h4>🏷️ Setor de Etiquetagem</h4>
+          <textarea id="cEtiq" class="form-control" placeholder="Instruções de etiqueta...">${d.etiqueta}</textarea>
+        </div>
+
+        <div class="client-card-section">
+          <h4>💲 Tabela Tarifária Personalizada com Desconto (R$)</h4>
+          <div class="grid-2col">
+            <div><label style="font-size:0.7rem;">Inspeção:</label><input type="number" step="0.01" id="cTarInsp" class="form-control" value="${t.inspecao}"></div>
+            <div><label style="font-size:0.7rem;">Foto:</label><input type="number" step="0.01" id="cTarFoto" class="form-control" value="${t.foto}"></div>
+            <div><label style="font-size:0.7rem;">CDE:</label><input type="number" step="0.01" id="cTarCde" class="form-control" value="${t.cde}"></div>
+            <div><label style="font-size:0.7rem;">Etiqueta:</label><input type="number" step="0.01" id="cTarEtiq" class="form-control" value="${t.etiqueta}"></div>
+            <div><label style="font-size:0.7rem;">Encarte:</label><input type="number" step="0.01" id="cTarEnc" class="form-control" value="${t.encarte}"></div>
+          </div>
+        </div>
+
+        <button class="btn-main btn-gold" onclick="salvarCardClienteCompleto('${u}')">SALVAR DADOS DO CLIENTE</button>
       `;
 
       modal.style.display = 'flex';
     }
 
-    function salvarCardCliente(u) {
-      usuarios[u].senha = document.getElementById('cardUserPass').value.trim();
-      usuarios[u].plano = document.getElementById('cardUserPlano').value;
+    function toggleOpcoesFotoIa(val) {
+      document.getElementById('boxIaSubopcoes').style.display = (val === 'IA') ? 'block' : 'none';
+    }
+
+    function salvarCardClienteCompleto(u) {
+      usuarios[u].senha = document.getElementById('cPass').value.trim();
+      usuarios[u].plano = document.getElementById('cPlano').value;
       usuarios[u].tarifas = {
-        inspecao: parseFloat(document.getElementById('cardTarInsp').value),
-        foto: parseFloat(document.getElementById('cardTarFoto').value),
-        cde: parseFloat(document.getElementById('cardTarCde').value),
-        etiqueta: parseFloat(document.getElementById('cardTarEtiq').value),
-        encarte: parseFloat(document.getElementById('cardTarEnc').value),
-        montagem: parseFloat(document.getElementById('cardTarMont').value),
-        cravacao: parseFloat(document.getElementById('cardTarCrav').value),
-        colagem: parseFloat(document.getElementById('cardTarCol').value)
+        inspecao: parseFloat(document.getElementById('cTarInsp').value),
+        foto: parseFloat(document.getElementById('cTarFoto').value),
+        cde: parseFloat(document.getElementById('cTarCde').value),
+        etiqueta: parseFloat(document.getElementById('cTarEtiq').value),
+        encarte: parseFloat(document.getElementById('cTarEnc').value)
+      };
+
+      clienteDadosSetores[u] = {
+        inspecao: document.getElementById('cInsp').value,
+        fotoTipo: document.getElementById('cFotoTipo').value,
+        fotoIaSubopcao: document.getElementById('cFotoIaSub').value,
+        cde: document.getElementById('cCde').value,
+        etiqueta: document.getElementById('cEtiq').value,
+        encartes: clienteDadosSetores[u]?.encartes || []
       };
 
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-      alert(`Card de ${u} atualizado com sucesso!`);
+      localStorage.setItem('sos_cliente_dados_setores', JSON.stringify(clienteDadosSetores));
+
+      alert(`Dados do cliente ${u} salvos com sucesso!`);
       fecharModalCardCliente();
       renderizarLogins();
     }
 
-    function fecharModalCardCliente() { document.getElementById('modalCardCliente').style.display = 'none'; }
+    function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
+
+    function abrirModalMaisInformacoes(categoria) {
+      const modal = document.getElementById('modalMaisInformacoes');
+      const tit = document.getElementById('modalInfoTitulo');
+      const cont = document.getElementById('modalInfoConteudo');
+
+      tit.innerText = `Detalhes e Comparativo — Cota ${categoria.toUpperCase()}`;
+
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / ano" : ((categoria === "Ouro") ? "R$ 3.000,00 / ano" : "R$ 5.000,00 / ano");
+      let minPcs = "100 peças ou ~300g por lote";
+
+      cont.innerHTML = `
+        <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
+          <p><strong>Adesão / Anuidade:</strong> ${adesao}</p>
+          <p><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto.</p>
+          <p><strong>Lote Mínimo Exigido:</strong> ${minPcs}</p>
+          <p><strong>Programa de CashBack S.O.S:</strong> 3% do valor faturado no mês retorna como crédito para os serviços do mês seguinte.</p>
+
+          <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
+
+          <h4 style="color:var(--header-bg); margin-bottom:8px;">⚖️ Comparativo de Preços com o VIP BLACK:</h4>
+          <table style="font-size:0.8rem; margin-bottom:15px;">
+            <thead><tr><th>Serviço</th><th>Sua Cota (${categoria})</th><th>Cota VIP BLACK</th></tr></thead>
+            <tbody>
+              <tr><td>Inspeção + CDI</td><td>R$ ${categoria === 'Iniciante' ? '0,75' : '0,63'} / pc</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58 / pc</td></tr>
+              <tr><td>Fotografia Still</td><td>R$ ${categoria === 'Iniciante' ? '1,99' : '1,70'} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56 / mod</td></tr>
+              <tr><td>CDE Catalogação</td><td>R$ ${categoria === 'Iniciante' ? '2,40' : '2,07'} / mod</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90 / mod</td></tr>
+            </tbody>
+          </table>
+
+          ${categoria !== 'Black' ? `<button class="btn-main btn-black" onclick="fecharModalInfo(); irParaCardBlack();">MUDAR PARA COTA VIP BLACK AGORA 💎</button>` : ''}
+        </div>
+      `;
+
+      modal.style.display = 'flex';
+    }
+
+    function fecharModalInfo() { document.getElementById('modalMaisInformacoes').style.display = 'none'; }
+    function irParaCardBlack() {
+      document.getElementById('cardVipBlackSection').scrollIntoView({ behavior: 'smooth' });
+    }
 
     function renderizarColaboradores() {
       const tbody = document.getElementById('colaboradoresTableBody');
@@ -1300,7 +897,7 @@
         tr.innerHTML = `
           <td><strong>${u}</strong></td>
           <td>${usuarios[u].senha}</td>
-          <td><span class="badge-status badge-aberto">COLABORADOR OPERACIONAL</span></td>
+          <td>COLABORADOR</td>
           <td><button class="btn-danger" style="font-size:0.7rem;" onclick="deletarColaborador('${u}')">Excluir</button></td>
         `;
         tbody.appendChild(tr);
@@ -1311,7 +908,7 @@
       const nome = document.getElementById('colabNomeInput').value.trim();
       const senha = document.getElementById('colabSenhaInput').value.trim();
 
-      if (!nome || !senha) return alert("Digite Nome e Senha do colaborador.");
+      if (!nome || !senha) return alert("Digite Nome e Senha.");
 
       usuarios[nome] = { senha: senha, perfil: "colaborador", plano: "Colaborador", tarifas: null };
       localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
@@ -1319,12 +916,12 @@
       document.getElementById('colabNomeInput').value = '';
       document.getElementById('colabSenhaInput').value = '';
 
-      alert(`Colaborador ${nome} cadastrado com sucesso!`);
+      alert(`Colaborador ${nome} cadastrado!`);
       renderizarColaboradores();
     }
 
     function deletarColaborador(u) {
-      if (confirm(`Deseja remover o acesso de ${u}?`)) {
+      if (confirm(`Remover acesso de ${u}?`)) {
         delete usuarios[u];
         localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
         renderizarColaboradores();
@@ -1338,7 +935,8 @@
       event.currentTarget.classList.add('active');
     }
 
-    function carregarSelectUsuarios() {
+    function abrirModalLogin() {
+      document.getElementById('modalLogin').style.display = 'flex';
       const select = document.getElementById('userSelect');
       select.innerHTML = '<option value="">Selecione seu login...</option>';
       for (let user in usuarios) {
@@ -1350,7 +948,6 @@
       }
     }
 
-    function abrirModalLogin() { document.getElementById('modalLogin').style.display = 'flex'; carregarSelectUsuarios(); }
     function fecharModalLogin() { document.getElementById('modalLogin').style.display = 'none'; }
 
     function autenticar() {
@@ -1359,7 +956,7 @@
 
       if (usuarios[user] && usuarios[user].senha === pass) {
         usuarioLogado = user;
-        localStorage.setItem('sos_usuario_logado', user);
+        sessionStorage.setItem('sos_usuario_logado', user);
         fecharModalLogin();
         restaurarSessaoLogada();
       } else {
@@ -1369,18 +966,11 @@
 
     function logout() {
       usuarioLogado = null;
-      localStorage.removeItem('sos_usuario_logado');
+      sessionStorage.removeItem('sos_usuario_logado');
       document.getElementById('portalLanding').style.display = 'block';
       document.getElementById('btnOpenLoginModal').style.display = 'inline-block';
       document.getElementById('dashboardPanel').style.display = 'none';
       document.getElementById('btnLogout').style.display = 'none';
-    }
-
-    function atualizarBarraCotaCliente(uName, plano) {
-      let limite = (plano === "Black") ? 1500 : (plano === "Ouro" ? 1000 : 500);
-      let usadasPecas = agendamentos.filter(a => a.cliente === uName && a.status === "Aprovado").reduce((sum, a) => sum + a.pecas, 0);
-      document.getElementById('txtStatusCota').innerText = `Volume Utilizado no Mês: ${usadasPecas} de ${limite} peças`;
-      document.getElementById('badgeCotaPlano').innerText = `VIP ${plano.toUpperCase()}`;
     }
 
     function renderizarTarifasCliente(uName) {
@@ -1388,253 +978,48 @@
       const u = usuarios[uName];
       if (!u || u.perfil === "admin") return;
 
-      const plano = u.plano || "Iniciante";
-      const tDefault = (plano === "Black") 
-        ? { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45, montagem: 0.45, cravacao: 0.55, colagem: 0.55 }
-        : (plano === "Ouro" ? { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50, montagem: 0.50, cravacao: 0.63, colagem: 0.63 } : { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60, montagem: 0.55, cravacao: 0.70, colagem: 0.70 });
-
-      const t = u.tarifas || tDefault;
-      document.getElementById('tituloAbaTarifas').innerText = `🏷️ Tarifas Contratadas — ${plano.toUpperCase()}`;
+      const t = u.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
 
       box.innerHTML = `
         <table>
-          <thead><tr><th>Serviço Técnico</th><th>Base</th><th>Seu Valor Vigente</th></tr></thead>
+          <thead><tr><th>Serviço Técnico</th><th>Seu Valor Vigente</th></tr></thead>
           <tbody>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('inspecao_cdi')">Separação + Inspeção + CDI (3 em 1)</td><td>Peça</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('foto')">Fotografia Profissional (Third Flow)</td><td>SKU</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('cde')">Cadastro Digital CDE (Fourth Flow)</td><td>SKU</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('etiqueta')">Etiquetagem de Peças (Flow Down Start)</td><td>Peça</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service" onclick="abrirModalExplicacao('encarte')">Encarte / Embalagem Externa (Flow Down Start)</td><td>Peça</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service">Montagem de Peças (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.montagem || 0.55).toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service">Cravação (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.cravacao || 0.70).toFixed(2)}</strong></td></tr>
-            <tr><td class="clickable-service">Colagem (Opcional)</td><td>Peça</td><td><strong>R$ ${(t.colagem || 0.70).toFixed(2)}</strong></td></tr>
+            <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
+            <tr><td>Fotografia Profissional</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
+            <tr><td>Cadastro Digital CDE</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
+            <tr><td>Etiquetagem de Peças</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
+            <tr><td>Encarte / Embalagem Externa</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
           </tbody>
         </table>
       `;
     }
 
-    function converterPesoParaPecas() {
-      const gramas = parseFloat(document.getElementById('pesoGrams').value);
-      if (!gramas || gramas < 300) return alert("Digite o peso em gramas (~300g mínimo).");
-
-      const pcsEstimadas = Math.round(gramas / mediaPesoPeca);
-      document.getElementById('pecasInput').value = pcsEstimadas;
-      atualizarSkusProporcional(pcsEstimadas);
-
-      document.getElementById('pesoResult').innerHTML = `✅ Conversão: <strong>${gramas}g</strong> = <strong>~${pcsEstimadas} peças</strong>.`;
-    }
-
-    function atualizarSkusProporcional(pecasVal) {
-      let pecas = parseFloat(pecasVal) || 0;
-      document.getElementById('skusInput').value = Math.round(pecas / 5);
-    }
-
     function solicitarVaga() {
       const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
-      const skusTotal = parseFloat(document.getElementById('skusInput').value) || Math.round(pecasTotal / 5);
       const dataSel = document.getElementById('dataInput').value;
-      let uObj = usuarios[usuarioLogado];
-      let plano = uObj?.plano || "Iniciante";
 
       if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
-      if (pecasTotal > 1500) return alert("Volumetria máxima por lote é de 1.500 peças.");
-      if (pecasTotal < 100) return alert("Lote mínimo operacional é de 100 peças.");
 
-      let dtAgendamento = new Date(dataSel + 'T00:00:00');
-      let dtHoje = new Date(); dtHoje.setHours(0,0,0,0);
-
-      if (dtAgendamento < dtHoje) return alert("Data indisponível.");
-      if (dtAgendamento.getDay() === 0 || dtAgendamento.getDay() === 6) return alert("Fins de semana indisponíveis.");
-
-      let diasTrava = Math.ceil(pecasTotal / 500) * 2;
-      let dtAtualLoop = new Date(dtAgendamento);
-      let diasAlocados = 0;
-
-      while (diasAlocados < diasTrava) {
-        if (dtAtualLoop.getDay() !== 0 && dtAtualLoop.getDay() !== 6) {
-          agendamentos.push({
-            id: Date.now() + Math.random(),
-            cliente: usuarioLogado,
-            plano: plano,
-            data: dtAtualLoop.toISOString().split('T')[0],
-            pecas: Math.round(pecasTotal / (diasTrava / 2)),
-            skus: skusTotal,
-            status: "Aprovado"
-          });
-          diasAlocados++;
-        }
-        dtAtualLoop.setDate(dtAtualLoop.getDate() + 1);
-      }
+      agendamentos.push({
+        id: Date.now(),
+        cliente: usuarioLogado,
+        data: dataSel,
+        pecas: pecasTotal,
+        status: "Aprovado"
+      });
 
       localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
       alert(`Vaga reservada com sucesso!`);
       document.getElementById('pecasInput').value = '';
-      renderizarCalendario();
     }
 
-    function gerenciarAbasMeses() {
-      const container = document.getElementById('monthTabsContainer');
-      container.innerHTML = '';
-      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-
-      for (let ano = 2026; ano <= 2028; ano++) {
-        let mesInicio = (ano === 2026) ? 8 : 0;
-        for (let m = mesInicio; m < 12; m++) {
-          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
-          let btn = document.createElement('button');
-          btn.className = `month-btn ${mesVal === mesSelecionado ? 'active' : ''}`;
-          btn.innerText = `${mesesNomes[m]}/${ano}`;
-          btn.onclick = () => { mesSelecionado = mesVal; gerenciarAbasMeses(); renderizarCalendario(); };
-          container.appendChild(btn);
-        }
-      }
+    function renderizarHistoricoCliente() {
+      const container = document.getElementById('graficoFrequenciaContainer');
+      container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Acompanhamento de volumetria ativa no Sistema S.O.S.</p>';
     }
 
-    function gerenciarAbasMesesDash() {
-      const container = document.getElementById('monthSelectorDash');
-      container.innerHTML = '';
-      let mesesNomes = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-
-      for (let ano = 2026; ano <= 2028; ano++) {
-        let mesInicio = (ano === 2026) ? 8 : 0;
-        for (let m = mesInicio; m < 12; m++) {
-          let mesVal = `${ano}-${String(m + 1).padStart(2, '0')}`;
-          let btn = document.createElement('button');
-          btn.className = `month-btn ${mesVal === mesSelecionadoDash ? 'active' : ''}`;
-          btn.innerText = `${mesesNomes[m]}/${ano}`;
-          btn.onclick = () => { mesSelecionadoDash = mesVal; gerenciarAbasMesesDash(); renderizarFinanceiro(); };
-          container.appendChild(btn);
-        }
-      }
-    }
-
-    function renderizarCalendario() {
-      const grid = document.getElementById('calendarGrid');
-      grid.innerHTML = '';
-      let [anoStr, mesStr] = mesSelecionado.split('-');
-      let ano = parseInt(anoStr);
-      let mes = parseInt(mesStr) - 1;
-      let dtHoje = new Date(); dtHoje.setHours(0,0,0,0);
-
-      let totalPecasMes = 0;
-      let acumuladoPorDia = {};
-
-      agendamentos.forEach(a => {
-        if (a.status === "Aprovado") {
-          acumuladoPorDia[a.data] = (acumuladoPorDia[a.data] || 0) + a.pecas;
-          if (a.data.startsWith(mesSelecionado)) totalPecasMes += a.pecas;
-        }
-      });
-
-      let pctMensal = Math.min(100, Math.round((totalPecasMes / CAPACIDADE_MENSAL) * 100));
-
-      document.getElementById('lblTopoMetricaLeft').innerHTML = `Acumulado do Mês: <strong style="color:var(--blue-val);">${totalPecasMes.toLocaleString('pt-BR')} pcs</strong>`;
-      document.getElementById('lblTopoMetricaRight').innerHTML = `Capacidade Restante: <strong style="color:var(--green-val);">${Math.max(0, CAPACIDADE_MENSAL - totalPecasMes).toLocaleString('pt-BR')} pcs</strong>`;
-      document.getElementById('barraProgressoMensal').style.width = `${pctMensal}%`;
-      document.getElementById('pctMensalTxt').innerText = `${pctMensal}% de ocupação (${totalPecasMes} / ${CAPACIDADE_MENSAL} pcs)`;
-
-      let diasNoMes = new Date(ano, mes + 1, 0).getDate();
-
-      for (let dia = 1; dia <= diasNoMes; dia++) {
-        let dataStr = `${anoStr}-${mesStr}-${String(dia).padStart(2, '0')}`;
-        let dtCard = new Date(dataStr + 'T00:00:00');
-        let ehFimDeSemana = (dtCard.getDay() === 0 || dtCard.getDay() === 6);
-        let ehPassado = dtCard < dtHoje;
-        let pcs = acumuladoPorDia[dataStr] || 0;
-        let pct = Math.min(100, Math.round((pcs / META_DIARIA) * 100));
-        let lotado = pcs >= META_DIARIA;
-
-        let statusTxt = ehPassado ? "🔒 INDISPONÍVEL" : (ehFimDeSemana ? "🚫 FIM DE SEMANA" : (lotado ? "🔒 VAGA PREENCHIDA" : "🟢 LIVRE"));
-        let statusClass = ehPassado ? "badge-passado" : (ehFimDeSemana ? "badge-feriado" : (lotado ? "badge-fechado" : "badge-aberto"));
-        let cardBgClass = ehPassado ? "past" : (ehFimDeSemana ? "holiday" : (lotado ? "full" : "available"));
-
-        let card = document.createElement('div');
-        card.className = `day-card ${cardBgClass}`;
-        card.innerHTML = `
-          <strong>${String(dia).padStart(2, '0')}/${mesStr}</strong>
-          <div style="font-size:0.75rem; margin-top:4px;">${pcs} / ${META_DIARIA} pcs</div>
-          <div class="progress-bar"><div class="progress-fill ${lotado ? 'full' : ''}" style="width: ${ehPassado || ehFimDeSemana ? 0 : pct}%"></div></div>
-          <span class="badge-status ${statusClass}">${statusTxt}</span>
-        `;
-        grid.appendChild(card);
-      }
-    }
-
-    function renderizarPedidosVagas() {
-      document.getElementById('pedidosVagasTableBody').innerHTML = '<tr><td colspan="8" style="text-align:center;">Todas as vagas estão confirmadas.</td></tr>';
-    }
-
-    function renderizarFinanceiro() {
-      const tbody = document.getElementById('lotesFechamentoTableBody');
-      tbody.innerHTML = '';
-      let aprovadosDoMes = agendamentos.filter(a => a.status === "Aprovado" && a.data.startsWith(mesSelecionadoDash));
-      let fatTotalReal = 0;
-
-      if (aprovadosDoMes.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Nenhum lote para o mês de ${mesSelecionadoDash}.</td></tr>`;
-      } else {
-        aprovadosDoMes.forEach((a) => {
-          let originalIndex = agendamentos.findIndex(x => x.id === a.id);
-          let uObj = usuarios[a.cliente];
-          let t = uObj?.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-          let pcs = a.pecas || 0;
-          let skus = a.skus || Math.round(pcs / 5);
-          let valPrevisto = (pcs * t.inspecao) + (skus * t.foto) + (skus * t.cde) + (pcs * t.etiqueta) + (pcs * t.encarte);
-          let valEfetivo = (a.valorReal !== null) ? a.valorReal : valPrevisto;
-          fatTotalReal += valEfetivo;
-
-          let tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td><strong>${a.cliente}</strong></td>
-            <td>${a.data}</td>
-            <td>${pcs} pcs</td>
-            <td><strong>R$ ${valPrevisto.toFixed(2)}</strong></td>
-            <td><input type="number" value="${a.pecasReais || pcs}" id="pcs_real_${originalIndex}" class="form-control" style="margin:0; padding:4px; width:80px;"></td>
-            <td><input type="number" step="0.01" value="${valEfetivo.toFixed(2)}" id="val_real_${originalIndex}" class="form-control" style="margin:0; padding:4px; width:100px;"></td>
-            <td><button class="btn-approve" onclick="salvarFechamentoLote(${originalIndex})">Salvar Final</button></td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-      document.getElementById('fatRealTxt').innerText = `R$ ${fatTotalReal.toFixed(2)}`;
-    }
-
-    function salvarFechamentoLote(i) {
-      agendamentos[i].pecasReais = parseFloat(document.getElementById(`pcs_real_${i}`).value);
-      agendamentos[i].valorReal = parseFloat(document.getElementById(`val_real_${i}`).value);
-      localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-      renderizarFinanceiro();
-      alert("Fechamento registrado!");
-    }
-
-    function abrirModalExplicacao(chave) {
-      if (explicacoesServicos[chave]) {
-        document.getElementById('explicacaoTitulo').innerText = explicacoesServicos[chave].titulo;
-        document.getElementById('explicacaoTexto').innerHTML = explicacoesServicos[chave].texto;
-        document.getElementById('modalExplicacaoServico').style.display = 'flex';
-      }
-    }
-    function fecharModalExplicacao() { document.getElementById('modalExplicacaoServico').style.display = 'none'; }
-
-    function abrirModalDetalhesClube(p) { planoModalAtual = p; document.getElementById('modalDetalhesClube').style.display = 'flex'; }
-    function fecharModalDetalhes() { document.getElementById('modalDetalhesClube').style.display = 'none'; }
-
-    function abrirModalCadastro(p) { planoModalAtual = p; document.getElementById('modalCadastroClube').style.display = 'flex'; }
-    function fecharModalCadastro() { document.getElementById('modalCadastroClube').style.display = 'none'; }
-
-    function enviarCadastroParaPlanilha() {
-      alert("Cadastro registrado no Sistema S.O.S!");
-      fecharModalCadastro();
-    }
-
-    function resetarDadosTeste() {
-      if (confirm("Resetar ambiente?")) {
-        agendamentos = [];
-        localStorage.removeItem('sos_agendamentos_2027');
-        renderizarCalendario();
-        renderizarFinanceiro();
-      }
-    }
+    function abrirModalMetas() { document.getElementById('modalMetas').style.display = 'flex'; }
+    function fecharModalMetas() { document.getElementById('modalMetas').style.display = 'none'; }
   </script>
 </body>
 </html>
