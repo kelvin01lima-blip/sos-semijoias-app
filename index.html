@@ -193,7 +193,7 @@
         </p>
       </div>
 
-      <!-- CARDS CONCEITUAIS COM TEXTOS PADRONIZADOS EM TODOS OS PLANOS -->
+      <!-- CARDS CONCEITUAIS -->
       <div class="club-cards-grid">
         
         <!-- CARD 1: INICIANTE -->
@@ -282,7 +282,7 @@
 
       </div>
 
-      <!-- ESTEIRA FABRIL CLICÁVEL COM SETAS INTERATIVAS -->
+      <!-- ESTEIRA FABRIL CLICÁVEL -->
       <div class="panel-card" style="margin-top: 35px;">
         <h3 style="color:var(--header-bg); margin-bottom:6px;">⚙️ Esteira Fabril S.O.S Soluções (Clique no Setor para Ver o Processo Interno Detalhado)</h3>
         <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">
@@ -529,7 +529,7 @@
     </div>
   </div>
 
-  <!-- MODAL "MAIS INFORMAÇÕES" (COM TÍTULO DINÂMICO E CÁLCULO EXATO SEM ZERAR) -->
+  <!-- MODAL "MAIS INFORMAÇÕES" (COM CASHBACKS EXATOS DE CADA COTA) -->
   <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
       <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Valores & Tabela Comparativa</h2>
@@ -921,7 +921,7 @@
 
     function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
-    // MODAL DE INFORMAÇÕES CORRIGIDO (PREÇOS REAIS E VALORES EXATOS)
+    // MODAL DE INFORMAÇÕES COM CASHBACK CORRIGIDO PARA OURO E BLACK
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
@@ -958,12 +958,30 @@
       let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde; // R$ 971,00
       let economiaLote = totalPlanoAtual - totalBlack;
 
-      let textoCashBack = `
-        📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
-        Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
-        • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto em serviços livres.<br>
-        • <i>Importante:</i> Ultrapassou R$ 100,00 no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
-      `;
+      // REGRA DE CASHBACK POR PLANO
+      let textoCashBack = "";
+      if (categoria === "Iniciante") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else if (categoria === "Ouro") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 3.000,00 da anuidade, <strong>R$ 500,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      }
 
       cont.innerHTML = `
         <div style="font-size:0.88rem; line-height:1.6; color:#334155;">
@@ -995,7 +1013,7 @@
             </tbody>
           </table>
 
-          <!-- SIMULAÇÃO MATEMÁTICA CORRETA EXIBIDA NA TELA -->
+          <!-- SIMULAÇÃO MATEMÁTICA CORRETA -->
           <div style="background:#F1F5F9; border:1px solid #CBD5E1; border-radius:10px; padding:12px; margin-bottom:15px;">
             <h5 style="margin:0 0 6px 0; color:var(--header-bg); font-size:0.85rem;">📊 Simulação de Lote Padrão (500 Peças / 100 Modelos):</h5>
             <div class="grid-2col" style="font-size:0.8rem;">
