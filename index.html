@@ -62,7 +62,7 @@
     .prazos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
     .prazo-item { background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--orange-accent); }
 
-    .club-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+    .club-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 20px; }
 
     .club-card {
       background: var(--card-bg); border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
@@ -78,6 +78,12 @@
       box-shadow: 0 10px 25px rgba(217, 119, 6, 0.18);
     }
 
+    .club-card.diamante {
+      border-top: 6px solid #38BDF8;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+    }
+
     .club-card.black {
       border-top: 6px solid var(--gold-bright);
       background: linear-gradient(145deg, #0D0D11 0%, #171821 100%);
@@ -86,12 +92,14 @@
       border: 1px solid rgba(255, 183, 3, 0.35);
     }
 
-    .club-card h2 { margin: 0 0 8px 0; font-size: 1.4rem; color: var(--header-bg); }
+    .club-card h2 { margin: 0 0 8px 0; font-size: 1.3rem; color: var(--header-bg); }
     .club-card.gold h2 { color: #B45309; }
+    .club-card.diamante h2 { color: #0284C7; }
     .club-card.black h2 { color: var(--gold-bright); text-shadow: 0 0 8px rgba(255, 183, 3, 0.4); }
 
     .club-subtitle { font-size: 0.85rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 10px; text-transform: uppercase; }
     .club-card.gold .club-subtitle { color: #D97706; }
+    .club-card.diamante .club-subtitle { color: #0284C7; }
     .club-card.black .club-subtitle { color: #FCD34D; }
 
     .badge-vagas {
@@ -110,6 +118,7 @@
       font-size: 0.78rem; font-weight: bold; color: #1E40AF; margin-bottom: 10px;
     }
     .club-card.gold .aviso-cota-box { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
+    .club-card.diamante .aviso-cota-box { background: #E0F2FE; border-color: #BAE6FD; color: #0369A1; }
     .club-card.black .aviso-cota-box { background: rgba(255, 183, 3, 0.1); border-color: rgba(255, 183, 3, 0.3); color: #FDE68A; }
 
     .diferenciais-box {
@@ -117,6 +126,7 @@
       border-radius: 6px; font-size: 0.76rem; color: #334155; margin-bottom: 12px; line-height: 1.4;
     }
     .club-card.gold .diferenciais-box { border-left-color: var(--gold-bright); background: #FFFBEB; color: #78350F; }
+    .club-card.diamante .diferenciais-box { border-left-color: #0284C7; background: #F0F9FF; color: #0C4A6E; }
     .club-card.black .diferenciais-box { border-left-color: var(--gold-bright); background: rgba(255,255,255,0.05); color: #CBD5E1; }
 
     .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.81rem; line-height: 1.5; color: #334155; }
@@ -157,6 +167,7 @@
 
     .btn-gold { background: linear-gradient(90deg, #D97706, #FFB703); color: #000; font-weight: 900; }
     .btn-silver { background-color: var(--silver-val); }
+    .btn-diamante { background: linear-gradient(90deg, #0284C7, #38BDF8); color: #FFF; font-weight: 900; }
     .btn-black { 
       background: linear-gradient(90deg, #FFB703, #FB8500); 
       color: #000; font-weight: 900; box-shadow: 0 0 12px rgba(255, 183, 3, 0.4); 
@@ -188,9 +199,24 @@
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
     }
 
-    @media (max-width: 900px) {
+    .selecao-plano-box {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 15px 0;
+    }
+
+    .item-plano-select {
+      background: #F8FAFC; border: 2px solid #E2E8F0; padding: 14px; border-radius: 10px; cursor: pointer; text-align: center; transition: all 0.2s ease;
+    }
+
+    .item-plano-select:hover { border-color: var(--orange-accent); background: #FFF; }
+    .item-plano-select strong { display: block; font-size: 1rem; color: var(--header-bg); }
+    .item-plano-select span { font-size: 0.8rem; color: var(--text-muted); }
+
+    @media (max-width: 1024px) {
+      .club-cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
       .club-cards-grid { grid-template-columns: 1fr; }
-      .grid-2col { grid-template-columns: 1fr; }
+      .grid-2col, .selecao-plano-box { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -203,7 +229,7 @@
       <p>HUB DE OPERAÇÕES S.O.S - SISTEMA OPERACIONAL DE SETORES 2027</p>
     </div>
     <div>
-      <button class="btn-action-top" onclick="abrirModalCadastroForm('Iniciante')">QUERO ADERIR AO CLUBE</button>
+      <button class="btn-action-top" onclick="abrirModalEscolhaCategoria()">QUERO ENTRAR NO CLUBE</button>
     </div>
   </div>
 
@@ -255,7 +281,7 @@
               <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
               <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
               <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
               <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
               <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
               <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
@@ -294,7 +320,7 @@
               <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores com prioridade média de agendamento na esteira e liberação de prazo.</li>
               <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
               <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
               <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
               <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
               <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
@@ -311,11 +337,11 @@
           </div>
         </div>
 
-        <!-- CARD 3: BLACK -->
-        <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
+        <!-- CARD 3: DIAMANTE -->
+        <div class="club-card diamante" onclick="abrirModalMaisInformacoes('Diamante')">
           <div>
-            <div class="badge-vagas" style="background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;">🔥 VAGAS LIMITADAS — CORRA!</div>
-            <h2>💎 VIP BLACK</h2>
+            <div class="badge-vagas" style="background:#0284C7;">🔥 VAGAS LIMITADAS — CORRA!</div>
+            <h2>💎 VIP DIAMANTE</h2>
             <div class="club-subtitle">Até 1.500 pcs/mês</div>
 
             <div class="aviso-cota-box">
@@ -325,15 +351,54 @@
             <div class="diferenciais-box">
               📊 <strong>Diferenciais de Suporte:</strong><br>
               • Relatório por lote e mensal.<br>
-              • Acompanhamento de nossa equipe 24h por dia.
+              • Acompanhamento prioritário de nossa equipe.
             </div>
             
-            <p style="font-size:0.85rem; color:#FFB703; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
+            <p style="font-size:0.85rem; color:#0284C7; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
             <ul class="club-features">
               <li><strong>1. Entrada:</strong> Entrada expressa e prioritária das joias na esteira fabril para liberação em janela recorde.</li>
               <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
               <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce e redes sociais.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
+              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
+              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
+              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
+              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+            </ul>
+
+            <div class="box-hub-estoque" style="background:#E0F2FE; border-color:#7DD3FC; color:#0369A1;">
+              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+            </div>
+          </div>
+
+          <div>
+            <button class="btn-main btn-diamante" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Diamante')">MAIS INFORMAÇÕES</button>
+          </div>
+        </div>
+
+        <!-- CARD 4: BLACK (ÚNICA VAGA - ULTRA EXCLUSIVO) -->
+        <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
+          <div>
+            <div class="badge-vagas" style="background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;">🚨 APENAS 1 VAGA NO ANO!</div>
+            <h2>👑 VIP BLACK EXCLUSIVO</h2>
+            <div class="club-subtitle">Até 2.000 pcs/mês (Sem Mínimo de Lote)</div>
+
+            <div class="aviso-cota-box">
+              ⚠️ <strong>Cota Máxima:</strong> 2.000 peças/mês. <u>Sem exigência de lote mínimo</u>.
+            </div>
+
+            <div class="diferenciais-box">
+              📊 <strong>Diferenciais de Suporte:</strong><br>
+              • Relatório por lote e mensal detalhado.<br>
+              • Acompanhamento VIP da nossa equipe 24h por dia.
+            </div>
+            
+            <p style="font-size:0.85rem; color:#FFB703; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
+            <ul class="club-features">
+              <li><strong>1. Entrada:</strong> Entrada expressa e prioritária absoluta das joias na esteira fabril para liberação em janela recorde.</li>
+              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
+              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
+              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
               <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
               <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
               <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
@@ -406,6 +471,35 @@
     Produzido por Kelvin Lima — CEO S.O.S Soluções
   </div>
 
+  <!-- MODAL DE SELEÇÃO DE CATEGORIA ANTES DO CADASTRO -->
+  <div id="modalEscolhaCategoria" class="modal-overlay">
+    <div class="modal-card" style="max-width:550px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">Selecione a Categoria Pretendida</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Escolha qual cota de anuidade você deseja solicitar para a sua marca:</p>
+      
+      <div class="selecao-plano-box">
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Iniciante')">
+          <strong>🥉 INICIANTE</strong>
+          <span>Até 500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Ouro')">
+          <strong>🥇 VIP OURO</strong>
+          <span>Até 1.000 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Diamante')">
+          <strong>💎 VIP DIAMANTE</strong>
+          <span>Até 1.500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" style="border-color:var(--gold-bright); background:#111; color:#fff;" onclick="selecionarCategoriaIrForm('Black')">
+          <strong style="color:var(--gold-bright);">👑 VIP BLACK</strong>
+          <span style="color:#FFF;">Até 2.000 pcs/mês (1 Vaga)</span>
+        </div>
+      </div>
+
+      <button class="btn-main" style="background:#94A3B8; margin-top:10px;" onclick="fecharModalEscolhaCategoria()">CANCELAR</button>
+    </div>
+  </div>
+
   <!-- MODAL "MAIS INFORMAÇÕES" -->
   <div id="modalMaisInformacoes" class="modal-overlay">
     <div class="modal-card">
@@ -460,7 +554,8 @@
           <option value="Até 500 pcs/mês">Até 500 peças / mês</option>
           <option value="Até 1.000 pcs/mês">Até 1.000 peças / mês</option>
           <option value="Até 1.500 pcs/mês">Até 1.500 peças / mês</option>
-          <option value="Acima de 1.500 pcs/mês">Acima de 1.500 peças / mês</option>
+          <option value="Até 2.000 pcs/mês">Até 2.000 peças / mês</option>
+          <option value="Acima de 2.000 pcs/mês">Acima de 2.000 peças / mês</option>
         </select>
 
         <label style="font-size:0.78rem; font-weight:bold;">8. Quais são os principais gargalos e desafios operacionais da sua marca hoje?</label>
@@ -481,22 +576,35 @@
   <script>
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
 
-    // MODAL DE INFORMAÇÕES COM PRAZOS E SEM COMPARATIVO NO BLACK
+    function abrirModalEscolhaCategoria() {
+      document.getElementById('modalEscolhaCategoria').style.display = 'flex';
+    }
+
+    function fecharModalEscolhaCategoria() {
+      document.getElementById('modalEscolhaCategoria').style.display = 'none';
+    }
+
+    function selecionarCategoriaIrForm(cat) {
+      fecharModalEscolhaCategoria();
+      abrirModalCadastroForm(cat);
+    }
+
+    // MODAL DE INFORMAÇÕES COM PRAZOS E COMPARATIVO ATUALIZADO
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
-      let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : "VIP BLACK");
+      let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : ((categoria === "Diamante") ? "VIP DIAMANTE" : "VIP BLACK EXCLUSIVO"));
       tit.innerText = `Valores & Tabela Comparativa — Cota ${nomeCategoriaOficial}`;
 
-      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : "R$ 5.000,00 / anuidade");
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : ((categoria === "Diamante") ? "R$ 5.000,00 / anuidade" : "R$ 10.000,00 / anuidade (Apenas 1 Vaga)"));
       
-      let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : 0.58);
-      let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : 0.22);
-      let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : 0.45);
-      let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : 1.56);
-      let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : 1.90);
+      let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : ((categoria === "Diamante") ? 0.58 : 0.49));
+      let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : ((categoria === "Diamante") ? 0.22 : 0.18));
+      let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : ((categoria === "Diamante") ? 0.45 : 0.38));
+      let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : ((categoria === "Diamante") ? 1.56 : 1.32));
+      let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : ((categoria === "Diamante") ? 1.90 : 1.61));
 
       let subInsp = 500 * valInsp;
       let subEtiq = 500 * valEtiq;
@@ -505,11 +613,11 @@
       let subCde = 100 * valCde;
       let totalPlanoAtual = subInsp + subEtiq + subEnc + subFoto + subCde;
 
-      let blackInsp = 500 * 0.58;
-      let blackEtiq = 500 * 0.22;
-      let blackEnc = 500 * 0.45;
-      let blackFoto = 100 * 1.56;
-      let blackCde = 100 * 1.90;
+      let blackInsp = 500 * 0.49;
+      let blackEtiq = 500 * 0.18;
+      let blackEnc = 500 * 0.38;
+      let blackFoto = 100 * 1.32;
+      let blackCde = 100 * 1.61;
       let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde;
       let economiaLote = totalPlanoAtual - totalBlack;
 
@@ -528,11 +636,18 @@
           • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
           • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
         `;
-      } else {
+      } else if (categoria === "Diamante") {
         textoCashBack = `
           📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
           Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
           • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else {
+        textoCashBack = `
+          👑 <strong>Programa de CashBack Ultra Exclusivo VIP BLACK:</strong><br>
+          Dos R$ 10.000,00 da anuidade, <strong>R$ 2.000,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 500,00 em Fevereiro + R$ 500,00 em Junho + R$ 500,00 em Julho + R$ 500,00 em Dezembro com possibilidade de abatimento por serviços livres.<br>
           • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
         `;
       }
@@ -542,7 +657,7 @@
 
       if (categoria === "Black") {
         tabelaHtml = `
-          <h4 style="color:var(--gold-bright); margin:14px 0 6px 0;">💎 Tabela Exclusiva Cota VIP BLACK (Menores Valores do Mercado):</h4>
+          <h4 style="color:var(--gold-bright); margin:14px 0 6px 0;">💎 Tabela Exclusiva Cota VIP BLACK (Menores Tarifas da Indústria):</h4>
           <table style="font-size:0.82rem; margin-bottom:15px; background:#111; color:#fff; border-radius:8px; overflow:hidden;">
             <thead>
               <tr style="background:#1E1B18; color:#F59E0B;">
@@ -552,12 +667,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
-              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
-              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
-              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
-              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima Especial</td></tr>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,32</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,61</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,18</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,38</td></tr>
+              <tr><td>Cravação</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
+              <tr><td>Colagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,42</td></tr>
+              <tr><td>Montagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,30</td></tr>
             </tbody>
           </table>
         `;
@@ -565,14 +682,14 @@
         simulacaoHtml = `
           <div style="background:#1A1A24; color:#FFF; border:1px solid #F59E0B; border-radius:10px; padding:12px; margin-bottom:15px; font-size:0.8rem;">
             <strong style="color:#F59E0B; font-size:0.85rem;">📊 Simulação de Lote Padrão no Cota BLACK (500 Peças / 100 Modelos):</strong><br><br>
-            • Inspeção (500 x R$ 0,58): R$ ${blackInsp.toFixed(2)}<br>
-            • Etiqueta (500 x R$ 0,22): R$ ${blackEtiq.toFixed(2)}<br>
-            • Encarte (500 x R$ 0,45): R$ ${blackEnc.toFixed(2)}<br>
-            • Foto (100 x R$ 1,56): R$ ${blackFoto.toFixed(2)}<br>
-            • CDE (100 x R$ 1,90): R$ ${blackCde.toFixed(2)}<br>
+            • Inspeção (500 x R$ 0,49): R$ ${blackInsp.toFixed(2)}<br>
+            • Etiqueta (500 x R$ 0,18): R$ ${blackEtiq.toFixed(2)}<br>
+            • Encarte (500 x R$ 0,38): R$ ${blackEnc.toFixed(2)}<br>
+            • Foto (100 x R$ 1,32): R$ ${blackFoto.toFixed(2)}<br>
+            • CDE (100 x R$ 1,61): R$ ${blackCde.toFixed(2)}<br>
             <hr style="margin:6px 0; border:0; border-top:1px solid #444;">
             Total do Lote no Black: <strong style="color:var(--green-val); font-size:1rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong> 
-            <span style="color:var(--green-val); font-size:0.75rem;">(Sua marca no nível máximo de economia e prioridade!)</span>
+            <span style="color:var(--green-val); font-size:0.75rem;">(Nível máximo absoluto de economia no mercado!)</span>
           </div>
         `;
       } else {
@@ -586,16 +703,16 @@
                 <th>Serviço Técnico</th>
                 <th>Cobrança</th>
                 <th>Cota ${categoria}</th>
-                <th style="background:#1E1B18; color:#F59E0B;">Cota VIP BLACK 💎</th>
+                <th style="background:#1E1B18; color:#F59E0B;">Cota VIP BLACK 👑</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${valInsp.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,58</td></tr>
-              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${valFoto.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,56</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,90</td></tr>
-              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,22</td></tr>
-              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,45</td></tr>
-              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">Tarifa Mínima</td></tr>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${valInsp.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${valFoto.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,32</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,61</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,18</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,38</td></tr>
+              <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">0,49 / 0,42 / 0,30</td></tr>
             </tbody>
           </table>
         `;
@@ -616,11 +733,11 @@
               </div>
               <div style="background:#1A1A24; color:#FFF; padding:10px; border-radius:6px; border:1px solid #F59E0B;">
                 <strong style="color:#F59E0B;">Cota VIP BLACK:</strong><br>
-                • Inspeção (500 x R$ 0,58): R$ ${blackInsp.toFixed(2)}<br>
-                • Etiqueta (500 x R$ 0,22): R$ ${blackEtiq.toFixed(2)}<br>
-                • Encarte (500 x R$ 0,45): R$ ${blackEnc.toFixed(2)}<br>
-                • Foto (100 x R$ 1,56): R$ ${blackFoto.toFixed(2)}<br>
-                • CDE (100 x R$ 1,90): R$ ${blackCde.toFixed(2)}<br>
+                • Inspeção (500 x R$ 0,49): R$ ${blackInsp.toFixed(2)}<br>
+                • Etiqueta (500 x R$ 0,18): R$ ${blackEtiq.toFixed(2)}<br>
+                • Encarte (500 x R$ 0,38): R$ ${blackEnc.toFixed(2)}<br>
+                • Foto (100 x R$ 1,32): R$ ${blackFoto.toFixed(2)}<br>
+                • CDE (100 x R$ 1,61): R$ ${blackCde.toFixed(2)}<br>
                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">
                 Total no Black: <strong style="color:var(--green-val); font-size:0.95rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong><br>
                 <span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ ${economiaLote.toFixed(2).replace('.', ',')} por lote!)</span>
@@ -635,7 +752,7 @@
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:10px; margin-bottom:15px;">
             <p style="margin:0 0 6px 0;"><strong>Anuidade do Clube:</strong> <span style="color:var(--orange-accent); font-weight:bold;">${adesao}</span></p>
             <p style="margin:0 0 6px 0;"><strong>Forma de Pagamento:</strong> Cartão de Crédito em até 12x ou PIX com desconto. <span style="color:var(--red-val); font-size:0.75rem; font-weight:bold;">*(Pagamentos via cartão sujeitos aos juros/taxa da maquininha).*</span></p>
-            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> 100 peças ou ~300g por lote de entrada.</p>
+            <p style="margin:0;"><strong>Lote Mínimo Exigido:</strong> ${categoria === 'Black' ? '<u>Sem lote mínimo!</u>' : '100 peças ou ~300g por lote de entrada.'}</p>
           </div>
 
           ${tabelaHtml}
@@ -657,7 +774,7 @@
           <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
 
           <div style="display:flex; gap:10px; margin-top:15px;">
-            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">💎 QUERO SER CLUBE BLACK S.O.S</button>` : ''}
+            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">👑 QUERO A VAGA ÚNICA VIP BLACK</button>` : ''}
             <button class="btn-main btn-gold" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); abrirModalCadastroForm('${categoria}');">CONTRATAR COTA ${categoria.toUpperCase()}</button>
           </div>
         </div>
@@ -689,7 +806,7 @@
         cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Ativado quando a inspeção detecta peças com zircônias/pedras soltas, fechos travados ou necessidade de montagem. Nossa bancada realiza a cravação/colagem de pedras, troca de fechos e montagem de pingentes em correntes para que nenhuma peça seja perdida.</p>`;
       } else if (setor === 'Foto') {
         tit.innerText = "📸 Setor 4: Fotografia Profissional (Still / IA)";
-        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Captura em estúdio fotográfico com iluminação controlada e fundo branco absoluto (Still tradicional) ou produção por Inteligência Artificial (gerando cenários conceituais ou aplicando as joias em modelos virtuais humanas), entregando arquivos de imagem otimizados para e-commerce e redes sociais.</p>`;
+        cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Captura em estúdio fotográfico com iluminação controlada e fundo branco absoluto (Still tradicional) ou produção por Inteligência Artificial (gerando cenários conceituais ou aplicando as joias em modelos virtuais humanas), entregando arquivos de imagem otimizados para e-commerce, redes sociais e catálogos de revendedoras.</p>`;
       } else if (setor === 'Cde') {
         tit.innerText = "💻 Setor 5: CDE (Catalogação) & Etiquetagem Térmica";
         cont.innerHTML = `<p><strong>Fluxo Técnico Operacional Interno S.O.S:</strong></p><p>Catalogação Digital de Estoque no ERP do cliente com medição de dimensões, peso unitário e cadastramento do código SKU com precificação assistida. Na sequência, nosso setor de etiquetagem realiza a impressão de etiquetas térmicas de alta resistência na impressora Argox 214 Plus com aplicação de QR Code/código de barras.</p>`;
@@ -736,7 +853,7 @@
         body: JSON.stringify({ tipo: 'adesao_formulario', dados: payloadForm })
       })
       .then(() => {
-        alert(`✅ Cadastro da marca ${payloadForm.q2_marca} enviado com sucesso!`);
+        alert(`✅ Cadastro da marca ${payloadForm.q2_marca} para a cota ${plano.toUpperCase()} enviado com sucesso!`);
         fecharModalCadastroForm();
         document.getElementById('formAdesaoOficial').reset();
       })
