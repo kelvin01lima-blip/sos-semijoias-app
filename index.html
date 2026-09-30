@@ -40,7 +40,7 @@
 
     .btn-action-top {
       background: var(--orange-accent); border: none; color: #FFFFFF;
-      padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-left: 8px; font-size: 0.85rem;
+      padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.85rem;
     }
 
     .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -161,28 +161,10 @@
       background: linear-gradient(90deg, #FFB703, #FB8500); 
       color: #000; font-weight: 900; box-shadow: 0 0 12px rgba(255, 183, 3, 0.4); 
     }
-    .btn-danger { background-color: var(--red-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .btn-edit { background-color: var(--blue-val); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 4px; }
-
-    .dashboard-panel { display: none; }
-
-    .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #E2E8F0; padding-bottom: 10px; overflow-x: auto; }
-
-    .tab-btn {
-      background: var(--card-bg); color: var(--text-dark); border: 1px solid #CBD5E1; padding: 10px 20px;
-      cursor: pointer; border-radius: 8px; font-weight: bold; font-size: 0.9rem; white-space: nowrap;
-    }
-
-    .tab-btn.active { background: var(--header-bg); color: #FFFFFF; border-color: var(--header-bg); }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
 
     .panel-card {
       background: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 20px;
     }
-
-    .panel-card h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid var(--body-bg); padding-bottom: 10px; }
 
     .modal-overlay {
       display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
@@ -206,11 +188,10 @@
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
     }
 
-    .client-card-section {
-      background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 12px; padding: 16px; margin-bottom: 15px;
+    @media (max-width: 900px) {
+      .club-cards-grid { grid-template-columns: 1fr; }
+      .grid-2col { grid-template-columns: 1fr; }
     }
-
-    .client-card-section h4 { margin-top: 0; color: var(--header-bg); border-bottom: 1px solid #E2E8F0; padding-bottom: 8px; }
   </style>
 </head>
 <body>
@@ -222,8 +203,7 @@
       <p>HUB DE OPERAÇÕES S.O.S - SISTEMA OPERACIONAL DE SETORES 2027</p>
     </div>
     <div>
-      <button id="btnOpenLoginModal" class="btn-action-top" onclick="abrirModalLogin()">ENTRAR NO PORTAL / LOGIN</button>
-      <button id="btnLogout" class="btn-action-top" style="display: none; background: transparent; border: 1px solid var(--orange-accent);" onclick="logout()">SAIR DO PORTAL</button>
+      <button class="btn-action-top" onclick="abrirModalCadastroForm('Iniciante')">QUERO ADERIR AO CLUBE</button>
     </div>
   </div>
 
@@ -419,201 +399,11 @@
 
     </div>
 
-    <!-- PAINEL PRINCIPAL (APÓS LOGIN) -->
-    <div id="dashboardPanel" class="dashboard-panel">
-
-      <div class="nav-tabs">
-        <button id="tabAgendamentoBtn" class="tab-btn active" onclick="trocarAba('abaAgendamento')">📅 Agendar Vaga & Calendário</button>
-        <button id="tabTarifasBtn" class="tab-btn" onclick="trocarAba('abaMinhasTarifas')">🏷️ Minhas Tarifas de Serviços</button>
-        <button id="tabHistoricoBtn" class="tab-btn" onclick="trocarAba('abaHistorico')">📈 Histórico & Frequência</button>
-        
-        <button id="tabColaboradorVisaoBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaColaboradorVisao')">📋 Minha Operação por Cliente</button>
-
-        <button id="tabLoginsBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaLogins')">👥 Gestão por Cliente & Card Geral</button>
-        <button id="tabColaboradoresBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaColaboradores')">👔 Acessos da Equipe</button>
-        <button id="tabFinanceiroBtn" class="tab-btn" style="display: none;" onclick="trocarAba('abaFinanceiro')">📊 Dashboard DRE</button>
-      </div>
-
-      <!-- ABA 1: AGENDAMENTO E CALENDÁRIO FABRIL -->
-      <div id="abaAgendamento" class="tab-content active">
-        <div id="barraCotaClienteBox" style="background:var(--header-bg); color:#fff; padding:16px; border-radius:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <span style="font-size:0.75rem; color:var(--orange-accent); font-weight:bold; text-transform:uppercase;">Sua Cota Mensal no Sistema S.O.S</span>
-            <h3 id="txtStatusCota" style="margin:4px 0 0 0; color:#fff;">Entradas Utilizadas: 0 de 1</h3>
-          </div>
-          <span id="badgeCotaPlano" style="background:var(--silver-val); padding:6px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">INICIANTE</span>
-        </div>
-
-        <div class="panel-card">
-          <h3 id="welcomeTitle">📅 Solicitar Vaga de Produção (In Flow & Second Flow)</h3>
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-            <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Data Desejada de Entrada:</label>
-              <input type="date" id="dataInput" class="form-control">
-            </div>
-            <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Quantidade de Peças (Máx 1.500 pcs):</label>
-              <input type="number" id="pecasInput" class="form-control" placeholder="Ex: 500">
-            </div>
-            <div>
-              <label style="font-size: 0.8rem; font-weight: bold;">Modelos / SKUs Estimados:</label>
-              <input type="number" id="skusInput" class="form-control" placeholder="Ex: 100" value="100">
-            </div>
-          </div>
-          <button class="btn-main" style="margin-top: 10px;" onclick="solicitarVaga()">RESERVAR VAGA NA ESTEIRA</button>
-        </div>
-
-        <div class="panel-card">
-          <h3>📊 Ocupação Diária da Esteira S.O.S — Calendário de Agendamentos</h3>
-          <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px;"></div>
-        </div>
-      </div>
-
-      <!-- ABA MINHAS TARIFAS (CLIENTE) -->
-      <div id="abaMinhasTarifas" class="tab-content">
-        <div class="panel-card">
-          <h3 id="tituloAbaTarifas">🏷️ Tabela Tarifária Contratada</h3>
-          <div id="conteudoTabelaTarifasCliente"></div>
-        </div>
-      </div>
-
-      <!-- ABA HISTÓRICO -->
-      <div id="abaHistorico" class="tab-content">
-        <div class="panel-card">
-          <h3 id="tituloAbaHistorico">📈 Histórico de Uso & Frequência do Cliente</h3>
-          <div id="graficoFrequenciaContainer" style="margin-top:20px;"></div>
-        </div>
-      </div>
-
-      <!-- ABA COLABORADOR: VISÃO POR CLIENTE -->
-      <div id="abaColaboradorVisao" class="tab-content">
-        <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-left: 6px solid var(--green-val); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <strong style="color: var(--header-bg); font-size: 1rem;">🙏 Agradecimento da Diretoria S.O.S pelo seu Trabalho & Dedicação</strong>
-              <p style="margin: 4px 0 0 0; color: var(--text-muted); font-size: 0.83rem;">
-                Obrigado por fazer parte da nossa esteira de excelência! Cada peça inspecionada, foto produzida e etiqueta aplicada garante o padrão de alto nível das melhores marcas do mercado.
-              </p>
-            </div>
-            <button class="btn-action-top" style="font-size: 0.75rem; padding: 8px 14px;" onclick="abrirModalMetas()">🎯 VER METAS S.O.S</button>
-          </div>
-        </div>
-
-        <div class="panel-card">
-          <h3>📋 Consulta e Instruções de Operação Por Cliente</h3>
-          <label style="font-size:0.85rem; font-weight:bold;">Selecione o Cliente / Marca:</label>
-          <select id="colabSelectCliente" class="form-control" style="margin-bottom:20px;" onchange="carregarPainelColaboradorPorCliente(this.value)">
-            <option value="">-- Selecione o Cliente --</option>
-          </select>
-
-          <div id="painelOperacaoColaboradorConteudo" style="display:none;">
-            <div class="client-card-section">
-              <h4>🔍 Inspeção & CDI (Instruções Técnicas)</h4>
-              <div id="colabInspecaoTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-            </div>
-
-            <div class="client-card-section">
-              <h4>💻 CDE — Catalogação</h4>
-              <div id="colabCdeTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-            </div>
-
-            <div class="client-card-section">
-              <h4>🏷️ Etiquetagem</h4>
-              <div id="colabEtiquetaTexto" style="font-size:0.85rem; line-height:1.6; color:#334155;"></div>
-            </div>
-
-            <div class="client-card-section">
-              <h4>🎴 Modelos de Encarte Cadastrados</h4>
-              <div id="colabEncartesContainer"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ABA GESTÃO DE CLIENTES E CARD INTEGRADO (DIRETORIA) -->
-      <div id="abaLogins" class="tab-content">
-        <div class="panel-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--body-bg); padding-bottom:10px; margin-bottom:15px;">
-            <h3 style="margin:0;">👥 Gestão Completa Por Cliente</h3>
-            <button class="btn-main btn-gold" style="width: auto; padding: 10px 18px;" onclick="executarBackupDrive()">
-              💾 FAZER BACKUP NO GOOGLE DRIVE
-            </button>
-          </div>
-          <p style="font-size:0.85rem; color:var(--text-muted);">Toda a gestão dos setores (Inspeção, Foto, CDE, Etiqueta, Encarte e Preços) está reunida dentro do card de cada cliente.</p>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Cliente / Marca</th>
-                <th>Senha</th>
-                <th>Plano / Cota</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="clientsTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ABA GESTÃO DE COLABORADORES (DIRETORIA) -->
-      <div id="abaColaboradores" class="tab-content">
-        <div class="panel-card">
-          <h3>👔 Gestão de Acessos de Colaboradores</h3>
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:16px; border-radius:12px; margin-bottom:20px;">
-            <h4 style="margin-top:0; color:var(--header-bg);">+ Cadastrar Novo Colaborador</h4>
-            <div class="grid-2col">
-              <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Login / Nome:</label>
-                <input type="text" id="colabNomeInput" class="form-control" placeholder="Ex: Cintia.Lima">
-              </div>
-              <div>
-                <label style="font-size:0.75rem; font-weight:bold;">Senha:</label>
-                <input type="password" id="colabSenhaInput" class="form-control" placeholder="Senha">
-              </div>
-            </div>
-            <button class="btn-main btn-gold" style="margin-top:8px;" onclick="cadastrarColaborador()">CADASTRAR</button>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Senha</th>
-                <th>Perfil</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="colaboradoresTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ABA DASHBOARD FINANCEIRO (DIRETORIA) -->
-      <div id="abaFinanceiro" class="tab-content">
-        <div class="panel-card">
-          <h3>📊 Dashboard Estratégico & Fechamento de Lotes</h3>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-            <h4>Faturamento Realizado: <strong id="fatRealTxt" style="color:var(--orange-accent);">R$ 0,00</strong></h4>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
   <!-- RODAPÉ OFICIAL -->
   <div class="footer-bar">
     Produzido por Kelvin Lima — CEO S.O.S Soluções
-  </div>
-
-  <!-- MODAL CARD DO CLIENTE COMPLETO -->
-  <div id="modalCardClienteCompleto" class="modal-overlay">
-    <div class="modal-card">
-      <h3 id="cardClienteTitle" style="margin-top:0; color:var(--header-bg);">Card Completo do Cliente — Diretoria</h3>
-      <div id="cardClienteConteudoIntegrado"></div>
-      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalCardCliente()">FECHAR CARD</button>
-    </div>
   </div>
 
   <!-- MODAL "MAIS INFORMAÇÕES" -->
@@ -634,7 +424,7 @@
     </div>
   </div>
 
-  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE (10 PERGUNTAS OFICIAIS) -->
+  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE -->
   <div id="modalFormularioCadastro" class="modal-overlay">
     <div class="modal-card" style="max-width:700px;">
       <h3 style="margin-top:0; color:var(--header-bg);">📝 Formulário Oficial de Adesão ao Clube S.O.S</h3>
@@ -688,318 +478,8 @@
     </div>
   </div>
 
-  <!-- MODAL METAS S.O.S -->
-  <div id="modalMetas" class="modal-overlay">
-    <div class="modal-card" style="max-width:500px;">
-      <h3 style="margin-top:0; color:var(--header-bg);">🎯 Metas de Desempenho S.O.S 2027</h3>
-      <p style="font-size:0.85rem; line-height:1.6; color:#334155;">
-        • <strong>Meta Operacional:</strong> Processamento diário de 500 peças na esteira.<br>
-        • <strong>Assertividade:</strong> 99,2% de precisão nos testes do CDI.<br>
-        • <strong>Janela CDE:</strong> Cadastro e liberação em até 24 horas.
-      </p>
-      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalMetas()">FECHAR</button>
-    </div>
-  </div>
-
-  <!-- MODAL DE LOGIN -->
-  <div id="modalLogin" class="modal-overlay">
-    <div class="modal-card" style="max-width:400px;">
-      <h3 style="margin-top:0; color:var(--header-bg);">Acesso ao Portal S.O.S</h3>
-      <label style="font-size:0.8rem; font-weight:bold;">Marca / Usuário:</label>
-      <select id="userSelect" class="form-control" style="margin-top:4px;"></select>
-      
-      <label style="font-size:0.8rem; font-weight:bold;">Senha:</label>
-      <input type="password" id="userPass" class="form-control" placeholder="Digite sua Senha" style="margin-top:4px;">
-
-      <button class="btn-main" onclick="autenticar()">ENTRAR NO PAINEL</button>
-      <button class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalLogin()">CANCELAR</button>
-      <div id="loginMsg" style="color:var(--red-val); font-size:0.85rem; margin-top:10px; font-weight:bold;"></div>
-    </div>
-  </div>
-
   <script>
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
-
-    function executarBackupDrive() {
-      const dadosBackup = {
-        usuarios: JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {},
-        agendamentos: JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [],
-        clienteDadosSetores: JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {},
-        dataHoraBackup: new Date().toLocaleString('pt-BR')
-      };
-
-      alert("⏳ Enviando backup do Sistema S.O.S para a sua pasta do Google Drive...");
-
-      fetch(URL_WEBHOOK_DRIVE, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dadosBackup)
-      })
-      .then(() => alert("✅ Backup realizado com sucesso!"))
-      .catch(err => alert("❌ Falha ao realizar o backup: " + err));
-    }
-
-    let usuarios = JSON.parse(localStorage.getItem('sos_usuarios_2027')) || {
-      "Diretoria": { senha: "123456", perfil: "admin", plano: "Diretoria", tarifas: null },
-      "Cintia.Lima": { senha: "123456", perfil: "colaborador", plano: "Colaborador", tarifas: null },
-      "Niara": { senha: "123456789", perfil: "cliente", plano: "Black", tarifas: { inspecao: 0.58, foto: 1.56, cde: 1.90, etiqueta: 0.22, encarte: 0.45 } },
-      "Ulli": { senha: "987654321", perfil: "cliente", plano: "Ouro", tarifas: { inspecao: 0.63, foto: 1.70, cde: 2.07, etiqueta: 0.24, encarte: 0.50 } }
-    };
-
-    let clienteDadosSetores = JSON.parse(localStorage.getItem('sos_cliente_dados_setores')) || {
-      "Niara": {
-        inspecao: "Protocolo Niara: Conferência rigorosa de fechos de lagosta e teste de brilho no LED.",
-        fotoTipo: "IA",
-        fotoIaSubopcao: "Modelo",
-        cde: "Catalogar com SKU prefixo NIA-2027 e descrições técnicas no ERP Niara.",
-        etiqueta: "Etiqueta térmica dupla aplicada no saquinho 8x8cm.",
-        encartes: [
-          { categoria: "Anel Regulável", titulo: "CARTELA P - ANEL REGULÁVEL NIARA", descricao: "Colocar no saquinho com durex de silicone e etiqueta visível." }
-        ]
-      }
-    };
-
-    let agendamentos = JSON.parse(localStorage.getItem('sos_agendamentos_2027')) || [];
-    let usuarioLogado = sessionStorage.getItem('sos_usuario_logado') || null;
-
-    window.onload = function() {
-      if (usuarioLogado && usuarios[usuarioLogado]) {
-        restaurarSessaoLogada();
-      } else {
-        logout();
-      }
-    };
-
-    function restaurarSessaoLogada() {
-      let uObj = usuarios[usuarioLogado];
-      document.getElementById('portalLanding').style.display = 'none';
-      document.getElementById('btnOpenLoginModal').style.display = 'none';
-      document.getElementById('dashboardPanel').style.display = 'block';
-      document.getElementById('btnLogout').style.display = 'inline-block';
-
-      if (uObj.perfil === "admin") {
-        document.getElementById('welcomeTitle').innerText = `📅 Gestão da Esteira Fabril — Painel da Diretoria`;
-        document.getElementById('barraCotaClienteBox').style.display = 'none';
-        
-        document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
-        document.getElementById('tabTarifasBtn').style.display = 'none';
-        document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
-        document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
-        document.getElementById('tabLoginsBtn').style.display = 'inline-block';
-        document.getElementById('tabColaboradoresBtn').style.display = 'inline-block';
-        document.getElementById('tabFinanceiroBtn').style.display = 'inline-block';
-
-        renderizarLogins();
-        renderizarColaboradores();
-      } else if (uObj.perfil === "colaborador") {
-        document.getElementById('welcomeTitle').innerText = `📋 Painel do Colaborador — ${usuarioLogado}`;
-        document.getElementById('barraCotaClienteBox').style.display = 'none';
-
-        document.getElementById('tabAgendamentoBtn').style.display = 'none';
-        document.getElementById('tabTarifasBtn').style.display = 'none';
-        document.getElementById('tabHistoricoBtn').style.display = 'none';
-        document.getElementById('tabColaboradorVisaoBtn').style.display = 'inline-block';
-        document.getElementById('tabLoginsBtn').style.display = 'none';
-        document.getElementById('tabColaboradoresBtn').style.display = 'none';
-        document.getElementById('tabFinanceiroBtn').style.display = 'none';
-
-        carregarSelectColaboradorClientes();
-        trocarAba('abaColaboradorVisao');
-      } else {
-        let plano = uObj.plano || "Iniciante";
-        document.getElementById('welcomeTitle').innerText = `📅 Painel do Cliente — ${usuarioLogado} [${plano.toUpperCase()}]`;
-        document.getElementById('barraCotaClienteBox').style.display = 'flex';
-        
-        document.getElementById('tabAgendamentoBtn').style.display = 'inline-block';
-        document.getElementById('tabTarifasBtn').style.display = 'inline-block';
-        document.getElementById('tabHistoricoBtn').style.display = 'inline-block';
-        document.getElementById('tabColaboradorVisaoBtn').style.display = 'none';
-        document.getElementById('tabLoginsBtn').style.display = 'none';
-        document.getElementById('tabColaboradoresBtn').style.display = 'none';
-        document.getElementById('tabFinanceiroBtn').style.display = 'none';
-
-        renderizarTarifasCliente(usuarioLogado);
-      }
-
-      renderizarHistoricoCliente();
-    }
-
-    function carregarSelectColaboradorClientes() {
-      const select = document.getElementById('colabSelectCliente');
-      select.innerHTML = '<option value="">-- Selecione o Cliente --</option>';
-      for (let u in usuarios) {
-        if (usuarios[u].perfil === 'cliente') {
-          let opt = document.createElement('option');
-          opt.value = u;
-          opt.innerText = u;
-          select.appendChild(opt);
-        }
-      }
-    }
-
-    function carregarPainelColaboradorPorCliente(u) {
-      const container = document.getElementById('painelOperacaoColaboradorConteudo');
-      if (!u) { container.style.display = 'none'; return; }
-
-      let dados = clienteDadosSetores[u] || {
-        inspecao: "Sem instruções específicas de inspeção.",
-        cde: "Sem instruções de CDE.",
-        etiqueta: "Padrão térmico tradicional.",
-        encartes: []
-      };
-
-      document.getElementById('colabInspecaoTexto').innerText = dados.inspecao;
-      document.getElementById('colabCdeTexto').innerText = dados.cde;
-      document.getElementById('colabEtiquetaTexto').innerText = dados.etiqueta;
-
-      const encContainer = document.getElementById('colabEncartesContainer');
-      encContainer.innerHTML = '';
-
-      if (!dados.encartes || dados.encartes.length === 0) {
-        encContainer.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Nenhum encarte cadastrado para esta marca.</p>';
-      } else {
-        dados.encartes.forEach(e => {
-          let b = document.createElement('div');
-          b.style.background = '#FFFFFF';
-          b.style.padding = '10px';
-          b.style.borderRadius = '8px';
-          b.style.marginTop = '8px';
-          b.style.border = '1px solid #E2E8F0';
-          b.innerHTML = `<strong>${e.categoria} - ${e.titulo}</strong><p style="margin:4px 0 0 0; font-size:0.8rem;">${e.descricao}</p>`;
-          encContainer.appendChild(b);
-        });
-      }
-
-      container.style.display = 'block';
-    }
-
-    function renderizarLogins() {
-      const tbody = document.getElementById('clientsTableBody');
-      tbody.innerHTML = '';
-
-      for (let u in usuarios) {
-        if (usuarios[u].perfil !== 'cliente') continue;
-
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong style="color:var(--blue-val); cursor:pointer;" onclick="abrirCardClienteCompleto('${u}')">👤 ${u}</strong></td>
-          <td>${usuarios[u].senha}</td>
-          <td><strong>${usuarios[u].plano || 'Iniciante'}</strong></td>
-          <td><button class="btn-edit" onclick="abrirCardClienteCompleto('${u}')">Abrir Card Geral</button></td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
-
-    function abrirCardClienteCompleto(u) {
-      const modal = document.getElementById('modalCardClienteCompleto');
-      const box = document.getElementById('cardClienteConteudoIntegrado');
-      const uObj = usuarios[u];
-      const t = uObj.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-      const d = clienteDadosSetores[u] || { inspecao: "", fotoTipo: "Estudio", fotoIaSubopcao: "Still", cde: "", etiqueta: "", encartes: [] };
-
-      document.getElementById('cardClienteTitle').innerText = `Card Completo do Cliente — ${u}`;
-
-      box.innerHTML = `
-        <div class="client-card-section">
-          <h4>🔑 Dados de Acesso & Plano</h4>
-          <div class="grid-2col">
-            <div><label style="font-size:0.75rem;">Senha:</label><input type="text" id="cPass" class="form-control" value="${uObj.senha}"></div>
-            <div>
-              <label style="font-size:0.75rem;">Plano:</label>
-              <select id="cPlano" class="form-control">
-                <option value="Iniciante" ${uObj.plano === 'Iniciante' ? 'selected' : ''}>Iniciante</option>
-                <option value="Ouro" ${uObj.plano === 'Ouro' ? 'selected' : ''}>Ouro</option>
-                <option value="Black" ${uObj.plano === 'Black' ? 'selected' : ''}>Black</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="client-card-section">
-          <h4>🔍 Setor de Inspeção & CDI</h4>
-          <textarea id="cInsp" class="form-control" placeholder="Instruções de inspeção e CDI da marca...">${d.inspecao}</textarea>
-        </div>
-
-        <div class="client-card-section">
-          <h4>📷 Setor de Fotografia</h4>
-          <label style="font-size:0.75rem; font-weight:bold;">Tipo de Fotografia:</label>
-          <select id="cFotoTipo" class="form-control" onchange="toggleOpcoesFotoIa(this.value)">
-            <option value="Estudio" ${d.fotoTipo === 'Estudio' ? 'selected' : ''}>Estúdio Físico (Still Tradicional)</option>
-            <option value="IA" ${d.fotoTipo === 'IA' ? 'selected' : ''}>Fotografia com Inteligência Artificial (IA)</option>
-          </select>
-
-          <div id="boxIaSubopcoes" style="display: ${d.fotoTipo === 'IA' ? 'block' : 'none'}; background: #EFF6FF; padding: 10px; border-radius: 8px;">
-            <label style="font-size:0.75rem; font-weight:bold; color: #1E40AF;">Selecione o Estilo de IA:</label>
-            <select id="cFotoIaSub" class="form-control">
-              <option value="Still" ${d.fotoIaSubopcao === 'Still' ? 'selected' : ''}>IA - Fundo Still Limpo</option>
-              <option value="Cenario" ${d.fotoIaSubopcao === 'Cenario' ? 'selected' : ''}>IA - Cenário Conceitual</option>
-              <option value="Modelo" ${d.fotoIaSubopcao === 'Modelo' ? 'selected' : ''}>IA - Modelo Humana Virtual</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="client-card-section">
-          <h4>💻 Setor de CDE (Catalogação)</h4>
-          <textarea id="cCde" class="form-control" placeholder="Regras de CDE do cliente...">${d.cde}</textarea>
-        </div>
-
-        <div class="client-card-section">
-          <h4>🏷️ Setor de Etiquetagem</h4>
-          <textarea id="cEtiq" class="form-control" placeholder="Instruções de etiqueta...">${d.etiqueta}</textarea>
-        </div>
-
-        <div class="client-card-section">
-          <h4>💲 Tabela Tarifária Personalizada com Desconto (R$)</h4>
-          <div class="grid-2col">
-            <div><label style="font-size:0.7rem;">Inspeção:</label><input type="number" step="0.01" id="cTarInsp" class="form-control" value="${t.inspecao}"></div>
-            <div><label style="font-size:0.7rem;">Foto:</label><input type="number" step="0.01" id="cTarFoto" class="form-control" value="${t.foto}"></div>
-            <div><label style="font-size:0.7rem;">CDE:</label><input type="number" step="0.01" id="cTarCde" class="form-control" value="${t.cde}"></div>
-            <div><label style="font-size:0.7rem;">Etiqueta:</label><input type="number" step="0.01" id="cTarEtiq" class="form-control" value="${t.etiqueta}"></div>
-            <div><label style="font-size:0.7rem;">Encarte:</label><input type="number" step="0.01" id="cTarEnc" class="form-control" value="${t.encarte}"></div>
-          </div>
-        </div>
-
-        <button class="btn-main btn-gold" onclick="salvarCardClienteCompleto('${u}')">SALVAR DADOS DO CLIENTE</button>
-      `;
-
-      modal.style.display = 'flex';
-    }
-
-    function toggleOpcoesFotoIa(val) {
-      document.getElementById('boxIaSubopcoes').style.display = (val === 'IA') ? 'block' : 'none';
-    }
-
-    function salvarCardClienteCompleto(u) {
-      usuarios[u].senha = document.getElementById('cPass').value.trim();
-      usuarios[u].plano = document.getElementById('cPlano').value;
-      usuarios[u].tarifas = {
-        inspecao: parseFloat(document.getElementById('cTarInsp').value),
-        foto: parseFloat(document.getElementById('cTarFoto').value),
-        cde: parseFloat(document.getElementById('cTarCde').value),
-        etiqueta: parseFloat(document.getElementById('cTarEtiq').value),
-        encarte: parseFloat(document.getElementById('cTarEnc').value)
-      };
-
-      clienteDadosSetores[u] = {
-        inspecao: document.getElementById('cInsp').value,
-        fotoTipo: document.getElementById('cFotoTipo').value,
-        fotoIaSubopcao: document.getElementById('cFotoIaSub').value,
-        cde: document.getElementById('cCde').value,
-        etiqueta: document.getElementById('cEtiq').value,
-        encartes: clienteDadosSetores[u]?.encartes || []
-      };
-
-      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-      localStorage.setItem('sos_cliente_dados_setores', JSON.stringify(clienteDadosSetores));
-
-      alert(`Dados do cliente ${u} salvos com sucesso!`);
-      fecharModalCardCliente();
-      renderizarLogins();
-    }
-
-    function fecharModalCardCliente() { document.getElementById('modalCardClienteCompleto').style.display = 'none'; }
 
     // MODAL DE INFORMAÇÕES COM PRAZOS E SEM COMPARATIVO NO BLACK
     function abrirModalMaisInformacoes(categoria) {
@@ -1061,7 +541,6 @@
       let simulacaoHtml = "";
 
       if (categoria === "Black") {
-        // MODAL DO BLACK SEM COMPARATIVO
         tabelaHtml = `
           <h4 style="color:var(--gold-bright); margin:14px 0 6px 0;">💎 Tabela Exclusiva Cota VIP BLACK (Menores Valores do Mercado):</h4>
           <table style="font-size:0.82rem; margin-bottom:15px; background:#111; color:#fff; border-radius:8px; overflow:hidden;">
@@ -1097,7 +576,6 @@
           </div>
         `;
       } else {
-        // MODAL COM COMPARATIVO PARA INICIANTE E OURO
         tabelaHtml = `
           <h4 style="color:var(--header-bg); margin:14px 0 6px 0;">💲 Tabela Comparativa de Tarifas Unitárias:</h4>
           <p style="font-size:0.75rem; color:var(--text-muted); margin:0 0 8px 0;">* Serviços de Entrada e Fechamento/Envio não possuem custos adicionais.</p>
@@ -1264,141 +742,6 @@
       })
       .catch(err => alert("Erro ao enviar formulário: " + err));
     }
-
-    function renderizarColaboradores() {
-      const tbody = document.getElementById('colaboradoresTableBody');
-      tbody.innerHTML = '';
-
-      for (let u in usuarios) {
-        if (usuarios[u].perfil !== 'colaborador') continue;
-
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${u}</strong></td>
-          <td>${usuarios[u].senha}</td>
-          <td>COLABORADOR</td>
-          <td><button class="btn-danger" style="font-size:0.7rem;" onclick="deletarColaborador('${u}')">Excluir</button></td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
-
-    function cadastrarColaborador() {
-      const nome = document.getElementById('colabNomeInput').value.trim();
-      const senha = document.getElementById('colabSenhaInput').value.trim();
-
-      if (!nome || !senha) return alert("Digite Nome e Senha.");
-
-      usuarios[nome] = { senha: senha, perfil: "colaborador", plano: "Colaborador", tarifas: null };
-      localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-
-      document.getElementById('colabNomeInput').value = '';
-      document.getElementById('colabSenhaInput').value = '';
-
-      alert(`Colaborador ${nome} cadastrado!`);
-      renderizarColaboradores();
-    }
-
-    function deletarColaborador(u) {
-      if (confirm(`Remover acesso de ${u}?`)) {
-        delete usuarios[u];
-        localStorage.setItem('sos_usuarios_2027', JSON.stringify(usuarios));
-        renderizarColaboradores();
-      }
-    }
-
-    function trocarAba(abaId) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(abaId).classList.add('active');
-      event.currentTarget.classList.add('active');
-    }
-
-    function abrirModalLogin() {
-      document.getElementById('modalLogin').style.display = 'flex';
-      const select = document.getElementById('userSelect');
-      select.innerHTML = '<option value="">Selecione seu login...</option>';
-      for (let user in usuarios) {
-        let opt = document.createElement('option');
-        opt.value = user;
-        let tipo = usuarios[user].perfil === 'admin' ? '[DIRETORIA]' : (usuarios[user].perfil === 'colaborador' ? '[COLABORADOR]' : '(' + usuarios[user].plano + ')');
-        opt.innerText = `${user} ${tipo}`;
-        select.appendChild(opt);
-      }
-    }
-
-    function fecharModalLogin() { document.getElementById('modalLogin').style.display = 'none'; }
-
-    function autenticar() {
-      const user = document.getElementById('userSelect').value;
-      const pass = document.getElementById('userPass').value;
-
-      if (usuarios[user] && usuarios[user].senha === pass) {
-        usuarioLogado = user;
-        sessionStorage.setItem('sos_usuario_logado', user);
-        fecharModalLogin();
-        restaurarSessaoLogada();
-      } else {
-        document.getElementById('loginMsg').innerText = "Senha incorreta.";
-      }
-    }
-
-    function logout() {
-      usuarioLogado = null;
-      sessionStorage.removeItem('sos_usuario_logado');
-      document.getElementById('portalLanding').style.display = 'block';
-      document.getElementById('btnOpenLoginModal').style.display = 'inline-block';
-      document.getElementById('dashboardPanel').style.display = 'none';
-      document.getElementById('btnLogout').style.display = 'none';
-    }
-
-    function renderizarTarifasCliente(uName) {
-      const box = document.getElementById('conteudoTabelaTarifasCliente');
-      const u = usuarios[uName];
-      if (!u || u.perfil === "admin") return;
-
-      const t = u.tarifas || { inspecao: 0.75, foto: 1.99, cde: 2.40, etiqueta: 0.30, encarte: 0.60 };
-
-      box.innerHTML = `
-        <table>
-          <thead><tr><th>Serviço Técnico</th><th>Seu Valor Vigente</th></tr></thead>
-          <tbody>
-            <tr><td>Separação + Inspeção + CDI (3 em 1)</td><td><strong>R$ ${t.inspecao.toFixed(2)}</strong></td></tr>
-            <tr><td>Fotografia Profissional</td><td><strong>R$ ${t.foto.toFixed(2)}</strong></td></tr>
-            <tr><td>Cadastro Digital CDE</td><td><strong>R$ ${t.cde.toFixed(2)}</strong></td></tr>
-            <tr><td>Etiquetagem de Peças</td><td><strong>R$ ${t.etiqueta.toFixed(2)}</strong></td></tr>
-            <tr><td>Encarte / Embalagem Externa</td><td><strong>R$ ${t.encarte.toFixed(2)}</strong></td></tr>
-          </tbody>
-        </table>
-      `;
-    }
-
-    function solicitarVaga() {
-      const pecasTotal = parseFloat(document.getElementById('pecasInput').value);
-      const dataSel = document.getElementById('dataInput').value;
-
-      if (!pecasTotal || !dataSel) return alert("Preencha a data e a quantidade de peças.");
-
-      agendamentos.push({
-        id: Date.now(),
-        cliente: usuarioLogado,
-        data: dataSel,
-        pecas: pecasTotal,
-        status: "Aprovado"
-      });
-
-      localStorage.setItem('sos_agendamentos_2027', JSON.stringify(agendamentos));
-      alert(`Vaga reservada com sucesso!`);
-      document.getElementById('pecasInput').value = '';
-    }
-
-    function renderizarHistoricoCliente() {
-      const container = document.getElementById('graficoFrequenciaContainer');
-      container.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted);">Acompanhamento de volumetria ativa no Sistema S.O.S.</p>';
-    }
-
-    function abrirModalMetas() { document.getElementById('modalMetas').style.display = 'flex'; }
-    function fecharModalMetas() { document.getElementById('modalMetas').style.display = 'none'; }
   </script>
 </body>
 </html>
