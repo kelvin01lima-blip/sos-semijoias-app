@@ -43,7 +43,7 @@
       padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.85rem;
     }
 
-    .main-container { flex: 1; padding: 24px; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .main-container { flex: 1; padding: 24px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
     .hero-banner {
       background: var(--header-bg); color: #FFF; border-radius: 20px; padding: 36px; margin-bottom: 24px;
@@ -62,49 +62,84 @@
     .prazos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
     .prazo-item { background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--orange-accent); }
 
-    .club-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 20px; }
-
-    .club-card {
-      background: var(--card-bg); border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      border-top: 6px solid var(--silver-val); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex; flex-direction: column; justify-content: space-between;
+    /* CONTROLES DE NAVEGAÇÃO DOS CARDS DE CATEGORIA */
+    .nav-categories-header {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px;
     }
 
-    .club-card:hover { transform: translateY(-5px); }
+    .nav-arrow-btn {
+      background: var(--header-bg); border: 2px solid var(--orange-accent); color: #FFF;
+      padding: 12px 20px; border-radius: 12px; font-weight: 900; font-size: 1rem; cursor: pointer;
+      transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+    }
 
-    .club-card.gold {
-      border-top: 6px solid var(--gold-bright);
+    .nav-arrow-btn:hover { background: var(--orange-accent); transform: scale(1.03); }
+
+    .tabs-select-categoria {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; flex: 1;
+    }
+
+    .tab-cat-btn {
+      padding: 10px 16px; border-radius: 10px; border: 2px solid #E2E8F0; background: #FFF;
+      font-weight: 800; font-size: 0.82rem; cursor: pointer; color: var(--header-bg); transition: all 0.2s;
+    }
+
+    .tab-cat-btn.active {
+      background: var(--header-bg); color: #FFF; border-color: var(--orange-accent);
+    }
+
+    /* CARD ÚNICO ESPAÇOSO (SLIDER / CARROSSEL) */
+    .category-showcase-container {
+      margin-top: 20px;
+    }
+
+    .club-card-single {
+      background: var(--card-bg); border-radius: 20px; padding: 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-top: 8px solid var(--silver-val); transition: all 0.3s ease;
+    }
+
+    .club-card-single.gold {
+      border-top: 8px solid var(--gold-bright);
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF0 100%);
-      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.18);
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.18);
     }
 
-    .club-card.diamante {
-      border-top: 6px solid #38BDF8;
+    .club-card-single.diamante {
+      border-top: 8px solid #38BDF8;
       background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
     }
 
-    .club-card.black {
-      border-top: 6px solid var(--gold-bright);
+    .club-card-single.black {
+      border-top: 8px solid var(--gold-bright);
       background: linear-gradient(145deg, #0D0D11 0%, #171821 100%);
       color: #FFF;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 183, 3, 0.25);
       border: 1px solid rgba(255, 183, 3, 0.35);
     }
 
-    .club-card h2 { margin: 0 0 8px 0; font-size: 1.3rem; color: var(--header-bg); }
-    .club-card.gold h2 { color: #B45309; }
-    .club-card.diamante h2 { color: #0284C7; }
-    .club-card.black h2 { color: var(--gold-bright); text-shadow: 0 0 8px rgba(255, 183, 3, 0.4); }
+    .destinatario-box {
+      background: rgba(255, 87, 34, 0.1); border-left: 5px solid var(--orange-accent);
+      padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; font-size: 0.95rem; font-weight: bold; color: var(--header-bg);
+    }
 
-    .club-subtitle { font-size: 0.85rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 10px; text-transform: uppercase; }
-    .club-card.gold .club-subtitle { color: #D97706; }
-    .club-card.diamante .club-subtitle { color: #0284C7; }
-    .club-card.black .club-subtitle { color: #FCD34D; }
+    .club-card-single.gold .destinatario-box { background: #FEF3C7; border-left-color: #D97706; color: #78350F; }
+    .club-card-single.diamante .destinatario-box { background: #E0F2FE; border-left-color: #0284C7; color: #0C4A6E; }
+    .club-card-single.black .destinatario-box { background: rgba(255, 183, 3, 0.15); border-left-color: var(--gold-bright); color: #FDE68A; }
+
+    .club-card-single h2 { margin: 0 0 8px 0; font-size: 1.8rem; color: var(--header-bg); }
+    .club-card-single.gold h2 { color: #B45309; }
+    .club-card-single.diamante h2 { color: #0284C7; }
+    .club-card-single.black h2 { color: var(--gold-bright); text-shadow: 0 0 8px rgba(255, 183, 3, 0.4); }
+
+    .club-subtitle { font-size: 1rem; font-weight: 800; color: var(--orange-accent); margin-bottom: 12px; text-transform: uppercase; }
+    .club-card-single.gold .club-subtitle { color: #D97706; }
+    .club-card-single.diamante .club-subtitle { color: #0284C7; }
+    .club-card-single.black .club-subtitle { color: #FCD34D; }
 
     .badge-vagas {
-      display: inline-block; background: #EF4444; color: #FFF; font-size: 0.72rem; font-weight: 900;
-      padding: 4px 10px; border-radius: 12px; margin-bottom: 12px; text-transform: uppercase; animation: pulse 2s infinite;
+      display: inline-block; background: #EF4444; color: #FFF; font-size: 0.8rem; font-weight: 900;
+      padding: 6px 14px; border-radius: 14px; margin-bottom: 14px; text-transform: uppercase; animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
@@ -114,27 +149,27 @@
     }
 
     .aviso-cota-box {
-      background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 8px 12px;
-      font-size: 0.78rem; font-weight: bold; color: #1E40AF; margin-bottom: 10px;
+      background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 10px; padding: 12px 16px;
+      font-size: 0.88rem; font-weight: bold; color: #1E40AF; margin-bottom: 16px;
     }
-    .club-card.gold .aviso-cota-box { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
-    .club-card.diamante .aviso-cota-box { background: #E0F2FE; border-color: #BAE6FD; color: #0369A1; }
-    .club-card.black .aviso-cota-box { background: rgba(255, 183, 3, 0.1); border-color: rgba(255, 183, 3, 0.3); color: #FDE68A; }
+    .club-card-single.gold .aviso-cota-box { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
+    .club-card-single.diamante .aviso-cota-box { background: #E0F2FE; border-color: #BAE6FD; color: #0369A1; }
+    .club-card-single.black .aviso-cota-box { background: rgba(255, 183, 3, 0.1); border-color: rgba(255, 183, 3, 0.3); color: #FDE68A; }
 
     .diferenciais-box {
-      background: #F8FAFC; border-left: 4px solid var(--blue-val); padding: 8px 10px;
-      border-radius: 6px; font-size: 0.76rem; color: #334155; margin-bottom: 12px; line-height: 1.4;
+      background: #F8FAFC; border-left: 5px solid var(--blue-val); padding: 12px 16px;
+      border-radius: 8px; font-size: 0.85rem; color: #334155; margin-bottom: 18px; line-height: 1.6;
     }
-    .club-card.gold .diferenciais-box { border-left-color: var(--gold-bright); background: #FFFBEB; color: #78350F; }
-    .club-card.diamante .diferenciais-box { border-left-color: #0284C7; background: #F0F9FF; color: #0C4A6E; }
-    .club-card.black .diferenciais-box { border-left-color: var(--gold-bright); background: rgba(255,255,255,0.05); color: #CBD5E1; }
+    .club-card-single.gold .diferenciais-box { border-left-color: var(--gold-bright); background: #FFFBEB; color: #78350F; }
+    .club-card-single.diamante .diferenciais-box { border-left-color: #0284C7; background: #F0F9FF; color: #0C4A6E; }
+    .club-card-single.black .diferenciais-box { border-left-color: var(--gold-bright); background: rgba(255,255,255,0.05); color: #CBD5E1; }
 
-    .club-features { margin: 0 0 15px 0; padding-left: 18px; font-size: 0.81rem; line-height: 1.5; color: #334155; }
-    .club-card.black .club-features { color: #CBD5E1; }
+    .club-features { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.7; color: #334155; }
+    .club-card-single.black .club-features { color: #CBD5E1; }
 
     .box-hub-estoque {
-      background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 10px; padding: 10px;
-      font-size: 0.76rem; color: #065F46; margin-bottom: 12px; line-height: 1.4; font-weight: 600;
+      background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 12px; padding: 14px 18px;
+      font-size: 0.85rem; color: #065F46; margin-bottom: 20px; line-height: 1.5; font-weight: 600;
     }
 
     .esteira-container {
@@ -211,11 +246,8 @@
     .item-plano-select strong { display: block; font-size: 1rem; color: var(--header-bg); }
     .item-plano-select span { font-size: 0.8rem; color: var(--text-muted); }
 
-    @media (max-width: 1024px) {
-      .club-cards-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .club-cards-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      .nav-categories-header { flex-direction: column; }
       .grid-2col, .selecao-plano-box { grid-template-columns: 1fr; }
     }
   </style>
@@ -256,164 +288,25 @@
         </div>
       </div>
 
-      <!-- CARDS CONCEITUAIS -->
-      <div class="club-cards-grid">
+      <!-- SEÇÃO NAVEGÁVEL DE CATEGORIAS (SLIDER AMPLO) -->
+      <div class="category-showcase-container">
         
-        <!-- CARD 1: INICIANTE -->
-        <div class="club-card" onclick="abrirModalMaisInformacoes('Iniciante')">
-          <div>
-            <div class="badge-vagas">🔥 VAGAS LIMITADAS — CORRA!</div>
-            <h2>🥉 INICIANTE / SIMPLES</h2>
-            <div class="club-subtitle">Até 500 pcs/mês</div>
-
-            <div class="aviso-cota-box">
-              ⚠️ <strong>Cota Máxima:</strong> 500 peças. Podendo agendar mais mediante a aprovação da direção.
-            </div>
-
-            <div class="diferenciais-box">
-              📊 <strong>Diferenciais de Suporte:</strong><br>
-              • Relatório por lote apenas.<br>
-              • Acompanhamento de nossa equipe em horário comercial.
-            </div>
-            
-            <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
-            <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
-            </ul>
-
-            <div class="box-hub-estoque">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
-            </div>
+        <!-- BARRA DE NAVEGAÇÃO E SETAS -->
+        <div class="nav-categories-header">
+          <button class="nav-arrow-btn" onclick="navegarCategoriaDelta(-1)">◄ Anterior</button>
+          
+          <div class="tabs-select-categoria">
+            <button id="tabCat_0" class="tab-cat-btn active" onclick="mostrarCategoriaIndex(0)">🥉 INICIANTE</button>
+            <button id="tabCat_1" class="tab-cat-btn" onclick="mostrarCategoriaIndex(1)">🥇 VIP OURO</button>
+            <button id="tabCat_2" class="tab-cat-btn" onclick="mostrarCategoriaIndex(2)">💎 VIP DIAMANTE</button>
+            <button id="tabCat_3" class="tab-cat-btn" onclick="mostrarCategoriaIndex(3)">👑 VIP BLACK</button>
           </div>
 
-          <div>
-            <button class="btn-main btn-silver" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Iniciante')">MAIS INFORMAÇÕES</button>
-          </div>
+          <button class="nav-arrow-btn" onclick="navegarCategoriaDelta(1)">Próximo ►</button>
         </div>
 
-        <!-- CARD 2: OURO -->
-        <div class="club-card gold" onclick="abrirModalMaisInformacoes('Ouro')">
-          <div>
-            <div class="badge-vagas" style="background:#D97706;">🔥 VAGAS LIMITADAS — CORRA!</div>
-            <h2>🥇 VIP OURO</h2>
-            <div class="club-subtitle">Até 1.000 pcs/mês</div>
-
-            <div class="aviso-cota-box">
-              ⚠️ <strong>Cota Máxima:</strong> 1.000 peças. Podendo agendar mais com aprovação da direção.
-            </div>
-
-            <div class="diferenciais-box">
-              📊 <strong>Diferenciais de Suporte:</strong><br>
-              • Relatório por lote + Relatório semestral.<br>
-              • Acompanhamento de nossa equipe em horário comercial.
-            </div>
-            
-            <p style="font-size:0.85rem; color:var(--header-bg); font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
-            <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores com prioridade média de agendamento na esteira e liberação de prazo.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
-            </ul>
-
-            <div class="box-hub-estoque">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
-            </div>
-          </div>
-
-          <div>
-            <button class="btn-main btn-gold" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Ouro')">MAIS INFORMAÇÕES</button>
-          </div>
-        </div>
-
-        <!-- CARD 3: DIAMANTE -->
-        <div class="club-card diamante" onclick="abrirModalMaisInformacoes('Diamante')">
-          <div>
-            <div class="badge-vagas" style="background:#0284C7;">🔥 VAGAS LIMITADAS — CORRA!</div>
-            <h2>💎 VIP DIAMANTE</h2>
-            <div class="club-subtitle">Até 1.500 pcs/mês</div>
-
-            <div class="aviso-cota-box">
-              ⚠️ <strong>Cota Máxima:</strong> 1.500 peças (tudo no mesmo mês).
-            </div>
-
-            <div class="diferenciais-box">
-              📊 <strong>Diferenciais de Suporte:</strong><br>
-              • Relatório por lote e mensal.<br>
-              • Acompanhamento prioritário de nossa equipe.
-            </div>
-            
-            <p style="font-size:0.85rem; color:#0284C7; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
-            <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada expressa e prioritária das joias na esteira fabril para liberação em janela recorde.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
-            </ul>
-
-            <div class="box-hub-estoque" style="background:#E0F2FE; border-color:#7DD3FC; color:#0369A1;">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
-            </div>
-          </div>
-
-          <div>
-            <button class="btn-main btn-diamante" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Diamante')">MAIS INFORMAÇÕES</button>
-          </div>
-        </div>
-
-        <!-- CARD 4: BLACK (ÚNICA VAGA - ULTRA EXCLUSIVO) -->
-        <div id="cardVipBlackSection" class="club-card black" onclick="abrirModalMaisInformacoes('Black')">
-          <div>
-            <div class="badge-vagas" style="background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;">🚨 APENAS 1 VAGA NO ANO!</div>
-            <h2>👑 VIP BLACK EXCLUSIVO</h2>
-            <div class="club-subtitle">Até 2.000 pcs/mês (Sem Mínimo de Lote)</div>
-
-            <div class="aviso-cota-box">
-              ⚠️ <strong>Cota Máxima:</strong> 2.000 peças/mês. <u>Sem exigência de lote mínimo</u>.
-            </div>
-
-            <div class="diferenciais-box">
-              📊 <strong>Diferenciais de Suporte:</strong><br>
-              • Relatório por lote e mensal detalhado.<br>
-              • Acompanhamento VIP da nossa equipe 24h por dia.
-            </div>
-            
-            <p style="font-size:0.85rem; color:#FFB703; font-weight:bold; margin-bottom:10px;">O que este setor entrega para a sua marca:</p>
-            <ul class="club-features">
-              <li><strong>1. Entrada:</strong> Entrada expressa e prioritária absoluta das joias na esteira fabril para liberação em janela recorde.</li>
-              <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
-              <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
-              <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
-              <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
-              <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
-              <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
-              <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
-            </ul>
-
-            <div class="box-hub-estoque" style="background:#064E3B; border-color:#059669; color:#A7F3D0;">
-              📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
-            </div>
-          </div>
-
-          <div>
-            <button class="btn-main btn-black" onclick="event.stopPropagation(); abrirModalMaisInformacoes('Black')">MAIS INFORMAÇÕES</button>
-          </div>
-        </div>
+        <!-- ÁREA DO CARD AMPLO EM DESTAQUE -->
+        <div id="boxCardCategoryDisplay"></div>
 
       </div>
 
@@ -492,7 +385,7 @@
         </div>
         <div class="item-plano-select" style="border-color:var(--gold-bright); background:#111; color:#fff;" onclick="selecionarCategoriaIrForm('Black')">
           <strong style="color:var(--gold-bright);">👑 VIP BLACK</strong>
-          <span style="color:#FFF;">Até 2.000 pcs/mês (1 Vaga)</span>
+          <span style="color:#FFF;">Até 2.500 pcs/mês (Vagas Limitadas)</span>
         </div>
       </div>
 
@@ -554,8 +447,8 @@
           <option value="Até 500 pcs/mês">Até 500 peças / mês</option>
           <option value="Até 1.000 pcs/mês">Até 1.000 peças / mês</option>
           <option value="Até 1.500 pcs/mês">Até 1.500 peças / mês</option>
-          <option value="Até 2.000 pcs/mês">Até 2.000 peças / mês</option>
-          <option value="Acima de 2.000 pcs/mês">Acima de 2.000 peças / mês</option>
+          <option value="Até 2.500 pcs/mês">Até 2.500 peças / mês</option>
+          <option value="Acima de 2.500 pcs/mês">Acima de 2.500 peças / mês</option>
         </select>
 
         <label style="font-size:0.78rem; font-weight:bold;">8. Quais são os principais gargalos e desafios operacionais da sua marca hoje?</label>
@@ -575,6 +468,124 @@
 
   <script>
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
+
+    let categoriaIndexAtual = 0;
+
+    const listaCategoriasDados = [
+      {
+        id: "Iniciante",
+        classe: "",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "",
+        paraQuem: "💡 PARA QUEM SERVE: Ideal para marcas iniciantes, e-commerces em fase de validação ou lojistas que estão estruturando o fluxo de estoque e precisam de uma operação técnica profissional sem altos custos fixos.",
+        titulo: "🥉 INICIANTE / SIMPLES",
+        subtitulo: "Até 500 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 500 peças. Podendo agendar mais mediante a aprovação da direção.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote apenas.<br>• Acompanhamento de nossa equipe em horário comercial.",
+        btnClasse: "btn-silver"
+      },
+      {
+        id: "Ouro",
+        classe: "gold",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "background:#D97706;",
+        paraQuem: "💡 PARA QUEM SERVE: Desenvolvido para marcas em constante tração, atacadistas e e-commerces consolidados que precisam de giro mensal acelerado, relatórios semestrais de performance e prioridade no agendamento fabril.",
+        titulo: "🥇 VIP OURO",
+        subtitulo: "Até 1.000 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.000 peças. Podendo agendar mais com aprovação da direção.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote + Relatório semestral.<br>• Acompanhamento de nossa equipe em horário comercial.",
+        btnClasse: "btn-gold"
+      },
+      {
+        id: "Diamante",
+        classe: "diamante",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "background:#0284C7;",
+        paraQuem: "💡 PARA QUEM SERVE: Perfeito para operações de alta escala, grandes marcas de revenda e distribuidores de semijoias que demandam entrada expressa na esteira, acompanhamento prioritário e volume de até 1.500 peças/mês.",
+        titulo: "💎 VIP DIAMANTE",
+        subtitulo: "Até 1.500 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.500 peças (tudo no mesmo mês).",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal.<br>• Acompanhamento prioritário de nossa equipe.",
+        btnClasse: "btn-diamante"
+      },
+      {
+        id: "Black",
+        classe: "black",
+        badge: "🚨 VAGAS LIMITADAS!",
+        badgeBg: "background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;",
+        paraQuem: "👑 PARA QUEM SERVE: A categoria definitiva de altíssima performance para grandes indústrias, redes de franquias e marcas líderes de mercado. Garante o menor custo por peça da indústria, atendimento VIP 24h e cota de 2.500 peças/mês sem lote mínimo.",
+        titulo: "👑 VIP BLACK EXCLUSIVO",
+        subtitulo: "Até 2.500 pcs/mês (Sem Mínimo de Lote)",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 2.500 peças/mês. <u>Sem exigência de lote mínimo</u>.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal detalhado.<br>• Acompanhamento VIP da nossa equipe 24h por dia.",
+        btnClasse: "btn-black"
+      }
+    ];
+
+    function renderizarCardCategoriaExibicao(idx) {
+      const item = listaCategoriasDados[idx];
+      const box = document.getElementById('boxCardCategoryDisplay');
+
+      // Atualiza botões superiores
+      for(let i=0; i<4; i++) {
+        const btn = document.getElementById(`tabCat_${i}`);
+        if(btn) {
+          if(i === idx) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      }
+
+      const htmlFeatures = `
+        <p style="font-size:0.9rem; font-weight:bold; margin-bottom:12px;">O que este setor entrega para a sua marca:</p>
+        <ul class="club-features">
+          <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
+          <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
+          <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
+          <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
+          <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
+          <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
+          <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
+          <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+        </ul>
+      `;
+
+      box.innerHTML = `
+        <div class="destinatario-box">
+          ${item.paraQuem}
+        </div>
+
+        <div class="club-card-single ${item.classe}">
+          <div class="badge-vagas" style="${item.badgeBg}">${item.badge}</div>
+          <h2>${item.titulo}</h2>
+          <div class="club-subtitle">${item.subtitulo}</div>
+
+          <div class="aviso-cota-box">${item.avisoCota}</div>
+          <div class="diferenciais-box">${item.diferenciais}</div>
+
+          ${htmlFeatures}
+
+          <div class="box-hub-estoque">
+            📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+          </div>
+
+          <button class="btn-main ${item.btnClasse}" style="margin-top:10px;" onclick="abrirModalMaisInformacoes('${item.id}')">
+            MAIS INFORMAÇÕES DA COTA ${item.id.toUpperCase()}
+          </button>
+        </div>
+      `;
+    }
+
+    function navegarCategoriaDelta(delta) {
+      categoriaIndexAtual += delta;
+      if(categoriaIndexAtual > 3) categoriaIndexAtual = 0;
+      if(categoriaIndexAtual < 0) categoriaIndexAtual = 3;
+      renderizarCardCategoriaExibicao(categoriaIndexAtual);
+    }
+
+    function mostrarCategoriaIndex(idx) {
+      categoriaIndexAtual = idx;
+      renderizarCardCategoriaExibicao(categoriaIndexAtual);
+    }
 
     function abrirModalEscolhaCategoria() {
       document.getElementById('modalEscolhaCategoria').style.display = 'flex';
@@ -598,7 +609,7 @@
       let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : ((categoria === "Diamante") ? "VIP DIAMANTE" : "VIP BLACK EXCLUSIVO"));
       tit.innerText = `Valores & Tabela Comparativa — Cota ${nomeCategoriaOficial}`;
 
-      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : ((categoria === "Diamante") ? "R$ 5.000,00 / anuidade" : "R$ 10.000,00 / anuidade (Apenas 1 Vaga)"));
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : ((categoria === "Diamante") ? "R$ 5.000,00 / anuidade" : "R$ 10.000,00 / anuidade (Vagas Limitadas)"));
       
       let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : ((categoria === "Diamante") ? 0.58 : 0.49));
       let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : ((categoria === "Diamante") ? 0.22 : 0.18));
@@ -774,7 +785,7 @@
           <hr style="border:0; border-top:1px solid #E2E8F0; margin:15px 0;">
 
           <div style="display:flex; gap:10px; margin-top:15px;">
-            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">👑 QUERO A VAGA ÚNICA VIP BLACK</button>` : ''}
+            ${categoria !== 'Black' ? `<button class="btn-main btn-black" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); irParaCardBlack();">👑 QUERO A COTA VIP BLACK</button>` : ''}
             <button class="btn-main btn-gold" style="font-size:0.75rem; flex:1;" onclick="fecharModalInfo(); abrirModalCadastroForm('${categoria}');">CONTRATAR COTA ${categoria.toUpperCase()}</button>
           </div>
         </div>
@@ -786,8 +797,8 @@
     function fecharModalInfo() { document.getElementById('modalMaisInformacoes').style.display = 'none'; }
     
     function irParaCardBlack() {
-      document.getElementById('cardVipBlackSection').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => { abrirModalMaisInformacoes('Black'); }, 400);
+      mostrarCategoriaIndex(3);
+      setTimeout(() => { abrirModalMaisInformacoes('Black'); }, 300);
     }
 
     function abrirModalSetorFabril(setor) {
@@ -859,6 +870,9 @@
       })
       .catch(err => alert("Erro ao enviar formulário: " + err));
     }
+
+    // Inicializa a exibição na primeira categoria (Iniciante)
+    mostrarCategoriaIndex(0);
   </script>
 </body>
 </html>
