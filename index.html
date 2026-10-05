@@ -334,4 +334,337 @@
             <span style="font-size:1.2rem;">🔨</span>
             <strong>3. CRAVAÇÃO / MONTAGEM</strong>
           </div>
-          <div class="este
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Foto')">
+            <span style="font-size:1.2rem;">📸</span>
+            <strong>4. FOTO (STILL / IA)</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Cde')">
+            <span style="font-size:1.2rem;">💻</span>
+            <strong>5. CDE & ETIQUETA</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Encarte')">
+            <span style="font-size:1.2rem;">🎴</span>
+            <strong>6. ENCARTE & ENVIO</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RODAPÉ OFICIAL -->
+  <div class="footer-bar">
+    Produzido por Kelvin Lima — CEO S.O.S Soluções
+  </div>
+
+  <!-- MODAL DE SELEÇÃO DE CATEGORIA ANTES DO CADASTRO -->
+  <div id="modalEscolhaCategoria" class="modal-overlay">
+    <div class="modal-card" style="max-width:550px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">Selecione a Categoria Pretendida</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Escolha qual cota de anuidade você deseja solicitar para a sua marca:</p>
+      
+      <div class="selecao-plano-box">
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Iniciante')">
+          <strong>🥉 INICIANTE</strong>
+          <span>Até 500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Ouro')">
+          <strong>🥇 VIP OURO</strong>
+          <span>Até 1.000 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Diamante')">
+          <strong>💎 VIP DIAMANTE</strong>
+          <span>Até 1.500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" style="border-color:var(--gold-bright); background:#111; color:#fff;" onclick="selecionarCategoriaIrForm('Black')">
+          <strong style="color:var(--gold-bright);">👑 VIP BLACK</strong>
+          <span style="color:#FFF;">Até 2.500 pcs/mês (Vagas Limitadas)</span>
+        </div>
+      </div>
+
+      <button class="btn-main" style="background:#94A3B8; margin-top:10px;" onclick="fecharModalEscolhaCategoria()">CANCELAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL "MAIS INFORMAÇÕES" -->
+  <div id="modalMaisInformacoes" class="modal-overlay">
+    <div class="modal-card">
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Valores & Tabela Comparativa</h2>
+      <div id="modalInfoConteudo"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL DETALHAMENTO OPERACIONAL DO SETOR FABRIL -->
+  <div id="modalSetorFabril" class="modal-overlay">
+    <div class="modal-card" style="max-width:650px;">
+      <h3 id="modalSetorTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Setor</h3>
+      <div id="modalSetorConteudo" style="font-size:0.88rem; line-height:1.6; color:#334155;"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalSetorFabril()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE -->
+  <div id="modalFormularioCadastro" class="modal-overlay">
+    <div class="modal-card" style="max-width:700px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">📝 Formulário Oficial de Adesão ao Clube S.O.S</h3>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">Responda às questões abaixo para análise de perfil da sua marca e geração do contrato de entrada:</p>
+
+      <form id="formAdesaoOficial" onsubmit="enviarFormularioAdesao(event)">
+        <input type="hidden" id="formPlanoSelecionado">
+
+        <label style="font-size:0.78rem; font-weight:bold;">1. Qual é o seu nome e o seu cargo na empresa?</label>
+        <input type="text" id="q1_nome_cargo" class="form-control" required placeholder="Ex: Kelvin Lima - CEO">
+
+        <label style="font-size:0.78rem; font-weight:bold;">2. Qual é o nome da sua marca de semijoias?</label>
+        <input type="text" id="q2_marca" class="form-control" required placeholder="Ex: Niara Semijoias">
+
+        <label style="font-size:0.78rem; font-weight:bold;">3. Qual é o perfil do Instagram da sua marca?</label>
+        <input type="text" id="q3_instagram" class="form-control" required placeholder="@suamarca">
+
+        <label style="font-size:0.78rem; font-weight:bold;">4. De qual cidade/estado você é?</label>
+        <input type="text" id="q4_cidade" class="form-control" required placeholder="Ex: Limeira / SP">
+
+        <label style="font-size:0.78rem; font-weight:bold;">5. Há quanto tempo sua marca atua no mercado?</label>
+        <input type="text" id="q5_tempo_mercado" class="form-control" required placeholder="Ex: 3 anos">
+
+        <label style="font-size:0.78rem; font-weight:bold;">6. Qual é o modelo principal do seu negócio hoje?</label>
+        <select id="q6_modelo_negocio" class="form-control">
+          <option value="Atacado / Revenda">Atacado / Revenda</option>
+          <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+          <option value="Híbrido (Atacado e Varejo)">Híbrido (Atacado e Varejo)</option>
+        </select>
+
+        <label style="font-size:0.78rem; font-weight:bold;">7. Qual é o volume médio de peças que sua marca movimenta mensalmente?</label>
+        <select id="q7_volume_mensal" class="form-control">
+          <option value="Até 500 pcs/mês">Até 500 peças / mês</option>
+          <option value="Até 1.000 pcs/mês">Até 1.000 peças / mês</option>
+          <option value="Até 1.500 pcs/mês">Até 1.500 peças / mês</option>
+          <option value="Até 2.500 pcs/mês">Até 2.500 peças / mês</option>
+          <option value="Acima de 2.500 pcs/mês">Acima de 2.500 peças / mês</option>
+        </select>
+
+        <label style="font-size:0.78rem; font-weight:bold;">8. Quais são os principais gargalos e desafios operacionais da sua marca hoje?</label>
+        <textarea id="q8_gargalos" class="form-control" required placeholder="Ex: Atraso na inspeção, falta de fotografia profissional, erro de etiquetagem..."></textarea>
+
+        <label style="font-size:0.78rem; font-weight:bold;">9. Quais das nossas soluções sua marca mais precisa no momento?</label>
+        <input type="text" id="q9_solucoes" class="form-control" required placeholder="Ex: Inspeção + CDI, Foto IA, CDE e Etiquetagem">
+
+        <label style="font-size:0.78rem; font-weight:bold;">10. Qual o seu WhatsApp corporativo para entrarmos em contato?</label>
+        <input type="text" id="q10_whatsapp" class="form-control" required placeholder="(19) 99999-9999">
+
+        <button type="submit" class="btn-main btn-gold" style="margin-top:10px;">ENVIAR CADASTRO & ENVIAR PARA A PLANILHA</button>
+        <button type="button" class="btn-main" style="background:#94A3B8; margin-top:8px;" onclick="fecharModalCadastroForm()">CANCELAR</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
+
+    let categoriaIndexAtual = 0;
+
+    const listaCategoriasDados = [
+      {
+        id: "Iniciante",
+        classe: "",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "",
+        paraQuem: "💡 PARA QUEM SERVE: Ideal para marcas iniciantes, e-commerces em fase de validação ou lojistas que estão estruturando o fluxo de estoque e precisam de uma operação técnica profissional sem altos custos fixos.",
+        titulo: "🥉 INICIANTE / SIMPLES",
+        subtitulo: "Até 500 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 500 peças. Podendo agendar mais mediante a aprovação da direção.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote apenas.<br>• Acompanhamento de nossa equipe em horário comercial.",
+        btnClasse: "btn-silver"
+      },
+      {
+        id: "Ouro",
+        classe: "gold",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "background:#D97706;",
+        paraQuem: "💡 PARA QUEM SERVE: Desenvolvido para marcas em constante tração, atacadistas e e-commerces consolidados que precisam de giro mensal acelerado, relatórios semestrais de performance e prioridade no agendamento fabril.",
+        titulo: "🥇 VIP OURO",
+        subtitulo: "Até 1.000 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.000 peças. Podendo agendar mais com aprovação da direção.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote + Relatório semestral.<br>• Acompanhamento de nossa equipe em horário comercial.",
+        btnClasse: "btn-gold"
+      },
+      {
+        id: "Diamante",
+        classe: "diamante",
+        badge: "🔥 VAGAS LIMITADAS — CORRA!",
+        badgeBg: "background:#0284C7;",
+        paraQuem: "💡 PARA QUEM SERVE: Perfeito para operações de alta escala, grandes marcas de revenda e distribuidores de semijoias que demandam entrada expressa na esteira, acompanhamento prioritário e volume de até 1.500 peças/mês.",
+        titulo: "💎 VIP DIAMANTE",
+        subtitulo: "Até 1.500 pcs/mês",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.500 peças (tudo no mesmo mês).",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal.<br>• Acompanhamento prioritário de nossa equipe.",
+        btnClasse: "btn-diamante"
+      },
+      {
+        id: "Black",
+        classe: "black",
+        badge: "🚨 VAGAS LIMITADAS!",
+        badgeBg: "background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;",
+        paraQuem: "👑 PARA QUEM SERVE: A categoria definitiva de altíssima performance para grandes indústrias, redes de franquias e marcas líderes de mercado. Garante o menor custo por peça da indústria, atendimento VIP 24h e cota de 2.500 peças/mês sem lote mínimo.",
+        titulo: "👑 VIP BLACK EXCLUSIVO",
+        subtitulo: "Até 2.500 pcs/mês (Sem Mínimo de Lote)",
+        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 2.500 peças/mês. <u>Sem exigência de lote mínimo</u>.",
+        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal detalhado.<br>• Acompanhamento VIP da nossa equipe 24h por dia.",
+        btnClasse: "btn-black"
+      }
+    ];
+
+    function renderizarCardCategoriaExibicao(idx) {
+      const item = listaCategoriasDados[idx];
+      const box = document.getElementById('boxCardCategoryDisplay');
+
+      // Atualiza botões superiores
+      for(let i=0; i<4; i++) {
+        const btn = document.getElementById(`tabCat_${i}`);
+        if(btn) {
+          if(i === idx) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      }
+
+      const htmlFeatures = `
+        <p style="font-size:0.9rem; font-weight:bold; margin-bottom:12px;">O que este setor entrega para a sua marca:</p>
+        <ul class="club-features">
+          <li><strong>1. Entrada:</strong> Entrada das joias em nossos setores para conferência e aplicação de dados em nosso sistema, já liberando data de finalização prevista.</li>
+          <li><strong>2. Inspeção 3 em 1 + CDI (Obrigatória):</strong> Proteção da sua reputação com blindagem total contra peças defeituosas no consumidor final, separação por semelhantes e categoria para facilitar o cadastro no sistema do cliente. CDI: Cadastro interno em nosso sistema para termos dados como peso, valores pagos e fornecedores. Máxima economia ao unir triagem, separação e CDI.</li>
+          <li><strong>3. Cravação, Colagem & Montagem (Opcional):</strong> Valorização do seu acervo recuperando peças com pedras soltas, montagem e troca de fechos sem perder a venda. Montagem de pingentes em correntes e serviços relacionados.</li>
+          <li><strong>4. Fotografia Still / IA:</strong> Fotos profissionais prontas para alimentar seu e-commerce, redes sociais e catálogos de revendedoras.</li>
+          <li><strong>5. CDE (Catalogação):</strong> Cadastro profissional no seu sistema com descrição profissional e adição da fotografia, tudo para facilitar seu dia a dia. Além da precificação profissional com seu auxílio, você terá sua mercadoria precificada e pronta para venda.</li>
+          <li><strong>6. Etiqueta (Setor Separado):</strong> Emissão de etiquetas profissionais na Argox 214 Plus para que você tenha seus preços e produtos em um QR Code ou código de barras. (Cliente envia etiquetas e tags para encarte).</li>
+          <li><strong>7. Encarte:</strong> Encarte de peças em cartelas e saquinhos, deixando ainda mais seu produto com alto valor agregado.</li>
+          <li><strong>8. Fechamento & Envio:</strong> Embalagem e envio de fechamento com relatório mediante pagamento para liberação da mercadoria.</li>
+        </ul>
+      `;
+
+      box.innerHTML = `
+        <div class="destinatario-box">
+          ${item.paraQuem}
+        </div>
+
+        <div class="club-card-single ${item.classe}">
+          <div class="badge-vagas" style="${item.badgeBg}">${item.badge}</div>
+          <h2>${item.titulo}</h2>
+          <div class="club-subtitle">${item.subtitulo}</div>
+
+          <div class="aviso-cota-box">${item.avisoCota}</div>
+          <div class="diferenciais-box">${item.diferenciais}</div>
+
+          ${htmlFeatures}
+
+          <div class="box-hub-estoque">
+            📦 <strong>Gestão de Insumos HUB S.O.S:</strong> Guardamos, organizamos e gerenciamos todo o seu estoque de cartelas, saquinhos, etiquetas, fechos, argolas e venezianas. A logística de suprimentos da sua marca controlada 100% pelo HUB.
+          </div>
+
+          <button class="btn-main ${item.btnClasse}" style="margin-top:10px;" onclick="abrirModalMaisInformacoes('${item.id}')">
+            MAIS INFORMAÇÕES DA COTA ${item.id.toUpperCase()}
+          </button>
+        </div>
+      `;
+    }
+
+    function navegarCategoriaDelta(delta) {
+      categoriaIndexAtual += delta;
+      if(categoriaIndexAtual > 3) categoriaIndexAtual = 0;
+      if(categoriaIndexAtual < 0) categoriaIndexAtual = 3;
+      renderizarCardCategoriaExibicao(categoriaIndexAtual);
+    }
+
+    function mostrarCategoriaIndex(idx) {
+      categoriaIndexAtual = idx;
+      renderizarCardCategoriaExibicao(categoriaIndexAtual);
+    }
+
+    function abrirModalEscolhaCategoria() {
+      document.getElementById('modalEscolhaCategoria').style.display = 'flex';
+    }
+
+    function fecharModalEscolhaCategoria() {
+      document.getElementById('modalEscolhaCategoria').style.display = 'none';
+    }
+
+    function selecionarCategoriaIrForm(cat) {
+      fecharModalEscolhaCategoria();
+      abrirModalCadastroForm(cat);
+    }
+
+    // MODAL DE INFORMAÇÕES COM PRAZOS E COMPARATIVO ATUALIZADO
+    function abrirModalMaisInformacoes(categoria) {
+      const modal = document.getElementById('modalMaisInformacoes');
+      const tit = document.getElementById('modalInfoTitulo');
+      const cont = document.getElementById('modalInfoConteudo');
+
+      let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : ((categoria === "Diamante") ? "VIP DIAMANTE" : "VIP BLACK EXCLUSIVO"));
+      tit.innerText = `Valores & Tabela Comparativa — Cota ${nomeCategoriaOficial}`;
+
+      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : ((categoria === "Diamante") ? "R$ 5.000,00 / anuidade" : "R$ 10.000,00 / anuidade (Vagas Limitadas)"));
+      
+      let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : ((categoria === "Diamante") ? 0.58 : 0.49));
+      let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : ((categoria === "Diamante") ? 0.22 : 0.18));
+      let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : ((categoria === "Diamante") ? 0.45 : 0.38));
+      let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : ((categoria === "Diamante") ? 1.56 : 1.32));
+      let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : ((categoria === "Diamante") ? 1.90 : 1.61));
+
+      // Mapeamento dinâmico dos valores de Cravação / Colagem / Montagem por plano
+      let valCravColMont = (categoria === "Iniciante") 
+        ? "0,70 / 0,70 / 0,55" 
+        : ((categoria === "Ouro") 
+          ? "0,65 / 0,65 / 0,50" 
+          : ((categoria === "Diamante") 
+            ? "0,60 / 0,60 / 0,45" 
+            : "0,49 / 0,42 / 0,30"));
+
+      let subInsp = 500 * valInsp;
+      let subEtiq = 500 * valEtiq;
+      let subEnc = 500 * valEnc;
+      let subFoto = 100 * valFoto;
+      let subCde = 100 * valCde;
+      let totalPlanoAtual = subInsp + subEtiq + subEnc + subFoto + subCde;
+
+      let blackInsp = 500 * 0.49;
+      let blackEtiq = 500 * 0.18;
+      let blackEnc = 500 * 0.38;
+      let blackFoto = 100 * 1.32;
+      let blackCde = 100 * 1.61;
+      let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde;
+      let economiaLote = totalPlanoAtual - totalBlack;
+
+      let textoCashBack = "";
+      if (categoria === "Iniciante") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else if (categoria === "Ouro") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 3.000,00 da anuidade, <strong>R$ 500,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else if (categoria === "Diamante") {
+        textoCashBack = `
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
+        `;
+      } else {
+        textoCashBack = `
+          👑 <strong>Programa de CashBack Ultra Exclusivo VIP BLACK:</strong><br>
+          Dos R$ 10.000,00 da anuidade, <strong>R$ 2.000,00 voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> R$ 500,00 em Fevereiro + R$ 500,00 em Junho + R$
