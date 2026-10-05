@@ -258,4 +258,198 @@
   <div class="top-bar">
     <div>
       <h1>S.O.S SOLUÇÕES</h1>
-      <p>HUB DE OPERAÇÕES S.O.S - SISTEMA OPERACIONAL DE SETORES 20
+      <p>HUB DE OPERAÇÕES S.O.S - SISTEMA OPERACIONAL DE SETORES 2027</p>
+    </div>
+    <div>
+      <button class="btn-action-top" onclick="abrirModalEscolhaCategoria()">QUERO ENTRAR NO CLUBE</button>
+    </div>
+  </div>
+
+  <div class="main-container">
+
+    <!-- LANDING PAGE DE APRESENTAÇÃO PÚBLICA DO CLUBE -->
+    <div id="portalLanding" class="portal-landing">
+      
+      <div class="hero-banner">
+        <h2>HUB de Operações S.O.S 2027</h2>
+        <p>
+          Estrutura técnica e esteira fabril de alta performance para marcas de semijoias. Garantimos triagem de banho, inspeção de qualidade, fotografia profissional, cadastro digital (CDE), etiquetagem e encartelamento com alto padrão de acabamento.
+        </p>
+
+        <!-- TABELA DE PRAZOS DE ENTREGA -->
+        <div class="prazos-box">
+          <h4>⏱️️ Tabela Oficial de Prazos de Entrega na Esteira S.O.S:</h4>
+          <div class="prazos-grid">
+            <div class="prazo-item"><strong>100 a 500 peças:</strong> 8 dias úteis</div>
+            <div class="prazo-item"><strong>501 a 1.000 peças:</strong> 10 dias úteis</div>
+            <div class="prazo-item"><strong>1.001 a 1.500 peças:</strong> 13 dias úteis</div>
+            <div class="prazo-item" style="border-left-color:var(--gold-bright);"><strong>Acima de 1.500 peças:</strong> Agendamento diferenciado mediante aprovação da direção</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEÇÃO NAVEGÁVEL DE CATEGORIAS (SLIDER AMPLO) -->
+      <div class="category-showcase-container">
+        
+        <!-- BARRA DE NAVEGAÇÃO E SETAS -->
+        <div class="nav-categories-header">
+          <button class="nav-arrow-btn" onclick="navegarCategoriaDelta(-1)">◄ Anterior</button>
+          
+          <div class="tabs-select-categoria">
+            <button id="tabCat_0" class="tab-cat-btn active" onclick="mostrarCategoriaIndex(0)">🥉 INICIANTE</button>
+            <button id="tabCat_1" class="tab-cat-btn" onclick="mostrarCategoriaIndex(1)">🥇 VIP OURO</button>
+            <button id="tabCat_2" class="tab-cat-btn" onclick="mostrarCategoriaIndex(2)">💎 VIP DIAMANTE</button>
+            <button id="tabCat_3" class="tab-cat-btn" onclick="mostrarCategoriaIndex(3)">👑 VIP BLACK</button>
+          </div>
+
+          <button class="nav-arrow-btn" onclick="navegarCategoriaDelta(1)">Próximo ►</button>
+        </div>
+
+        <!-- ÁREA DO CARD AMPLO EM DESTAQUE -->
+        <div id="boxCardCategoryDisplay"></div>
+
+      </div>
+
+      <!-- ESTEIRA FABRIL CLICÁVEL -->
+      <div class="panel-card" style="margin-top: 35px;">
+        <h3 style="color:var(--header-bg); margin-bottom:6px;">⚙️ Esteira Fabril S.O.S Soluções (Clique no Setor para Ver o Processo Interno Detalhado)</h3>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">
+          Clique em qualquer etapa abaixo para abrir o detalhamento do nosso fluxo operacional de engenharia fabril:
+        </p>
+
+        <div class="esteira-container">
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Entrada')">
+            <span style="font-size:1.2rem;">📦</span>
+            <strong>1. ENTRADA</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Inspecao')">
+            <span style="font-size:1.2rem;">🔍</span>
+            <strong>2. INSPEÇÃO 3em1 + CDI</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Cravacao')">
+            <span style="font-size:1.2rem;">🔨</span>
+            <strong>3. CRAVAÇÃO / MONTAGEM</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Foto')">
+            <span style="font-size:1.2rem;">📸</span>
+            <strong>4. FOTO (STILL / IA)</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Cde')">
+            <span style="font-size:1.2rem;">💻</span>
+            <strong>5. CDE & ETIQUETA</strong>
+          </div>
+          <div class="esteira-arrow">➔</div>
+
+          <div class="esteira-step-card" onclick="abrirModalSetorFabril('Encarte')">
+            <span style="font-size:1.2rem;">🎴</span>
+            <strong>6. ENCARTE & ENVIO</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RODAPÉ OFICIAL -->
+  <div class="footer-bar">
+    Produzido por Kelvin Lima — CEO S.O.S Soluções
+  </div>
+
+  <!-- MODAL DE SELEÇÃO DE CATEGORIA ANTES DO CADASTRO -->
+  <div id="modalEscolhaCategoria" class="modal-overlay">
+    <div class="modal-card" style="max-width:550px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">Selecione a Categoria Pretendida</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Escolha qual cota de anuidade você deseja solicitar para a sua marca:</p>
+      
+      <div class="selecao-plano-box">
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Iniciante')">
+          <strong>🥉 INICIANTE</strong>
+          <span>Até 500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Ouro')">
+          <strong>🥇 VIP OURO</strong>
+          <span>Até 1.000 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Diamante')">
+          <strong>💎 VIP DIAMANTE</strong>
+          <span>Até 1.500 pcs/mês</span>
+        </div>
+        <div class="item-plano-select" style="border-color:var(--gold-bright); background:#111; color:#fff;" onclick="selecionarCategoriaIrForm('Black')">
+          <strong style="color:var(--gold-bright);">👑 VIP BLACK</strong>
+          <span style="color:#FFF;">Até 2.500 pcs/mês (Vagas Limitadas)</span>
+        </div>
+      </div>
+
+      <button class="btn-main" style="background:#94A3B8; margin-top:10px;" onclick="fecharModalEscolhaCategoria()">CANCELAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL "MAIS INFORMAÇÕES" -->
+  <div id="modalMaisInformacoes" class="modal-overlay">
+    <div class="modal-card">
+      <h2 id="modalInfoTitulo" style="margin-top:0; color:var(--header-bg);">Valores & Tabela Comparativa</h2>
+      <div id="modalInfoConteudo"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalInfo()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL DETALHAMENTO OPERACIONAL DO SETOR FABRIL -->
+  <div id="modalSetorFabril" class="modal-overlay">
+    <div class="modal-card" style="max-width:650px;">
+      <h3 id="modalSetorTitulo" style="margin-top:0; color:var(--header-bg);">Detalhamento do Setor</h3>
+      <div id="modalSetorConteudo" style="font-size:0.88rem; line-height:1.6; color:#334155;"></div>
+      <button class="btn-main" style="background:#94A3B8; margin-top:15px;" onclick="fecharModalSetorFabril()">FECHAR</button>
+    </div>
+  </div>
+
+  <!-- MODAL FORMULÁRIO OFICIAL DE CADASTRO DO CLIENTE -->
+  <div id="modalFormularioCadastro" class="modal-overlay">
+    <div class="modal-card" style="max-width:700px;">
+      <h3 style="margin-top:0; color:var(--header-bg);">📝 Formulário Oficial de Adesão ao Clube S.O.S</h3>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">Responda às questões abaixo para análise de perfil da sua marca e geração do contrato de entrada:</p>
+
+      <form id="formAdesaoOficial" onsubmit="enviarFormularioAdesao(event)">
+        <input type="hidden" id="formPlanoSelecionado">
+
+        <label style="font-size:0.78rem; font-weight:bold;">1. Qual é o seu nome e o seu cargo na empresa?</label>
+        <input type="text" id="q1_nome_cargo" class="form-control" required placeholder="Ex: Kelvin Lima - CEO">
+
+        <label style="font-size:0.78rem; font-weight:bold;">2. Qual é o nome da sua marca de semijoias?</label>
+        <input type="text" id="q2_marca" class="form-control" required placeholder="Ex: Niara Semijoias">
+
+        <label style="font-size:0.78rem; font-weight:bold;">3. Qual é o perfil do Instagram da sua marca?</label>
+        <input type="text" id="q3_instagram" class="form-control" required placeholder="@suamarca">
+
+        <label style="font-size:0.78rem; font-weight:bold;">4. De qual cidade/estado você é?</label>
+        <input type="text" id="q4_cidade" class="form-control" required placeholder="Ex: Limeira / SP">
+
+        <label style="font-size:0.78rem; font-weight:bold;">5. Há quanto tempo sua marca atua no mercado?</label>
+        <input type="text" id="q5_tempo_mercado" class="form-control" required placeholder="Ex: 3 anos">
+
+        <label style="font-size:0.78rem; font-weight:bold;">6. Qual é o modelo principal do seu negócio hoje?</label>
+        <select id="q6_modelo_negocio" class="form-control">
+          <option value="Atacado / Revenda">Atacado / Revenda</option>
+          <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+          <option value="Híbrido (Atacado e Varejo)">Híbrido (Atacado e Varejo)</option>
+        </select>
+
+        <label style="font-size:0.78rem; font-weight:bold;">7. Qual é o volume médio de peças que sua marca movimenta mensalmente?</label>
+        <select id="q7_volume_mensal" class="form-control">
+          <option value="Até 500 pcs/mês">Até 500 peças / mês</option>
+          <option value="Até 1.000 pcs/mês">Até 1.000 peças / mês</option>
+          <option value="Até 1.500 pcs/mês">Até 1.500 peças / mês</option>
+          <option value="Até 2.500 pcs/mês">Até 2.500 peças / mês</option>
+          <option value="Acima de 2.500 pcs/mês">Acima de 2.500 peças / mês</option>
+        </select>
+
+        <label style="font-size:0.78rem; font-weight:bold;">8. Quais são os principais gargalos e desafios operacionais da sua marca hoje?</label>
+        <textarea id="q8_gargalos" class="form-control" required placeholder="Ex: Atraso na inspeção
