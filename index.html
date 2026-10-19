@@ -232,7 +232,13 @@
     .footer-bar {
       background-color: var(--header-bg); color: #94A3B8; text-align: center;
       padding: 16px; font-size: 0.8rem; font-weight: bold; border-top: 2px solid var(--orange-accent); margin-top: auto;
+      display: flex; justify-content: center; align-items: center; gap: 10px;
     }
+
+    .btn-lock-admin {
+      background: transparent; border: none; color: #64748B; cursor: pointer; font-size: 0.9rem; transition: color 0.2s;
+    }
+    .btn-lock-admin:hover { color: var(--orange-accent); }
 
     .selecao-plano-box {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 15px 0;
@@ -246,9 +252,18 @@
     .item-plano-select strong { display: block; font-size: 1rem; color: var(--header-bg); }
     .item-plano-select span { font-size: 0.8rem; color: var(--text-muted); }
 
+    /* ESTILOS DO PAINEL ADMIN */
+    .admin-cat-block {
+      background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; margin-bottom: 16px;
+    }
+    .admin-cat-block h4 { margin: 0 0 12px 0; color: var(--header-bg); border-bottom: 2px solid var(--orange-accent); padding-bottom: 4px; }
+    .admin-grid-inputs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .admin-input-group label { display: block; font-size: 0.72rem; font-weight: bold; color: var(--text-muted); margin-bottom: 3px; }
+    .admin-input-group input { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1; font-size: 0.85rem; }
+
     @media (max-width: 768px) {
       .nav-categories-header { flex-direction: column; }
-      .grid-2col, .selecao-plano-box { grid-template-columns: 1fr; }
+      .grid-2col, .selecao-plano-box, .admin-grid-inputs { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -359,9 +374,32 @@
 
   </div>
 
-  <!-- RODAPÉ OFICIAL -->
+  <!-- RODAPÉ OFICIAL COM BOTÃO DE ACESSO ADMIN -->
   <div class="footer-bar">
-    Produzido por Kelvin Lima — CEO S.O.S Soluções
+    <span>Produzido por Kelvin Lima — CEO S.O.S Soluções</span>
+    <button class="btn-lock-admin" onclick="solicitarAcessoAdmin()" title="Painel Administrativo">⚙️</button>
+  </div>
+
+  <!-- MODAL PAINEL ADMINISTRATIVO PROTEGIDO -->
+  <div id="modalPainelAdmin" class="modal-overlay">
+    <div class="modal-card" style="max-width:900px;">
+      <h2 style="margin-top:0; color:var(--header-bg); border-bottom:3px solid var(--orange-accent); padding-bottom:8px;">
+        ⚙️ Painel de Gestão Financeira S.O.S (Área do Diretor)
+      </h2>
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">
+        Edite os valores de anuidade, tarifas unitárias por peça e regras de cashback de cada categoria. As alterações são aplicadas imediatamente em todo o sistema.
+      </p>
+
+      <form id="formAdminPrecos" onsubmit="salvarConfiguracoesAdmin(event)">
+        <div id="containerFormAdminCategorias"></div>
+
+        <div style="display:flex; gap:10px; margin-top:20px;">
+          <button type="button" class="btn-main" style="background:#64748B; flex:1;" onclick="restaurarValoresPadraoAdmin()">RESTAURAR PADRÕES</button>
+          <button type="button" class="btn-main" style="background:#94A3B8; flex:1;" onclick="fecharModalAdmin()">CANCELAR</button>
+          <button type="submit" class="btn-main btn-gold" style="flex:2;">💾 SALVAR ALTERAÇÕES FINANCEIRAS</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- MODAL DE SELEÇÃO DE CATEGORIA ANTES DO CADASTRO -->
@@ -373,19 +411,19 @@
       <div class="selecao-plano-box">
         <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Iniciante')">
           <strong>🥉 INICIANTE</strong>
-          <span>Até 500 pcs/mês</span>
+          <span id="labelModalSelectIniciante">Até 500 pcs/mês</span>
         </div>
         <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Ouro')">
           <strong>🥇 VIP OURO</strong>
-          <span>Até 1.000 pcs/mês</span>
+          <span id="labelModalSelectOuro">Até 1.000 pcs/mês</span>
         </div>
         <div class="item-plano-select" onclick="selecionarCategoriaIrForm('Diamante')">
           <strong>💎 VIP DIAMANTE</strong>
-          <span>Até 1.500 pcs/mês</span>
+          <span id="labelModalSelectDiamante">Até 1.500 pcs/mês</span>
         </div>
         <div class="item-plano-select" style="border-color:var(--gold-bright); background:#111; color:#fff;" onclick="selecionarCategoriaIrForm('Black')">
           <strong style="color:var(--gold-bright);">👑 VIP BLACK</strong>
-          <span style="color:#FFF;">Até 2.500 pcs/mês (Vagas Limitadas)</span>
+          <span id="labelModalSelectBlack" style="color:#FFF;">Até 2.500 pcs/mês (Vagas Limitadas)</span>
         </div>
       </div>
 
@@ -468,62 +506,129 @@
 
   <script>
     const URL_WEBHOOK_DRIVE = "https://script.google.com/macros/s/AKfycbzxmE-Icq7YXUSOYlrmW2XRIg3yoRon3_3_rr4IaJzR0ofLGNHeXgny6C002korIB7O/exec";
+    const SENHA_MESTRE_ADMIN = "270719";
 
     let categoriaIndexAtual = 0;
 
-    const listaCategoriasDados = [
-      {
-        id: "Iniciante",
-        classe: "",
-        badge: "🔥 VAGAS LIMITADAS — CORRA!",
-        badgeBg: "",
-        paraQuem: "💡 PARA QUEM SERVE: Ideal para marcas iniciantes, e-commerces em fase de validação ou lojistas que estão estruturando o fluxo de estoque e precisam de uma operação técnica profissional sem altos custos fixos.",
-        titulo: "🥉 INICIANTE / SIMPLES",
-        subtitulo: "Até 500 pcs/mês",
-        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 500 peças. Podendo agendar mais mediante a aprovação da direção.",
-        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote apenas.<br>• Acompanhamento de nossa equipe em horário comercial.",
-        btnClasse: "btn-silver"
+    // DADOS FINANCEIROS PADRÃO (BASE DE CONFIGURAÇÃO DINÂMICA)
+    const VALORES_PADRAO_FINANCEIROS = {
+      Iniciante: {
+        anuidade: 1500,
+        cotaPcs: 500,
+        inspecao: 0.75,
+        etiqueta: 0.30,
+        encarte: 0.60,
+        foto: 1.99,
+        cde: 2.40,
+        cashbackTotal: 300,
+        cashbackParcela: 100,
+        cashbackMesesDesc: "R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto"
       },
-      {
-        id: "Ouro",
-        classe: "gold",
-        badge: "🔥 VAGAS LIMITADAS — CORRA!",
-        badgeBg: "background:#D97706;",
-        paraQuem: "💡 PARA QUEM SERVE: Desenvolvido para marcas em constante tração, atacadistas e e-commerces consolidados que precisam de giro mensal acelerado, relatórios semestrais de performance e prioridade no agendamento fabril.",
-        titulo: "🥇 VIP OURO",
-        subtitulo: "Até 1.000 pcs/mês",
-        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.000 peças. Podendo agendar mais com aprovação da direção.",
-        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote + Relatório semestral.<br>• Acompanhamento de nossa equipe em horário comercial.",
-        btnClasse: "btn-gold"
+      Ouro: {
+        anuidade: 3000,
+        cotaPcs: 1000,
+        inspecao: 0.63,
+        etiqueta: 0.24,
+        encarte: 0.50,
+        foto: 1.70,
+        cde: 2.07,
+        cashbackTotal: 500,
+        cashbackParcela: 125,
+        cashbackMesesDesc: "R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto"
       },
-      {
-        id: "Diamante",
-        classe: "diamante",
-        badge: "🔥 VAGAS LIMITADAS — CORRA!",
-        badgeBg: "background:#0284C7;",
-        paraQuem: "💡 PARA QUEM SERVE: Perfeito para operações de alta escala, grandes marcas de revenda e distribuidores de semijoias que demandam entrada expressa na esteira, acompanhamento prioritário e volume de até 1.500 peças/mês.",
-        titulo: "💎 VIP DIAMANTE",
-        subtitulo: "Até 1.500 pcs/mês",
-        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 1.500 peças (tudo no mesmo mês).",
-        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal.<br>• Acompanhamento prioritário de nossa equipe.",
-        btnClasse: "btn-diamante"
+      Diamante: {
+        anuidade: 5000,
+        cotaPcs: 1500,
+        inspecao: 0.58,
+        etiqueta: 0.22,
+        encarte: 0.45,
+        foto: 1.56,
+        cde: 1.90,
+        cashbackTotal: 1000,
+        cashbackParcela: 250,
+        cashbackMesesDesc: "R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto"
       },
-      {
-        id: "Black",
-        classe: "black",
-        badge: "🚨 VAGAS LIMITADAS!",
-        badgeBg: "background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;",
-        paraQuem: "👑 PARA QUEM SERVE: A categoria definitiva de altíssima performance para grandes indústrias, redes de franquias e marcas líderes de mercado. Garante o menor custo por peça da indústria, atendimento VIP 24h e cota de 2.500 peças/mês sem lote mínimo.",
-        titulo: "👑 VIP BLACK EXCLUSIVO",
-        subtitulo: "Até 2.500 pcs/mês (Sem Mínimo de Lote)",
-        avisoCota: "⚠️ <strong>Cota Máxima:</strong> 2.500 peças/mês. <u>Sem exigência de lote mínimo</u>.",
-        diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal detalhado.<br>• Acompanhamento VIP da nossa equipe 24h por dia.",
-        btnClasse: "btn-black"
+      Black: {
+        anuidade: 10000,
+        cotaPcs: 2500,
+        inspecao: 0.49,
+        etiqueta: 0.18,
+        encarte: 0.38,
+        foto: 1.32,
+        cde: 1.61,
+        cashbackTotal: 2000,
+        cashbackParcela: 500,
+        cashbackMesesDesc: "R$ 500,00 em Fevereiro + R$ 500,00 em Junho + R$ 500,00 em Julho + R$ 500,00 em Dezembro"
       }
-    ];
+    };
+
+    // Função para carregar configurações (localStorage ou Padrão)
+    function obterConfiguracoesFinanceiras() {
+      const salvas = localStorage.getItem('SOS_FINANCEIRO_CONFIG_2027');
+      if (salvas) {
+        try { return JSON.parse(salvas); } catch(e) { }
+      }
+      return JSON.parse(JSON.stringify(VALORES_PADRAO_FINANCEIROS));
+    }
+
+    function obterListaCategoriasCompilada() {
+      const cfg = obterConfiguracoesFinanceiras();
+
+      return [
+        {
+          id: "Iniciante",
+          classe: "",
+          badge: "🔥 VAGAS LIMITADAS — CORRA!",
+          badgeBg: "",
+          paraQuem: "💡 PARA QUEM SERVE: Ideal para marcas iniciantes, e-commerces em fase de validação ou lojistas que estão estruturando o fluxo de estoque e precisam de uma operação técnica profissional sem altos custos fixos.",
+          titulo: "🥉 INICIANTE / SIMPLES",
+          subtitulo: `Até ${cfg.Iniciante.cotaPcs.toLocaleString('pt-BR')} pcs/mês`,
+          avisoCota: `⚠️ <strong>Cota Máxima:</strong> ${cfg.Iniciante.cotaPcs.toLocaleString('pt-BR')} peças. Podendo agendar mais mediante a aprovação da direção.`,
+          diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote apenas.<br>• Acompanhamento de nossa equipe em horário comercial.",
+          btnClasse: "btn-silver"
+        },
+        {
+          id: "Ouro",
+          classe: "gold",
+          badge: "🔥 VAGAS LIMITADAS — CORRA!",
+          badgeBg: "background:#D97706;",
+          paraQuem: "💡 PARA QUEM SERVE: Desenvolvido para marcas em constante tração, atacadistas e e-commerces consolidados que precisam de giro mensal acelerado, relatórios semestrais de performance e prioridade no agendamento fabril.",
+          titulo: "🥇 VIP OURO",
+          subtitulo: `Até ${cfg.Ouro.cotaPcs.toLocaleString('pt-BR')} pcs/mês`,
+          avisoCota: `⚠️ <strong>Cota Máxima:</strong> ${cfg.Ouro.cotaPcs.toLocaleString('pt-BR')} peças. Podendo agendar mais com aprovação da direção.`,
+          diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote + Relatório semestral.<br>• Acompanhamento de nossa equipe em horário comercial.",
+          btnClasse: "btn-gold"
+        },
+        {
+          id: "Diamante",
+          classe: "diamante",
+          badge: "🔥 VAGAS LIMITADAS — CORRA!",
+          badgeBg: "background:#0284C7;",
+          paraQuem: "💡 PARA QUEM SERVE: Perfeito para operações de alta escala, grandes marcas de revenda e distribuidores de semijoias que demandam entrada expressa na esteira, acompanhamento prioritário e volume de até 1.500 peças/mês.",
+          titulo: "💎 VIP DIAMANTE",
+          subtitulo: `Até ${cfg.Diamante.cotaPcs.toLocaleString('pt-BR')} pcs/mês`,
+          avisoCota: `⚠️ <strong>Cota Máxima:</strong> ${cfg.Diamante.cotaPcs.toLocaleString('pt-BR')} peças (tudo no mesmo mês).`,
+          diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal.<br>• Acompanhamento prioritário de nossa equipe.",
+          btnClasse: "btn-diamante"
+        },
+        {
+          id: "Black",
+          classe: "black",
+          badge: "🚨 VAGAS LIMITADAS!",
+          badgeBg: "background:linear-gradient(90deg, #FFB703, #FB8500); color:#000;",
+          paraQuem: "👑 PARA QUEM SERVE: A categoria definitiva de altíssima performance para grandes indústrias, redes de franquias e marcas líderes de mercado. Garante o menor custo por peça da indústria, atendimento VIP 24h e cota de 2.500 peças/mês sem lote mínimo.",
+          titulo: "👑 VIP BLACK EXCLUSIVO",
+          subtitulo: `Até ${cfg.Black.cotaPcs.toLocaleString('pt-BR')} pcs/mês (Sem Mínimo de Lote)`,
+          avisoCota: `⚠️ <strong>Cota Máxima:</strong> ${cfg.Black.cotaPcs.toLocaleString('pt-BR')} peças/mês. <u>Sem exigência de lote mínimo</u>.`,
+          diferenciais: "📊 <strong>Diferenciais de Suporte:</strong><br>• Relatório por lote e mensal detalhado.<br>• Acompanhamento VIP da nossa equipe 24h por dia.",
+          btnClasse: "btn-black"
+        }
+      ];
+    }
 
     function renderizarCardCategoriaExibicao(idx) {
-      const item = listaCategoriasDados[idx];
+      const lista = obterListaCategoriasDados();
+      const item = lista[idx];
       const box = document.getElementById('boxCardCategoryDisplay');
 
       // Atualiza botões superiores
@@ -575,6 +680,10 @@
       `;
     }
 
+    function obterListaCategoriasDados() {
+      return obterListaCategoriasCompilada();
+    }
+
     function navegarCategoriaDelta(delta) {
       categoriaIndexAtual += delta;
       if(categoriaIndexAtual > 3) categoriaIndexAtual = 0;
@@ -587,7 +696,130 @@
       renderizarCardCategoriaExibicao(categoriaIndexAtual);
     }
 
+    /* ---- FUNÇÕES DE AUTENTICAÇÃO E PAINEL ADMIN ---- */
+    function solicitarAcessoAdmin() {
+      const pass = prompt("🔐 Digite a senha do Administrador Diretor S.O.S:");
+      if (pass === SENHA_MESTRE_ADMIN) {
+        abrirModalAdmin();
+      } else if (pass !== null) {
+        alert("❌ Senha incorreta! Acesso negado.");
+      }
+    }
+
+    function abrirModalAdmin() {
+      const cfg = obterConfiguracoesFinanceiras();
+      const cont = document.getElementById('containerFormAdminCategorias');
+      let html = "";
+
+      const cats = ["Iniciante", "Ouro", "Diamante", "Black"];
+      cats.forEach(c => {
+        const item = cfg[c];
+        html += `
+          <div class="admin-cat-block">
+            <h4>COTA ${c.toUpperCase()}</h4>
+            <div class="admin-grid-inputs">
+              <div class="admin-input-group">
+                <label>Anuidade (R$)</label>
+                <input type="number" step="0.01" id="adm_${c}_anuidade" value="${item.anuidade}">
+              </div>
+              <div class="admin-input-group">
+                <label>Cota Máxima (Peças)</label>
+                <input type="number" id="adm_${c}_cotaPcs" value="${item.cotaPcs}">
+              </div>
+              <div class="admin-input-group">
+                <label>Inspeção/CDI (R$/peça)</label>
+                <input type="number" step="0.01" id="adm_${c}_inspecao" value="${item.inspecao}">
+              </div>
+              <div class="admin-input-group">
+                <label>Etiqueta (R$/peça)</label>
+                <input type="number" step="0.01" id="adm_${c}_etiqueta" value="${item.etiqueta}">
+              </div>
+              <div class="admin-input-group">
+                <label>Encarte (R$/peça)</label>
+                <input type="number" step="0.01" id="adm_${c}_encarte" value="${item.encarte}">
+              </div>
+              <div class="admin-input-group">
+                <label>Foto Still/IA (R$/mod)</label>
+                <input type="number" step="0.01" id="adm_${c}_foto" value="${item.foto}">
+              </div>
+              <div class="admin-input-group">
+                <label>CDE Cadastro (R$/mod)</label>
+                <input type="number" step="0.01" id="adm_${c}_cde" value="${item.cde}">
+              </div>
+              <div class="admin-input-group">
+                <label>Cashback Total (R$)</label>
+                <input type="number" step="0.01" id="adm_${c}_cashbackTotal" value="${item.cashbackTotal}">
+              </div>
+              <div class="admin-input-group">
+                <label>Parcela Cashback (R$)</label>
+                <input type="number" step="0.01" id="adm_${c}_cashbackParcela" value="${item.cashbackParcela}">
+              </div>
+            </div>
+            <div class="admin-input-group" style="margin-top:8px;">
+              <label>Descrição dos Meses do Cashback</label>
+              <input type="text" id="adm_${c}_cashbackMesesDesc" value="${item.cashbackMesesDesc}">
+            </div>
+          </div>
+        `;
+      });
+
+      cont.innerHTML = html;
+      document.getElementById('modalPainelAdmin').style.display = 'flex';
+    }
+
+    function fecharModalAdmin() {
+      document.getElementById('modalPainelAdmin').style.display = 'none';
+    }
+
+    function salvarConfiguracoesAdmin(e) {
+      e.preventDefault();
+      const cfg = {};
+      const cats = ["Iniciante", "Ouro", "Diamante", "Black"];
+
+      cats.forEach(c => {
+        cfg[c] = {
+          anuidade: parseFloat(document.getElementById(`adm_${c}_anuidade`).value) || 0,
+          cotaPcs: parseInt(document.getElementById(`adm_${c}_cotaPcs`).value) || 0,
+          inspecao: parseFloat(document.getElementById(`adm_${c}_inspecao`).value) || 0,
+          etiqueta: parseFloat(document.getElementById(`adm_${c}_etiqueta`).value) || 0,
+          encarte: parseFloat(document.getElementById(`adm_${c}_encarte`).value) || 0,
+          foto: parseFloat(document.getElementById(`adm_${c}_foto`).value) || 0,
+          cde: parseFloat(document.getElementById(`adm_${c}_cde`).value) || 0,
+          cashbackTotal: parseFloat(document.getElementById(`adm_${c}_cashbackTotal`).value) || 0,
+          cashbackParcela: parseFloat(document.getElementById(`adm_${c}_cashbackParcela`).value) || 0,
+          cashbackMesesDesc: document.getElementById(`adm_${c}_cashbackMesesDesc`).value
+        };
+      });
+
+      localStorage.setItem('SOS_FINANCEIRO_CONFIG_2027', JSON.stringify(cfg));
+      alert("✅ Alterações financeiras salvas com sucesso no sistema!");
+      fecharModalAdmin();
+      
+      // Atualiza interface
+      renderizarCardCategoriaExibicao(categoriaIndexAtual);
+      atualizarLabelsModalSelecao();
+    }
+
+    function restaurarValoresPadraoAdmin() {
+      if (confirm("Tem certeza que deseja restaurar todos os valores financeiros para o padrão de fábrica?")) {
+        localStorage.removeItem('SOS_FINANCEIRO_CONFIG_2027');
+        alert("✅ Valores padrão restaurados!");
+        abrirModalAdmin();
+        renderizarCardCategoriaExibicao(categoriaIndexAtual);
+        atualizarLabelsModalSelecao();
+      }
+    }
+
+    function atualizarLabelsModalSelecao() {
+      const cfg = obterConfiguracoesFinanceiras();
+      document.getElementById('labelModalSelectIniciante').innerText = `Até ${cfg.Iniciante.cotaPcs.toLocaleString('pt-BR')} pcs/mês`;
+      document.getElementById('labelModalSelectOuro').innerText = `Até ${cfg.Ouro.cotaPcs.toLocaleString('pt-BR')} pcs/mês`;
+      document.getElementById('labelModalSelectDiamante').innerText = `Até ${cfg.Diamante.cotaPcs.toLocaleString('pt-BR')} pcs/mês`;
+      document.getElementById('labelModalSelectBlack').innerText = `Até ${cfg.Black.cotaPcs.toLocaleString('pt-BR')} pcs/mês (Vagas Limitadas)`;
+    }
+
     function abrirModalEscolhaCategoria() {
+      atualizarLabelsModalSelecao();
       document.getElementById('modalEscolhaCategoria').style.display = 'flex';
     }
 
@@ -600,22 +832,27 @@
       abrirModalCadastroForm(cat);
     }
 
-    // MODAL DE INFORMAÇÕES COM PRAZOS E COMPARATIVO ATUALIZADO
+    // MODAL DE INFORMAÇÕES COM PRAZOS E COMPARATIVO ATUALIZADO DINAMICAMENTE
     function abrirModalMaisInformacoes(categoria) {
       const modal = document.getElementById('modalMaisInformacoes');
       const tit = document.getElementById('modalInfoTitulo');
       const cont = document.getElementById('modalInfoConteudo');
 
+      const cfg = obterConfiguracoesFinanceiras();
+      const dadosCat = cfg[categoria] || cfg.Iniciante;
+      const dadosBlack = cfg.Black;
+
       let nomeCategoriaOficial = (categoria === "Iniciante") ? "INICIANTE / SIMPLES" : ((categoria === "Ouro") ? "VIP OURO" : ((categoria === "Diamante") ? "VIP DIAMANTE" : "VIP BLACK EXCLUSIVO"));
       tit.innerText = `Valores & Tabela Comparativa — Cota ${nomeCategoriaOficial}`;
 
-      let adesao = (categoria === "Iniciante") ? "R$ 1.500,00 / anuidade" : ((categoria === "Ouro") ? "R$ 3.000,00 / anuidade" : ((categoria === "Diamante") ? "R$ 5.000,00 / anuidade" : "R$ 10.000,00 / anuidade (Vagas Limitadas)"));
+      let txtVagas = (categoria === "Black") ? "(Vagas Limitadas)" : "";
+      let adesao = `R$ ${dadosCat.anuidade.toLocaleString('pt-BR', {minimumFractionDigits: 2})} / anuidade ${txtVagas}`;
       
-      let valInsp = (categoria === "Iniciante") ? 0.75 : ((categoria === "Ouro") ? 0.63 : ((categoria === "Diamante") ? 0.58 : 0.49));
-      let valEtiq = (categoria === "Iniciante") ? 0.30 : ((categoria === "Ouro") ? 0.24 : ((categoria === "Diamante") ? 0.22 : 0.18));
-      let valEnc = (categoria === "Iniciante") ? 0.60 : ((categoria === "Ouro") ? 0.50 : ((categoria === "Diamante") ? 0.45 : 0.38));
-      let valFoto = (categoria === "Iniciante") ? 1.99 : ((categoria === "Ouro") ? 1.70 : ((categoria === "Diamante") ? 1.56 : 1.32));
-      let valCde = (categoria === "Iniciante") ? 2.40 : ((categoria === "Ouro") ? 2.07 : ((categoria === "Diamante") ? 1.90 : 1.61));
+      let valInsp = dadosCat.inspecao;
+      let valEtiq = dadosCat.etiqueta;
+      let valEnc = dadosCat.encarte;
+      let valFoto = dadosCat.foto;
+      let valCde = dadosCat.cde;
 
       let subInsp = 500 * valInsp;
       let subEtiq = 500 * valEtiq;
@@ -624,41 +861,27 @@
       let subCde = 100 * valCde;
       let totalPlanoAtual = subInsp + subEtiq + subEnc + subFoto + subCde;
 
-      let blackInsp = 500 * 0.49;
-      let blackEtiq = 500 * 0.18;
-      let blackEnc = 500 * 0.38;
-      let blackFoto = 100 * 1.32;
-      let blackCde = 100 * 1.61;
+      let blackInsp = 500 * dadosBlack.inspecao;
+      let blackEtiq = 500 * dadosBlack.etiqueta;
+      let blackEnc = 500 * dadosBlack.encarte;
+      let blackFoto = 100 * dadosBlack.foto;
+      let blackCde = 100 * dadosBlack.cde;
       let totalBlack = blackInsp + blackEtiq + blackEnc + blackFoto + blackCde;
       let economiaLote = totalPlanoAtual - totalBlack;
 
       let textoCashBack = "";
-      if (categoria === "Iniciante") {
+      if (categoria === "Black") {
         textoCashBack = `
-          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
-          Dos R$ 1.500,00 da anuidade, <strong>R$ 300,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 100,00 em Junho + R$ 100,00 em Julho + R$ 100,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
-          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
-        `;
-      } else if (categoria === "Ouro") {
-        textoCashBack = `
-          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
-          Dos R$ 3.000,00 da anuidade, <strong>R$ 500,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 125,00 em Fevereiro + R$ 125,00 em Junho + R$ 125,00 em Julho + R$ 125,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
-          • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
-        `;
-      } else if (categoria === "Diamante") {
-        textoCashBack = `
-          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
-          Dos R$ 5.000,00 da anuidade, <strong>R$ 1.000,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 250,00 em Fevereiro + R$ 250,00 em Junho + R$ 250,00 em Julho + R$ 250,00 em Agosto com possibilidade de abatimento por serviços livres.<br>
+          👑 <strong>Programa de CashBack Ultra Exclusivo VIP BLACK:</strong><br>
+          Dos R$ ${dadosCat.anuidade.toLocaleString('pt-BR', {minimumFractionDigits: 2})} da anuidade, <strong>R$ ${dadosCat.cashbackTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})} voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> ${dadosCat.cashbackMesesDesc} com possibilidade de abatimento por serviços livres.<br>
           • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
         `;
       } else {
         textoCashBack = `
-          👑 <strong>Programa de CashBack Ultra Exclusivo VIP BLACK:</strong><br>
-          Dos R$ 10.000,00 da anuidade, <strong>R$ 2.000,00 voltam em CashBack para a sua marca</strong>.<br>
-          • <strong>Liberação:</strong> R$ 500,00 em Fevereiro + R$ 500,00 em Junho + R$ 500,00 em Julho + R$ 500,00 em Dezembro com possibilidade de abatimento por serviços livres.<br>
+          📌 <strong>Programa de CashBack Garantido S.O.S:</strong><br>
+          Dos R$ ${dadosCat.anuidade.toLocaleString('pt-BR', {minimumFractionDigits: 2})} da anuidade, <strong>R$ ${dadosCat.cashbackTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})} voltam em CashBack para a sua marca</strong>.<br>
+          • <strong>Liberação:</strong> ${dadosCat.cashbackMesesDesc} com possibilidade de abatimento por serviços livres.<br>
           • <i>Importante:</i> Ultrapassou o valor no mês, você acerta apenas o excedente. Não atingiu ou não usou no mês, o valor <u>NÃO acumula</u> e é expirado.
         `;
       }
@@ -678,11 +901,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
-              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,32</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,61</td></tr>
-              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,18</td></tr>
-              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,38</td></tr>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.inspecao.toFixed(2)}</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.foto.toFixed(2)}</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.cde.toFixed(2)}</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.etiqueta.toFixed(2)}</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.encarte.toFixed(2)}</td></tr>
               <tr><td>Cravação</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
               <tr><td>Colagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,42</td></tr>
               <tr><td>Montagem</td><td>Por Peça</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,30</td></tr>
@@ -693,11 +916,11 @@
         simulacaoHtml = `
           <div style="background:#1A1A24; color:#FFF; border:1px solid #F59E0B; border-radius:10px; padding:12px; margin-bottom:15px; font-size:0.8rem;">
             <strong style="color:#F59E0B; font-size:0.85rem;">📊 Simulação de Lote Padrão no Cota BLACK (500 Peças / 100 Modelos):</strong><br><br>
-            • Inspeção (500 x R$ 0,49): R$ ${blackInsp.toFixed(2)}<br>
-            • Etiqueta (500 x R$ 0,18): R$ ${blackEtiq.toFixed(2)}<br>
-            • Encarte (500 x R$ 0,38): R$ ${blackEnc.toFixed(2)}<br>
-            • Foto (100 x R$ 1,32): R$ ${blackFoto.toFixed(2)}<br>
-            • CDE (100 x R$ 1,61): R$ ${blackCde.toFixed(2)}<br>
+            • Inspeção (500 x R$ ${dadosBlack.inspecao.toFixed(2)}): R$ ${blackInsp.toFixed(2)}<br>
+            • Etiqueta (500 x R$ ${dadosBlack.etiqueta.toFixed(2)}): R$ ${blackEtiq.toFixed(2)}<br>
+            • Encarte (500 x R$ ${dadosBlack.encarte.toFixed(2)}): R$ ${blackEnc.toFixed(2)}<br>
+            • Foto (100 x R$ ${dadosBlack.foto.toFixed(2)}): R$ ${blackFoto.toFixed(2)}<br>
+            • CDE (100 x R$ ${dadosBlack.cde.toFixed(2)}): R$ ${blackCde.toFixed(2)}<br>
             <hr style="margin:6px 0; border:0; border-top:1px solid #444;">
             Total do Lote no Black: <strong style="color:var(--green-val); font-size:1rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong> 
             <span style="color:var(--green-val); font-size:0.75rem;">(Nível máximo absoluto de economia no mercado!)</span>
@@ -718,11 +941,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${valInsp.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,49</td></tr>
-              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${valFoto.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,32</td></tr>
-              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 1,61</td></tr>
-              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,18</td></tr>
-              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ 0,38</td></tr>
+              <tr><td>Inspeção + CDI (3 em 1)</td><td>Por Peça</td><td>R$ ${valInsp.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.inspecao.toFixed(2)}</td></tr>
+              <tr><td>Fotografia (Still / IA)</td><td>Por Modelo</td><td>R$ ${valFoto.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.foto.toFixed(2)}</td></tr>
+              <tr><td>Cadastro Digital CDE</td><td>Por Modelo</td><td>R$ ${valCde.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.cde.toFixed(2)}</td></tr>
+              <tr><td>Etiquetagem Industrial</td><td>Por Peça</td><td>R$ ${valEtiq.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.etiqueta.toFixed(2)}</td></tr>
+              <tr><td>Encarte & Embalagem Externa</td><td>Por Peça</td><td>R$ ${valEnc.toFixed(2)}</td><td style="color:var(--green-val); font-weight:bold;">R$ ${dadosBlack.encarte.toFixed(2)}</td></tr>
               <tr><td>Cravação / Colagem / Montagem</td><td>Por Peça</td><td>Opcional</td><td style="color:var(--green-val); font-weight:bold;">0,49 / 0,42 / 0,30</td></tr>
             </tbody>
           </table>
@@ -744,11 +967,11 @@
               </div>
               <div style="background:#1A1A24; color:#FFF; padding:10px; border-radius:6px; border:1px solid #F59E0B;">
                 <strong style="color:#F59E0B;">Cota VIP BLACK:</strong><br>
-                • Inspeção (500 x R$ 0,49): R$ ${blackInsp.toFixed(2)}<br>
-                • Etiqueta (500 x R$ 0,18): R$ ${blackEtiq.toFixed(2)}<br>
-                • Encarte (500 x R$ 0,38): R$ ${blackEnc.toFixed(2)}<br>
-                • Foto (100 x R$ 1,32): R$ ${blackFoto.toFixed(2)}<br>
-                • CDE (100 x R$ 1,61): R$ ${blackCde.toFixed(2)}<br>
+                • Inspeção (500 x R$ ${dadosBlack.inspecao.toFixed(2)}): R$ ${blackInsp.toFixed(2)}<br>
+                • Etiqueta (500 x R$ ${dadosBlack.etiqueta.toFixed(2)}): R$ ${blackEtiq.toFixed(2)}<br>
+                • Encarte (500 x R$ ${dadosBlack.encarte.toFixed(2)}): R$ ${blackEnc.toFixed(2)}<br>
+                • Foto (100 x R$ ${dadosBlack.foto.toFixed(2)}): R$ ${blackFoto.toFixed(2)}<br>
+                • CDE (100 x R$ ${dadosBlack.cde.toFixed(2)}): R$ ${blackCde.toFixed(2)}<br>
                 <hr style="margin:4px 0; border:0; border-top:1px solid #444;">
                 Total no Black: <strong style="color:var(--green-val); font-size:0.95rem;">R$ ${totalBlack.toFixed(2).replace('.', ',')}</strong><br>
                 <span style="color:var(--green-val); font-size:0.75rem;">(Economia de R$ ${economiaLote.toFixed(2).replace('.', ',')} por lote!)</span>
